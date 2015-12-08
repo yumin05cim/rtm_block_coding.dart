@@ -5,7 +5,7 @@
 
 <polymer-element name="set-variable" attributes="command">
     <template >
-        <link rel="stylesheet" href="element_styles.css" />
+        <link rel="stylesheet" href="../element_styles.css" />
         <style type='text/css'>
             :host {
                 background-color: #009688;
@@ -25,12 +25,11 @@
         </style>
         <div id="title-area" horizontal layout center>
             <div end>Calculate and Set value to Variable (name = </div>
-            <paper-input flex value="{{name}}"></paper-input>
+            <paper-input id="name-input" flex value="{{name}}"></paper-input>
             <div end>)</div>
         </div>
         <div id="body-area">
             <div id="target">
-                <integer-literal></integer-literal>
             </div>
         </div>
     </template>

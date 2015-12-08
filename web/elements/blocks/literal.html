@@ -4,7 +4,7 @@
 
 <polymer-element name="integer-literal" attributes="value">
     <template >
-        <link rel="stylesheet" href="element_styles.css" />
+        <link rel="stylesheet" href="../element_styles.css" />
         <style type='text/css'>
             :host {
                 background-color: #B2DFDB;
@@ -23,7 +23,7 @@
 
         <div id="target" horizontal layout center>
             <div end>Integer Literal (value is </div>
-            <paper-input flex value="{{value}}"></paper-input>
+            <paper-input id="literal-input" flex value="{{value}}"></paper-input>
             <div end>)</div>
         </div>
 

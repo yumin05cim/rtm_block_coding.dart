@@ -1,7 +1,7 @@
 import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
-import '../../lib/application.dart' as program;
+import 'package:rtm_block_coding/application.dart' as program;
 import 'blocks/set_variable.dart';
 
 @CustomTag('block-editor')
@@ -21,11 +21,18 @@ class BlockEditor extends PolymerElement {
   void refresh(program.Application app) {
     app.statements.forEach((s) {
       if(s.block is program.SetValue) {
-        SetVariable sv = new html.Element.tag('set-variable');
-        sv.name = s.block.left.name;
+
+        SetVariable il = new html.Element.tag('integer-literal')
+          ..model = s.block.right
+          ..value = s.block.right.value;
+        SetVariable sv = new html.Element.tag('set-variable')
+        ..model = s.block
+        ..name = s.block.left.name
+        ..attachTarget(il);
+
+
         container.children.add(sv);
       }
     });
-    print (p.toPython(0));
   }
 }

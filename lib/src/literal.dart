@@ -10,6 +10,8 @@ class Integer extends Block {
 
   get value => _a;
 
+  set value(int i) => _a = i;
+
   Integer(this._a) {}
 
   String toPython(int indentLevel) {
@@ -22,6 +24,8 @@ class StringLiteral extends Block {
   String _a;
 
   get value => _a;
+
+  set value(String s) => _a = s;
 
   StringLiteral(this._a) {}
 

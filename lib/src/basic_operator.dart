@@ -11,6 +11,8 @@ class Variable extends Block {
 
   get name => _name;
 
+  set name(String n) => _name = n;
+
   Variable(this._name) {}
 
   toPython(int indentLevel) {

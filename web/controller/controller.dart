@@ -1,5 +1,5 @@
 import '../elements/editor_panel.dart';
-import '../../lib/application.dart' as program;
+import 'package:rtm_block_coding/application.dart' as program;
 class Controller {
 
   program.Application onActivatedApp = new program.Application();
@@ -8,7 +8,6 @@ class Controller {
   EditorPanel _editorPanel;
 
   Controller() {
-
   }
 
 
