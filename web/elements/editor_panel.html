@@ -2,7 +2,7 @@
 
 <link rel="import" href="packages/paper_elements/paper_tabs.html"/>
 <link rel="import" href="packages/core_elements/core_pages.html" />
-
+<link rel="import" href="block_editor.html" />
 
 <polymer-element name="editor-panel">
     <template >
@@ -22,9 +22,9 @@
         </paper-tabs>
 
         <core-pages selected="{{selected}}">
-            <div>Page 1</div>
-            <div>Page 2</div>
-            <div>Page 3</div>
+            <block-editor command="onActivated"></block-editor>
+            <block-editor command="onExecute"></block-editor>
+            <block-editor command="onDeactivated"></block-editor>
         </core-pages>
 
     </template>
