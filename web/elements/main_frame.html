@@ -14,6 +14,7 @@
 <link rel="import" href="add_element_button.html" />
 <link rel="import" href="state_panel.html" />
 <link rel="import" href="editor_panel.html" />
+<link rel="import" href="result_panel.html" />
 
 <polymer-element name="main-frame">
     <template >
@@ -72,16 +73,13 @@
                         <state-panel></state-panel>
                         <editor-panel flex></editor-panel >
                     </core-header-panel>
-                    <core-header-panel drawer>
+                    <core-header-panel drawer layout vertical>
                         <core-toolbar  class="text-primary-color dark-primary-color" >
                             <core-icon-button icon="send">Launch</core-icon-button>
                             <core-icon-button icon="save">Save</core-icon-button>
                             <core-icon-button icon="help">Help</core-icon-button>
                         </core-toolbar>
-                        <core-menu theme="core-light-theme">
-                            <core-item icon="settings" label="item1"></core-item>
-                            <core-item icon="settings" label="item2"></core-item>
-                        </core-menu>
+                        <result-panel></result-panel>
                     </core-header-panel>
 
                 </core-drawer-panel>
