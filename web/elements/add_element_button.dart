@@ -13,4 +13,9 @@ class AddElementButton extends PolymerElement {
 
   @override
   void attached() {}
+
+  void onTap(var e) {
+
+  }
+
 }
