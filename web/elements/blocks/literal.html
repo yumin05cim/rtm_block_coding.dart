@@ -1,0 +1,32 @@
+<link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/paper_elements/paper_input.html" />
+
+
+<polymer-element name="integer-literal" attributes="value">
+    <template >
+        <link rel="stylesheet" href="element_styles.css" />
+        <style type='text/css'>
+            :host {
+                background-color: #B2DFDB;
+            }
+            #target {
+                padding-left: 10px;
+                background-color: #B2DFDB;
+            }
+
+            paper-input {
+                margin-left : 20px;
+                margin-right: 20px;
+            }
+
+        </style>
+
+        <div id="target" horizontal layout center>
+            <div end>Integer Literal (value is </div>
+            <paper-input flex value="{{value}}"></paper-input>
+            <div end>)</div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="literal.dart"></script>
+</polymer-element>

@@ -16,15 +16,15 @@
 
         </style>
         <paper-tabs class="tabs light-primary-color" selected="{{selected}}">
-            <paper-tab>onActivated</paper-tab>
+            <paper-tab >onActivated</paper-tab>
             <paper-tab>onExecute</paper-tab>
             <paper-tab>onDeactivated</paper-tab>
         </paper-tabs>
 
         <core-pages selected="{{selected}}">
-            <block-editor command="onActivated"></block-editor>
-            <block-editor command="onExecute"></block-editor>
-            <block-editor command="onDeactivated"></block-editor>
+            <block-editor command="onActivated" id="on_activated_editor"></block-editor>
+            <block-editor command="onExecute" id="on_execute_editor"></block-editor>
+            <block-editor command="onDeactivated" id="on_deactivated_editor"></block-editor>
         </core-pages>
 
     </template>

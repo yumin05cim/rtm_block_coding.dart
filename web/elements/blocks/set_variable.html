@@ -1,0 +1,38 @@
+
+<link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/paper_elements/paper_input.html" />
+<link rel="import" href="literal.html" />
+
+<polymer-element name="set-variable" attributes="command">
+    <template >
+        <link rel="stylesheet" href="element_styles.css" />
+        <style type='text/css'>
+            :host {
+                background-color: #009688;
+                padding: 5px;
+            }
+            #body-area {
+                padding-left: 40px;
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            paper-input {
+                margin-left : 20px;
+                margin-right: 20px;
+            }
+
+        </style>
+        <div id="title-area" horizontal layout center>
+            <div end>Calculate and Set value to Variable (name = </div>
+            <paper-input flex value="{{name}}"></paper-input>
+            <div end>)</div>
+        </div>
+        <div id="body-area">
+            <div id="target">
+                <integer-literal></integer-literal>
+            </div>
+        </div>
+    </template>
+    <script type="application/dart" src="set_variable.dart"></script>
+</polymer-element>

@@ -37,6 +37,7 @@
                 border-left-style: solid;
                 border-width: 1px;
                 border-color: #B6B6B6;
+                background-color: #FFFFFF;
             }
 
             .default-primary-color > collapse-menu {
@@ -53,8 +54,8 @@
                 </collapse-menu>
 
                 <collapse-menu id="variables_menu" label="Variables" state="closed">
-                    <add-element-button label="Element1"></add-element-button>
-                    <add-element-button label="Element2"></add-element-button>
+                    <add-element-button label="SetVariable" command="set_variable"></add-element-button>
+                    <add-element-button label="GetVariable" command="get_variable"></add-element-button>
                 </collapse-menu>
 
                 <collapse-menu label="Port / Data" state="closed">
@@ -77,7 +78,7 @@
             <core-header-panel main >
                 <core-drawer-panel rightDrawer drawerWidth="500px" responsiveWidth="1200px">
 
-                    <core-header-panel main layout vertical>
+                    <core-header-panel id="main-panel" main layout vertical>
                         <core-toolbar  class="text-primary-color dark-primary-color">
                             <div flex>RTM Block Coding</div>
                         </core-toolbar>

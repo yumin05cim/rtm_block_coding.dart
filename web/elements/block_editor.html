@@ -1,17 +1,16 @@
 
 <link rel="import" href="packages/polymer/polymer.html" />
 
+
+<link rel="import" href="blocks/set_variable.html" />
 <polymer-element name="block-editor" attributes="command">
     <template >
         <link rel="stylesheet" href="element_styles.css" />
         <style type='text/css'>
 
-
-
         </style>
 
-        <div layout vertical>
-            {{command}}
+        <div id="container" layout vertical>
         </div>
     </template>
     <script type="application/dart" src="block_editor.dart"></script>
