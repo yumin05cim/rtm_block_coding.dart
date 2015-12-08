@@ -38,20 +38,11 @@ class BlockEditor extends PolymerElement {
 
   }
 
-  void refresh(connect.Application app) {
+  void refresh(program.Application app) {
     //command = app.toPython(0);
 
 
-    forEachStatement(app, (connect.Statement s) {
-
-    });
-
-
-
-    convert.Converter converter = new convert.Converter();
-    var p = converter.convert(app);
-
-    p.statements.forEach((s) {
+    app.statements.forEach((s) {
       if(s.block is program.SetValue) {
         SetVariable sv = new html.Element.tag('set-variable');
         sv.name = s.block.left.name;

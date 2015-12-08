@@ -1,12 +1,11 @@
 import 'package:program_model/application.dart' as program;
-import 'package:connection_model/connection.dart' as connect;
 import '../elements/editor_panel.dart';
 
 class Controller {
 
-  connect.Application onActivatedApp = new connect.Application();
-  connect.Application onExecuteApp = new connect.Application();
-  connect.Application onDeactivatedApp = new connect.Application();
+  program.Application onActivatedApp = new program.Application();
+  program.Application onExecuteApp = new program.Application();
+  program.Application onDeactivatedApp = new program.Application();
   EditorPanel _editorPanel;
 
   Controller() {
@@ -42,13 +41,13 @@ class Controller {
     }
   }
 
-  connect.Statement selectedStatement() {
+  program.Statement selectedStatement() {
     return null;
   }
 
   void addElement(String command) {
     print('add ${command}');
-    connect.Application app;
+    program.Application app;
     switch (_editorPanel.selected) {
       case 0:
         app = onActivatedApp;
@@ -63,12 +62,10 @@ class Controller {
 
     if (command == 'set_variable') {
       if (selectedStatement() == null) {
-        connect.Statement s = last(app);
-        connect.Statement new_s = new connect.Statement();
-        connect.SetVariable v = new connect.SetVariable(new_s, 'name');
-        connect.IntegerLiteral il = new connect.IntegerLiteral(new_s, 1);
-        il.out.connect(v.in0);
-        s.next.connect(new_s.previous);
+        program.SetValue v = new program.SetValue(new program.Variable('name'),
+                    new program.Integer(1));
+        program.Statement new_s = new program.Statement(v);
+        app.statements.add(new_s);
       }
     }
 
@@ -76,4 +73,28 @@ class Controller {
   }
 
   set editorPanel(EditorPanel p) => _editorPanel = p;
+
+
+  String pythonCode() {
+    var a = onActivatedApp.toPython(1);
+
+    var e = onExecuteApp.toPython(1);
+
+    var d = onDeactivatedApp.toPython(1);
+    return """
+def onActivated(e):
+$a
+  return RTC.RTC_OK
+
+
+def onDeactivated(e):
+$d
+  return RTC.RTC_OK
+
+
+def onExecute(e):
+$e
+  return RTC.RTC_OK
+    """;
+  }
 }

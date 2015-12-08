@@ -25,6 +25,10 @@ class MainFrame extends PolymerElement {
     $['main-panel'].querySelectorAll('editor-panel').forEach(
         (var e) {e.controller = _controller;}
     );
+
+    $['right-collapse-menu'].querySelectorAll('python-panel').forEach(
+        (var e) {e.controller = _controller;}
+    );
   }
 
 }
