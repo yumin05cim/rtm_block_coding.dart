@@ -12,6 +12,9 @@
 
 <link rel="import" href="collapse_menu.html"/>
 <link rel="import" href="add_element_button.html" />
+<link rel="import" href="state_panel.html" />
+<link rel="import" href="editor_panel.html" />
+
 <polymer-element name="main-frame">
     <template >
         <link rel="stylesheet" href="element_styles.css" />
@@ -22,43 +25,49 @@
 
             }
 
+
+            .default-primary-color > collapse-menu {
+            }
+
         </style>
 
         <core-drawer-panel>
-            <core-header-panel id="left-collapse-menu" drawer layout vertical>
-                <core-toolbar class="dark-primary-color" >RTM Block Coding</core-toolbar>
-                <collapse-menu  class="default-primary-color" flex label="RT-middleware" state="opened">
+            <core-header-panel id="left-collapse-menu" drawer vertical layout>
+                <core-toolbar class="dark-primary-color text-primary-color">RTM Block Coding</core-toolbar>
+                <collapse-menu  label="RT-middleware" state="opened">
                     <add-element-button label="Element1"></add-element-button>
                     <add-element-button label="Element2"></add-element-button>
                 </collapse-menu>
 
-                <collapse-menu id="variables_menu" class="default-primary-color" flex label="Variables" state="closed">
+                <collapse-menu id="variables_menu" label="Variables" state="closed">
                     <add-element-button label="Element1"></add-element-button>
                     <add-element-button label="Element2"></add-element-button>
                 </collapse-menu>
 
-                <collapse-menu class="default-primary-color" flex label="Port / Data" state="closed">
+                <collapse-menu label="Port / Data" state="closed">
                     <add-element-button label="Element1"></add-element-button>
                     <add-element-button label="Element2"></add-element-button>
                 </collapse-menu>
 
-                <collapse-menu class="default-primary-color" flex label="Calculate" state="closed">
+                <collapse-menu label="Calculate" state="closed">
                     <add-element-button label="Element1"></add-element-button>
                     <add-element-button label="Element2"></add-element-button>
                 </collapse-menu>
 
-                <collapse-menu class="default-primary-color" flex label="If / Switch /Loop" state="closed">
+                <collapse-menu label="If / Switch /Loop" state="closed">
                     <add-element-button label="Element1"></add-element-button>
                     <add-element-button label="Element2"></add-element-button>
                 </collapse-menu>
+                <div flex>Copyright: Yuki Suga, Yumi Nishimura, Tetsuya Ogata @Ogata Lab. Waseda Univ.</div>
+
             </core-header-panel>
             <core-header-panel main>
                 <core-drawer-panel rightDrawer>
 
-                    <core-header-panel main>
+                    <core-header-panel main layout vertical>
                         <core-toolbar  class="dark-primary-color" ></core-toolbar>
-
-                        <div>Main content goes here...</div>
+                        <state-panel></state-panel>
+                        <editor-panel flex></editor-panel >
                     </core-header-panel>
                     <core-header-panel drawer>
                         <core-toolbar  class="dark-primary-color" ></core-toolbar>

@@ -2,7 +2,7 @@
 <link rel="import" href="packages/polymer/polymer.html" />
 <link rel="import" href="packages/paper_elements/paper_button.html" />
 <link rel="import" href="packages/core_elements/core_toolbar.html" />
-
+<link rel="import" href="packages/core_elements/core_icon_button.html" />
 <polymer-element name="add-element-button" attributes="label command">
     <template >
         <link rel="stylesheet" href="element_styles.css" />
@@ -10,7 +10,6 @@
         <style type='text/css'>
             :host {
                 margin: 2px;
-                background-color: #FF0000;
             }
 
             paper-button {
@@ -23,6 +22,7 @@
 
         <div horizontal layout>
         <paper-button class="light-primary-color" flex>
+            <core-icon icon="add" self-start></core-icon>
             <div flex self-center horizontal center-justified layout >{{label}}</div>
         </paper-button>
         </div>

@@ -1,0 +1,32 @@
+<link rel="import" href="packages/polymer/polymer.html" />
+
+<link rel="import" href="packages/paper_elements/paper_tabs.html"/>
+<link rel="import" href="packages/core_elements/core_pages.html" />
+
+
+<polymer-element name="editor-panel">
+    <template >
+        <link rel="stylesheet" href="element_styles.css" />
+        <style type='text/css'>
+            :host {}
+
+            paper-tabs.tabs::shadow #selectionBar {
+                background: #FF5722;
+            }
+
+        </style>
+        <paper-tabs class="tabs light-primary-color" selected="{{selected}}">
+            <paper-tab>onActivated</paper-tab>
+            <paper-tab>onExecute</paper-tab>
+            <paper-tab>onDeactivated</paper-tab>
+        </paper-tabs>
+
+        <core-pages selected="{{selected}}">
+            <div>Page 1</div>
+            <div>Page 2</div>
+            <div>Page 3</div>
+        </core-pages>
+
+    </template>
+    <script type="application/dart" src="editor_panel.dart"></script>
+</polymer-element>
