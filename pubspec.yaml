@@ -1,0 +1,18 @@
+name: rtm_block_coding
+version: 0.0.1
+description: Block Coder for RTM
+environment:
+  sdk: '>=1.8.2 <2.0.0'
+dependencies:
+  browser: any
+  polymer: any
+  paper_elements: any
+  core_elements: any
+dev_dependencies:
+  unittest: any
+transformers:
+- polymer:
+    entry_points:
+    - web/index.html
+- $dart2js:
+    $include: web/index.html_bootstrap.dart
