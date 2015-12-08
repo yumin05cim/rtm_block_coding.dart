@@ -8,12 +8,6 @@ dependencies:
   polymer: any
   paper_elements: any
   core_elements: any
-  program_model:
-    path: ../program_model.dart
-  connection_model:
-    path: ../connection_model.dart
-  connection_program_converter:
-    path: ../connection_program_converter.dart
 dev_dependencies:
   unittest: any
 transformers:
