@@ -15,6 +15,7 @@
 <link rel="import" href="state_panel.html" />
 <link rel="import" href="editor_panel.html" />
 <link rel="import" href="result_panel.html" />
+<link rel="import" href="python_panel.html" />
 
 <polymer-element name="main-frame">
     <template >
@@ -26,6 +27,17 @@
 
             }
 
+            #left-collapse-menu {
+                border-right-style: solid;
+                border-width: 1px;
+                border-color: #B6B6B6;
+            }
+
+            #right-collapse-menu {
+                border-left-style: solid;
+                border-width: 1px;
+                border-color: #B6B6B6;
+            }
 
             .default-primary-color > collapse-menu {
             }
@@ -62,8 +74,7 @@
                 <div flex>Copyright: Yuki Suga, Yumi Nishimura, Tetsuya Ogata @Ogata Lab. Waseda Univ.</div>
 
             </core-header-panel>
-            <core-header-panel main>
-
+            <core-header-panel main >
                 <core-drawer-panel rightDrawer drawerWidth="500px" responsiveWidth="1200px">
 
                     <core-header-panel main layout vertical>
@@ -73,15 +84,17 @@
                         <state-panel></state-panel>
                         <editor-panel flex></editor-panel >
                     </core-header-panel>
-                    <core-header-panel drawer layout vertical>
+
+
+                    <core-header-panel id="right-collapse-menu" drawer vertical layout relative>
                         <core-toolbar  class="text-primary-color dark-primary-color" >
                             <core-icon-button icon="send">Launch</core-icon-button>
                             <core-icon-button icon="save">Save</core-icon-button>
                             <core-icon-button icon="help">Help</core-icon-button>
                         </core-toolbar>
                         <result-panel></result-panel>
+                        <python-panel flex></python-panel>
                     </core-header-panel>
-
                 </core-drawer-panel>
             </core-header-panel>
         </core-drawer-panel>

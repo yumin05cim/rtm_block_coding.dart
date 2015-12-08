@@ -1,0 +1,22 @@
+
+<link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/core_elements/core_toolbar.html" />
+
+<polymer-element name="python-panel" attributes="command">
+    <template >
+        <link rel="stylesheet" href="element_styles.css" />
+        <style type='text/css'>
+
+            :host {}
+
+        </style>
+        <core-toolbar  class="text-primary-color dark-primary-color" >
+            <p flex>Python Code</p>
+            <core-icon-button icon="refresh"></core-icon-button>
+        </core-toolbar>
+        <div id="target" class="secondary-text-color divider-color">
+            Here Python Code is displayed.
+        </div>
+    </template>
+    <script type="application/dart" src="python_panel.dart"></script>
+</polymer-element>
