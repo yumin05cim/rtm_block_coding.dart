@@ -18,6 +18,12 @@ class BlockEditor extends PolymerElement {
   @override
   void attached() {
 
+    this.onClick.listen(
+        (var e) {
+          // To avoid the buggy behavior where the up-down buttons are vanished when clicked.
+          globalController.setSelectedElem(e, globalController.selectedElement);
+        }
+    );
   }
 
   void updateClick() {
@@ -88,6 +94,13 @@ class BlockEditor extends PolymerElement {
     }
   }
 
+  void onUp(var e) {
+    globalController.setSelectedElem(e, globalController.selectedElement);
+  }
+
+  void onDown(var e) {
+    globalController.setSelectedElem(e, globalController.selectedElement);
+  }
 
   void parseStatement(var children, program.Statement s) {
     children.add(parseBlock(s.block));
