@@ -1,0 +1,38 @@
+<link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/paper_elements/paper_input.html" />
+
+
+<polymer-element name="inport-data" attributes="value">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style type='text/css'>
+            :host {
+                background-color: #B2DFDB;
+
+                border-width: 1px;
+                border-color: #FFFFFF;
+                border-style: none;
+            }
+            #target {
+                padding-left: 10px;
+                background-color: #B2DFDB;
+            }
+
+            paper-input {
+                margin-left : 20px;
+                margin-right: 20px;
+            }
+
+        </style>
+
+        <div id="target" horizontal layout center>
+            <div end>InPort (name=</div>
+            <paper-input id="name-input" flex value="{{name}}"></paper-input>
+            <div end>) member = </div>
+            <paper-input id="access-input" flex value="{{access}}"></paper-input>
+            <div end>)</div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="inport_data.dart"></script>
+</polymer-element>

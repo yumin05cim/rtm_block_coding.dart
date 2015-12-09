@@ -13,6 +13,8 @@ class SetVariable extends PolymerElement {
     name = _model.left.name;
   }
 
+  get model => _model;
+
   @published String name = "defaultName";
 
     SetVariable.created() : super.created();
@@ -38,10 +40,14 @@ class SetVariable extends PolymerElement {
   }
 
   void select() {
-    this.style.border = 'solid';
+    $['container'].style.border = 'solid';
   }
 
   void deselect() {
-    this.style.border = 'none';
+    $['container'].style.border = 'none';
+  }
+
+  bool is_container() {
+    return false;
   }
 }

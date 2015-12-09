@@ -46,4 +46,10 @@ class Application {
     }
     return sb;
   }
+
+  void iterateBlock(var func) {
+    for(Statement s in statements) {
+      s.iterateBlock(func);
+    }
+  }
 }

@@ -37,6 +37,11 @@ class Statement {
     }
     return "";
   }
+
+  void iterateBlock(var func) {
+    func(_block);
+    _block.iterateBlock(func);
+  }
 }
 
 class StatementList extends ListMixin<Statement> {

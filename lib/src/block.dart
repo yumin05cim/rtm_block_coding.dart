@@ -19,7 +19,11 @@ abstract class Block {
   String toBindPython(int indentLevel) {
     return "";
   }
+
+  void iterateBlock(var func) {}
+
 }
+
 
 
 

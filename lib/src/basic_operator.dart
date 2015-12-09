@@ -27,6 +27,8 @@ class SetValue extends Block {
   get left => _left;
   get right => _right;
 
+  set right(var r) => _right = r;
+
   SetValue(this._left, this._right) {
 
   }

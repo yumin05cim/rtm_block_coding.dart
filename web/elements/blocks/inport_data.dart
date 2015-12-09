@@ -3,25 +3,34 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('integer-literal')
-class IntegerLiteral extends PolymerElement {
+@CustomTag('inport-data')
+class InPortData extends PolymerElement {
 
-  program.Integer _model;
+  program.InPortDataAccess _model;
 
-  set model(program.Integer m) {
+  set model(program.InPortDataAccess m) {
     _model = m;
-    value = m.value;
+    name = m.name;
+    access = m.accessSequence;
   }
-  @published int value = 1;
-  IntegerLiteral.created() : super.created();
+
+  @published String name = "name";
+  @published String access = "";
+  InPortData.created() : super.created();
 
   void attached() {
-    $['literal-input'].onChange.listen(
+    $['name-input'].onChange.listen(
         (var e) {
-          _model.value = value;
+          _model.name = name;
         }
-
     );
+
+    $['access-input'].onChange.listen(
+        (var e) {
+      _model.accessSequence = access;
+    }
+    );
+
 
     this.onClick.listen(
       (var e) {

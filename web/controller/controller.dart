@@ -1,8 +1,9 @@
 import '../elements/editor_panel.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 
+import '../elements/blocks/read_inport.dart';
 
-
+import '../elements/blocks/set_variable.dart';
 
 class Controller {
 
@@ -78,26 +79,54 @@ class Controller {
     if (command == 'set_variable') {
       if (selectedStatement() == null) {
         program.SetValue v = new program.SetValue(new program.Variable('name'),
-                    new program.Integer(1));
+            new program.Integer(1));
         program.Statement new_s = new program.Statement(v);
         app.statements.add(new_s);
+      }
+
+      if (selectedStatement() is ReadInPort) {
+        program.SetValue v = new program.SetValue(new program.Variable('name'),
+            new program.Integer(1));
+        program.Statement new_s = new program.Statement(v);
+        selectedStatement().model.statements.add(new_s);
       }
     }
 
     if(command == 'read_inport') {
       if (selectedStatement() == null) {
+
           program.ReadInPort v = new program.ReadInPort('in', new program.DataType.TimedLong());
           program.Statement new_s = new program.Statement(v);
           app.statements.add(new_s);
       }
-
     }
 
-    _editorPanel.refresh(app);
+    if(command == 'inport_data') {
+      var inports = globalController.inportList();
+      var defaultInPort = new program.ReadInPort("in", new program.DataType.TimedLong());
+      if (inports.length > 0) {
+        defaultInPort = inports[0];
+      }
+
+      program.InPortDataAccess v = new program.InPortDataAccess(defaultInPort.name, new program.DataType.fromTypeName(defaultInPort.dataType.typename), "");
+      if (selectedStatement() == null) {
+        program.Statement new_s = new program.Statement(v);
+        app.statements.add(new_s);
+      }
+
+      if (selectedStatement() is SetVariable) {
+        selectedStatement().model.right = v;
+      }
+    }
+
+    refreshPanel();
   }
 
   set editorPanel(EditorPanel p) => _editorPanel = p;
 
+  void refreshPanel() {
+    _editorPanel.refresh(app);
+  }
 
   String pythonCode() {
     var dec = onActivatedApp.toDeclarePython(2);
@@ -386,6 +415,22 @@ if __name__ == "__main__":
 
 
     """;
+  }
+
+
+  List<program.ReadInPort> inportList() {
+    var inports = [];
+    var f = (var block) {
+      if (block is program.ReadInPort) {
+        inports.add(block);
+      }
+    };
+
+    onActivatedApp.iterateBlock(f);
+    onDeactivatedApp.iterateBlock(f);
+    onExecuteApp.iterateBlock(f);
+
+    return inports;
   }
 }
 

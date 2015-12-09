@@ -14,6 +14,8 @@ class ReadInPort extends PolymerElement {
     port_type = m.dataType.typename;
   }
 
+  get model => _model;
+
   @published String port_name = "defaultName";
   @published String port_type = "defaultType";
   ReadInPort.created() : super.created();
@@ -39,11 +41,6 @@ class ReadInPort extends PolymerElement {
     );
   }
 
-  void attachTarget(var element) {
-    $['target'].children.clear();
-    $['target'].children.add(element);
-  }
-
   void select() {
     this.style.border = 'solid';
   }
@@ -51,4 +48,16 @@ class ReadInPort extends PolymerElement {
   void deselect() {
     this.style.border = 'none';
   }
+
+  bool is_container() {
+    return true;
+  }
+
+  void add(var element) {
+    $['target'].children.add(element);
+  }
+
+   void clear(var element) {
+     $['target'].children.clear();
+   }
 }
