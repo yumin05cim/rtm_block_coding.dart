@@ -15,9 +15,12 @@ class BlockEditor extends PolymerElement {
 
   BlockEditor.created() : super.created();
 
+  var up_offset = [-20, 100];
+  var down_offset = [-20, 180];
+  var delete_offset = [-20, 260];
+
   @override
   void attached() {
-
     this.onClick.listen(
         (var e) {
           // To avoid the buggy behavior where the up-down buttons are vanished when clicked.
@@ -30,9 +33,12 @@ class BlockEditor extends PolymerElement {
     if (globalController.selectedElement == null) {
       $['up'].style.display = 'none';
       $['down'].style.display = 'none';
+      $['delete'].style.display = 'none';
+
     } else {
       $['up'].style.display = 'inline';
       $['down'].style.display = 'inline';
+      $['delete'].style.display = 'inline';
       var height = (globalController.selectedElement as html.HtmlElement).clientHeight;
       if (height == 0) {
         (globalController.selectedElement as PolymerElement).shadowRoot.children.forEach(
@@ -45,13 +51,17 @@ class BlockEditor extends PolymerElement {
         );
       }
 
-      var top = globalController.selectedElement.offset.top + height - 20;
-      var left = globalController.selectedElement.offset.left + 100;
-      $['up'].style.top = '${top}px';
-      $['up'].style.left = '${left}px';
+      var top = globalController.selectedElement.offset.top + height;
+      var left = globalController.selectedElement.offset.left;
+      $['up'].style.top = '${top + up_offset[0]}px';
+      $['up'].style.left = '${left + up_offset[1]}px';
 
-      $['down'].style.top = '${top}px';
-      $['down'].style.left = '${left + 100}px';
+      $['down'].style.top = '${top + down_offset[0]}px';
+      $['down'].style.left = '${left + down_offset[1]}px';
+
+
+      $['delete'].style.top = '${top + delete_offset[0]}px';
+      $['delete'].style.left = '${left + delete_offset[1]}px';
     }
   }
 
@@ -95,12 +105,14 @@ class BlockEditor extends PolymerElement {
   }
 
   void onUp(var e) {
-    globalController.setSelectedElem(e, globalController.selectedElement);
   }
 
   void onDown(var e) {
-    globalController.setSelectedElem(e, globalController.selectedElement);
   }
+
+  void onDelete(var e) {
+  }
+
 
   void parseStatement(var children, program.Statement s) {
     children.add(parseBlock(s.block));

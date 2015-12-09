@@ -11,22 +11,29 @@
 <polymer-element name="block-editor" attributes="command">
     <template >
         <link rel="stylesheet" href="element_styles.css" />
+
+
+        <!-- Offset Positions of buttons are defined in block_editor.dart -->
         <style type='text/css'>
 
             #up {
                 position: absolute;
-                top: 40px;
-                left: 40px;
                 display:none;
+                color: #0F0F0F;
+                background-color: #FFFF00;
             }
 
             #down {
                 position: absolute;
-                top: 40px;
-                left: 120px;
                 display: none;
+                background-color: #0083F3;
             }
 
+            #delete {
+                position: absolute;
+                display: none;
+                background-color: #FF5722;
+            }
         </style>
 
         <div id="container" layout vertical>
@@ -34,6 +41,7 @@
 
         <paper-fab id="up" icon="arrow-drop-up" title="arrow-up" on-tap="{{onUp}}"></paper-fab>
         <paper-fab id="down" icon="arrow-drop-down" title="arrow-dow" on-tap="{{onDown}}"></paper-fab>
+        <paper-fab id="delete" icon="remove" title="arrow-dow" on-tap="{{onDelete}}"></paper-fab>
 
     </template>
     <script type="application/dart" src="block_editor.dart"></script>
