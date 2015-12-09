@@ -22,13 +22,16 @@ class InPortData extends PolymerElement {
     $['name-input'].onChange.listen(
         (var e) {
           _model.name = name;
+
+          globalController.refreshPanel();
         }
     );
 
     $['access-input'].onChange.listen(
         (var e) {
-      _model.accessSequence = access;
-    }
+          _model.accessSequence = access;
+          globalController.refreshPanel();
+      }
     );
 
 

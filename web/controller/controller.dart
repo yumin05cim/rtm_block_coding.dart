@@ -125,6 +125,18 @@ class Controller {
   set editorPanel(EditorPanel p) => _editorPanel = p;
 
   void refreshPanel() {
+    program.Application app;
+    switch (_editorPanel.selected) {
+      case 0:
+        app = onActivatedApp;
+        break;
+      case 1:
+        app = onExecuteApp;
+        break;
+      case 2:
+        app = onDeactivatedApp;
+        break;
+    }
     _editorPanel.refresh(app);
   }
 
