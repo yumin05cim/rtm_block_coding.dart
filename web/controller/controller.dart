@@ -84,6 +84,15 @@ class Controller {
       }
     }
 
+    if(command == 'read_inport') {
+      if (selectedStatement() == null) {
+          program.ReadInPort v = new program.ReadInPort('in', new program.DataType.TimedLong());
+          program.Statement new_s = new program.Statement(v);
+          app.statements.add(new_s);
+      }
+
+    }
+
     _editorPanel.refresh(app);
   }
 
@@ -91,6 +100,14 @@ class Controller {
 
 
   String pythonCode() {
+    var dec = onActivatedApp.toDeclarePython(2);
+    dec += onExecuteApp.toDeclarePython(2);
+    dec += onDeactivatedApp.toDeclarePython(2);
+
+    var bin = onActivatedApp.toBindPython(2);
+    dec += onExecuteApp.toBindPython(2);
+    dec += onDeactivatedApp.toBindPython(2);
+
     var a = onActivatedApp.toPython(2);
 
     var e = onExecuteApp.toPython(2);
@@ -123,21 +140,21 @@ import OpenRTM_aist
 # This module's spesification
 # <rtc-template block="module_spec">
 block_rtc_spec = ["implementation_id", "BlockRTC",
-		 "type_name",         "BlockRTC",
-		 "description",       "RTM Block Coding Component",
-		 "version",           "1.0.0",
-		 "vendor",            "Ogata Lab Waseda Univ.",
-		 "category",          "Education",
-		 "activity_type",     "STATIC",
-		 "max_instance",      "1",
-		 "language",          "Python",
-		 "lang_type",         "SCRIPT",
+    "type_name",         "BlockRTC",
+    "description",       "RTM Block Coding Component",
+    "version",           "1.0.0",
+    "vendor",            "Ogata Lab Waseda Univ.",
+    "category",          "Education",
+    "activity_type",     "STATIC",
+    "max_instance",      "1",
+    "language",          "Python",
+    "lang_type",         "SCRIPT",
 
-		 "conf.default.debug", "1",
+    "conf.default.debug", "1",
 
-		 "conf.__widget__.debug", "text",
+    "conf.__widget__.debug", "text",
 
-		 ""]
+    ""]
 # </rtc-template>
 
 ##
@@ -147,225 +164,225 @@ block_rtc_spec = ["implementation_id", "BlockRTC",
 #
 class BlockRTC(OpenRTM_aist.DataFlowComponentBase):
 
-	##
-	# @brief constructor
-	# @param manager Maneger Object
-	#
-	def __init__(self, manager):
-		OpenRTM_aist.DataFlowComponentBase.__init__(self, manager)
+  ##
+  # @brief constructor
+  # @param manager Maneger Object
+  #
+  def __init__(self, manager):
+    OpenRTM_aist.DataFlowComponentBase.__init__(self, manager)
 
 
-		#self._d_velocity = RTC.TimedVelocity2D(RTC.Time(0,0), RTC.Velocity2D(0,0,0))
+    #self._d_velocity = RTC.TimedVelocity2D(RTC.Time(0,0), RTC.Velocity2D(0,0,0))
 
 
-		#self._velocityIn = OpenRTM_aist.InPort("velocity", self._d_velocity)
+    #self._velocityIn = OpenRTM_aist.InPort("velocity", self._d_velocity)
+${dec}
 
 
-
-		# initialize of configuration-data.
-		# <rtc-template block="init_conf_param">
+    # initialize of configuration-data.
+    # <rtc-template block="init_conf_param">
 
     # - Name:  debug
     # - DefaultValue: 1
-		self._debug = [1]
+    self._debug = [1]
 
-		# </rtc-template>
+    # </rtc-template>
 
 
 
-	##
-	#
-	# The initialize action (on CREATED->ALIVE transition)
-	# formaer rtc_init_entry()
-	#
-	# @return RTC::ReturnCode_t
-	#
-	#
-	def onInitialize(self):
+  ##
+  #
+  # The initialize action (on CREATED->ALIVE transition)
+  # formaer rtc_init_entry()
+  #
+  # @return RTC::ReturnCode_t
+  #
+  #
+  def onInitialize(self):
 
-		# Bind variables and configuration variable
-		self.bindParameter("debug", self._debug, "1")
-		# Set InPort buffers
-		self.addInPort("velocity", self._velocityIn)
+    # Bind variables and configuration variable
+    self.bindParameter("debug", self._debug, "1")
+    # Set InPort buffers
+    #self.addInPort("velocity", self._velocityIn)
+${bin}
+    return RTC.RTC_OK
 
-		return RTC.RTC_OK
+  #	##
+  #	#
+  #	# The finalize action (on ALIVE->END transition)
+  #	# formaer rtc_exiting_entry()
+  #	#
+  #	# @return RTC::ReturnCode_t
+  #
+  #	#
+  #def onFinalize(self, ec_id):
+  #
+  #	return RTC.RTC_OK
 
-	#	##
-	#	#
-	#	# The finalize action (on ALIVE->END transition)
-	#	# formaer rtc_exiting_entry()
-	#	#
-	#	# @return RTC::ReturnCode_t
-	#
-	#	#
-	#def onFinalize(self, ec_id):
-	#
-	#	return RTC.RTC_OK
+  #	##
+  #	#
+  #	# The startup action when ExecutionContext startup
+  #	# former rtc_starting_entry()
+  #	#
+  #	# @param ec_id target ExecutionContext Id
+  #	#
+  #	# @return RTC::ReturnCode_t
+  #	#
+  #	#
+  #def onStartup(self, ec_id):
+  #
+  #	return RTC.RTC_OK
 
-	#	##
-	#	#
-	#	# The startup action when ExecutionContext startup
-	#	# former rtc_starting_entry()
-	#	#
-	#	# @param ec_id target ExecutionContext Id
-	#	#
-	#	# @return RTC::ReturnCode_t
-	#	#
-	#	#
-	#def onStartup(self, ec_id):
-	#
-	#	return RTC.RTC_OK
+  #	##
+  #	#
+  #	# The shutdown action when ExecutionContext stop
+  #	# former rtc_stopping_entry()
+  #	#
+  #	# @param ec_id target ExecutionContext Id
+  #	#
+  #	# @return RTC::ReturnCode_t
+  #	#
+  #	#
+  #def onShutdown(self, ec_id):
+  #
+  #	return RTC.RTC_OK
 
-	#	##
-	#	#
-	#	# The shutdown action when ExecutionContext stop
-	#	# former rtc_stopping_entry()
-	#	#
-	#	# @param ec_id target ExecutionContext Id
-	#	#
-	#	# @return RTC::ReturnCode_t
-	#	#
-	#	#
-	#def onShutdown(self, ec_id):
-	#
-	#	return RTC.RTC_OK
-
-		##
-		#
-		# The activated action (Active state entry action)
-		# former rtc_active_entry()
-		#
-		# @param ec_id target ExecutionContext Id
-		#
-		# @return RTC::ReturnCode_t
-		#
-		#
-	def onActivated(self, ec_id):
+    ##
+    #
+    # The activated action (Active state entry action)
+    # former rtc_active_entry()
+    #
+    # @param ec_id target ExecutionContext Id
+    #
+    # @return RTC::ReturnCode_t
+    #
+    #
+  def onActivated(self, ec_id):
 ${a}
-		return RTC.RTC_OK
+    return RTC.RTC_OK
 
-		##
-		#
-		# The deactivated action (Active state exit action)
-		# former rtc_active_exit()
-		#
-		# @param ec_id target ExecutionContext Id
-		#
-		# @return RTC::ReturnCode_t
-		#
-		#
-	def onDeactivated(self, ec_id):
+    ##
+    #
+    # The deactivated action (Active state exit action)
+    # former rtc_active_exit()
+    #
+    # @param ec_id target ExecutionContext Id
+    #
+    # @return RTC::ReturnCode_t
+    #
+    #
+  def onDeactivated(self, ec_id):
 ${d}
-		return RTC.RTC_OK
+    return RTC.RTC_OK
 
-		##
-		#
-		# The execution action that is invoked periodically
-		# former rtc_active_do()
-		#
-		# @param ec_id target ExecutionContext Id
-		#
-		# @return RTC::ReturnCode_t
-		#
-		#
-	def onExecute(self, ec_id):
+    ##
+    #
+    # The execution action that is invoked periodically
+    # former rtc_active_do()
+    #
+    # @param ec_id target ExecutionContext Id
+    #
+    # @return RTC::ReturnCode_t
+    #
+    #
+  def onExecute(self, ec_id):
 ${e}
-		return RTC.RTC_OK
+    return RTC.RTC_OK
 
-	#	##
-	#	#
-	#	# The aborting action when main logic error occurred.
-	#	# former rtc_aborting_entry()
-	#	#
-	#	# @param ec_id target ExecutionContext Id
-	#	#
-	#	# @return RTC::ReturnCode_t
-	#	#
-	#	#
-	#def onAborting(self, ec_id):
-	#
-	#	return RTC.RTC_OK
+  #	##
+  #	#
+  #	# The aborting action when main logic error occurred.
+  #	# former rtc_aborting_entry()
+  #	#
+  #	# @param ec_id target ExecutionContext Id
+  #	#
+  #	# @return RTC::ReturnCode_t
+  #	#
+  #	#
+  #def onAborting(self, ec_id):
+  #
+  #	return RTC.RTC_OK
 
-	#	##
-	#	#
-	#	# The error action in ERROR state
-	#	# former rtc_error_do()
-	#	#
-	#	# @param ec_id target ExecutionContext Id
-	#	#
-	#	# @return RTC::ReturnCode_t
-	#	#
-	#	#
-	#def onError(self, ec_id):
-	#
-	#	return RTC.RTC_OK
+  #	##
+  #	#
+  #	# The error action in ERROR state
+  #	# former rtc_error_do()
+  #	#
+  #	# @param ec_id target ExecutionContext Id
+  #	#
+  #	# @return RTC::ReturnCode_t
+  #	#
+  #	#
+  #def onError(self, ec_id):
+  #
+  #	return RTC.RTC_OK
 
-	#	##
-	#	#
-	#	# The reset action that is invoked resetting
-	#	# This is same but different the former rtc_init_entry()
-	#	#
-	#	# @param ec_id target ExecutionContext Id
-	#	#
-	#	# @return RTC::ReturnCode_t
-	#	#
-	#	#
-	#def onReset(self, ec_id):
-	#
-	#	return RTC.RTC_OK
+  #	##
+  #	#
+  #	# The reset action that is invoked resetting
+  #	# This is same but different the former rtc_init_entry()
+  #	#
+  #	# @param ec_id target ExecutionContext Id
+  #	#
+  #	# @return RTC::ReturnCode_t
+  #	#
+  #	#
+  #def onReset(self, ec_id):
+  #
+  #	return RTC.RTC_OK
 
-	#	##
-	#	#
-	#	# The state update action that is invoked after onExecute() action
-	#	# no corresponding operation exists in OpenRTm-aist-0.2.0
-	#	#
-	#	# @param ec_id target ExecutionContext Id
-	#	#
-	#	# @return RTC::ReturnCode_t
-	#	#
+  #	##
+  #	#
+  #	# The state update action that is invoked after onExecute() action
+  #	# no corresponding operation exists in OpenRTm-aist-0.2.0
+  #	#
+  #	# @param ec_id target ExecutionContext Id
+  #	#
+  #	# @return RTC::ReturnCode_t
+  #	#
 
-	#	#
-	#def onStateUpdate(self, ec_id):
-	#
-	#	return RTC.RTC_OK
+  #	#
+  #def onStateUpdate(self, ec_id):
+  #
+  #	return RTC.RTC_OK
 
-	#	##
-	#	#
-	#	# The action that is invoked when execution context's rate is changed
-	#	# no corresponding operation exists in OpenRTm-aist-0.2.0
-	#	#
-	#	# @param ec_id target ExecutionContext Id
-	#	#
-	#	# @return RTC::ReturnCode_t
-	#	#
-	#	#
-	#def onRateChanged(self, ec_id):
-	#
-	#	return RTC.RTC_OK
+  #	##
+  #	#
+  #	# The action that is invoked when execution context's rate is changed
+  #	# no corresponding operation exists in OpenRTm-aist-0.2.0
+  #	#
+  #	# @param ec_id target ExecutionContext Id
+  #	#
+  #	# @return RTC::ReturnCode_t
+  #	#
+  #	#
+  #def onRateChanged(self, ec_id):
+  #
+  #	return RTC.RTC_OK
 
 
 
 
 def BlockRTCInit(manager):
-    profile = OpenRTM_aist.Properties(defaults_str=block_rtc_spec)
-    manager.registerFactory(profile,
-                            BlockRTC,
-                            OpenRTM_aist.Delete)
+  profile = OpenRTM_aist.Properties(defaults_str=block_rtc_spec)
+  manager.registerFactory(profile,
+                          BlockRTC,
+                          OpenRTM_aist.Delete)
 
 def MyModuleInit(manager):
-    BlockRTCInit(manager)
+  BlockRTCInit(manager)
 
-    # Create a component
-    comp = manager.createComponent("BlockRTC")
+  # Create a component
+  comp = manager.createComponent("BlockRTC")
 
 def main():
-	mgr = OpenRTM_aist.Manager.init(sys.argv)
-	mgr.setModuleInitProc(MyModuleInit)
-	mgr.activateManager()
-	mgr.runManager()
+  mgr = OpenRTM_aist.Manager.init(sys.argv)
+  mgr.setModuleInitProc(MyModuleInit)
+  mgr.activateManager()
+  mgr.runManager()
 
 if __name__ == "__main__":
-	main()
+  main()
 
 
     """;

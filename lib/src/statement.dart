@@ -22,6 +22,21 @@ class Statement {
     return _indent * indentLevel + _block.toPython(indentLevel);
   }
 
+  String toDeclarePython(indentLevel) {
+    String temp = _block.toDeclarePython(indentLevel);
+    if (temp.length > 0) {
+      return _indent * indentLevel + temp;
+    }
+    return "";
+  }
+
+  String toBindPython(indentLevel) {
+    String temp = _block.toBindPython(indentLevel);
+    if (temp.length > 0) {
+      return _indent * indentLevel + temp;
+    }
+    return "";
+  }
 }
 
 class StatementList extends ListMixin<Statement> {

@@ -11,6 +11,14 @@ abstract class Block {
   }
 
   String toPython(int indentLevel);
+
+  String toDeclarePython(int indentLevel) {
+    return "";
+  }
+
+  String toBindPython(int indentLevel) {
+    return "";
+  }
 }
 
 

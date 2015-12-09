@@ -1,12 +1,17 @@
 import 'dart:html' as html;
-import 'package:rtm_block_coding/application.dart';
+import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
 @CustomTag('integer-literal')
 class IntegerLiteral extends PolymerElement {
 
-  IntegerLiteral model;
+  program.Integer _model;
+
+  set model(program.Integer m) {
+    _model = m;
+    value = m.value;
+  }
   @published int value = 1;
   IntegerLiteral.created() : super.created();
 

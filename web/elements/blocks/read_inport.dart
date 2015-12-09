@@ -2,26 +2,33 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'package:rtm_block_coding/application.dart';
+import 'package:rtm_block_coding/application.dart' as program;
 
-@CustomTag('set-variable')
-class SetVariable extends PolymerElement {
-  SetValue _model;
+@CustomTag('read-inport')
+class ReadInPort extends PolymerElement {
+  program.ReadInPort _model;
 
-  set model(SetValue m) {
+  set model(program.ReadInPort m) {
     _model = m;
-    name = _model.left.name;
+    port_name = m.name;
+    port_type = m.dataType.typename;
   }
 
-  @published String name = "defaultName";
-
-    SetVariable.created() : super.created();
+  @published String port_name = "defaultName";
+  @published String port_type = "defaultType";
+  ReadInPort.created() : super.created();
 
   void attached() {
     $['name-input'].onChange.listen(
         (var e) {
-          _model.left.name = name;
+          _model.name = port_name;
         }
+    );
+
+    $['type-input'].onChange.listen(
+        (var e) {
+      _model.dataType = new program.DataType.fromTypeName(port_type);
+    }
     );
 
     $['title-area'].onClick.listen(
