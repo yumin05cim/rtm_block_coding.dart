@@ -2,6 +2,7 @@ import '../elements/editor_panel.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 
 import '../elements/blocks/read_inport.dart';
+import '../elements/blocks/outport_data.dart';
 
 import '../elements/blocks/set_variable.dart';
 
@@ -77,24 +78,37 @@ class Controller {
     }
 
     if (command == 'set_variable') {
+
+      program.SetValue v = new program.SetValue(new program.Variable('name'),
+          new program.Integer(1));
+      program.Statement new_s = new program.Statement(v);
+
       if (selectedStatement() == null) {
-        program.SetValue v = new program.SetValue(new program.Variable('name'),
-            new program.Integer(1));
-        program.Statement new_s = new program.Statement(v);
         app.statements.add(new_s);
       }
 
       if (selectedStatement() is ReadInPort) {
-        program.SetValue v = new program.SetValue(new program.Variable('name'),
-            new program.Integer(1));
-        program.Statement new_s = new program.Statement(v);
+        selectedStatement().model.statements.add(new_s);
+      }
+    }
+
+
+    if (command == 'set_outport_data') {
+
+      program.OutPortData v = new program.OutPortData('out', new program.DataType.TimedLong(), 'data',
+          new program.Integer(1));
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+      if (selectedStatement() is ReadInPort) {
         selectedStatement().model.statements.add(new_s);
       }
     }
 
     if(command == 'read_inport') {
       if (selectedStatement() == null) {
-
           program.ReadInPort v = new program.ReadInPort('in', new program.DataType.TimedLong());
           program.Statement new_s = new program.Statement(v);
           app.statements.add(new_s);
@@ -116,6 +130,10 @@ class Controller {
 
       if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
+      }
+
+      if (selectedStatement() is OutPortData) {
+        (selectedStatement() as OutPortData).model.right = v;
       }
     }
 

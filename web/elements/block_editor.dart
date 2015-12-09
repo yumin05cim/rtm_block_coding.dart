@@ -37,8 +37,11 @@ class BlockEditor extends PolymerElement {
       return new html.Element.tag('set-variable')
         ..model = block
         ..attachTarget(parseBlock(block.right));
-    }
-    else if (block is program.InPortDataAccess) {
+    } else if (block is program.OutPortData) {
+      return new html.Element.tag('outport-data')
+        ..model = block
+        ..attachTarget(parseBlock(block.right));
+    } else if (block is program.InPortDataAccess) {
       return new html.Element.tag('inport-data')
         ..model = block;
     } else if (block is program.ReadInPort) {

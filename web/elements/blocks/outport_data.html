@@ -1,0 +1,52 @@
+
+<link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/core_elements/core_style.html" />
+<link rel="import" href="packages/paper_elements/paper_input.html" />
+<link rel="import" href="literal.html" />
+
+<polymer-element name="outport-data" attributes="command">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style>
+            :host {
+                padding: 5px;
+
+            }
+
+            #container {
+
+                background-color: #0083F3;
+                border-width: 1px;
+                border-color: #FFFFFF;
+                border-style: none;
+            }
+            #body-area {
+                padding-left: 20px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+
+            paper-input {
+                margin-left : 20px;
+                margin-right: 20px;
+            }
+
+        </style>
+        <div id="container">
+        <div id="title-area" horizontal layout center wrap>
+            <div end>Set OutPort (type = </div>
+            <paper-input id="type-input" flex value="{{port_type}}"></paper-input>
+            <div end>, name = </div>
+            <paper-input id="name-input" flex value="{{port_name}}"></paper-input>
+            <div end>) Data Variable (member = </div>
+            <paper-input id="member-input" flex value="{{data_member}}"></paper-input>
+            <div end>)</div>
+        </div>
+        <div id="body-area">
+            <div id="target">
+            </div>
+        </div>
+        </div>
+    </template>
+    <script type="application/dart" src="outport_data.dart"></script>
+</polymer-element>

@@ -11,4 +11,5 @@ export 'src/condition.dart';
 export 'src/flow_control.dart';
 export 'src/io.dart';
 export 'src/inport.dart';
+export 'src/outport.dart';
 export 'src/datatype.dart';
