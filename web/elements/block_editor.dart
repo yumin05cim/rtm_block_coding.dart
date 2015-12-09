@@ -4,6 +4,8 @@ import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 import 'blocks/set_variable.dart';
 
+import '../controller/controller.dart';
+
 @CustomTag('block-editor')
 class BlockEditor extends PolymerElement {
 
@@ -19,6 +21,7 @@ class BlockEditor extends PolymerElement {
   get container => $['container'];
 
   void refresh(program.Application app) {
+    container.children.clear();
     app.statements.forEach((s) {
       if(s.block is program.SetValue) {
 

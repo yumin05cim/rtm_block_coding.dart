@@ -12,12 +12,11 @@ import '../controller/controller.dart';
 @CustomTag('main-frame')
 class MainFrame extends PolymerElement {
 
-  Controller _controller = new Controller();
-
   MainFrame.created() :  super.created();
 
   @override
   void attached() {
+    /*
     $['left-collapse-menu'].querySelectorAll('add-element-button').forEach(
         (var e) {e.controller = _controller;}
     );
@@ -28,6 +27,18 @@ class MainFrame extends PolymerElement {
 
     $['right-collapse-menu'].querySelectorAll('python-panel').forEach(
         (var e) {e.controller = _controller;}
+    );
+    */
+
+
+    $['main-panel'].onClick.listen(
+        (var e) {
+      if (globalController.previousMouseEvent != e) {
+        globalController.setSelectedElem(e, null);
+      }
+
+    }
+
     );
   }
 

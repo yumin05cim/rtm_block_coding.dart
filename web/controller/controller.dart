@@ -1,5 +1,9 @@
 import '../elements/editor_panel.dart';
 import 'package:rtm_block_coding/application.dart' as program;
+
+
+
+
 class Controller {
 
   program.Application onActivatedApp = new program.Application();
@@ -9,7 +13,6 @@ class Controller {
 
   Controller() {
   }
-
 
   String getSelectedEditorPanelName() {
     switch(_editorPanel.selected) {
@@ -39,8 +42,22 @@ class Controller {
     }
   }
 
+  var selectedElement = null;
+  var previousMouseEvent = null;
+
+  void setSelectedElem(var event, var elem) {
+    previousMouseEvent = event;
+    if (selectedElement != null) {
+      selectedElement.deselect();
+    }
+    selectedElement = elem;
+    if (selectedElement != null) {
+      selectedElement.select();
+    }
+  }
+
   program.Statement selectedStatement() {
-    return null;
+    return selectedElement;
   }
 
   void addElement(String command) {
@@ -96,3 +113,5 @@ $e
     """;
   }
 }
+
+Controller globalController = new Controller();

@@ -4,17 +4,16 @@ import 'block_editor.dart';
 
 @CustomTag('editor-panel')
 class EditorPanel extends PolymerElement {
-  Controller _controller;
-  set controller(Controller c) {
-    _controller = c;
-    _controller.editorPanel = this;
-  }
+
   @observable var selected;
   EditorPanel.created() :  super.created();
 
   @override
   void attached() {
     selected = 0;
+    globalController.editorPanel = this;
+
+
   }
 
   void refresh(var app) {
