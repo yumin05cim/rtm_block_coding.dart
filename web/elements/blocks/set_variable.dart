@@ -41,6 +41,7 @@ class SetVariable extends PolymerElement {
 
   void select() {
     $['container'].style.border = 'solid';
+    ($['container'] as html.HtmlElement).style.borderColor = '#FFFFFF';
   }
 
   void deselect() {
