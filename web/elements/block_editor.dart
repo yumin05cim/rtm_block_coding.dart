@@ -25,12 +25,11 @@ class BlockEditor extends PolymerElement {
       $['up'].style.display = 'none';
       $['down'].style.display = 'none';
     } else {
-      print((globalController.selectedElement as html.HtmlElement).offset.top);
       $['up'].style.display = 'inline';
       $['down'].style.display = 'inline';
       var height = (globalController.selectedElement as html.HtmlElement).clientHeight;
       if (height == 0) {
-        var r = (globalController.selectedElement as PolymerElement).shadowRoot.children.forEach(
+        (globalController.selectedElement as PolymerElement).shadowRoot.children.forEach(
             (var e) {
               if (e is html.StyleElement) {
               } else {
