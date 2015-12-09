@@ -20,6 +20,20 @@ class OutPortData extends Block {
   String toPython(int indentLevel) {
     return "self._d_${name}.${accessSequence} = ${right.toPython(0)}";
   }
+}
+
+class OutPortWrite extends Block {
+  String name;
+  DataType dataType;
+
+  OutPortWrite(this.name, this.dataType) {
+  }
+
+  String toPython(int indentLevel) {
+    String sb = "";
+    sb = 'self._${name}Out.write()';
+    return sb;
+  }
 
   @override
   String toDeclarePython(int indentLevel) {

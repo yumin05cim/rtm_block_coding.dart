@@ -51,6 +51,10 @@ class BlockEditor extends PolymerElement {
         parseStatement(v, s);
       }
       return v;
+    } else if (block is program.OutPortWrite) {
+      var v = new html.Element.tag('write-outport')
+          ..model = block;
+      return v;
     }
   }
 

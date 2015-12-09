@@ -22,14 +22,26 @@ class ReadInPort extends Block {
   String toDeclarePython(int indentLevel) {
     String sb = "";
     sb = "self._d_${name} = " + dataType.constructorString() + '\n';
-    sb += Statement.indent * indentLevel + 'self._${name}In = OpenRTM_aist.InPort("${name}", self._d_${name})';
+    sb += Statement.indent * indentLevel + 'self._${name}In = OpenRTM_aist.InPort("${name}", self._d_${name})' + '\n';
+    for (Statement s in statements) {
+      var temp = s.toDeclarePython(indentLevel);
+      if (temp.length > 0) {
+        sb += temp + '\n';
+      }
+    }
     return sb;
   }
 
   @override
   String toBindPython(int indentLevel) {
     String sb = "";
-    sb = 'self.addInPort("${name}", self._${name}In)';
+    sb = 'self.addInPort("${name}", self._${name}In)' + '\n';
+    for (Statement s in statements) {
+      var temp = s.toBindPython(indentLevel);
+      if (temp.length > 0) {
+        sb += temp + '\n';
+      }
+    }
     return sb;
   }
 

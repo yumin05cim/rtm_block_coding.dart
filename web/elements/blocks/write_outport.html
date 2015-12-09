@@ -4,18 +4,17 @@
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 <link rel="import" href="literal.html" />
 
-<polymer-element name="read-inport" attributes="command">
+<polymer-element name="write-outport" attributes="command">
     <template >
         <link rel="stylesheet" href="../element_styles.css" />
         <style>
             :host {
-                background-color: #009688;
-
                 border-width: 1px;
                 border-color: #FFFFFF;
                 border-style: none;
             }
-            #body-area {
+            #target {
+                background-color: #727272;
                 padding-left: 20px;
                 padding-top: 5px;
                 padding-bottom: 5px;
@@ -27,17 +26,13 @@
             }
 
         </style>
-        <div id="title-area" horizontal layout center>
-            <div end>When Data is received to Port (name = </div>
+        <div id="target" horizontal layout center>
+            <div end>Write Data to Port (name = </div>
             <paper-input id="name-input" flex one value="{{port_name}}"></paper-input>
             <div end>, type=</div>
             <paper-input id="type-input" flex one value="{{port_type}}"></paper-input>
             <div end>)</div>
         </div>
-        <div id="body-area">
-            <div id="target">
-            </div>
-        </div>
     </template>
-    <script type="application/dart" src="read_inport.dart"></script>
+    <script type="application/dart" src="write_outport.dart"></script>
 </polymer-element>
