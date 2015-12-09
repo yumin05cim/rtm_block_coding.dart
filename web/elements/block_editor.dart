@@ -2,6 +2,7 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
+import 'package:paper_elements/paper_fab.dart';
 import 'blocks/set_variable.dart';
 import 'blocks/read_inport.dart';
 
@@ -17,6 +18,36 @@ class BlockEditor extends PolymerElement {
   @override
   void attached() {
 
+  }
+
+  void updateClick() {
+    if (globalController.selectedElement == null) {
+      $['up'].style.display = 'none';
+      $['down'].style.display = 'none';
+    } else {
+      print((globalController.selectedElement as html.HtmlElement).offset.top);
+      $['up'].style.display = 'inline';
+      $['down'].style.display = 'inline';
+      var height = (globalController.selectedElement as html.HtmlElement).clientHeight;
+      if (height == 0) {
+        var r = (globalController.selectedElement as PolymerElement).shadowRoot.children.forEach(
+            (var e) {
+              if (e is html.StyleElement) {
+              } else {
+                height = e.offset.height;
+              }
+            }
+        );
+      }
+
+      var top = globalController.selectedElement.offset.top + height - 20;
+      var left = globalController.selectedElement.offset.left + 100;
+      $['up'].style.top = '${top}px';
+      $['up'].style.left = '${left}px';
+
+      $['down'].style.top = '${top}px';
+      $['down'].style.left = '${left + 100}px';
+    }
   }
 
   get container => $['container'];

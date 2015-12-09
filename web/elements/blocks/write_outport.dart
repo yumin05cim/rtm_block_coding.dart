@@ -16,6 +16,7 @@ class WriteOutPort extends PolymerElement {
 
   @published String port_name = "name";
   @published String port_type = "type";
+
   WriteOutPort.created() : super.created();
 
   void attached() {

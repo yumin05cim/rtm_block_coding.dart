@@ -13,10 +13,29 @@
         <link rel="stylesheet" href="element_styles.css" />
         <style type='text/css'>
 
+            #up {
+                position: absolute;
+                top: 40px;
+                left: 40px;
+                display:none;
+            }
+
+            #down {
+                position: absolute;
+                top: 40px;
+                left: 120px;
+                display: none;
+            }
+
         </style>
 
         <div id="container" layout vertical>
         </div>
+
+
+        <paper-fab id="up" icon="arrow-drop-up" title="arrow-up"></paper-fab>
+        <paper-fab id="down" icon="arrow-drop-down" title="arrow-dow"></paper-fab>
+
     </template>
     <script type="application/dart" src="block_editor.dart"></script>
 </polymer-element>

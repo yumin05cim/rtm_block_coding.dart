@@ -33,12 +33,12 @@ class MainFrame extends PolymerElement {
 
     $['main-panel'].onClick.listen(
         (var e) {
-      if (globalController.previousMouseEvent != e) {
-        globalController.setSelectedElem(e, null);
-      }
+          if (globalController.previousMouseEvent != e) {
+            globalController.setSelectedElem(e, null);
+          }
 
-    }
-
+          $['main-panel'].querySelector('editor-panel').updateClick();
+        }
     );
   }
 
