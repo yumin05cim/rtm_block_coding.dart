@@ -15,7 +15,10 @@ class Statement {
 
   get block => _block;
 
+  var parent;
+
   Statement(this._block) {
+    this._block.parent = this;
   }
 
   String toPython(indentLevel) {
@@ -60,5 +63,21 @@ class StatementList extends ListMixin<Statement> {
 
   void operator[]=(int index, Statement value) {list[index] = value;}
 
-  void add(Statement child) {list.add(child);}
+  void add(Statement child) {
+    child.parent = this;
+    list.add(child);
+  }
+
+  @override
+  bool remove(Statement child) {
+    var b = super.remove(child);
+    child.parent = null;
+    return b;
+  }
+
+  @override
+  void insert(int index, Statement child) {
+    super.insert(index, child);
+    child.parent = this;
+  }
 }

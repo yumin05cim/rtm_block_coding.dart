@@ -12,6 +12,9 @@ class IntegerLiteral extends PolymerElement {
     _model = m;
     value = m.value;
   }
+
+  get model => _model;
+
   @published int value = 1;
   IntegerLiteral.created() : super.created();
 

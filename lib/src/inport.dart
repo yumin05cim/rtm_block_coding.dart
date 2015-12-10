@@ -13,7 +13,7 @@ class ReadInPort extends Block {
   String name;
   DataType dataType;
 
-  StatementList statements = [];
+  StatementList statements = new StatementList([]);
 
   ReadInPort(this.name, this.dataType) {
   }

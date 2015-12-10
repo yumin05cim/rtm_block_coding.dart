@@ -3,12 +3,15 @@ library application.block;
 
 import 'dart:core';
 import 'dart:collection';
+import 'statement.dart';
 
 abstract class Block {
 
-  Statement() {
+  Block() {
 
   }
+
+  var parent;
 
   String toPython(int indentLevel);
 

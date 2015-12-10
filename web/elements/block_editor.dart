@@ -104,46 +104,6 @@ class BlockEditor extends PolymerElement {
     }
   }
 
-  void up(program.StatementList slist, var elem) {
-    var index = -1;
-    var stat = null;
-    var counter = 0;
-    slist.forEach(
-        (var s) {
-      if (s.block == elem.model) {
-        index = counter;
-        stat = s;
-      }
-      counter++;
-    }
-    );
-    index--;
-    if (index >= 0) {
-      slist.remove(stat);
-      slist.insert(index, stat);
-    }
-  }
-
-  void down(program.StatementList slist, var elem) {
-    var index = 10000;
-    var stat = null;
-    var counter = 0;
-    slist.forEach(
-        (var s) {
-      if (s.block == elem.model) {
-        index = counter;
-        stat = s;
-      }
-      counter++;
-    }
-    );
-    index++;
-    if (index < slist.length) {
-      slist.remove(stat);
-      slist.insert(index, stat);
-    }
-  }
-
 
   void delete(program.StatementList slist, var elem) {
     var stat = null;
@@ -164,26 +124,46 @@ class BlockEditor extends PolymerElement {
     var selected = globalController.selectedElement;
     if (selected == null) return;
 
-    if (selected.parent == container) {
-      var app = globalController.getSelectedEditorApplication();
-      up(app.statements, selected);
+    program.Statement s = selected.model.parent;
+    if (s != null) {
+      program.StatementList sl = s.parent;
+      if (sl != null) {
+        var index = sl.indexOf(s);
+        index--;
+        if (index >= 0) {
+          sl.remove(s);
+          sl.insert(index, s);
+
+          globalController.setSelectedElem(globalController.previousMouseEvent, selected);
+          globalController.refreshPanel();
+          updateClick();
+        }
+
+      }
     }
-    globalController.setSelectedElem(globalController.previousMouseEvent, selected);
-    globalController.refreshPanel();
-    updateClick();
   }
 
   void onDown(var e) {
     var selected = globalController.selectedElement;
     if (selected == null) return;
 
-    if (selected.parent == container) {
-      var app = globalController.getSelectedEditorApplication();
-      down(app.statements, selected);
+
+    program.Statement s = selected.model.parent;
+    if (s != null) {
+      program.StatementList sl = s.parent;
+      if (sl != null) {
+        var index = sl.indexOf(s);
+        index++;
+        if (index < sl.length) {
+          sl.remove(s);
+          sl.insert(index, s);
+
+          globalController.setSelectedElem(globalController.previousMouseEvent, selected);
+          globalController.refreshPanel();
+          updateClick();
+        }
+      }
     }
-    globalController.setSelectedElem(globalController.previousMouseEvent, selected);
-    globalController.refreshPanel();
-    updateClick();
   }
 
   void onDelete(var e) {

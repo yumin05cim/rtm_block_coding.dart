@@ -9,8 +9,8 @@ import 'statement.dart';
 
 class If extends Block {
   Condition _condition;
-  StatementList _yes;
-  StatementList _no;
+  StatementList _yes = new StatementList([]);
+  StatementList _no = new StatementList([]);
 
   If(this._condition, this._yes, {StatementList no: null}) {
     this._no = no;
@@ -45,7 +45,7 @@ class If extends Block {
 class While extends Block {
   Condition _condition;
 
-  StatementList _loop;
+  StatementList _loop = new StatementList([]);
 
   While(this._condition, this._loop) {}
 
