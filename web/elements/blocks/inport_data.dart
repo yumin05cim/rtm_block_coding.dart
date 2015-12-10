@@ -14,6 +14,8 @@ class InPortData extends PolymerElement {
     access = m.accessSequence;
   }
 
+  get model => _model;
+
   @published String name = "name";
   @published String access = "";
   InPortData.created() : super.created();

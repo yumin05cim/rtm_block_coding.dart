@@ -14,6 +14,9 @@ class WriteOutPort extends PolymerElement {
     port_type = m.dataType.typename;
   }
 
+
+  get model => _model;
+
   @published String port_name = "name";
   @published String port_type = "type";
 

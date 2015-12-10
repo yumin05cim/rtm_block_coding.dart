@@ -29,18 +29,16 @@ class Controller {
     }
   }
 
-  connect.Statement last(connect.Application app){
-    connect.Statement s = app.startState;
-    while(true) {
-      if(s.next.connections.length > 0) {
-        if(s.next == s.next.connections[0].ports[0]) {
-          s = s.next.connections[0].ports[1].owner;
-        } else {
-          s = s.next.connections[0].ports[0].owner;
-        }
-      } else {
-        return s;
-      }
+  program.Application getSelectedEditorApplication() {
+    switch(_editorPanel.selected) {
+      case 0:
+        return onActivatedApp;
+      case 1:
+        return onExecuteApp;
+      case 2:
+        return onDeactivatedApp;
+      default:
+        return null;
     }
   }
 

@@ -104,18 +104,112 @@ class BlockEditor extends PolymerElement {
     }
   }
 
+  void up(program.StatementList slist, var elem) {
+    var index = -1;
+    var stat = null;
+    var counter = 0;
+    slist.forEach(
+        (var s) {
+      if (s.block == elem.model) {
+        index = counter;
+        stat = s;
+      }
+      counter++;
+    }
+    );
+    index--;
+    if (index >= 0) {
+      slist.remove(stat);
+      slist.insert(index, stat);
+    }
+  }
+
+  void down(program.StatementList slist, var elem) {
+    var index = 10000;
+    var stat = null;
+    var counter = 0;
+    slist.forEach(
+        (var s) {
+      if (s.block == elem.model) {
+        index = counter;
+        stat = s;
+      }
+      counter++;
+    }
+    );
+    index++;
+    if (index < slist.length) {
+      slist.remove(stat);
+      slist.insert(index, stat);
+    }
+  }
+
+
+  void delete(program.StatementList slist, var elem) {
+    var stat = null;
+    slist.forEach(
+        (var s) {
+      if (s.block == elem.model) {
+        stat = s;
+      }
+    }
+    );
+    if (stat != null) {
+      slist.remove(stat);
+    }
+  }
+
+
   void onUp(var e) {
+    var selected = globalController.selectedElement;
+    if (selected == null) return;
+
+    if (selected.parent == container) {
+      var app = globalController.getSelectedEditorApplication();
+      up(app.statements, selected);
+    }
+    globalController.setSelectedElem(globalController.previousMouseEvent, selected);
+    globalController.refreshPanel();
+    updateClick();
   }
 
   void onDown(var e) {
+    var selected = globalController.selectedElement;
+    if (selected == null) return;
+
+    if (selected.parent == container) {
+      var app = globalController.getSelectedEditorApplication();
+      down(app.statements, selected);
+    }
+    globalController.setSelectedElem(globalController.previousMouseEvent, selected);
+    globalController.refreshPanel();
+    updateClick();
   }
 
   void onDelete(var e) {
+    var selected = globalController.selectedElement;
+    if (selected == null) return;
+
+    if (selected.parent == container) {
+      var app = globalController.getSelectedEditorApplication();
+      delete(app.statements, selected);
+    }
+    globalController.setSelectedElem(globalController.previousMouseEvent, null);
+    globalController.refreshPanel();
+    updateClick();
+
   }
 
 
   void parseStatement(var children, program.Statement s) {
-    children.add(parseBlock(s.block));
+    var elem = parseBlock(s.block);
+    if (globalController.selectedElement != null) {
+      if (globalController.selectedElement.model == s.block) {
+        globalController.setSelectedElem(
+            globalController.previousMouseEvent, elem);
+      }
+    }
+    children.add(elem);
   }
 
 }
