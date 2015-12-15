@@ -4,7 +4,7 @@
 <link rel="import" href="packages/core_elements/core_menu.html" />
 <link rel="import" href="packages/core_elements/core_toolbar.html" />
 
-<polymer-element name="collapse-menu" attributes="state label">
+<polymer-element name="collapse-menu" attributes="state label toolbarOpenColor toolbarCloseColor">
     <template >
         <link rel="stylesheet" href="element_styles.css" />
         <style type='text/css'>
@@ -17,7 +17,7 @@
         </style>
 
         <div layout vertical>
-            <core-toolbar class="default-primary-color toolbar" on-tap="{{toggleCollapse}}">
+            <core-toolbar id="coreToolbar" class="default-primary-color toolbar" on-tap="{{toggleCollapse}}">
                 <span flex>{{label}}</span>
                 <core-icon id="navIcon" icon="{{state == 'opened' ? 'expand-less' : 'expand-more'}}"></core-icon>
             </core-toolbar>
