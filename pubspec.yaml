@@ -8,6 +8,8 @@ dependencies:
   polymer: any
   paper_elements: any
   core_elements: any
+  http: any
+  xml_rpc: any
 dev_dependencies:
   unittest: any
 transformers:
