@@ -12,34 +12,41 @@
             }
 
             #container {
+                margin-top: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+                margin-bottom: 1px;
 
-                background-color: #7F5F00;
-                border-width: 1px;
-                border-color: #FFFFFF;
-                border-style: none;
+                padding-left: 4px;
+                padding-right: 3px;
+
+                background-color: #E87461;
+                border-width: 2px;
+                border-color: #ffbd1c;
+                border-style: solid;
             }
             #body-area {
-                padding-left: 20px;
+                padding-left: 15px;
                 padding-top: 5px;
                 padding-bottom: 5px;
+                padding-right: 5px;
             }
-
             paper-input {
-                margin-left : 20px;
-                margin-right: 20px;
+                margin-left : 10px;
+                margin-right: 10px;
             }
 
         </style>
         <div id="container">
-        <div id="title-area" horizontal layout center>
-            <div end>Calculate and Set value to Variable (name = </div>
-            <paper-input id="name-input" flex value="{{name}}"></paper-input>
-            <div end>)</div>
-        </div>
-        <div id="body-area">
-            <div id="target">
+            <div id="title-area" horizontal layout center>
+                <div end>Calculate and Set value to Variable (name = </div>
+                <paper-input id="name-input" flex value="{{name}}"></paper-input>
+                <div end>)</div>
             </div>
-        </div>
+            <div id="body-area">
+                <div id="target">
+                </div>
+            </div>
         </div>
     </template>
     <script type="application/dart" src="set_variable.dart"></script>

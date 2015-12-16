@@ -11,20 +11,22 @@
             :host {}
 
             paper-tabs.tabs::shadow #selectionBar {
-                background: #FF5722;
+/*              background: #FF5722; */
+                background: #b42d50;
+
             }
 
         </style>
-        <paper-tabs class="tabs light-primary-color" selected="{{selected}}">
-            <paper-tab >onActivated</paper-tab>
+        <paper-tabs class="tabs editor-panel-color" selected="{{selected}}">
+            <paper-tab>onActivated</paper-tab>
             <paper-tab>onExecute</paper-tab>
             <paper-tab>onDeactivated</paper-tab>
         </paper-tabs>
 
         <core-pages selected="{{selected}}">
-            <block-editor command="onActivated" id="on_activated_editor"></block-editor>
-            <block-editor command="onExecute" id="on_execute_editor"></block-editor>
-            <block-editor command="onDeactivated" id="on_deactivated_editor"></block-editor>
+            <block-editor command="onActivated"    id="on_activated_editor"></block-editor>
+            <block-editor command="onExecute"      id="on_execute_editor"></block-editor>
+            <block-editor command="onDeactivated"  id="on_deactivated_editor"></block-editor>
         </core-pages>
 
     </template>

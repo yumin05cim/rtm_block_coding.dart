@@ -42,11 +42,12 @@ class ReadInPort extends PolymerElement {
   }
 
   void select() {
-    this.style.border = 'solid';
+    $['title-area'].style.border = 'ridge';
+    $['title-area'].style.borderColor = '#FF9F1C';
   }
 
   void deselect() {
-    this.style.border = 'none';
+    $['title-area'].style.border = 'none';
   }
 
   bool is_container() {
@@ -57,7 +58,7 @@ class ReadInPort extends PolymerElement {
     $['target'].children.add(element);
   }
 
-   void clear(var element) {
-     $['target'].children.clear();
-   }
+  void clear(var element) {
+    $['target'].children.clear();
+  }
 }

@@ -45,7 +45,8 @@ class InPortData extends PolymerElement {
   }
 
   void select() {
-    $['target'].style.border = 'solid';
+    $['target'].style.border = 'ridge';
+    ($['target'] as html.HtmlElement).style.borderColor = '#FF9F1C';
   }
 
   void deselect() {
