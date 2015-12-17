@@ -22,7 +22,6 @@
         <style type='text/css'>
 
             :host {
-
             }
 
             #left-collapse-menu {
@@ -38,66 +37,190 @@
                 background-color: #FFFFFF;
             }
 
+            #main-panel {
+                /*font-weight: 900;*/
+            }
+
             .default-primary-color > collapse-menu {
             }
+
+            #rtm1 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #EDD8F2;
+            }
+            #rtm2 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #EDD8F2;
+            }
+
+            #var1 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #ABD299;
+            }
+            #var2 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #ABD299;
+            }
+
+            #data1 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #EDC08F;
+            }
+            #data2 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #EDC08F;
+            }
+            #data3 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #EDC08F;
+            }
+            #data4 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #EDC08F;
+            }
+
+            #calc1 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #BDE1F0;
+            }
+            #calc2 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #BDE1F0;
+            }
+
+            #loop1 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #EDDE8F;
+            }
+            #loop2 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #EDDE8F;
+            }
+
 
         </style>
 
         <core-drawer-panel responsiveWidth="800px">
-            <core-header-panel id="left-collapse-menu" drawer vertical layout>
+
+            <!--LEFT-->
+            <core-header-panel id="left-collapse-menu" drawer layout vertical>
                 <core-toolbar class="dark-primary-color text-primary-color"></core-toolbar>
-                <collapse-menu  label="RT-middleware" state="opened" toolbarOpenColor="#009688" toolbarCloseColor="#B2DFDB">
-                    <add-element-button label="Element1"></add-element-button>
-                    <add-element-button label="Element2"></add-element-button>
+
+                <collapse-menu id="rtm_menu" label="RT-middleware" state="opened">
+                    <add-element-button id="rtm1" label="Element1"></add-element-button>
+                    <add-element-button id="rtm2" label="Element2"></add-element-button>
                 </collapse-menu>
 
-                <collapse-menu id="variables_menu" label="Variables" state="closed" toolbarOpenColor="#009688" toolbarCloseColor="#B2DFDB">
-                    <add-element-button label="SetVariable" command="set_variable"></add-element-button>
-                    <add-element-button label="GetVariable" command="get_variable"></add-element-button>
+                <collapse-menu id="variables_menu" label="Variables" state="closed">
+                    <add-element-button id="var1" label="SetVariable" command="set_variable"></add-element-button>
+                    <add-element-button id="var2" label="GetVariable" command="get_variable"></add-element-button>
                 </collapse-menu>
 
-                <collapse-menu label="Port / Data" state="closed">
-                    <add-element-button label="Read InPort" command="read_inport"></add-element-button>
-                    <add-element-button label="InPort Data Access" command="inport_data"></add-element-button>
-                    <add-element-button label="Write OutPort" command="write_outport"></add-element-button>
-                    <add-element-button label="Set OutPort Data" command="set_outport_data"></add-element-button>
+                <collapse-menu id="port_data_menu" label="Port / Data" state="closed">
+                    <add-element-button id="data1" label="Read InPort" command="read_inport"></add-element-button>
+                    <add-element-button id="data2" label="InPort Data Access" command="inport_data"></add-element-button>
+                    <add-element-button id="data3" label="Write OutPort" command="write_outport"></add-element-button>
+                    <add-element-button id="data4" label="Set OutPort Data" command="set_outport_data"></add-element-button>
                 </collapse-menu>
 
-                <collapse-menu label="Calculate" state="closed">
-                    <add-element-button label="Element1"></add-element-button>
-                    <add-element-button label="Element2"></add-element-button>
+                <collapse-menu id="calculate_menu" label="Calculate" state="closed">
+                    <add-element-button id="calc1" label="Element1"></add-element-button>
+                    <add-element-button id="calc2" label="Element2"></add-element-button>
                 </collapse-menu>
 
-                <collapse-menu label="If / Switch /Loop" state="closed">
-                    <add-element-button label="If" command="if"></add-element-button>
-                    <add-element-button label="While" command="while"></add-element-button>
+                <collapse-menu id="if_switch_loop_menu" label="If / Switch /Loop" state="closed">
+                    <add-element-button id="loop1" label="If" command="if"></add-element-button>
+                    <add-element-button id="loop2" label="While" command="while"></add-element-button>
                 </collapse-menu>
+
                 <div flex>Copyright: Yuki Suga, Yumi Nishimura, Tetsuya Ogata @Ogata Lab. Waseda Univ.</div>
 
             </core-header-panel>
+
+            <!--MAIN-->
             <core-header-panel main >
                 <core-drawer-panel rightDrawer drawerWidth="500px" responsiveWidth="1200px">
 
                     <core-header-panel id="main-panel" main layout vertical>
-                        <core-toolbar  class="text-primary-color dark-primary-color">
+                        <core-toolbar class="text-primary-color dark-primary-color">
                             <div flex>RTM Block Coding</div>
                         </core-toolbar>
                         <state-panel></state-panel>
                         <editor-panel flex></editor-panel >
                     </core-header-panel>
 
-
-                    <core-header-panel id="right-collapse-menu" drawer vertical layout relative>
+                    <core-header-panel id="right-collapse-menu" drawer layout vertical relative>
                         <core-toolbar  class="text-primary-color dark-primary-color" >
-                            <core-icon-button icon="send">Launch</core-icon-button>
-                            <core-icon-button icon="save">Save</core-icon-button>
-                            <core-icon-button icon="help">Help</core-icon-button>
+                            <core-icon-button icon="send"> Launch</core-icon-button>
+                            <core-icon-button icon="save"> Save</core-icon-button>
+                            <core-icon-button icon="help"> Help</core-icon-button>
                         </core-toolbar>
                         <result-panel></result-panel>
                         <python-panel flex></python-panel>
                     </core-header-panel>
                 </core-drawer-panel>
             </core-header-panel>
+
         </core-drawer-panel>
     </template>
     <script type="application/dart" src="main_frame.dart"></script>

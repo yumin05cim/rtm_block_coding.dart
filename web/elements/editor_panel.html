@@ -8,15 +8,16 @@
     <template >
         <link rel="stylesheet" href="element_styles.css" />
         <style type='text/css'>
+
             :host {}
 
             paper-tabs.tabs::shadow #selectionBar {
 /*              background: #FF5722; */
                 background: #b42d50;
-
             }
 
         </style>
+
         <paper-tabs class="tabs editor-panel-color" selected="{{selected}}">
             <paper-tab>onActivated</paper-tab>
             <paper-tab>onExecute</paper-tab>

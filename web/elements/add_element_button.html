@@ -8,24 +8,28 @@
         <link rel="stylesheet" href="element_styles.css" />
 
         <style type='text/css'>
-            :host {
+/*            :host {
                 margin: 2px;
-            }
+            }*/
 
-            paper-button {
+/*            paper-button {
                 margin: 0px;
                 color: #212121;
                 font-size: 12px;
                 border: 1px solid #B6B6B6;
-            }
+
+            }*/
+
         </style>
 
-        <div horizontal layout>
-        <paper-button class="light-primary-color" on-tap="{{onTap}}" flex>
-            <core-icon icon="add" self-start></core-icon>
-            <div flex self-center horizontal center-justified layout >{{label}}</div>
-        </paper-button>
+        <div layout horizontal>
+            <paper-button on-tap="{{onTap}}" flex>
+            <!-- <paper-button  class="light-primary-color" on-tap="{{onTap}}" flex> -->
+                <core-icon icon="add" self-start></core-icon>
+                <div flex self-center horizontal center-justified layout >{{label}}</div>
+            </paper-button>
         </div>
+
     </template>
     <script type="application/dart" src="add_element_button.dart"></script>
 </polymer-element>

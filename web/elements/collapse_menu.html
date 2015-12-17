@@ -9,6 +9,14 @@
         <link rel="stylesheet" href="element_styles.css" />
         <style type='text/css'>
 
+            #coreToolbar {
+                margin: 2px;
+                border: 1px groove #B6B6B6;
+                border-radius: 0.3em;
+
+                font-weight: 700;
+            }
+
             #coreMenu {
                 padding: 0px;
                 margin-top: 1px;
@@ -21,12 +29,14 @@
 
         <div layout vertical>
             <core-toolbar id="coreToolbar" class="default-primary-color toolbar" on-tap="{{toggleCollapse}}">
+                <!-- RTM, Variables, Port/Data, Calculate, ... -->
                 <span flex>{{label}}</span>
                 <core-icon id="navIcon" icon="{{state == 'opened' ? 'expand-less' : 'expand-more'}}"></core-icon>
             </core-toolbar>
 
-            <core-collapse class="divider-color" id="coreCollapse">
-                <core-menu id="coreMenu" vertical layout>
+            <core-collapse id="coreCollapse" class="divider-color">
+                <core-menu id="coreMenu" layout vertical>
+                    <!-- Element1, Element2, SetVar, GetVar, ... -->
                     <content></content>
                 </core-menu>
             </core-collapse>
