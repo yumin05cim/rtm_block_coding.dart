@@ -27,9 +27,7 @@ class EditorPanel extends PolymerElement {
         editor = $['on_deactivated_editor'];
         break;
     }
-
     editor.refresh(app);
-
   }
 
 

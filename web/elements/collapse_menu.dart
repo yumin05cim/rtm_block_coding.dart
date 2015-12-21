@@ -11,8 +11,11 @@ class CollapseMenu extends PolymerElement {
 
   @published String label = 'title';
   @published String state = 'opened';
-  @published String toolbarOpenColor = '#009688';
-  @published String toolbarCloseColor = '#B2DFDB';
+//  @published String toolbarOpenColor = '#AECE8C';
+  @published String toolbarOpenColor = '#f2f2f2';
+  @published String toolbarCloseColor = '#ffffff';
+  @published String toolbarOpenTextColor = '#b42d50';
+  @published String toolbarCloseTextColor = '#212121';
 
   @override
   void attached() {
@@ -31,6 +34,12 @@ class CollapseMenu extends PolymerElement {
     }
     state = 'opened';
     $['coreToolbar'].style.backgroundColor = toolbarOpenColor;
+/*    $['coreToolbar'].style.backgroundColor = transparent;
+    $['coreToolbar'].style.Color =toolbarOpenColor;*/
+
+    $['coreToolbar'].style.color = toolbarOpenTextColor;
+    $['coreToolbar'].style.border = "3px groove #B6B6B6";
+
   }
 
   void closeCollapse(var e) {
@@ -39,15 +48,24 @@ class CollapseMenu extends PolymerElement {
     }
     state = 'closed';
     $['coreToolbar'].style.backgroundColor = toolbarCloseColor;
+    $['coreToolbar'].style.color = toolbarCloseTextColor;
+    $['coreToolbar'].style.border = "1px groove #B6B6B6";
+
   }
 
   void toggleCollapse(var e) {
     coreCollapse.toggle();
     if (state == 'opened') {
       $['coreToolbar'].style.backgroundColor = toolbarCloseColor;
+      $['coreToolbar'].style.color = toolbarCloseTextColor;
+      $['coreToolbar'].style.border = "1px groove #B6B6B6";
+
       state = 'closed';
     } else {
       $['coreToolbar'].style.backgroundColor = toolbarOpenColor;
+      $['coreToolbar'].style.color = toolbarOpenTextColor;
+      $['coreToolbar'].style.border = "3px groove #B6B6B6";
+
       state = 'opened';
     }
   }
