@@ -114,7 +114,6 @@ class Controller {
     }
 
     if(command == 'write_outport') {
-
       program.OutPortWrite v = new program.OutPortWrite('out', new program.DataType.TimedLong());
       program.Statement new_s = new program.Statement(v);
 
@@ -146,6 +145,19 @@ class Controller {
       if (selectedStatement() is OutPortData) {
         (selectedStatement() as OutPortData).model.right = v;
       }
+    }
+
+    if(command =='if') {
+      program.If v = new program.If();
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+      else if (selectedStatement() is ReadInPort) {
+        selectedStatement().model.statements.add(new_s);
+      }
+
     }
 
     refreshPanel();
