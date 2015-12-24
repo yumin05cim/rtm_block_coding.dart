@@ -10,18 +10,21 @@ class If extends PolymerElement {
 
   set model(program.If m) {
     _model = m;
-//    var_name = m. ;
-//    var_value = m. ;
+    condition = m.condition;
+    yes = m.yes;
+    no = m.no;
   }
 
   get model => _model;
 
-  @published String name = "name";
-  @published String access = "";
+  @published program.Condition condition = null;
+  @published program.StatementList yes;
+  @published program.StatementList no;
+
   If.created() : super.created();
 
   void attached() {
-    $['name-input'].onChange.listen(
+    $['condition-input'].onChange.listen(
         (var e) {
 //          _model.name = name;
 
@@ -29,7 +32,14 @@ class If extends PolymerElement {
         }
     );
 
-    $['value-input'].onChange.listen(
+    $['true-input'].onChange.listen(
+        (var e) {
+//          _model.accessSequence = access;
+      globalController.refreshPanel();
+    }
+    );
+
+    $['false-input'].onChange.listen(
         (var e) {
 //          _model.accessSequence = access;
           globalController.refreshPanel();

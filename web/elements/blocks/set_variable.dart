@@ -2,13 +2,13 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'package:rtm_block_coding/application.dart';
+import 'package:rtm_block_coding/application.dart' as program;
 
 @CustomTag('set-variable')
 class SetVariable extends PolymerElement {
-  SetValue _model;
+  program.SetValue _model;
 
-  set model(SetValue m) {
+  set model(program.SetValue m) {
     _model = m;
     name = _model.left.name;
   }
