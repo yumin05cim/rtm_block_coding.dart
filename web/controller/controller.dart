@@ -76,25 +76,7 @@ class Controller {
     }
 
     if (command == 'set_variable') {
-
-      program.SetValue v = new program.SetValue(new program.Variable('name'),
-          new program.Integer(1));
-      program.Statement new_s = new program.Statement(v);
-
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
-      }
-
-      if (selectedStatement() is ReadInPort) {
-        selectedStatement().model.statements.add(new_s);
-      }
-    }
-
-
-    if (command == 'set_outport_data') {
-
-      program.OutPortData v = new program.OutPortData('out', new program.DataType.TimedLong(), 'data',
-          new program.Integer(1));
+      program.SetValue v = new program.SetValue(new program.Variable('name'), new program.Integer(1));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
@@ -114,7 +96,6 @@ class Controller {
     }
 
     if(command == 'write_outport') {
-
       program.OutPortWrite v = new program.OutPortWrite('out', new program.DataType.TimedLong());
       program.Statement new_s = new program.Statement(v);
 
@@ -134,17 +115,39 @@ class Controller {
       }
 
       program.InPortDataAccess v = new program.InPortDataAccess(defaultInPort.name, new program.DataType.fromTypeName(defaultInPort.dataType.typename), "");
+
       if (selectedStatement() == null) {
         program.Statement new_s = new program.Statement(v);
         app.statements.add(new_s);
       }
-
       if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
       }
-
       if (selectedStatement() is OutPortData) {
         (selectedStatement() as OutPortData).model.right = v;
+      }
+    }
+
+    if (command == 'set_outport_data') {
+      program.OutPortData v = new program.OutPortData('out', new program.DataType.TimedLong(), 'data', new program.Integer(1));
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+      if (selectedStatement() is ReadInPort) {
+        selectedStatement().model.statements.add(new_s);
+      }
+    }
+
+    if(command =='if') {
+      program.If v = new program.If(new program.Equals(new program.Variable('a'), new program.Integer(1)),
+          new program.StatementList([new program.Statement(new program.TrueLiteral())]),
+          no:new program.StatementList([new program.Statement(new program.FalseLiteral())]));
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
       }
     }
 

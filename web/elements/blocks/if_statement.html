@@ -1,0 +1,45 @@
+<link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/paper_elements/paper_input.html" />
+
+
+<polymer-element name="if-statement" attributes="value">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style type='text/css'>
+            :host {
+            }
+            #target {
+                margin-top: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #EDDE8F;
+                border-width: 2px;
+                border-color: #ffbd1c;
+                border-style: solid;
+                border-radius: 0.2em;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+
+        </style>
+
+        <div id="target" horizontal layout center>
+            <div end>If (name=</div>
+            <paper-input id="name-input" flex value="{{name}}"></paper-input>
+            <div end>) = (value=</div>
+            <paper-input id="value-input" flex value="{{value}}"></paper-input>
+            <div end>)</div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="if_statement.dart"></script>
+</polymer-element>

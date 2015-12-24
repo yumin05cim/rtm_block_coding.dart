@@ -101,7 +101,11 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('write-outport')
           ..model = block;
       return v;
+    } else if (block is program.If) {
+      return new html.Element.tag('if-statement')
+        ..model = block;
     }
+
   }
 
 

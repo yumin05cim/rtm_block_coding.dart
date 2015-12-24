@@ -8,23 +8,23 @@ import 'condition.dart';
 import 'statement.dart';
 
 class If extends Block {
-  Condition _condition;
-  StatementList _yes = new StatementList([]);
-  StatementList _no = new StatementList([]);
+  Condition condition;
+  StatementList yes = new StatementList([]);
+  StatementList no = new StatementList([]);
 
-  If(this._condition, this._yes, {StatementList no: null}) {
-    this._no = no;
+  If(this.condition, this.yes, {StatementList no: null}) {
+    this.no = no;
   }
 
   String toPython(int indentLevel) {
     String sb = "";
-    sb = "if ${_condition.toPython(0)}:\n";
-    for (Statement s in _yes) {
+    sb = "if ${condition.toPython(0)}:\n";
+    for (Statement s in yes) {
       sb += s.toPython(indentLevel + 1) + '\n';
     }
-    if (_no != null) {
+    if (no != null) {
       sb += Statement.indent * indentLevel + "else : \n";
-      for (Statement s in _no) {
+      for (Statement s in no) {
         sb += s.toPython(indentLevel + 1) + '\n';
       }
     }
@@ -33,10 +33,10 @@ class If extends Block {
 
   @override
   void iterateBlock(var func) {
-    for (var s in _yes) {
+    for (var s in yes) {
       s.iterateBlock(func);
     }
-    for (var s in _no) {
+    for (var s in no) {
       s.iterateBlock(func);
     }
   }
