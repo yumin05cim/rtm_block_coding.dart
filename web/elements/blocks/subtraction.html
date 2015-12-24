@@ -1,8 +1,8 @@
 <link rel="import" href="packages/polymer/polymer.html" />
 <link rel="import" href="packages/paper_elements/paper_input.html" />
+<link rel="import" href="packages/paper_elements/paper_fab.html" />
 
-
-<polymer-element name="if-statement" attributes="value">
+<polymer-element name="calc-subtraction" attributes="value">
     <template >
         <link rel="stylesheet" href="../element_styles.css" />
         <style type='text/css'>
@@ -19,7 +19,7 @@
 
                 position: relative;
 
-                background-color: #EDDE8F;
+                background-color: #BDE1F0;
                 border-width: 2px;
                 border-color: #ffbd1c;
                 border-style: solid;
@@ -32,16 +32,16 @@
 
         </style>
 
-        <div id="target" horizontal layout center>
-            <div end>If (condition= =</div>
-            <paper-input id="condition-input" flex value="{{condition}}"></paper-input>
-            <div end>) is true {</div>
-            <paper-input id="true-input" flex value="{{yes}}"></paper-input>
-            <div end>} is false {</div>
-            <paper-input id="false-input" flex value="{{no}}"></paper-input>
-            <div end>}</div>
+        <div id="body">
+            <div id="target" horizontal layout center>
+                <div end>Calculation: (</div>
+                <paper-input id="value1-input" flex value="{{value_a}}"></paper-input>
+                <div end>) minus (</div>
+                <paper-input id="value2-input" flex value="{{value_b}}"></paper-input>
+                <div end>) </div>
+            </div>
         </div>
 
     </template>
-    <script type="application/dart" src="if_statement.dart"></script>
+    <script type="application/dart" src="subtraction.dart"></script>
 </polymer-element>

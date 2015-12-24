@@ -104,6 +104,12 @@ class BlockEditor extends PolymerElement {
     } else if (block is program.If) {
       return new html.Element.tag('if-statement')
         ..model = block;
+    } else if (block is program.Add) {
+      return new html.Element.tag('calc-addition')
+        ..model = block;
+    } else if (block is program.Subtract) {
+      return new html.Element.tag('calc-subtraction')
+        ..model = block;
     }
 
   }

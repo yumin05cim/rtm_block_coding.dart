@@ -32,6 +32,7 @@ class InPortData extends PolymerElement {
     $['access-input'].onChange.listen(
         (var e) {
           _model.accessSequence = access;
+
           globalController.refreshPanel();
       }
     );
