@@ -95,18 +95,6 @@ class Controller {
       }
     }
 
-    if(command == 'write_outport') {
-      program.OutPortWrite v = new program.OutPortWrite('out', new program.DataType.TimedLong());
-      program.Statement new_s = new program.Statement(v);
-
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
-      }
-      else if (selectedStatement() is ReadInPort) {
-        selectedStatement().model.statements.add(new_s);
-      }
-    }
-
     if(command == 'inport_data') {
       var inports = globalController.inportList();
       var defaultInPort = new program.ReadInPort("in", new program.DataType.TimedLong());
@@ -128,6 +116,18 @@ class Controller {
       }
     }
 
+    if(command == 'write_outport') {
+      program.OutPortWrite v = new program.OutPortWrite('out', new program.DataType.TimedLong());
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+      else if (selectedStatement() is ReadInPort) {
+        selectedStatement().model.statements.add(new_s);
+      }
+    }
+
     if (command == 'set_outport_data') {
       program.OutPortData v = new program.OutPortData('out', new program.DataType.TimedLong(), 'data', new program.Integer(1));
       program.Statement new_s = new program.Statement(v);
@@ -137,17 +137,6 @@ class Controller {
       }
       if (selectedStatement() is ReadInPort) {
         selectedStatement().model.statements.add(new_s);
-      }
-    }
-
-    if(command =='if') {
-      program.If v = new program.If(new program.Equals(new program.Variable('a'), new program.Integer(1)),
-          new program.StatementList([new program.Statement(new program.TrueLiteral())]),
-          no:new program.StatementList([new program.Statement(new program.FalseLiteral())]));
-      program.Statement new_s = new program.Statement(v);
-
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
       }
     }
 
@@ -168,6 +157,28 @@ class Controller {
         app.statements.add(new_s);
       }
     }
+
+    if(command =='if') {
+      program.If v = new program.If(new program.Equals(new program.Variable('a'), new program.Integer(1)),
+          new program.StatementList([new program.Statement(new program.TrueLiteral())]),
+          no:new program.StatementList([new program.Statement(new program.FalseLiteral())]));
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+    }
+
+    if(command =='while') {
+      program.While v = new program.While(new program.Equals(new program.Variable('a'), new program.Integer(1)),
+          new program.StatementList([new program.Statement(new program.TrueLiteral())]));
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+    }
+
 
     refreshPanel();
   }

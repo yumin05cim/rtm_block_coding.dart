@@ -22,9 +22,9 @@
                 position: relative;
 
                 background-color: #EDDE8F;
-                border-width: 2px;
+/*                border-width: 2px;
                 border-color: #ffbd1c;
-                border-style: solid;
+                border-style: solid;*/
                 border-radius: 0.2em;
             }
             paper-input {
@@ -35,11 +35,11 @@
         </style>
 
         <div id="target" horizontal layout center>
-            <div end>If (condition= =</div>
+            <div end>If (condition= </div>
             <paper-input id="condition-input" flex value="{{condition}}"></paper-input>
             <div end>) is true {</div>
             <paper-input id="true-input" flex value="{{yes}}"></paper-input>
-            <div end>} is false {</div>
+            <div end>} or false {</div>
             <paper-input id="false-input" flex value="{{no}}"></paper-input>
             <div end>}</div>
         </div>
