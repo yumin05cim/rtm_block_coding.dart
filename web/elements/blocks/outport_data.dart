@@ -1,8 +1,7 @@
 import 'dart:html' as html;
-
+import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'package:rtm_block_coding/application.dart' as program;
 
 @CustomTag('outport-data')
 class OutPortData extends PolymerElement {

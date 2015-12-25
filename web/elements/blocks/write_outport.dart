@@ -14,7 +14,6 @@ class WriteOutPort extends PolymerElement {
     port_type = m.dataType.typename;
   }
 
-
   get model => _model;
 
   @published String port_name = "name";
@@ -38,14 +37,12 @@ class WriteOutPort extends PolymerElement {
     }
     );
 
-
     this.onClick.listen(
         (var e) {
       globalController.setSelectedElem(e, this);
     }
     );
   }
-
 
   void select() {
     $['target'].style.border = 'ridge';

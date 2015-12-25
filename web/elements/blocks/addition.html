@@ -1,4 +1,6 @@
+
 <link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/core_elements/core_style.html" />
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 <link rel="import" href="packages/paper_elements/paper_fab.html" />
 
@@ -32,14 +34,12 @@
 
         </style>
 
-        <div id="body">
-            <div id="target" horizontal layout center>
-                <div end>Calculation: (</div>
-                <paper-input id="value1-input" flex value="{{value_a}}"></paper-input>
-                <div end>) plus (</div>
-                <paper-input id="value2-input" flex value="{{value_b}}"></paper-input>
-                <div end>) </div>
-            </div>
+        <div id="target" horizontal layout center>
+            <div end>Calculation: (</div>
+            <paper-input id="value1-input" flex value="{{value_a}}"></paper-input>
+            <div end>) plus (</div>
+            <paper-input id="value2-input" flex value="{{value_b}}"></paper-input>
+            <div end>) </div>
         </div>
 
     </template>
