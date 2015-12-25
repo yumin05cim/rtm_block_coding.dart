@@ -147,6 +147,9 @@ class Controller {
       if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
+      if (selectedStatement() is SetVariable) {
+        selectedStatement().model.right = v;
+      }
     }
 
     if (command == 'subtraction') {
@@ -155,6 +158,9 @@ class Controller {
 
       if (selectedStatement() == null) {
         app.statements.add(new_s);
+      }
+      if (selectedStatement() is SetVariable) {
+        selectedStatement().model.right = v;
       }
     }
 

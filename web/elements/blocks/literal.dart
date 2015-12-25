@@ -39,7 +39,7 @@ class IntegerLiteral extends PolymerElement {
   }
 
   void deselect() {
-    $['target'].style.border = 'none';
+    $['target'].style.border = '1px solid #B6B6B6';
   }
 
   bool is_container() {

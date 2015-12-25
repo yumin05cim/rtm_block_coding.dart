@@ -59,7 +59,7 @@ class OutPortData extends PolymerElement {
   }
 
   void deselect() {
-    $['container'].style.border = 'none';
+    $['container'].style.border = '1px solid #B6B6B6';
   }
 
   bool is_container() {

@@ -46,7 +46,7 @@ class ReadInPort extends PolymerElement {
   }
 
   void deselect() {
-    $['title-area'].style.border = 'none';
+    $['title-area'].style.border = '1px solid #B6B6B6';
   }
 
   bool is_container() {
