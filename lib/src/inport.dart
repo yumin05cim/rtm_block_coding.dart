@@ -9,6 +9,36 @@ import 'statement.dart';
 
 import 'datatype.dart';
 
+class AddInPort extends Block {
+  String name;
+  DataType dataType;
+
+  AddInPort(this.name, this.dataType) {
+
+  }
+
+  @override
+  String toDeclarePython(int indentLevel) {
+    String sb = "";
+    sb = "self._d_${name} = " + dataType.constructorString() + '\n';
+    sb += Statement.indent * indentLevel + 'self._${name}In = OpenRTM_aist.InPort("${name}", self._d_${name})' + '\n';
+    return sb;
+  }
+
+  @override
+  String toBindPython(int indentLevel) {
+    String sb = "";
+    sb = 'self.addInPort("${name}", self._${name}In)' + '\n';
+    return sb;
+  }
+
+  String toPython(int indentLevel) {
+    return '';
+  }
+}
+
+
+
 class ReadInPort extends Block {
   String name;
   DataType dataType;
@@ -18,6 +48,7 @@ class ReadInPort extends Block {
   ReadInPort(this.name, this.dataType) {
   }
 
+  /*
   @override
   String toDeclarePython(int indentLevel) {
     String sb = "";
@@ -44,6 +75,7 @@ class ReadInPort extends Block {
     }
     return sb;
   }
+  */
 
   String toPython(int indentLevel) {
     String sb = "";

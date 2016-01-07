@@ -113,6 +113,9 @@ class BlockEditor extends PolymerElement {
     } else if (block is program.While) {
       return new html.Element.tag('while-statement')
         ..model = block;
+    } else if (block is program.AddInPort) {
+      return new html.Element.tag('add-inport')
+          ..model = block;
     }
 
 
