@@ -96,16 +96,23 @@ class Controller {
     }
 
     if(command == 'read_inport') {
+      var inPortMap = onInitializeApp.getInPortMap();
+      if (inPortMap.keys.length == 0) return;
+
+
       if (selectedStatement() == null) {
-          program.ReadInPort v = new program.ReadInPort('in', new program.DataType.TimedLong());
+          program.ReadInPort v = new program.ReadInPort(inPortMap.keys.first, inPortMap[inPortMap.keys.first]);
           program.Statement new_s = new program.Statement(v);
           app.statements.add(new_s);
       }
     }
 
     if(command == 'inport_data') {
+      var inPortMap = onInitializeApp.getInPortMap();
+      if (inPortMap.keys.length == 0) return;
+
       var inports = globalController.inportList();
-      var defaultInPort = new program.ReadInPort("in", new program.DataType.TimedLong());
+      var defaultInPort = new program.ReadInPort(inPortMap.keys.first, inPortMap[inPortMap.keys.first]);
       if (inports.length > 0) {
         defaultInPort = inports[0];
       }

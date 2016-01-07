@@ -11,11 +11,12 @@
             :host {
             }
 
-            #title-area {
+            :host #title-area {
                 margin-top: 2px;
                 margin-left: 2px;
                 margin-right: 2px;
-                margin-bottom: 1px;
+                margin-bottom: 0;
+                /* margin-bottom: 1px; */
 
                 padding-left: 4px;
                 padding-right: 3px;
@@ -24,7 +25,8 @@
 
                 background-color: #EDC08F;
                 border: 1px solid #B6B6B6;
-                border-radius: 0.3em;
+                border-bottom: none;
+                border-radius: 0.3em 0.3em 0 0;
             }
 
             paper-input {
@@ -32,12 +34,27 @@
                 margin-right: 20px;
             }
 
+            :host #body-area {
+                margin-top : 0;
+                margin-bottom: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+
+                padding-left: 10px;
+
+                background-color: #EDC08F;
+                border: 1px solid #B6B6B6;
+                border-top: none;
+                border-radius: 0 0 0.3em 0.3em;
+
+
+                min-height: 5px;
+            }
+
         </style>
         <div id="title-area" horizontal layout center>
             <div end>When Data is received to Port (name = </div>
             <paper-input id="name-input" flex one value="{{port_name}}"></paper-input>
-            <div end>, type=</div>
-            <paper-input id="type-input" flex one value="{{port_type}}"></paper-input>
             <div end>)</div>
         </div>
         <div id="body-area">
