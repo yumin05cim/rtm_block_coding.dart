@@ -29,12 +29,6 @@ class OutPortData extends PolymerElement {
         }
     );
 
-    $['type-input'].onChange.listen(
-        (var e) {
-      _model.dataType = new program.DataType.fromTypeName(port_type);
-    }
-    );
-
     $['member-input'].onChange.listen(
         (var e) {
       _model.accessSequence = data_member;

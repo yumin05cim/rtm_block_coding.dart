@@ -4,7 +4,10 @@ library application.base;
 
 import 'dart:core';
 import 'statement.dart';
-
+import 'block.dart';
+import 'datatype.dart';
+import 'inport.dart';
+import 'outport.dart';
 
 class Application {
 
@@ -51,5 +54,33 @@ class Application {
     for(Statement s in statements) {
       s.iterateBlock(func);
     }
+  }
+
+  Map<String, DataType> getInPortMap() {
+    Map<String, DataType> portMap = {};
+    iterateBlock(
+        (Block b) {
+          if (b is AddInPort) {
+            portMap[b.name] = b.dataType;
+          }
+        }
+    );
+
+    return portMap;
+  }
+
+
+  Map<String, DataType> getOutPortMap() {
+    Map<String, DataType> portMap = {};
+    iterateBlock(
+        (Block b) {
+          print (b);
+      if (b is AddOutPort) {
+        portMap[b.name] = b.dataType;
+      }
+    }
+    );
+
+    return portMap;
   }
 }

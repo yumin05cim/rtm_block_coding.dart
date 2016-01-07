@@ -8,6 +8,7 @@ import '../elements/blocks/set_variable.dart';
 
 class Controller {
 
+  program.Application onInitializeApp = new program.Application();
   program.Application onActivatedApp = new program.Application();
   program.Application onExecuteApp = new program.Application();
   program.Application onDeactivatedApp = new program.Application();
@@ -19,10 +20,12 @@ class Controller {
   String getSelectedEditorPanelName() {
     switch(_editorPanel.selected) {
       case 0:
-        return 'onActivated';
+        return 'onInitialize';
       case 1:
-        return 'onExecute';
+        return 'onActivated';
       case 2:
+        return 'onExecute';
+      case 3:
         return 'onDeactivated';
       default:
         return null;
@@ -32,10 +35,12 @@ class Controller {
   program.Application getSelectedEditorApplication() {
     switch(_editorPanel.selected) {
       case 0:
-        return onActivatedApp;
+        return onInitializeApp;
       case 1:
-        return onExecuteApp;
+        return onActivatedApp;
       case 2:
+        return onExecuteApp;
+      case 3:
         return onDeactivatedApp;
       default:
         return null;
@@ -65,12 +70,15 @@ class Controller {
     program.Application app;
     switch (_editorPanel.selected) {
       case 0:
-        app = onActivatedApp;
+        app = onInitializeApp;
         break;
       case 1:
-        app = onExecuteApp;
+        app = onActivatedApp;
         break;
       case 2:
+        app = onExecuteApp;
+        break;
+      case 3:
         app = onDeactivatedApp;
         break;
     }
@@ -136,19 +144,26 @@ class Controller {
 
 
     if(command == 'write_outport') {
-      program.OutPortWrite v = new program.OutPortWrite('out', new program.DataType.TimedLong());
+      var outPortMap = onInitializeApp.getOutPortMap();
+      if (outPortMap.keys.length == 0) return;
+
+      program.OutPortWrite v = new program.OutPortWrite(outPortMap.keys.first, outPortMap[outPortMap.keys.first]);
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
       else if (selectedStatement() is ReadInPort) {
+
         selectedStatement().model.statements.add(new_s);
       }
     }
 
     if (command == 'set_outport_data') {
-      program.OutPortData v = new program.OutPortData('out', new program.DataType.TimedLong(), 'data', new program.Integer(1));
+      var outPortMap = onInitializeApp.getOutPortMap();
+      if (outPortMap.keys.length == 0) return;
+
+      program.OutPortData v = new program.OutPortData(outPortMap.keys.first, outPortMap[outPortMap.keys.first], '', new program.Integer(1));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
@@ -214,12 +229,15 @@ class Controller {
     program.Application app;
     switch (_editorPanel.selected) {
       case 0:
-        app = onActivatedApp;
+        app = onInitializeApp;
         break;
       case 1:
-        app = onExecuteApp;
+        app = onActivatedApp;
         break;
       case 2:
+        app = onExecuteApp;
+        break;
+      case 3:
         app = onDeactivatedApp;
         break;
     }
@@ -227,13 +245,16 @@ class Controller {
   }
 
   String pythonCode() {
-    var dec = onActivatedApp.toDeclarePython(2);
-    dec += onExecuteApp.toDeclarePython(2);
-    dec += onDeactivatedApp.toDeclarePython(2);
 
-    var bin = onActivatedApp.toBindPython(2);
-    dec += onExecuteApp.toBindPython(2);
-    dec += onDeactivatedApp.toBindPython(2);
+    var dec = onInitializeApp.toDeclarePython(2);
+    //dec += onActivatedApp.toDeclarePython(2);
+    //dec += onExecuteApp.toDeclarePython(2);
+    //dec += onDeactivatedApp.toDeclarePython(2);
+
+    var bin = onInitializeApp.toBindPython(2);
+    //bin += onActivatedApp.toBindPython(2);
+    //bin += onExecuteApp.toBindPython(2);
+    //bin += onDeactivatedApp.toBindPython(2);
 
     var a = onActivatedApp.toPython(2);
 

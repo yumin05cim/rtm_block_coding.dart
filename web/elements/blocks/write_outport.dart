@@ -30,13 +30,6 @@ class WriteOutPort extends PolymerElement {
     }
     );
 
-    $['type-input'].onChange.listen(
-        (var e) {
-      _model.dataType = new program.DataType.fromTypeName(port_type);
-      globalController.refreshPanel();
-    }
-    );
-
     this.onClick.listen(
         (var e) {
       globalController.setSelectedElem(e, this);
