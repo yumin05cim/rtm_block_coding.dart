@@ -32,29 +32,31 @@ class DataType {
   static var _cs_map = {
     ["0"] : "0",
     ["[]"] : "[]",
+    ["short", "long", "ushort", "ulong"] : "0",
+    ["double", "float"] : "0.0",
     ["Long", "ULong", "Short", "UShort", "Char", "UChar"] : "0",
     ["Double", "Float"] : "0.0",
     ["String"] : '""'
   };
 
   static var _cs_name_and_zero = {
-    "Time" : ["sec", "usec"],
-    "Point2D" : ["x", "y"],
-    "Vector2D" : ["x", "y"],
-    "Velocity2D" : ["vx", "vy", "va"],
-    "Acceleration2D" : ["ax", "ay"],
-    "Size2D" : ["l", "w"],
-    "Point3D" : ["x", "y", "z"],
-    "Vector3D" : ["x", "y", "z"],
-    "Velocity3D" : ["vx", "vy", "vz", "vr", "vp", "va"],
-    "Orientation3D" : ["r", "p", "y"],
-    "Size3D" : ["l", "w", "h"],
+    "Time" : [["sec", "ulong"], ["usec", "ulong"]],
+    "Point2D" : [["x", "double"], ["y", "double"]],
+    "Vector2D" : [["x", "double"], ["y", "double"]],
+    "Velocity2D" : [["vx", "double"], ["vy", "double"], ["va", "double"]],
+    "Acceleration2D" : [["ax", "double"], ["ay", "double"]],
+    "Size2D" : [["l", "double"], ["w", "double"]],
+    "Point3D" : [["x", "double"], ["y", "double"], ["z", "double"]],
+    "Vector3D" : [["x", "double"], ["y", "double"], ["z", "double"]],
+    "Velocity3D" : [["vx", "double"], ["vy", "double"], ["vz", "double"], ["vr", "double"], ["vp", "double"], ["va", "double"]],
+    "Orientation3D" : [["r", "double"], ["p", "double"], ["y", "double"]],
+    "Size3D" : [["l", "double"], ["w", "double"], ["h", "double"]],
 
-    "RangerConfig" : ["minAngle", "maxAngle", "angularRes", "minRange", "maxRange", "rangeRes", "frequency"],
+    "RangerConfig" : [["minAngle", "double"], ["maxAngle", "double"], ["angularRes", "double"], ["minRange", "double"], ["maxRange", "double"], ["rangeRes", "double"], ["frequency", "double"]],
   };
 
   static var _cs_tree = {
-    "Pose2D" : [["position", "Point2D"], ["heading", "0"]],
+    "Pose2D" : [["position", "Point2D"], ["heading", "double"]],
     "Geometry2D" : [
       ["pose", "Pose2D"], ["size", "Size2D"]],
 
@@ -63,6 +65,19 @@ class DataType {
     "RangerGeometry" : [["geometry" , "Geometry3D"], ["elementGeometries", "ElementGeometryList"]],
     "RangeData" : [["tm", "Time"], ["ranges", "RangeList"], ["geometry", "RangerGeometry"], ["config", "RangerConfig"]],
   };
+
+  static var _all_types = [
+    "Time",
+    "Long", "ULong", "Short", "UShort", "Char", "UChar", "Double", "Float", "String",
+    "Point2D", "Vector2D", "Velocity2D", "Acceleration2D", "Size2D", "Point3D", "Vector3D", "Velocity3D", "Orientation3D", "Size3D",
+    "Pose2D", "Geometry2D", "Pose3D", "Geometry3D",
+    "TimedLong", "TimedULong", "TimedShort", "TimedUShort", "TimedChar", "TimedUChar", "TimedDouble", "TimedFloat", "TimedString",
+    "TimedLongSeq", "TimedULongSeq", "TimedShortSeq", "TimedUShortSeq", "TimedCharSeq", "TimedUCharSeq", "TimedDoubleSeq", "TimedFloatSeq", "TimedStringSeq",
+    "TimedPoint2D", "TimedVector2D", "TimedVelocity2D", "TimedAcceleration2D", "TimedSize2D", "TimedPoint3D", "TimedVector3D", "TimedVelocity3D", "TimedOrientation3D", "TimedSize3D",
+    "RangeConfig", "TimedPose2D", "TimedGeometry2D", "TimedPose3D", "TimedGeometry3D", "RangerGeometry", "RangeData"
+  ];
+
+  static get all_types => _all_types;
 
   bool _cs_support() { return false; }
 
@@ -114,6 +129,8 @@ class DataType {
             return_value = "RTC.${tn}(";
             int num_zero = _cs_name_and_zero[key].length;
             for(var i = 0;i < num_zero;i++) {
+              var elem_type = _cs_name_and_zero[key][1];
+
               return_value += "0";
               if (i != num_zero-1) {
                 return_value += ", ";

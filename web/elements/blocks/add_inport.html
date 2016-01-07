@@ -2,6 +2,13 @@
 <link rel="import" href="packages/polymer/polymer.html" />
 <link rel="import" href="packages/core_elements/core_style.html" />
 <link rel="import" href="packages/paper_elements/paper_input.html" />
+
+<link rel="import" href="packages/paper_elements/paper_dropdown.html" />
+<link rel="import" href="packages/paper_elements/paper_dropdown_menu.html" />
+<link rel="import" href="packages/paper_elements/paper_item.html" />
+<link rel="import" href="packages/core_elements/core_menu.html" />
+
+
 <link rel="import" href="literal.html" />
 
 <polymer-element name="add-inport" attributes="command">
@@ -37,7 +44,13 @@
             <div end>Add In Port (name = </div>
             <paper-input id="name-input" flex one value="{{port_name}}"></paper-input>
             <div end>, type=</div>
-            <paper-input id="type-input" flex one value="{{port_type}}"></paper-input>
+            <!-- <paper-input id="type-input" flex one value="{{port_type}}"></paper-input> -->
+            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
+                <paper-dropdown id="dropdown" class="dropdown">
+                    <core-menu class="menu" id="menu-content">
+                    </core-menu>
+                </paper-dropdown>
+            </paper-dropdown-menu>
             <div end>)</div>
         </div>
     </template>
