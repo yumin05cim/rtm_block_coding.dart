@@ -3,6 +3,8 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
+import 'package:paper_elements/paper_dropdown_menu.dart';
+
 @CustomTag('add-outport')
 class AddOutPort extends PolymerElement {
   program.AddOutPort _model;
@@ -26,12 +28,26 @@ class AddOutPort extends PolymerElement {
         }
     );
 
-    $['type-input'].onChange.listen(
-        (var e) {
-      _model.dataType = new program.DataType.fromTypeName(port_type);
+    var types = program.DataType.all_types;
+    types.sort();
+    types.forEach
+    (
+        (String typename) {
+      print (typename);
+      $['menu-content'].children.add(
+          new html.Element.tag('paper-item')
+            ..innerHtml = typename
+      );
     }
     );
 
+    PaperDropdownMenu dd = $['dropdown-menu'];
+    dd.on['core-select'].listen(
+        (var e) {
+      _model.dataType = new program.DataType.fromTypeName(e.detail['item'].innerHtml);
+    }
+
+    );
     $['title-area'].onClick.listen(
         (var e) {
           globalController.setSelectedElem(e, this);

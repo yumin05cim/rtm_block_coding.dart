@@ -37,7 +37,12 @@
             <div end>Add Out Port (name = </div>
             <paper-input id="name-input" flex one value="{{port_name}}"></paper-input>
             <div end>, type=</div>
-            <paper-input id="type-input" flex one value="{{port_type}}"></paper-input>
+            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
+                <paper-dropdown id="dropdown" class="dropdown">
+                    <core-menu class="menu" id="menu-content">
+                    </core-menu>
+                </paper-dropdown>
+            </paper-dropdown-menu>
             <div end>)</div>
         </div>
     </template>
