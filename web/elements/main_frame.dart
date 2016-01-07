@@ -64,10 +64,10 @@ class MainFrame extends PolymerElement {
   void setMode(String mode) {
     if (mode == 'initialize') {
       $['rtm_menu'].disableMenu(false);
-      $['variables_menu'].disableMenu(false);
-      $['port_data_menu'].disableMenu(false);
-      $['calculate_menu'].disableMenu(false);
-      $['if_switch_loop_menu'].disableMenu(false);
+      $['variables_menu'].disableMenu(true);
+      $['port_data_menu'].disableMenu(true);
+      $['calculate_menu'].disableMenu(true);
+      $['if_switch_loop_menu'].disableMenu(true);
     } else {
       $['rtm_menu'].disableMenu(true);
       $['variables_menu'].disableMenu(false);
