@@ -4,6 +4,12 @@
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 <link rel="import" href="literal.html" />
 
+
+<link rel="import" href="packages/paper_elements/paper_dropdown.html" />
+<link rel="import" href="packages/paper_elements/paper_dropdown_menu.html" />
+<link rel="import" href="packages/paper_elements/paper_item.html" />
+<link rel="import" href="packages/core_elements/core_menu.html" />
+
 <polymer-element name="inport-data" attributes="value">
     <template >
         <link rel="stylesheet" href="../element_styles.css" />
@@ -30,13 +36,22 @@
                 margin-right: 10px;
             }
 
+            paper-dropdown-menu {
+                min-width: 250px;
+            }
+
         </style>
 
         <div id="target" horizontal layout center>
-            <div end>InPort (name=</div>
+            <div end>InPort (</div>
             <paper-input id="name-input" flex value="{{name}}"></paper-input>
-            <div end>) member = </div>
-            <paper-input id="access-input" flex value="{{access}}"></paper-input>
+            <div end></div>
+            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
+                <paper-dropdown id="dropdown" class="dropdown">
+                    <core-menu class="menu" id="menu-content">
+                    </core-menu>
+                </paper-dropdown>
+            </paper-dropdown-menu>
             <div end>)</div>
         </div>
 

@@ -30,17 +30,21 @@ class AddInPort extends PolymerElement {
 
     var types = program.DataType.all_types;
       types.sort();
+    int counter = 1;
     types.forEach
     (
         (String typename) {
           $['menu-content'].children.add(
             new html.Element.tag('paper-item')
               ..innerHtml = typename
+              ..setAttribute('value', counter.toString())
           );
+          counter++;
         }
     );
 
     PaperDropdownMenu dd = $['dropdown-menu'];
+    $['menu-content'].setAttribute('selected', '1');
     dd.on['core-select'].listen(
         (var e) {
           if (e.detail['isSelected']) {

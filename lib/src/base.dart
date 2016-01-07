@@ -69,6 +69,54 @@ class Application {
     return portMap;
   }
 
+  AddInPort findAddInPort(String name) {
+    AddInPort ret = null;
+    iterateBlock(
+        (Block b) {
+      if (b is AddInPort) {
+        if(b.name == name) {
+          ret = b;
+        }
+      }
+    });
+    return ret;
+  }
+
+  AddOutPort findAddOutPort(String name) {
+    AddOutPort ret = null;
+    iterateBlock(
+        (Block b) {
+      if (b is AddOutPort) {
+        if(b.name == name) {
+          ret = b;
+        }
+      }
+    });
+    return ret;
+
+  }
+
+  List<AddInPort> inPorts() {
+    var ret = [];
+    iterateBlock(
+        (Block b) {
+      if (b is AddInPort) {
+        ret.add(b);
+      }
+    });
+    return ret;
+  }
+
+  List<AddOutPort> outPorts() {
+    var ret = [];
+    iterateBlock(
+        (Block b) {
+      if (b is AddOutPort) {
+        ret.add(b);
+      }
+    });
+    return ret;
+  }
 
   Map<String, DataType> getOutPortMap() {
     Map<String, DataType> portMap = {};
