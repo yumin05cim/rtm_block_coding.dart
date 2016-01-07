@@ -30,6 +30,7 @@ class MainFrame extends PolymerElement {
     );
     */
 
+    $['code-editor-panel'].setParent(this);
 
     $['main-panel'].onClick.listen(
         (var e) {
@@ -40,6 +41,41 @@ class MainFrame extends PolymerElement {
           $['main-panel'].querySelector('editor-panel').updateClick();
         }
     );
+
+    setMode('initialize');
   }
 
+
+  void closeCollapse(var elem) {
+    if (elem.opened) {
+      elem.toggle();
+    }
+  }
+
+
+  void closeAll() {
+    $['rtm_menu'].closeCollapse(null);
+    $['variables_menu'].closeCollapse(null);
+    $['port_data_menu'].closeCollapse(null);
+    $['calculate_menu'].closeCollapse(null);
+    $['if_switch_loop_menu'].closeCollapse(null);
+  }
+
+  void setMode(String mode) {
+    if (mode == 'initialize') {
+      $['rtm_menu'].disableMenu(false);
+      $['variables_menu'].disableMenu(false);
+      $['port_data_menu'].disableMenu(false);
+      $['calculate_menu'].disableMenu(false);
+      $['if_switch_loop_menu'].disableMenu(false);
+    } else {
+      $['rtm_menu'].disableMenu(true);
+      $['variables_menu'].disableMenu(false);
+      $['port_data_menu'].disableMenu(false);
+      $['calculate_menu'].disableMenu(false);
+      $['if_switch_loop_menu'].disableMenu(false);
+    }
+
+
+  }
 }
