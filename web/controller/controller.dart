@@ -125,6 +125,15 @@ class Controller {
       }
     }
 
+    if(command == 'add_outport') {
+      program.AddOutPort v = new program.AddOutPort('out', new program.DataType.TimedLong());
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+    }
+
 
     if(command == 'write_outport') {
       program.OutPortWrite v = new program.OutPortWrite('out', new program.DataType.TimedLong());
