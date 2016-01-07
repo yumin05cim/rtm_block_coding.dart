@@ -3,36 +3,35 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('write-outport')
-class WriteOutPort extends PolymerElement {
+@CustomTag('calc-subtraction')
+class Subtraction extends PolymerElement {
 
-  program.OutPortWrite _model;
+  program.Subtract _model;
 
-  set model(program.OutPortWrite m) {
+  set model(program.Subtract m) {
     _model = m;
-    port_name = m.name;
-    port_type = m.dataType.typename;
+    value_a = m.a;
+    value_b = m.b;
   }
 
   get model => _model;
 
-  @published String port_name = "name";
-  @published String port_type = "type";
-
-  WriteOutPort.created() : super.created();
+  @published program.Block value_a;
+  @published program.Block value_b;
+  Subtraction.created() : super.created();
 
   void attached() {
-    $['name-input'].onChange.listen(
+    $['value1-input'].onChange.listen(
         (var e) {
-      _model.name = port_name;
+      _model.a = value_a;
 
       globalController.refreshPanel();
     }
     );
-
-    $['type-input'].onChange.listen(
+    $['value2-input'].onChange.listen(
         (var e) {
-      _model.dataType = new program.DataType.fromTypeName(port_type);
+      _model.b = value_b;
+
       globalController.refreshPanel();
     }
     );

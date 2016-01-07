@@ -1,8 +1,7 @@
 import 'dart:html' as html;
-
+import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'package:rtm_block_coding/application.dart' as program;
 
 @CustomTag('set-variable')
 class SetVariable extends PolymerElement {
@@ -17,7 +16,7 @@ class SetVariable extends PolymerElement {
 
   @published String name = "defaultName";
 
-    SetVariable.created() : super.created();
+  SetVariable.created() : super.created();
 
   void attached() {
     $['name-input'].onChange.listen(
@@ -29,7 +28,6 @@ class SetVariable extends PolymerElement {
     $['title-area'].onClick.listen(
         (var e) {
           globalController.setSelectedElem(e, this);
-
         }
     );
   }
@@ -45,7 +43,7 @@ class SetVariable extends PolymerElement {
   }
 
   void deselect() {
-    $['container'].style.border = 'none';
+    $['container'].style.border = '1px solid #B6B6B6';
   }
 
   bool is_container() {

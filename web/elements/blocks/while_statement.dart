@@ -3,36 +3,35 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('write-outport')
-class WriteOutPort extends PolymerElement {
+@CustomTag('while-statement')
+class While extends PolymerElement {
 
-  program.OutPortWrite _model;
+  program.While _model;
 
-  set model(program.OutPortWrite m) {
+  set model(program.While m) {
     _model = m;
-    port_name = m.name;
-    port_type = m.dataType.typename;
+    condition = m.condition;
+    loop = m.loop;
   }
 
   get model => _model;
 
-  @published String port_name = "name";
-  @published String port_type = "type";
+  @published program.Condition condition = null;
+  @published program.StatementList loop;
 
-  WriteOutPort.created() : super.created();
+  While.created() : super.created();
 
   void attached() {
-    $['name-input'].onChange.listen(
+    $['condition-input'].onChange.listen(
         (var e) {
-      _model.name = port_name;
-
+      _model.condition = condition;
       globalController.refreshPanel();
     }
     );
 
-    $['type-input'].onChange.listen(
+    $['statement-input'].onChange.listen(
         (var e) {
-      _model.dataType = new program.DataType.fromTypeName(port_type);
+      _model.loop = loop;
       globalController.refreshPanel();
     }
     );

@@ -26,26 +26,24 @@ class If extends PolymerElement {
   void attached() {
     $['condition-input'].onChange.listen(
         (var e) {
-//          _model.name = name;
-
+          _model.condition = condition;
           globalController.refreshPanel();
         }
     );
 
     $['true-input'].onChange.listen(
         (var e) {
-//          _model.accessSequence = access;
-      globalController.refreshPanel();
+          _model.yes = yes;
+          globalController.refreshPanel();
     }
     );
 
     $['false-input'].onChange.listen(
         (var e) {
-//          _model.accessSequence = access;
+          _model.no = no;
           globalController.refreshPanel();
       }
     );
-
 
     this.onClick.listen(
       (var e) {
@@ -60,7 +58,7 @@ class If extends PolymerElement {
   }
 
   void deselect() {
-    $['target'].style.border = 'none';
+    $['target'].style.border = '1px solid #B6B6B6';
   }
 
   bool is_container() {

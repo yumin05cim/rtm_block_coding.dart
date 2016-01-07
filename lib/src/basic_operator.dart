@@ -40,24 +40,24 @@ class SetValue extends Block {
 
 class Add extends Block {
 
-  Block _a;
-  Block _b;
+  Block a;
+  Block b;
 
-  Add(this._a, this._b) : super() {}
+  Add(this.a, this.b) : super() {}
 
   String toPython(int indentLevel) {
-    return "${_a.toPython(0)} + ${_b.toPython(0)}";
+    return "${a.toPython(0)} + ${b.toPython(0)}";
   }
 }
 
 class Subtract extends Block {
-  Block _a;
-  Block _b;
+  Block a;
+  Block b;
 
-  Subtract(this._a, this._b) : super() {}
+  Subtract(this.a, this.b) : super() {}
 
   String toPython(int indentLevel) {
-    return "${_a.toPython(0)} - ${_b.toPython(0)}";
+    return "${a.toPython(0)} - ${b.toPython(0)}";
   }
 
 }

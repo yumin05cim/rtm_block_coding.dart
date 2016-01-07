@@ -21,10 +21,8 @@
                 padding-right: 3px;
 
                 background-color: #EDC08F;
-                border-width: 2px;
-                border-color: #ffbd1c;
-                border-style: solid;
-                border-radius: 0.2em;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
             }
             #body-area {
                 padding-left: 15px;
@@ -39,19 +37,19 @@
 
         </style>
         <div id="container">
-        <div id="title-area" horizontal layout center wrap>
-            <div end>Set OutPort (type = </div>
-            <paper-input id="type-input" flex value="{{port_type}}"></paper-input>
-            <div end>, name = </div>
-            <paper-input id="name-input" flex value="{{port_name}}"></paper-input>
-            <div end>) Data Variable (member = </div>
-            <paper-input id="member-input" flex value="{{data_member}}"></paper-input>
-            <div end>)</div>
-        </div>
-        <div id="body-area">
-            <div id="target">
+            <div id="title-area" horizontal layout center wrap>
+                <div end>Set OutPort (type = </div>
+                <paper-input id="type-input" flex value="{{port_type}}"></paper-input>
+                <div end>, name = </div>
+                <paper-input id="name-input" flex value="{{port_name}}"></paper-input>
+                <div end>) Data Variable (member = </div>
+                <paper-input id="member-input" flex value="{{data_member}}"></paper-input>
+                <div end>)</div>
             </div>
-        </div>
+            <div id="body-area">
+                <div id="target">
+                </div>
+            </div>
         </div>
     </template>
     <script type="application/dart" src="outport_data.dart"></script>

@@ -1,8 +1,7 @@
 import 'dart:html' as html;
-
+import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'package:rtm_block_coding/application.dart' as program;
 
 @CustomTag('read-inport')
 class ReadInPort extends PolymerElement {
@@ -47,7 +46,7 @@ class ReadInPort extends PolymerElement {
   }
 
   void deselect() {
-    $['title-area'].style.border = 'none';
+    $['title-area'].style.border = '1px solid #B6B6B6';
   }
 
   bool is_container() {

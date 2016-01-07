@@ -43,17 +43,17 @@ class If extends Block {
 }
 
 class While extends Block {
-  Condition _condition;
+  Condition condition;
 
-  StatementList _loop = new StatementList([]);
+  StatementList loop = new StatementList([]);
 
-  While(this._condition, this._loop) {}
+  While(this.condition, this.loop) {}
 
 
   String toPython(int indentLevel) {
     String sb = "";
-    sb = "while ${_condition.toPython(0)}:\n";
-    for (Statement s in _loop) {
+    sb = "while ${condition.toPython(0)}:\n";
+    for (Statement s in loop) {
       sb += s.toPython(indentLevel + 1) + '\n';
     }
     return sb;
@@ -61,7 +61,7 @@ class While extends Block {
 
   @override
   void iterateBlock(var func) {
-    for (var s in _loop) {
+    for (var s in loop) {
       s.iterateBlock(func);
     }
   }

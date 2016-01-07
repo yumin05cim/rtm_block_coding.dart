@@ -21,10 +21,13 @@
                 padding-right: 3px;
 
                 background-color: #ABD299;
-                border-width: 2px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+             /* border-width: 2px;
                 border-color: #ffbd1c;
-                border-style: solid;
-                border-radius: 0.2em;
+                border-style: solid;*/
+
             }
             #body-area {
                 padding-left: 15px;
@@ -39,7 +42,7 @@
 
         </style>
         <div id="container">
-            <div id="title-area" horizontal layout center>
+            <div id="title-area" horizontal layout center wrap>
                 <div end>Calculate and Set value to Variable (name = </div>
                 <paper-input id="name-input" flex value="{{name}}"></paper-input>
                 <div end>)</div>

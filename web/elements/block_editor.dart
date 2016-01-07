@@ -101,10 +101,20 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('write-outport')
           ..model = block;
       return v;
+    } else if (block is program.Add) {
+      return new html.Element.tag('calc-addition')
+        ..model = block;
+    } else if (block is program.Subtract) {
+      return new html.Element.tag('calc-subtraction')
+        ..model = block;
     } else if (block is program.If) {
       return new html.Element.tag('if-statement')
         ..model = block;
+    } else if (block is program.While) {
+      return new html.Element.tag('while-statement')
+        ..model = block;
     }
+
 
   }
 
