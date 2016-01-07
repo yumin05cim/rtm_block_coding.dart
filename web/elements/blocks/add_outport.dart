@@ -33,7 +33,6 @@ class AddOutPort extends PolymerElement {
     types.forEach
     (
         (String typename) {
-      print (typename);
       $['menu-content'].children.add(
           new html.Element.tag('paper-item')
             ..innerHtml = typename
@@ -44,7 +43,10 @@ class AddOutPort extends PolymerElement {
     PaperDropdownMenu dd = $['dropdown-menu'];
     dd.on['core-select'].listen(
         (var e) {
-      _model.dataType = new program.DataType.fromTypeName(e.detail['item'].innerHtml);
+          if (e.detail['isSelected']) {
+            _model.dataType =
+            new program.DataType.fromTypeName(e.detail['item'].innerHtml);
+          }
     }
 
     );
