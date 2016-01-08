@@ -4,6 +4,7 @@ import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
 import 'package:paper_elements/paper_dropdown.dart';
+import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 
 
@@ -18,27 +19,6 @@ class InPortData extends PolymerElement {
     access = m.accessSequence;
 
     int counter = 1;
-    print('set model');
-
-    /*
-    var types = program.DataType.access_alternatives(m.dataType.typename);
-    print('types');
-    print(types);
-
-
-    types.forEach(
-        (List<String> alternative_pair) {
-          print (alternative_pair);
-          $['menu-content'].children.add(
-              new html.Element.tag('paper-item')
-                ..innerHtml = counter.toString()
-                ..setAttribute('value', counter.toString())
-          );
-          counter++;
-        }
-    );
-    */
-
   }
 
   get model => _model;
@@ -47,47 +27,140 @@ class InPortData extends PolymerElement {
   @published String access = "";
   InPortData.created() : super.created();
 
-  void attached() {
 
-    $['name-input'].onChange.listen(
-        (var e) {
-          _model.name = name;
+  void updateInPortList() {
+    $['name-menu-content'].children.clear();
 
-          globalController.refreshPanel();
+    int counter = 0;
+    var ports = globalController.onInitializeApp.find(program.AddInPort);
+    ports.forEach(
+        (program.AddInPort p) {
+      $['name-menu-content'].children.add(
+          new html.Element.tag('paper-item')
+            ..innerHtml = p.name
+            ..setAttribute('value', counter.toString())
+      );
+      counter++;
+      }
+    );
+
+
+  }
+
+  void selectInPort(String name) {
+    print('selectInPort($name) called (_model:$model)');
+    int selected = -1;
+    int counter  = 0;
+    $['name-menu-content'].children.forEach(
+        (PaperItem p) {
+          if(name == p.innerHtml) {
+            selected = counter;
+          }
+          counter++;
         }
     );
 
-    int counter = 1;
+    if(selected < 0) {
+      print('Invalid InPort is selected in inport_data');
+      selected = 0;
+    }
+
+    $['name-menu-content'].setAttribute('selected', selected.toString());
+
+    updateAccessAlternatives();
+  }
+
+  void updateAccessAlternatives() {
+    print('updateAccessAlternatives called (_model:$model)');
+    $['menu-content'].children.clear();
+    int counter = 0;
     var types = program.DataType.access_alternatives(_model.dataType.typename);
     types.forEach(
         (List<String> alternative_pair) {
       $['menu-content'].children.add(
           new html.Element.tag('paper-item')
-            ..innerHtml = alternative_pair[0] + '(' + alternative_pair[1] + ')'
+            ..innerHtml = alternative_pair[0] + ';'
             ..setAttribute('value', counter.toString())
       );
       counter++;
     }
     );
 
+    selectAccess(_model.accessSequence + ';');
+  }
 
-    print('attached');
+  void selectAccess(String name) {
+    print('selectAccess($name) called (_model:$model)');
+    int selected = -1;
+    int counter  = 0;
+    $['menu-content'].children.forEach(
+        (PaperItem p) {
+          print (p.innerHtml + '/' + name);
+          var target_name = p.innerHtml;
+          if (p.innerHtml.startsWith('.')) {
+            target_name = p.innerHtml.substring(1);
+          }
+      if(name == target_name) {
+        selected = counter;
+      }
+      counter++;
+    }
+    );
+
+    if(selected < 0) {
+      print('Invalid InPort Access is selected in inport_data');
+      selected = 0;
+    }
+
+    $['menu-content'].setAttribute('selected', selected.toString());
+  }
+
+  void attached() {
+
+    updateInPortList();
+    selectInPort(_model.name);
+
+    PaperDropdownMenu ndd = $['name-dropdown-menu'];
+    ndd.on['core-select'].listen(
+        (var e) {
+      if (!e.detail['isSelected']) {
+
+      } else {
+        String name_ = e.detail['item'].innerHtml;
+        var pl = globalController.onInitializeApp.find(program.AddInPort, name:name_);
+        if (pl.length > 0) {
+          program.AddInPort inport =pl[0];
+          _model.name = name_;
+          if(_model.dataType != inport.dataType) {
+            _model.dataType = inport.dataType;
+            _model.accessSequence = '';
+
+            updateAccessAlternatives();
+          }
+        }
+      }
+    }
+
+    );
+
+
+
     PaperDropdownMenu dd = $['dropdown-menu'];
-    $['menu-content'].setAttribute('selected', '1');
     dd.on['core-select'].listen(
         (var e) {
       if (e.detail['isSelected']) {
         String accessName = e.detail['item'].innerHtml;
 
-        _model.accessSequence = accessName.substring(1, accessName.indexOf('('));
-        print(accessName);
-        //globalController.refreshPanel();
-        //_model.dataType = new program.DataType.fromTypeName(typename);
-
+        if (accessName.startsWith('.')) {
+          accessName = accessName.substring(1);
+        }
+        _model.accessSequence = accessName.substring(0, accessName.length-1);
+        print('selected:' + _model.accessSequence);
       }
     }
 
     );
+
 
 
 

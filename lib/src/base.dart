@@ -8,6 +8,7 @@ import 'block.dart';
 import 'datatype.dart';
 import 'inport.dart';
 import 'outport.dart';
+import 'dart:mirrors';
 
 class Application {
 
@@ -69,66 +70,25 @@ class Application {
     return portMap;
   }
 
-  AddInPort findAddInPort(String name) {
-    AddInPort ret = null;
-    iterateBlock(
-        (Block b) {
-      if (b is AddInPort) {
-        if(b.name == name) {
-          ret = b;
-        }
-      }
-    });
-    return ret;
-  }
 
-  AddOutPort findAddOutPort(String name) {
-    AddOutPort ret = null;
-    iterateBlock(
-        (Block b) {
-      if (b is AddOutPort) {
-        if(b.name == name) {
-          ret = b;
-        }
-      }
-    });
-    return ret;
-
-  }
-
-  List<AddInPort> inPorts() {
+  find(Type typename, {String name: null}) {
     var ret = [];
-    iterateBlock(
-        (Block b) {
-      if (b is AddInPort) {
-        ret.add(b);
-      }
-    });
-    return ret;
-  }
 
-  List<AddOutPort> outPorts() {
-    var ret = [];
     iterateBlock(
         (Block b) {
-      if (b is AddOutPort) {
-        ret.add(b);
-      }
+          if (b.runtimeType == typename) {
+            if(name == null) {
+              ret.add(b);
+            }
+            else if(b.name == name) {
+              ret.add(b);
+            }
+          }
     });
-    return ret;
-  }
 
-  Map<String, DataType> getOutPortMap() {
-    Map<String, DataType> portMap = {};
-    iterateBlock(
-        (Block b) {
-          print (b);
-      if (b is AddOutPort) {
-        portMap[b.name] = b.dataType;
-      }
+    if(name == null && ret.length == 0) {
+      return null;
     }
-    );
-
-    return portMap;
+    return ret;
   }
 }

@@ -69,7 +69,7 @@ class Controller {
     int counter = 0;
     String n = 'in$counter';
 
-    while (onInitializeApp.findAddInPort(n) != null) {
+    while (onInitializeApp.find(program.AddInPort, name:n).length != 0) {
       counter++;
       n = 'in$counter';
     }
@@ -81,7 +81,7 @@ class Controller {
     int counter = 0;
     String n = 'out$counter';
 
-    while (onInitializeApp.findAddOutPort(n) != null) {
+    while (onInitializeApp.find(program.AddOutPort, name: n).length != 0) {
       counter++;
       n = 'in$counter';
     }
@@ -257,6 +257,23 @@ class Controller {
   }
 
   set editorPanel(EditorPanel p) => _editorPanel = p;
+
+
+  void refreshAllPanel({String except: ''}) {
+    if (except != 'onInitialize') {
+      _editorPanel.onInitializeEditor.refresh(onInitializeApp);
+    }
+    if (except != 'onActivated') {
+      _editorPanel.onActivatedEditor.refresh(onActivatedApp);
+    }
+    if (except != 'onDeactivated') {
+        _editorPanel.onDeactivatedEditor.refresh(onDeactivatedApp);
+    }
+    if (except != 'onExecute') {
+        _editorPanel.onExecuteEditor.refresh(onExecuteApp);
+    }
+  }
+
 
   void refreshPanel() {
     program.Application app;

@@ -44,7 +44,12 @@
 
         <div id="target" horizontal layout center>
             <div end>InPort (</div>
-            <paper-input id="name-input" flex value="{{name}}"></paper-input>
+            <paper-dropdown-menu id="name-dropdown-menu" label="Your favorite pastry">
+                <paper-dropdown id="name-dropdown" class="dropdown">
+                    <core-menu class="menu" id="name-menu-content">
+                    </core-menu>
+                </paper-dropdown>
+            </paper-dropdown-menu>
             <div end></div>
             <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
                 <paper-dropdown id="dropdown" class="dropdown">

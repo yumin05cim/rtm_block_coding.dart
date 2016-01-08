@@ -14,10 +14,19 @@ class EditorPanel extends PolymerElement {
     this.parent = parent;
   }
 
+  BlockEditor onInitializeEditor;
+  BlockEditor onActivatedEditor;
+  BlockEditor onDeactivatedEditor;
+  BlockEditor onExecuteEditor;
   @override
   void attached() {
     selected = 0;
     globalController.editorPanel = this;
+    onInitializeEditor = $['on_initialize_editor'];
+    onActivatedEditor = $['on_activated_editor'];
+    onDeactivatedEditor = $['on_deactivated_editor'];
+    onExecuteEditor = $['on_execute_editor'];
+
   }
 
   void refresh(var app) {
