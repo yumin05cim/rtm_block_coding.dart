@@ -5,7 +5,6 @@ import '../../controller/controller.dart';
 
 @CustomTag('integer-literal')
 class IntegerLiteral extends PolymerElement {
-
   program.Integer _model;
 
   set model(program.Integer m) {
@@ -19,18 +18,13 @@ class IntegerLiteral extends PolymerElement {
   IntegerLiteral.created() : super.created();
 
   void attached() {
-    $['literal-input'].onChange.listen(
-        (var e) {
-          _model.value = value;
-        }
+    $['literal-input'].onChange.listen((var e) {
+      _model.value = value;
+    });
 
-    );
-
-    this.onClick.listen(
-      (var e) {
-        globalController.setSelectedElem(e, this);
-      }
-    );
+    this.onClick.listen((var e) {
+      globalController.setSelectedElem(e, this);
+    });
   }
 
   void select() {

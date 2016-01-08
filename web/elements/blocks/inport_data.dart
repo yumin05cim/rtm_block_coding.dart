@@ -33,8 +33,7 @@ class InPortData extends PolymerElement {
 
     int counter = 0;
     var ports = globalController.onInitializeApp.find(program.AddInPort);
-    ports.forEach(
-        (program.AddInPort p) {
+    ports.forEach((program.AddInPort p) {
       $['name-menu-content'].children.add(
           new html.Element.tag('paper-item')
             ..innerHtml = p.name
@@ -155,10 +154,8 @@ class InPortData extends PolymerElement {
           accessName = accessName.substring(1);
         }
         _model.accessSequence = accessName.substring(0, accessName.length-1);
-        print('selected:' + _model.accessSequence);
       }
     }
-
     );
 
 
