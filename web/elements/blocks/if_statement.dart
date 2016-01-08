@@ -8,6 +8,8 @@ class If extends PolymerElement {
 
   program.If _model;
 
+  PolymerElement parentElement;
+
   set model(program.If m) {
     _model = m;
     condition = m.condition;

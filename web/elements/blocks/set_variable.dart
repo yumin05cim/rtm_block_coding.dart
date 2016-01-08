@@ -7,6 +7,8 @@ import '../../controller/controller.dart';
 class SetVariable extends PolymerElement {
   program.SetValue _model;
 
+  PolymerElement parentElement;
+
   set model(program.SetValue m) {
     _model = m;
     name = _model.left.name;
@@ -19,7 +21,7 @@ class SetVariable extends PolymerElement {
   SetVariable.created() : super.created();
 
   void attached() {
-    $['name-input'].onChange.listen(
+    $['variable-name-input'].onChange.listen(
         (var e) {
           _model.left.name = name;
         }
@@ -35,6 +37,7 @@ class SetVariable extends PolymerElement {
   void attachTarget(var element) {
     $['target'].children.clear();
     $['target'].children.add(element);
+    element.parentElement = this;
   }
 
   void select() {

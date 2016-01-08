@@ -5,6 +5,8 @@ import '../elements/blocks/read_inport.dart';
 import '../elements/blocks/outport_data.dart';
 
 import '../elements/blocks/set_variable.dart';
+import 'package:polymer/polymer.dart';
+import '../elements/blocks/addition.dart';
 
 class Controller {
 
@@ -154,11 +156,23 @@ class Controller {
         program.Statement new_s = new program.Statement(v);
         app.statements.add(new_s);
       }
-      if (selectedStatement() is SetVariable) {
+      else if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
       }
-      if (selectedStatement() is OutPortData) {
+      else if (selectedStatement() is OutPortData) {
         (selectedStatement() as OutPortData).model.right = v;
+      }
+      else {
+        PolymerElement elem = globalController.selectedElement;
+        if (elem.parentElement is SetVariable) {
+          elem.parentElement.model.right = v;
+        } else if (elem.parentElement is Addition) {
+          if (elem.parentElement.model.a == elem.model) {
+            elem.parentElement.model.a = v;
+          } else {
+            elem.parentElement.model.b = v;
+          }
+        }
       }
     }
 
@@ -218,11 +232,14 @@ class Controller {
       program.Add v = new program.Add(new program.Integer(2), new program.Integer(3));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
-      }
       if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
+      }
+      else {
+        PolymerElement elem = globalController.selectedElement;
+        if (elem.parentElement is SetVariable) {
+          elem.parentElement.model.right = v;
+        }
       }
     }
 
@@ -230,11 +247,14 @@ class Controller {
       program.Subtract v = new program.Subtract(new program.Integer(3), new program.Integer(2));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
-      }
       if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
+      }
+      else {
+        PolymerElement elem = globalController.selectedElement;
+        if (elem.parentElement is SetVariable) {
+          elem.parentElement.model.right = v;
+        }
       }
     }
 

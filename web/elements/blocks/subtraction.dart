@@ -8,6 +8,8 @@ class Subtraction extends PolymerElement {
 
   program.Subtract _model;
 
+  PolymerElement parentElement;
+
   set model(program.Subtract m) {
     _model = m;
     value_a = m.a;

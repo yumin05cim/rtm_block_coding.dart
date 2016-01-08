@@ -7,6 +7,8 @@ import '../../controller/controller.dart';
 class ReadInPort extends PolymerElement {
   program.ReadInPort _model;
 
+  PolymerElement parentElement;
+
   set model(program.ReadInPort m) {
     _model = m;
     port_name = m.name;

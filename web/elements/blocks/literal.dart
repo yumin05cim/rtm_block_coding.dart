@@ -7,6 +7,8 @@ import '../../controller/controller.dart';
 class IntegerLiteral extends PolymerElement {
   program.Integer _model;
 
+  PolymerElement parentElement;
+
   set model(program.Integer m) {
     _model = m;
     value = m.value;
@@ -18,12 +20,13 @@ class IntegerLiteral extends PolymerElement {
   IntegerLiteral.created() : super.created();
 
   void attached() {
-    $['literal-input'].onChange.listen((var e) {
+    $['int-literal-input'].onChange.listen((var e) {
       _model.value = value;
     });
 
     this.onClick.listen((var e) {
       globalController.setSelectedElem(e, this);
+      e.stopPropagation();
     });
   }
 

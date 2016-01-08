@@ -35,16 +35,16 @@
                 padding-bottom: 5px;
                 padding-right: 5px;
             }
-            paper-input {
-                margin-left : 10px;
-                margin-right: 10px;
+
+            :host > div > paper-input#variable-name-input {
+                width: 80px;
             }
 
         </style>
         <div id="container">
             <div id="title-area" horizontal layout center wrap>
-                <div end>Calculate and Set value to Variable (name = </div>
-                <paper-input id="name-input" flex value="{{name}}"></paper-input>
+                <div end>Set Variable (name=</div>
+                <paper-input id="variable-name-input" value="{{name}}"></paper-input>
                 <div end>)</div>
             </div>
             <div id="body-area">

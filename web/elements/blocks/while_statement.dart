@@ -8,6 +8,8 @@ class While extends PolymerElement {
 
   program.While _model;
 
+  PolymerElement parentElement;
+
   set model(program.While m) {
     _model = m;
     condition = m.condition;

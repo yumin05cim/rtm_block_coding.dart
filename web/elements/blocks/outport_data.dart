@@ -7,6 +7,9 @@ import '../../controller/controller.dart';
 class OutPortData extends PolymerElement {
   program.OutPortData _model;
 
+
+  PolymerElement parentElement;
+
   set model(program.OutPortData m) {
     _model = m;
     port_name = _model.name;

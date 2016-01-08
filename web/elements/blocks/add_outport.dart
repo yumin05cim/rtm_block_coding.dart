@@ -9,6 +9,8 @@ import 'package:paper_elements/paper_dropdown_menu.dart';
 class AddOutPort extends PolymerElement {
   program.AddOutPort _model;
 
+  PolymerElement parentElement;
+
   set model(program.AddOutPort m) {
     _model = m;
     port_name = m.name;

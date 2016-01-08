@@ -8,19 +8,20 @@ class Addition extends PolymerElement {
 
   program.Add _model;
 
+  PolymerElement parentElement;
+
   set model(program.Add m) {
     _model = m;
-    value_a = m.a;
-    value_b = m.b;
+    //value_a = m.a;
+    //value_b = m.b;
   }
 
   get model => _model;
 
-  @published program.Block value_a;
-  @published program.Block value_b;
   Addition.created() : super.created();
 
   void attached() {
+    /*
     $['value1-input'].onChange.listen(
         (var e) {
       _model.a = value_a;
@@ -35,6 +36,7 @@ class Addition extends PolymerElement {
       globalController.refreshPanel();
     }
     );
+    */
 
     this.onClick.listen(
         (var e) {
@@ -42,6 +44,19 @@ class Addition extends PolymerElement {
     }
     );
   }
+
+  void attachRight(var e) {
+    $['add-value-b-content'].children.clear();
+    $['add-value-b-content'].children.add(e);
+    e.parentElement = this;
+  }
+
+  void attachLeft(var e) {
+    $['add-value-a-content'].children.clear();
+    $['add-value-a-content'].children.add(e);
+    e.parentElement = this;
+  }
+
 
   void select() {
     $['target'].style.border = 'ridge';

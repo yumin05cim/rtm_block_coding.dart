@@ -8,6 +8,8 @@ class WriteOutPort extends PolymerElement {
 
   program.OutPortWrite _model;
 
+  PolymerElement parentElement;
+
   set model(program.OutPortWrite m) {
     _model = m;
     port_name = m.name;

@@ -13,6 +13,8 @@ class InPortData extends PolymerElement {
 
   program.InPortDataAccess _model;
 
+  PolymerElement parentElement;
+
   set model(program.InPortDataAccess m) {
     _model = m;
     name = m.name;

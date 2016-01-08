@@ -102,8 +102,12 @@ class BlockEditor extends PolymerElement {
           ..model = block;
       return v;
     } else if (block is program.Add) {
-      return new html.Element.tag('calc-addition')
+      var v = new html.Element.tag('calc-addition')
         ..model = block;
+
+      v.attachLeft(parseBlock(block.a));
+      v.attachRight(parseBlock(block.b));
+      return v;
     } else if (block is program.Subtract) {
       return new html.Element.tag('calc-subtraction')
         ..model = block;
