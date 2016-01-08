@@ -13,6 +13,11 @@ class Controller {
   program.Application onExecuteApp = new program.Application();
   program.Application onDeactivatedApp = new program.Application();
   EditorPanel _editorPanel;
+  PythonPanel _pythonPanel;
+
+  set editorPanel(EditorPanel p) => _editorPanel = p;
+
+  set pythonPanel(PythonPanel p) => _pythonPanel = p;
 
   Controller() {
   }
@@ -59,6 +64,8 @@ class Controller {
     if (selectedElement != null) {
       selectedElement.select();
     }
+
+    _pythonPanel.onUpdateSelection();
   }
 
   program.Statement selectedStatement() {
@@ -256,7 +263,6 @@ class Controller {
     refreshPanel();
   }
 
-  set editorPanel(EditorPanel p) => _editorPanel = p;
 
 
   void refreshAllPanel({String except: ''}) {

@@ -9,14 +9,24 @@
 
             :host {}
 
+
+            :host #text-area {
+                white-space:pre;
+                font-family:monospace;
+            }
+
+            :host .selected {
+                color: red;
+            }
+
         </style>
         <core-toolbar  class="text-primary-color dark-primary-color" >
             <p flex>Python Code</p>
             <core-icon-button icon="refresh" on-tap="{{onRefresh}}"></core-icon-button>
         </core-toolbar>
         <div id="target" class="secondary-text-color divider-color" vertical layout>
-            <pre id="text-area">
-            </pre>
+            <div id="text-area">
+            </div>
         </div>
     </template>
     <script type="application/dart" src="python_panel.dart"></script>
