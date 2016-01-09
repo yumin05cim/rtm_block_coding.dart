@@ -33,11 +33,13 @@
         </style>
 
         <div id="target" horizontal layout center>
-            <div end>Calculation: (</div>
-            <paper-input id="value1-input" flex value="{{value_a}}"></paper-input>
-            <div end>) minus (</div>
-            <paper-input id="value2-input" flex value="{{value_b}}"></paper-input>
-            <div end>) </div>
+            <div end>Calc: </div>
+                <div id="sub-value-a-content"></div>
+            <!-- <paper-input id="value1-input" flex value="{{value_a}}"></paper-input> -->
+            <div end> - </div>
+                <div id="sub-value-b-content"></div>
+            <!-- <paper-input id="value2-input" flex value="{{value_b}}"></paper-input> -->
+            <div end> </div>
         </div>
 
     </template>

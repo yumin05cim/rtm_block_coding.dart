@@ -229,7 +229,7 @@ class Controller {
     }
 
     if (command == 'addition') {
-      program.Add v = new program.Add(new program.Integer(2), new program.Integer(3));
+      program.Add v = new program.Add(new program.Integer(3), new program.Integer(2));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() is SetVariable) {
