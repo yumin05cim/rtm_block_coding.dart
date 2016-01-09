@@ -12,18 +12,18 @@ class Subtraction extends PolymerElement {
 
   set model(program.Subtract m) {
     _model = m;
-    value_a = m.a;
-    value_b = m.b;
+    //value_a = m.a;
+    //value_b = m.b;
   }
 
   get model => _model;
 
-  @published program.Block value_a;
-  @published program.Block value_b;
+  //@published program.Block value_a;
+  //@published program.Block value_b;
   Subtraction.created() : super.created();
 
   void attached() {
-    $['value1-input'].onChange.listen(
+    /*$['value1-input'].onChange.listen(
         (var e) {
       _model.a = value_a;
 
@@ -36,13 +36,25 @@ class Subtraction extends PolymerElement {
 
       globalController.refreshPanel();
     }
-    );
+    );*/
 
     this.onClick.listen(
         (var e) {
       globalController.setSelectedElem(e, this);
     }
     );
+  }
+
+  void attachRight(var e) {
+    $['sub-value-b-content'].children.clear();
+    $['sub-value-b-content'].children.add(e);
+    e.parentElement = this;
+  }
+
+  void attachLeft(var e) {
+    $['sub-value-a-content'].children.clear();
+    $['sub-value-a-content'].children.add(e);
+    e.parentElement = this;
   }
 
   void select() {
