@@ -61,3 +61,15 @@ class Subtract extends Block {
   }
 
 }
+
+class Multiply extends Block {
+  Block a;
+  Block b;
+
+  Multiply(this.a, this.b) : super() {}
+
+  String toPython(int indentLevel) {
+    return "${a.toPython(0)} * ${b.toPython(0)}";
+  }
+
+}

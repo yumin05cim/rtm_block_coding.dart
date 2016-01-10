@@ -7,6 +7,8 @@ import '../elements/blocks/outport_data.dart';
 import '../elements/blocks/set_variable.dart';
 import 'package:polymer/polymer.dart';
 import '../elements/blocks/addition.dart';
+import '../elements/blocks/subtraction.dart';
+import '../elements/blocks/multiplication.dart';
 
 class Controller {
 
@@ -172,6 +174,18 @@ class Controller {
           } else {
             elem.parentElement.model.b = v;
           }
+        } else if (elem.parentElement is Subtraction) {
+          if (elem.parentElement.model.a == elem.model) {
+            elem.parentElement.model.a = v;
+          } else {
+            elem.parentElement.model.b = v;
+          }
+        } else if (elem.parentElement is Multiplication) {
+          if (elem.parentElement.model.a == elem.model) {
+            elem.parentElement.model.a = v;
+          } else {
+            elem.parentElement.model.b = v;
+          }
         }
       }
     }
@@ -245,6 +259,21 @@ class Controller {
 
     if (command == 'subtraction') {
       program.Subtract v = new program.Subtract(new program.Integer(3), new program.Integer(2));
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() is SetVariable) {
+        selectedStatement().model.right = v;
+      }
+      else {
+        PolymerElement elem = globalController.selectedElement;
+        if (elem.parentElement is SetVariable) {
+          elem.parentElement.model.right = v;
+        }
+      }
+    }
+
+    if (command == 'multiplication') {
+      program.Multiply v = new program.Multiply(new program.Integer(3), new program.Integer(2));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() is SetVariable) {
