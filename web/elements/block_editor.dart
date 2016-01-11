@@ -107,6 +107,10 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('write-outport')
           ..model = block;
       return v;
+    } else if (block is program.Integer) {
+      var v = new html.Element.tag('integer-input')
+        ..model = block;
+      return v;
     } else if (block is program.Add) {
       var v = new html.Element.tag('calc-addition')
         ..model = block;
