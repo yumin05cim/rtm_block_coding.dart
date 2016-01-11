@@ -79,6 +79,12 @@ class BlockEditor extends PolymerElement {
     if (block is program.Integer) {
       return new html.Element.tag('integer-literal')
         ..model = block;
+    } else if (block is program.AddInPort) {
+      return new html.Element.tag('add-inport')
+        ..model = block;
+    } else if (block is program.AddOutPort) {
+      return new html.Element.tag('add-outport')
+        ..model = block;
     } else if (block is program.SetValue) {
       return new html.Element.tag('set-variable')
         ..model = block
@@ -101,6 +107,10 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('write-outport')
           ..model = block;
       return v;
+    } else if (block is program.Integer) {
+      var v = new html.Element.tag('integer-input')
+        ..model = block;
+      return v;
     } else if (block is program.Add) {
       var v = new html.Element.tag('calc-addition')
         ..model = block;
@@ -115,17 +125,19 @@ class BlockEditor extends PolymerElement {
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
       return v;
-    } else if (block is program.If) {
+    } else if (block is program.Multiply) {
+      var v = new html.Element.tag('calc-multiplication')
+        ..model = block;
+
+      v.attachLeft(parseBlock(block.a));
+      v.attachRight(parseBlock(block.b));
+      return v;
+    }
+    else if (block is program.If) {
       return new html.Element.tag('if-statement')
         ..model = block;
     } else if (block is program.While) {
       return new html.Element.tag('while-statement')
-        ..model = block;
-    } else if (block is program.AddInPort) {
-      return new html.Element.tag('add-inport')
-          ..model = block;
-    } else if (block is program.AddOutPort) {
-      return new html.Element.tag('add-outport')
         ..model = block;
     }
 
