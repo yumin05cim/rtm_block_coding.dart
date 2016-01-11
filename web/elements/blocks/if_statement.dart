@@ -50,6 +50,8 @@ class If extends PolymerElement {
     this.onClick.listen(
       (var e) {
         globalController.setSelectedElem(e, this);
+
+        e.stopPropagation();
       }
     );
   }

@@ -143,16 +143,23 @@ class Controller {
     }
 
     if(command == 'inport_data') {
-      var inPortMap = onInitializeApp.getInPortMap();
-      if (inPortMap.keys.length == 0) return;
 
-      var inports = globalController.inportList();
-      var defaultInPort = new program.ReadInPort(inPortMap.keys.first, inPortMap[inPortMap.keys.first]);
-      if (inports.length > 0) {
-        defaultInPort = inports[0];
-      }
+      List<program.AddInPort> inPortList = onInitializeApp.find(program.AddInPort);
+      if (inPortList.length == 0) return;
 
-      program.InPortDataAccess v = new program.InPortDataAccess(defaultInPort.name, new program.DataType.fromTypeName(defaultInPort.dataType.typename), "");
+      ///program.OutPortWrite v = new program.OutPortWrite(outPortList[0].name, outPortList[0].dataType);
+
+
+      //var inPortMap = onInitializeApp.getInPortMap();
+      //if (inPortMap.keys.length == 0) return;
+
+      //var inports = globalController.inportList();
+      //var defaultInPort = new program.ReadInPort(inPortList[0].name, inPortList[0].dataType);
+      //if (inports.length > 0) {
+      //  defaultInPort = inports[0];
+      // }
+
+      program.InPortDataAccess v = new program.InPortDataAccess(inPortList[0].name, inPortList[0].dataType, "");
 
       if (selectedStatement() == null) {
         program.Statement new_s = new program.Statement(v);
@@ -212,10 +219,10 @@ class Controller {
 
 
     if(command == 'write_outport') {
-      var outPortMap = onInitializeApp.getOutPortMap();
-      if (outPortMap.keys.length == 0) return;
+      List<program.AddOutPort> outPortList = onInitializeApp.find(program.AddOutPort);
+      if (outPortList.length == 0) return;
 
-      program.OutPortWrite v = new program.OutPortWrite(outPortMap.keys.first, outPortMap[outPortMap.keys.first]);
+      program.OutPortWrite v = new program.OutPortWrite(outPortList[0].name, outPortList[0].dataType);
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
@@ -228,10 +235,17 @@ class Controller {
     }
 
     if (command == 'set_outport_data') {
-      var outPortMap = onInitializeApp.getOutPortMap();
-      if (outPortMap.keys.length == 0) return;
+      List<program.AddOutPort> outPortList = onInitializeApp.find(program.AddOutPort);
+      if (outPortList.length == 0) return;
 
-      program.OutPortData v = new program.OutPortData(outPortMap.keys.first, outPortMap[outPortMap.keys.first], '', new program.Integer(1));
+      //program.OutPortWrite v = new program.OutPortWrite(outPortList[0].name, outPortList[0].dataType);
+      program.OutPortData v = new program.OutPortData(outPortList[0].name, outPortList[0].dataType, '', new program.Integer(1));
+
+
+      //var outPortMap = onInitializeApp.getOutPortMap();
+      //if (outPortMap.keys.length == 0) return;
+
+      //program.OutPortData v = new program.OutPortData(outPortMap.keys.first, outPortMap[outPortMap.keys.first], '', new program.Integer(1));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
