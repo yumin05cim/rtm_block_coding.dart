@@ -180,7 +180,45 @@
 
         <core-drawer-panel responsiveWidth="800px">
 
-            <!--LEFT-->
+            <!--LEFT Japanese ver.-->
+            <core-header-panel id="left-collapse-menu" drawer layout vertical>
+                <core-toolbar class="dark-primary-color text-primary-color"></core-toolbar>
+
+                <collapse-menu id="rtm_menu" label="RTミドルウェア" state="closed">
+                    <add-element-button id="rtm1" label="入力ポート追加" command="add_inport"></add-element-button>
+                    <add-element-button id="rtm2" label="出力ポート追加" command="add_outport"></add-element-button>
+                </collapse-menu>
+
+                <collapse-menu id="variables_menu" label="変数" state="closed">
+                    <add-element-button id="var1" label="値の代入" command="set_variable"></add-element-button>
+                    <add-element-button id="var2" label="値の参照" command="get_variable"></add-element-button>
+                </collapse-menu>
+
+                <collapse-menu id="port_data_menu" label="ポート / データ" state="closed">
+                    <add-element-button id="data1" label="入力ポートから読み込み" command="read_inport"></add-element-button>
+                    <add-element-button id="data2" label="入力ポートのデータにアクセス" command="inport_data"></add-element-button>
+                    <add-element-button id="data3" label="出力ポートのデータにアクセス" command="set_outport_data"></add-element-button>
+                    <add-element-button id="data4" label="出力ポートに書き込み" command="write_outport"></add-element-button>
+                </collapse-menu>
+
+                <collapse-menu id="calculate_menu" label="計算" state="closed">
+                    <add-element-button id="integer_input" label="整数の追加" command="int_input"></add-element-button>
+                    <add-element-button id="addition" label="足し算" command="addition"></add-element-button>
+                    <add-element-button id="subtraction" label="引き算" command="subtraction"></add-element-button>
+                    <add-element-button id="multiplication" label="掛け算" command="multiplication"></add-element-button>
+                </collapse-menu>
+
+                <collapse-menu id="if_switch_loop_menu" label="くりかえし処理" state="closed">
+                    <add-element-button id="loop1" label="もし---なら" command="if"></add-element-button>
+                    <add-element-button id="loop2" label="---の間、ずっと" command="while"></add-element-button>
+                </collapse-menu>
+
+                <div flex>Copyright: Yuki Suga, Yumi Nishimura, Tetsuya Ogata @Ogata Lab. Waseda Univ.</div>
+
+            </core-header-panel>
+
+            <!--LEFT English ver.-->
+<!--
             <core-header-panel id="left-collapse-menu" drawer layout vertical>
                 <core-toolbar class="dark-primary-color text-primary-color"></core-toolbar>
 
@@ -216,6 +254,7 @@
                 <div flex>Copyright: Yuki Suga, Yumi Nishimura, Tetsuya Ogata @Ogata Lab. Waseda Univ.</div>
 
             </core-header-panel>
+-->
 
             <!--MAIN-->
             <core-header-panel main >

@@ -52,13 +52,31 @@
             }
 
         </style>
+
+        <!--Japanese ver.-->
         <div id="title-area" horizontal layout center>
-            <div end>When Data is received to InPort (</div>
+            <div end>インポート(</div>
             <!-- <paper-input id="name-input" flex one value="{{port_name}}"></paper-input> -->
             <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
                 <paper-dropdown id="dropdown" class="dropdown">
-                    <core-menu class="menu" id="menu-content">
-                    </core-menu>
+                    <core-menu class="menu" id="menu-content"></core-menu>
+                </paper-dropdown>
+            </paper-dropdown-menu>
+            <div end>)のデータを読み込む</div>
+        </div>
+        <div id="body-area">
+            <div id="target">
+            </div>
+        </div>
+
+        <!--English ver.-->
+<!--
+        <div id="title-area" horizontal layout center>
+            <div end>When Data is received to InPort (</div>
+            &lt;!&ndash; <paper-input id="name-input" flex one value="{{port_name}}"></paper-input> &ndash;&gt;
+            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
+                <paper-dropdown id="dropdown" class="dropdown">
+                    <core-menu class="menu" id="menu-content"></core-menu>
                 </paper-dropdown>
             </paper-dropdown-menu>
             <div end>)</div>
@@ -67,6 +85,8 @@
             <div id="target">
             </div>
         </div>
+-->
+
     </template>
     <script type="application/dart" src="read_inport.dart"></script>
 </polymer-element>

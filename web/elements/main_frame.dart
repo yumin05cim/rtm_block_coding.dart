@@ -45,13 +45,11 @@ class MainFrame extends PolymerElement {
     setMode('initialize');
   }
 
-
   void closeCollapse(var elem) {
     if (elem.opened) {
       elem.toggle();
     }
   }
-
 
   void closeAll() {
     $['rtm_menu'].closeCollapse(null);
@@ -75,10 +73,7 @@ class MainFrame extends PolymerElement {
       $['calculate_menu'].disableMenu(false);
       $['if_switch_loop_menu'].disableMenu(false);
     }
-
-
   }
-
 
   void onSave(var e) {
     var xml = globalController.buildXML();
@@ -90,4 +85,5 @@ class MainFrame extends PolymerElement {
       ..attributes['download'] = 'rtm_block.xml'
       ..click();
   }
+
 }

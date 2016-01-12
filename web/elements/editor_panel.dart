@@ -48,7 +48,6 @@ class EditorPanel extends PolymerElement {
     editor.refresh(app);
   }
 
-
   void updateClick() {
     BlockEditor editor;
     switch(selected) {
@@ -74,20 +73,14 @@ class EditorPanel extends PolymerElement {
 
   void onSelectActivated(var e) {
     parent.setMode('activate');
-
   }
-
 
   void onSelectDeactivated(var e) {
     parent.setMode('deactivate');
-
   }
-
 
   void onSelectExecute(var e) {
     parent.setMode('execute');
-
   }
-
 
 }
