@@ -2,6 +2,7 @@
 library application.block;
 
 import 'dart:core';
+import 'package:xml/xml.dart' as xml;
 import 'dart:collection';
 import 'statement.dart';
 
@@ -25,6 +26,8 @@ abstract class Block {
 
   void iterateBlock(var func) {}
 
+
+  void buildXML(xml.XmlBuilder builder) {}
 }
 
 

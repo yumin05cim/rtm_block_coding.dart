@@ -3,6 +3,7 @@
 library application.base;
 
 import 'dart:core';
+import 'package:xml/xml.dart' as xml;
 import 'statement.dart';
 import 'block.dart';
 import 'datatype.dart';
@@ -11,6 +12,7 @@ import 'outport.dart';
 import 'dart:mirrors';
 
 class Application {
+
 
   StatementList statements;
 
@@ -90,5 +92,21 @@ class Application {
       return null;
     }
     return ret;
+  }
+
+  void buildXML({xml.XmlBuilder builder : null}) {
+    if (builder == null) {
+      builder = new xml.XmlBuilder();
+      builder.processing('xml', 'version="1.0" encoding="UTF-8" standalone="yes"');
+    }
+
+    builder.element('Application',
+
+        attributes: {
+          'version': '1.0',
+        },
+        nest : () {
+          statements.buildXML(builder);
+        });
   }
 }

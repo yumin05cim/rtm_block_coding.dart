@@ -10,6 +10,7 @@ dependencies:
   core_elements: any
   http: any
   xml_rpc: any
+  xml : any
 dev_dependencies:
   unittest: any
 transformers:

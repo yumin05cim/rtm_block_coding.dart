@@ -2,6 +2,7 @@
 library application.outport;
 
 
+import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
 import 'statement.dart';
@@ -36,6 +37,16 @@ class AddOutPort extends Block {
   String toPython(int indentLevel) {
     return '';
   }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('AddOutPort',
+        attributes: {
+          'name' : name
+        },
+        nest: () {
+          dataType.buildXML(builder);
+        });
+  }
 }
 
 class OutPortData extends Block {
@@ -50,6 +61,22 @@ class OutPortData extends Block {
 
   String toPython(int indentLevel) {
     return "self._d_${name}.${accessSequence} = ${right.toPython(0)}";
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('OutPortData',
+        attributes: {
+          'name' : name,
+          'accessSequence' :accessSequence,
+        },
+        nest: () {
+          dataType.buildXML(builder);
+          builder.element('Right',
+            nest: () {
+              right.buildXML(builder);
+            }
+          );
+        });
   }
 }
 
@@ -66,5 +93,14 @@ class OutPortWrite extends Block {
     return sb;
   }
 
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('OutPortWrite',
+        attributes: {
+          'name' : name
+        },
+        nest: () {
+          dataType.buildXML(builder);
+        });
+  }
 
 }

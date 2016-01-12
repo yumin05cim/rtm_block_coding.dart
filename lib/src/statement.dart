@@ -2,6 +2,7 @@
 
 library application.statement;
 
+import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'dart:collection';
 import 'block.dart';
@@ -45,6 +46,17 @@ class Statement {
     func(_block);
     _block.iterateBlock(func);
   }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('Statement',
+        attributes: {
+          'version' : '1.0',
+        },
+        nest : () {
+          block.buildXML(builder);
+
+        });
+  }
 }
 
 class StatementList extends ListMixin<Statement> {
@@ -79,5 +91,17 @@ class StatementList extends ListMixin<Statement> {
   void insert(int index, Statement child) {
     super.insert(index, child);
     child.parent = this;
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('Statements',
+        attributes: {
+          'version' : '1.0',
+        },
+        nest : () {
+          list.forEach((Statement s) {
+            s.buildXML(builder);
+          });
+        });
   }
 }

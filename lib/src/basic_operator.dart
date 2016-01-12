@@ -1,6 +1,7 @@
 library application.basic_operator;
 
 
+import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
 
@@ -17,6 +18,16 @@ class Variable extends Block {
 
   toPython(int indentLevel) {
     return _name;
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('Variable',
+        attributes: {
+          'name' : _name,
+        },
+        nest : () {
+
+        });
   }
 }
 
@@ -36,6 +47,22 @@ class SetValue extends Block {
   String toPython(int indentLevel) {
     return "${_left.toPython(0)} = ${_right.toPython(0)}";
   }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('SetValue',
+        attributes: {
+        },
+        nest : () {
+          builder.element('Left',
+          nest : () {
+            _left.buildXML(builder);
+          });
+          builder.element('Right',
+              nest : () {
+                _right.buildXML(builder);
+              });
+        });
+  }
 }
 
 class Add extends Block {
@@ -48,6 +75,23 @@ class Add extends Block {
   String toPython(int indentLevel) {
     return "${a.toPython(0)} + ${b.toPython(0)}";
   }
+
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('Add',
+        attributes: {
+        },
+        nest : () {
+          builder.element('a',
+              nest : () {
+                a.buildXML(builder);
+              });
+          builder.element('b',
+              nest : () {
+                b.buildXML(builder);
+              });
+        });
+  }
 }
 
 class Subtract extends Block {
@@ -58,6 +102,22 @@ class Subtract extends Block {
 
   String toPython(int indentLevel) {
     return "${a.toPython(0)} - ${b.toPython(0)}";
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('Subtract',
+        attributes: {
+        },
+        nest : () {
+          builder.element('a',
+              nest : () {
+                a.buildXML(builder);
+              });
+          builder.element('b',
+              nest : () {
+                b.buildXML(builder);
+              });
+        });
   }
 
 }
@@ -72,4 +132,19 @@ class Multiply extends Block {
     return "${a.toPython(0)} * ${b.toPython(0)}";
   }
 
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('Multiply',
+        attributes: {
+        },
+        nest : () {
+          builder.element('a',
+              nest : () {
+                a.buildXML(builder);
+              });
+          builder.element('b',
+              nest : () {
+                b.buildXML(builder);
+              });
+        });
+  }
 }

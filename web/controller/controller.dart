@@ -1,6 +1,9 @@
 import '../elements/editor_panel.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 
+import 'package:xml/xml.dart' as xml;
+
+
 import '../elements/blocks/read_inport.dart';
 import '../elements/blocks/outport_data.dart';
 
@@ -504,6 +507,23 @@ if __name__ == "__main__":
     onExecuteApp.iterateBlock(f);
 
     return inports;
+  }
+
+  xml.XmlDocument buildXML() {
+    xml.XmlBuilder builder = new xml.XmlBuilder();
+    builder.processing(
+        'xml', 'version="1.0" encoding="UTF-8" standalone="yes"');
+    builder.element('RTMBlockCoding',
+        attributes: {
+        },
+        nest: () {
+          onInitializeApp.buildXML(builder);
+          onActivatedApp.buildXML(builder);
+          onDeactivatedApp.buildXML(builder);
+          onExecuteApp.buildXML(builder);
+        }
+
+    );
   }
 }
 

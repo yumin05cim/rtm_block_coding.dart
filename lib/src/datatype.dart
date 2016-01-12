@@ -2,6 +2,7 @@ library application.datatype;
 
 
 
+import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
 import 'condition.dart';
@@ -213,5 +214,15 @@ class DataType {
     }
 
     return return_value;
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('DataType',
+        attributes: {
+          'typename':  typename,
+        },
+        nest: () {
+
+        });
   }
 }

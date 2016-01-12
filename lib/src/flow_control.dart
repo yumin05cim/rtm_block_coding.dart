@@ -2,6 +2,7 @@ library application.flow_control;
 
 
 
+import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
 import 'condition.dart';
@@ -40,6 +41,28 @@ class If extends Block {
       s.iterateBlock(func);
     }
   }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('If',
+        attributes: {
+        },
+        nest: () {
+          builder.element('Condition',
+            nest : () {
+              condition.buildXML(builder);
+            });
+
+          builder.element('Yes',
+              nest : () {
+              yes.buildXML(builder);
+              });
+
+          builder.element('No',
+              nest : () {
+              no.buildXML(builder);
+              });
+        });
+  }
 }
 
 class While extends Block {
@@ -65,6 +88,24 @@ class While extends Block {
       s.iterateBlock(func);
     }
   }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('While',
+        attributes: {
+        },
+        nest: () {
+          builder.element('Condition',
+              nest : () {
+                condition.buildXML(builder);
+              });
+
+          builder.element('Loop',
+              nest : () {
+                loop.buildXML(builder);
+              });
+        });
+  }
+
 }
 
 class Break extends Block {
@@ -73,5 +114,13 @@ class Break extends Block {
 
   String toPython(int indentLevel) {
     return 'break';
+  }
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('Break',
+        attributes: {
+        },
+        nest: () {
+
+        });
   }
 }
