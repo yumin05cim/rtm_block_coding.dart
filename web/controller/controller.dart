@@ -97,7 +97,7 @@ class Controller {
 
     while (onInitializeApp.find(program.AddOutPort, name: n).length != 0) {
       counter++;
-      n = 'in$counter';
+      n = 'out$counter';
     }
 
     return n;

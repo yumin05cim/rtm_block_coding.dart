@@ -25,26 +25,110 @@ class OutPortData extends PolymerElement {
 
   OutPortData.created() : super.created();
 
-  void attached() {
-    $['name-input'].onChange.listen(
-        (var e) {
-          _model.name = port_name;
-        }
-    );
 
-    $['member-input'].onChange.listen(
-        (var e) {
-      _model.accessSequence = data_member;
+  void updateOutPortList() {
+    $['name-menu-content'].children.clear();
+    int counter = 0;
+    var ports = globalController.onInitializeApp.find(program.AddOutPort);
+    ports.forEach((program.AddOutPort p) {
+      $['name-menu-content'].children.add(new html.Element.tag('paper-item')
+        ..innerHtml = p.name
+        ..setAttribute('value', counter.toString())
+      );
+      counter++;
+    });
+  }
+
+  void selectOutPort(String name) {
+    print('selectOutPort($name) called (_model:$model)');
+    int selected = -1;
+    int counter  = 0;
+    $['name-menu-content'].children.forEach((PaperItem p) {
+      if (name == p.innerHtml) {
+        selected = counter;
+      }
+      counter++;
+    });
+
+    if(selected < 0) {
+      print('Invalid OutPort is selected in outport_data');
+      selected = 0;
     }
-    );
 
-    $['title-area'].onClick.listen(
-        (var e) {
-          globalController.setSelectedElem(e, this);
+    $['name-menu-content'].setAttribute('selected', selected.toString());
 
-          e.stopPropagation();
+    updateAccessAlternatives();
+  }
+
+
+
+  void updateAccessAlternatives() {
+    print('updateAccessAlternatives called (_model:$model)');
+    $['menu-content'].children.clear();
+    int counter = 0;
+    var types = program.DataType.access_alternatives(_model.dataType.typename);
+    types.forEach((List<String> alternative_pair) {
+      $['menu-content'].children.add(new html.Element.tag('paper-item')
+            ..innerHtml = alternative_pair[0] + ';'
+            ..setAttribute('value', counter.toString())
+      );
+      counter++;
+    });
+
+    selectAccess(_model.accessSequence + ';');
+  }
+
+  void selectAccess(String name) {
+    print('selectAccess($name) called (_model:$model)');
+    int selected = -1;
+    int counter = 0;
+    $['menu-content'].children.forEach((PaperItem p) {
+      print(p.innerHtml + '/' + name);
+      var target_name = p.innerHtml;
+      if (p.innerHtml.startsWith('.')) {
+        target_name = p.innerHtml.substring(1);
+      }
+      if (name == target_name) {
+        selected = counter;
+      }
+      counter++;
+    });
+
+    if (selected < 0) {
+      print('Invalid OutPort Access is selected in outport_data');
+      selected = 0;
+    }
+
+    $['menu-content'].setAttribute('selected', selected.toString());
+  }
+
+
+  void attached() {
+    updateOutPortList();
+    selectOutPort(_model.name);
+
+    PaperDropdownMenu ndd = $['name-dropdown-menu'];
+    ndd.on['core-select'].listen((var e) {
+      if (e.detail != null) {
+        if (!e.detail['isSelected']) {
+
+        } else {
+          String name_ = e.detail['item'].innerHtml;
+          var pl = globalController.onInitializeApp.find(
+              program.AddOutPort, name: name_);
+          if (pl.length > 0) {
+            program.AddOutPort outport = pl[0];
+            _model.name = name_;
+            if (_model.dataType != outport.dataType) {
+              _model.dataType = outport.dataType;
+              _model.accessSequence = '';
+
+              updateAccessAlternatives();
+            }
+          }
         }
-    );
+      }
+    });
   }
 
   void attachTarget(var element) {

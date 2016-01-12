@@ -23,20 +23,72 @@ class WriteOutPort extends PolymerElement {
 
   WriteOutPort.created() : super.created();
 
+
+  void updateOutPortList() {
+    $['menu-content'].children.clear();
+
+    int counter = 0;
+    var ports = globalController.onInitializeApp.find(program.AddOutPort);
+    ports.forEach((program.AddOutPort p) {
+      $['menu-content'].children.add(
+          new html.Element.tag('paper-item')
+            ..innerHtml = p.name
+            ..setAttribute('value', counter.toString())
+      );
+      counter++;
+    }
+    );
+  }
+
+
+  void selectOutPort(String name) {
+    int selected = -1;
+    int counter  = 0;
+    $['menu-content'].children.forEach((PaperItem p) {
+      if(name == p.innerHtml) {
+        selected = counter;
+      }
+      counter++;
+    });
+
+    if(selected < 0) {
+      print('Invalid InPort is selected in inport_data');
+      selected = 0;
+    }
+
+    $['menu-content'].setAttribute('selected', selected.toString());
+  }
+
   void attached() {
-    $['name-input'].onChange.listen(
-        (var e) {
-      _model.name = port_name;
+    updateOutPortList();
+    selectOutPort(_model.name);
 
-      globalController.refreshPanel();
-    }
-    );
+    PaperDropdownMenu ndd = $['dropdown-menu'];
+    ndd.on['core-select'].listen((var e) {
+      if (e.detail != null) {
+        if (!e.detail['isSelected']) {
 
-    this.onClick.listen(
-        (var e) {
+        } else {
+          String name_ = e.detail['item'].innerHtml;
+          var pl = globalController.onInitializeApp.find(
+              program.AddOutPort, name: name_);
+          if (pl.length > 0) {
+            program.AddOutPort inport = pl[0];
+            _model.name = name_;
+            if (_model.dataType != inport.dataType) {
+              _model.dataType = inport.dataType;
+            }
+          }
+        }
+      }
+    });
+
+
+    $['target'].onClick.listen((var e) {
       globalController.setSelectedElem(e, this);
-    }
-    );
+      e.stopPropagation();
+    });
+
   }
 
   void select() {

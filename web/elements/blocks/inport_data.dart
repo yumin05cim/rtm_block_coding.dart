@@ -7,7 +7,6 @@ import 'package:paper_elements/paper_dropdown.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 
-
 @CustomTag('inport-data')
 class InPortData extends PolymerElement {
 
@@ -32,20 +31,15 @@ class InPortData extends PolymerElement {
 
   void updateInPortList() {
     $['name-menu-content'].children.clear();
-
     int counter = 0;
     var ports = globalController.onInitializeApp.find(program.AddInPort);
     ports.forEach((program.AddInPort p) {
-      $['name-menu-content'].children.add(
-          new html.Element.tag('paper-item')
-            ..innerHtml = p.name
-            ..setAttribute('value', counter.toString())
+      $['name-menu-content'].children.add(new html.Element.tag('paper-item')
+        ..innerHtml = p.name
+        ..setAttribute('value', counter.toString())
       );
       counter++;
-      }
-    );
-
-
+    });
   }
 
   void selectInPort(String name) {
@@ -53,12 +47,11 @@ class InPortData extends PolymerElement {
     int selected = -1;
     int counter  = 0;
     $['name-menu-content'].children.forEach((PaperItem p) {
-          if(name == p.innerHtml) {
-            selected = counter;
-          }
-          counter++;
-        }
-    );
+      if (name == p.innerHtml) {
+        selected = counter;
+      }
+      counter++;
+    });
 
     if(selected < 0) {
       print('Invalid InPort is selected in inport_data');
@@ -75,16 +68,14 @@ class InPortData extends PolymerElement {
     $['menu-content'].children.clear();
     int counter = 0;
     var types = program.DataType.access_alternatives(_model.dataType.typename);
-    types.forEach(
-        (List<String> alternative_pair) {
+    types.forEach((List<String> alternative_pair) {
       $['menu-content'].children.add(
           new html.Element.tag('paper-item')
             ..innerHtml = alternative_pair[0] + ';'
             ..setAttribute('value', counter.toString())
       );
       counter++;
-    }
-    );
+    });
 
     selectAccess(_model.accessSequence + ';');
   }
@@ -93,8 +84,7 @@ class InPortData extends PolymerElement {
     print('selectAccess($name) called (_model:$model)');
     int selected = -1;
     int counter  = 0;
-    $['menu-content'].children.forEach(
-        (PaperItem p) {
+    $['menu-content'].children.forEach((PaperItem p) {
           print (p.innerHtml + '/' + name);
           var target_name = p.innerHtml;
           if (p.innerHtml.startsWith('.')) {
@@ -104,8 +94,7 @@ class InPortData extends PolymerElement {
         selected = counter;
       }
       counter++;
-    }
-    );
+    });
 
     if(selected < 0) {
       print('Invalid InPort Access is selected in inport_data');
@@ -148,29 +137,24 @@ class InPortData extends PolymerElement {
 
 
     PaperDropdownMenu dd = $['dropdown-menu'];
-    dd.on['core-select'].listen(
-        (var e) {
-      if (e.detail['isSelected']) {
-        String accessName = e.detail['item'].innerHtml;
+    dd.on['core-select'].listen((var e) {
+      if(e.detail != null) {
+        if (e.detail['isSelected']) {
+          String accessName = e.detail['item'].innerHtml;
 
-        if (accessName.startsWith('.')) {
-          accessName = accessName.substring(1);
+          if (accessName.startsWith('.')) {
+            accessName = accessName.substring(1);
+          }
+          _model.accessSequence =
+              accessName.substring(0, accessName.length - 1);
         }
-        _model.accessSequence = accessName.substring(0, accessName.length-1);
       }
-    }
-    );
+    });
 
-
-
-
-
-    this.onClick.listen(
-      (var e) {
-        globalController.setSelectedElem(e, this);
-        e.stopPropagation();
-      }
-    );
+    this.onClick.listen((var e) {
+      globalController.setSelectedElem(e, this);
+      e.stopPropagation();
+    });
   }
 
   void select() {
