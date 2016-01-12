@@ -58,9 +58,17 @@ class Equals extends Condition {
     node.children.forEach((xml.XmlNode childNode) {
       if (childNode is xml.XmlElement) {
         if (childNode.name.toString() == 'a') {
-          _a = BlockLoader.parseBlock(childNode.children[0]);
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              _a = BlockLoader.parseBlock(gChildNode);
+            }
+          });
         } else if (childNode.name.toString() == 'b') {
-          _b = BlockLoader.parseBlock(childNode.children[0]);
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              _b = BlockLoader.parseBlock(gChildNode);
+            }
+          });
         }
       }
     });

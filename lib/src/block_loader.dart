@@ -27,6 +27,7 @@ class BlockLoader {
   ];
 
   static Block parseBlock(xml.XmlNode node) {
+    print('parseBlock:'+node.toString());
     var elem = null;
     blockTypes.forEach((Type T) {
       ClassMirror tMirror = reflectClass(T);

@@ -76,11 +76,23 @@ class If extends Block {
     node.children.forEach((xml.XmlNode childNode) {
       if (childNode is xml.XmlElement) {
         if (childNode.name.toString() == 'Condition') {
-          condition = BlockLoader.parseBlock(childNode.children[0]);
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              condition = BlockLoader.parseBlock(gChildNode);
+            }
+          });
         } else if (childNode.name.toString() == 'Yes') {
-          yes.loadFromXML(childNode.children[0]);
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              yes.loadFromXML(gChildNode);
+            }
+          });
         } else if (childNode.name.toString() == 'No') {
-          no.loadFromXML(childNode.children[0]);
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              no.loadFromXML(gChildNode);
+            }
+          });
         }
       }
     });
@@ -139,9 +151,19 @@ class While extends Block {
     node.children.forEach((xml.XmlNode childNode) {
       if (childNode is xml.XmlElement) {
         if (childNode.name.toString() == 'Condition') {
-          condition = BlockLoader.parseBlock(childNode.children[0]);
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              condition = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+
+          //condition = BlockLoader.parseBlock(childNode.children[0]);
         } else if (childNode.name.toString() == 'Loop') {
-          loop.loadFromXML(childNode.children[0]);
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              loop.loadFromXML(gChildNode);
+            }
+          });
         }
       }
     });
