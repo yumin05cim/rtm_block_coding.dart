@@ -38,10 +38,25 @@
         </style>
         <div id="container">
             <div id="title-area" horizontal layout center wrap>
-                <div end>Set OutPort (name = </div>
+                <div end>Set OutPort (</div>
+
+                <paper-dropdown-menu id="name-dropdown-menu" label="Your favorite pastry">
+                    <paper-dropdown id="name-dropdown" class="dropdown">
+                        <core-menu class="menu" id="name-menu-content">
+                        </core-menu>
+                    </paper-dropdown>
+                </paper-dropdown-menu>
+                <div end></div>
+                <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
+                    <paper-dropdown id="dropdown" class="dropdown">
+                        <core-menu class="menu" id="menu-content">
+                        </core-menu>
+                    </paper-dropdown>
+                </paper-dropdown-menu>
+                <!--
                 <paper-input id="name-input" flex value="{{port_name}}"></paper-input>
                 <div end>) Data Variable (member = </div>
-                <paper-input id="member-input" flex value="{{data_member}}"></paper-input>
+                <paper-input id="member-input" flex value="{{data_member}}"></paper-input> -->
                 <div end>)</div>
             </div>
             <div id="body-area">
