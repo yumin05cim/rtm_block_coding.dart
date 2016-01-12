@@ -136,10 +136,23 @@ class BlockEditor extends PolymerElement {
     else if (block is program.If) {
       return new html.Element.tag('if-statement')
         ..model = block;
-    } else if (block is program.While) {
+    }
+    else if (block is program.While) {
       return new html.Element.tag('while-statement')
         ..model = block;
     }
+/*    else if (block is program.While) {
+      var v = new html.Element.tag('while-statement')
+        ..model = block;
+
+      v.attachLeft(parseBlock(block.condition));
+      for (program.Statement s in block.loop) {
+        v.attachRight(parseStatement(v, s));
+      }
+//      v.attachRight(parseBlock(block.loop));
+      return v;
+    }
+*/
 
 
   }

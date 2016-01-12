@@ -1,6 +1,8 @@
 
 <link rel="import" href="packages/polymer/polymer.html" />
 
+<link rel="import" href="blocks/add_inport.html" />
+<link rel="import" href="blocks/add_outport.html" />
 <link rel="import" href="blocks/set_variable.html" />
 <link rel="import" href="blocks/read_inport.html" />
 <link rel="import" href="blocks/write_outport.html" />
@@ -12,9 +14,6 @@
 <link rel="import" href="blocks/multiplication.html" />
 <link rel="import" href="blocks/if_statement.html" />
 <link rel="import" href="blocks/while_statement.html" />
-<link rel="import" href="blocks/add_inport.html" />
-<link rel="import" href="blocks/add_outport.html" />
-
 
 <polymer-element name="block-editor" attributes="command">
     <template >
@@ -28,19 +27,24 @@
                 position: absolute;
                 display:none;
                 color: #727272;
-                background-color: #FFFF00;
+                background-color: #A1CF6B;
+                /*background-color: #FFFF00;*/
             }
 
             #down {
                 position: absolute;
                 display: none;
-                background-color: #0083F3;
+                color: #727272;
+                background-color: #A1CF6B;
+                /*background-color: #0083F3;*/
             }
 
             #delete {
                 position: absolute;
                 display: none;
-                background-color: #FF5722;
+                color: #727272;
+                background-color: #A1CF6B;
+                /*background-color: #FF5722;*/
             }
 
         </style>
@@ -49,8 +53,8 @@
         </div>
 
         <paper-fab id="up" icon="arrow-drop-up" title="arrow-up" on-tap="{{onUp}}"></paper-fab>
-        <paper-fab id="down" icon="arrow-drop-down" title="arrow-dow" on-tap="{{onDown}}"></paper-fab>
-        <paper-fab id="delete" icon="remove" title="arrow-dow" on-tap="{{onDelete}}"></paper-fab>
+        <paper-fab id="down" icon="arrow-drop-down" title="arrow-down" on-tap="{{onDown}}"></paper-fab>
+        <paper-fab id="delete" icon="remove" title="remove" on-tap="{{onDelete}}"></paper-fab>
 
     </template>
     <script type="application/dart" src="block_editor.dart"></script>
