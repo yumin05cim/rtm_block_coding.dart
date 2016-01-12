@@ -4,7 +4,7 @@ library application.basic_operator;
 import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
-
+import 'block_loader.dart';
 
 class Variable extends Block {
 
@@ -29,6 +29,19 @@ class Variable extends Block {
 
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    print('Variable isClassXmlNode?:' + node.toString());
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'Variable');
+    }
+    return false;
+  }
+
+  Variable.XML(xml.XmlElement node) {
+    print('Variable::' + node.toString());
+    _name = (node.getAttribute('name'));
+  }
 }
 
 class SetValue extends Block {
@@ -50,18 +63,48 @@ class SetValue extends Block {
 
   void buildXML(xml.XmlBuilder builder) {
     builder.element('SetValue',
-        attributes: {
-        },
+        attributes: {},
         nest : () {
           builder.element('Left',
-          nest : () {
-            _left.buildXML(builder);
-          });
+              nest: () {
+                _left.buildXML(builder);
+              });
           builder.element('Right',
-              nest : () {
+              nest: () {
                 _right.buildXML(builder);
               });
         });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    print('SetValue isClassXmlNode?:' + node.toString());
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'SetValue');
+    }
+    return false;
+  }
+
+  SetValue.XML(xml.XmlElement node) {
+    print('SetValue.XML:' + node.toString());
+    node.children.forEach((xml.XmlNode childNode) {
+      if (childNode is xml.XmlElement) {
+        if (childNode.name.toString() == 'Left') {
+          print('Left:' + childNode.toString());
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              _left = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+
+        } else if (childNode.name.toString() == 'Right') {
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              _right = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+        }
+      }
+    });
   }
 }
 
@@ -92,6 +135,35 @@ class Add extends Block {
               });
         });
   }
+
+
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'Add');
+    }
+    return false;
+  }
+
+  Add.XML(xml.XmlElement node) {
+    node.children.forEach((xml.XmlNode childNode) {
+      if (childNode is xml.XmlElement) {
+        if (childNode.name.toString() == 'a') {
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              a = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+        } else if (childNode.name.toString() == 'b') {
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              b = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+        }
+      }
+    });
+  }
 }
 
 class Subtract extends Block {
@@ -120,6 +192,33 @@ class Subtract extends Block {
         });
   }
 
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'Subtract');
+    }
+    return false;
+  }
+
+  Subtract.XML(xml.XmlElement node) {
+    node.children.forEach((xml.XmlNode childNode) {
+      if (childNode is xml.XmlElement) {
+        if (childNode.name.toString() == 'a') {
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              a = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+        } else if (childNode.name.toString() == 'b') {
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              b = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+        }
+      }
+    });
+  }
+
 }
 
 class Multiply extends Block {
@@ -146,5 +245,32 @@ class Multiply extends Block {
                 b.buildXML(builder);
               });
         });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'Mulatiply');
+    }
+    return false;
+  }
+
+  Multiply.XML(xml.XmlElement node) {
+    node.children.forEach((xml.XmlNode childNode) {
+      if (childNode is xml.XmlElement) {
+        if (childNode.name.toString() == 'a') {
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              a = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+        } else if (childNode.name.toString() == 'b') {
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              b = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+        }
+      }
+    });
   }
 }

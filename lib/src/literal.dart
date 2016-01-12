@@ -28,6 +28,17 @@ class Integer extends Block {
         nest: () {
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'Integer');
+    }
+    return false;
+  }
+
+  Integer.XML(xml.XmlElement node) {
+    value = int.parse(node.getAttribute('value'));
+  }
 }
 
 class StringLiteral extends Block {
@@ -52,5 +63,16 @@ class StringLiteral extends Block {
         },
         nest: () {
         });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'StringLiteral');
+    }
+    return false;
+  }
+
+  StringLiteral.XML(xml.XmlElement node) {
+    value = (node.getAttribute('value'));
   }
 }

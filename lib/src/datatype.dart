@@ -225,4 +225,15 @@ class DataType {
 
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'DataType');
+    }
+    return false;
+  }
+
+  DataType.XML(xml.XmlElement node) {
+    typename = node.getAttribute('typename');
+  }
 }

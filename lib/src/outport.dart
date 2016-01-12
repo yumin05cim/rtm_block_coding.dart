@@ -7,7 +7,7 @@ import 'dart:core';
 import 'block.dart';
 import 'statement.dart';
 import 'datatype.dart';
-
+import 'block_loader.dart';
 
 
 class AddOutPort extends Block {
@@ -47,6 +47,22 @@ class AddOutPort extends Block {
           dataType.buildXML(builder);
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'AddOutPort');
+    }
+    return false;
+  }
+
+  AddOutPort.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    node.children.forEach((xml.XmlNode childNode) {
+      if(childNode is xml.XmlElement) {
+        dataType = new DataType.XML(childNode);
+      }
+    });
+  }
 }
 
 class OutPortData extends Block {
@@ -78,6 +94,29 @@ class OutPortData extends Block {
           );
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'OutPortData');
+    }
+    return false;
+  }
+
+  OutPortData.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    accessSequence = node.getAttribute('accessSequence');
+    node.children.forEach((xml.XmlNode childNode) {
+      if (DataType.isClassXmlNode(childNode)) {
+        dataType = new DataType.XML(childNode);
+      } else if((childNode as xml.XmlElement).name.toString() == 'Right') {
+        childNode.children.forEach((xml.XmlNode gChildNode) {
+          if(gChildNode is xml.XmlElement) {
+            right = BlockLoader.parseBlock(gChildNode);
+          }
+        });
+      }
+    });
+  }
 }
 
 class OutPortWrite extends Block {
@@ -103,4 +142,19 @@ class OutPortWrite extends Block {
         });
   }
 
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'OutPortWrite');
+    }
+    return false;
+  }
+
+  OutPortWrite.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    node.children.forEach((xml.XmlNode childNode) {
+      if(childNode is xml.XmlElement) {
+        dataType = new DataType.XML(childNode);
+      }
+    });
+  }
 }

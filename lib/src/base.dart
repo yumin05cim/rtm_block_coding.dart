@@ -14,7 +14,7 @@ import 'dart:mirrors';
 class Application {
 
 
-  StatementList statements;
+  StatementList statements = new StatementList([]);
 
   Application() {
     statements = new StatementList([]);
@@ -109,4 +109,22 @@ class Application {
           statements.buildXML(builder);
         });
   }
+
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if (node is xml.XmlElement) {
+      return (node.name.toString() == 'Application');
+    }
+    return false;
+  }
+
+  void loadFromXML(xml.XmlElement node) {
+    statements.clear();
+    node.children.forEach((xml.XmlNode childNode) {
+      if (statements.isStatementListNode(childNode)) {
+        statements.loadFromXML(childNode);
+      }
+    });
+  }
+
 }

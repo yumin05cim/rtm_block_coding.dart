@@ -272,6 +272,8 @@
                         <core-toolbar  class="text-primary-color dark-primary-color" >
                             <core-icon-button icon="send"> Launch</core-icon-button>
                             <core-icon-button icon="save" on-tap="{{onSave}}"> Save</core-icon-button>
+                            <core-icon-button icon="load" id="load_button"> Load</core-icon-button>
+                            <input type="file" accept="*.xml" id="file_input" style="display:none;" on-change="{{onFileInput}}" />
                             <core-icon-button icon="help"> Help</core-icon-button>
                         </core-toolbar>
                         <result-panel></result-panel>

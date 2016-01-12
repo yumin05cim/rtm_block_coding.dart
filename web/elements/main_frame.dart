@@ -6,8 +6,9 @@ import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_button.dart' as paper_button;
 import 'collapse_menu.dart';
 import 'add_element_button.dart';
-
+import 'dart:async';
 import '../controller/controller.dart';
+import 'package:xml/xml.dart' as xml;
 
 @CustomTag('main-frame')
 class MainFrame extends PolymerElement {
@@ -41,6 +42,14 @@ class MainFrame extends PolymerElement {
           $['main-panel'].querySelector('editor-panel').updateClick();
         }
     );
+
+    $['load_button'].onClick.listen((var e) {
+      onImport(e);
+    });
+
+    $['file_input'].onChange.listen((var e) {
+      onFileInput(e);
+    });
 
     setMode('initialize');
   }
@@ -84,6 +93,40 @@ class MainFrame extends PolymerElement {
     tl..attributes['href'] = 'data:text/plain;charset=utf-8,' + Uri.encodeComponent(text)
       ..attributes['download'] = 'rtm_block.xml'
       ..click();
+
+
+  }
+
+  void onImport(var e) {
+    html.InputElement ie = $['file_input'];
+    html.MouseEvent evt = new html.MouseEvent('click', canBubble: true,
+        cancelable: true,
+        view: html.window,
+        detail: 0,
+        screenX: 0,
+        screenY: 0,
+        clientX: 0,
+        clientY: 0,
+        ctrlKey: false,
+        altKey: false,
+        shiftKey: false,
+        metaKey: false,
+        button: 0,
+        relatedTarget: null);
+     ie.dispatchEvent(evt);
+  }
+
+  void onFileInput(var e) {
+    html.InputElement ie = $['file_input'];
+    print(ie.value);
+    html.File file = ie.files[0];
+    html.FileReader reader = new html.FileReader();
+    reader.readAsText(file);
+    reader.onLoad.listen((var e) {
+      var doc = xml.parse(reader.result.toString());
+      globalController.loadFromXML(doc);
+      globalController.refreshAllPanel();
+    });
   }
 
 }
