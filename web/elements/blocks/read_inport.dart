@@ -72,21 +72,23 @@ class ReadInPort extends PolymerElement {
 
 
     PaperDropdownMenu ndd = $['dropdown-menu'];
-    ndd.on['core-select'].listen(
-        (var e) {
-      if (!e.detail['isSelected']) {
+    ndd.on['core-select'].listen((var e) {
+          if (e.detail != null) {
+            if (!e.detail['isSelected']) {
 
-      } else {
-        String name_ = e.detail['item'].innerHtml;
-        var pl = globalController.onInitializeApp.find(program.AddInPort, name:name_);
-        if (pl.length > 0) {
-          program.AddInPort inport =pl[0];
-          _model.name = name_;
-          if(_model.dataType != inport.dataType) {
-            _model.dataType = inport.dataType;
+            } else {
+              String name_ = e.detail['item'].innerHtml;
+              var pl = globalController.onInitializeApp.find(
+                  program.AddInPort, name: name_);
+              if (pl.length > 0) {
+                program.AddInPort inport = pl[0];
+                _model.name = name_;
+                if (_model.dataType != inport.dataType) {
+                  _model.dataType = inport.dataType;
+                }
+              }
+            }
           }
-        }
-      }
     }
 
     );

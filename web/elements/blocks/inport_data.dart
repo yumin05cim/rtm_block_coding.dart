@@ -52,8 +52,7 @@ class InPortData extends PolymerElement {
     print('selectInPort($name) called (_model:$model)');
     int selected = -1;
     int counter  = 0;
-    $['name-menu-content'].children.forEach(
-        (PaperItem p) {
+    $['name-menu-content'].children.forEach((PaperItem p) {
           if(name == p.innerHtml) {
             selected = counter;
           }
@@ -122,21 +121,23 @@ class InPortData extends PolymerElement {
     selectInPort(_model.name);
 
     PaperDropdownMenu ndd = $['name-dropdown-menu'];
-    ndd.on['core-select'].listen(
-        (var e) {
-      if (!e.detail['isSelected']) {
+    ndd.on['core-select'].listen((var e) {
+      if(e.detail != null) {
+        if (!e.detail['isSelected']) {
 
-      } else {
-        String name_ = e.detail['item'].innerHtml;
-        var pl = globalController.onInitializeApp.find(program.AddInPort, name:name_);
-        if (pl.length > 0) {
-          program.AddInPort inport =pl[0];
-          _model.name = name_;
-          if(_model.dataType != inport.dataType) {
-            _model.dataType = inport.dataType;
-            _model.accessSequence = '';
+        } else {
+          String name_ = e.detail['item'].innerHtml;
+          var pl = globalController.onInitializeApp.find(
+              program.AddInPort, name: name_);
+          if (pl.length > 0) {
+            program.AddInPort inport = pl[0];
+            _model.name = name_;
+            if (_model.dataType != inport.dataType) {
+              _model.dataType = inport.dataType;
+              _model.accessSequence = '';
 
-            updateAccessAlternatives();
+              updateAccessAlternatives();
+            }
           }
         }
       }

@@ -103,9 +103,11 @@ class AddInPort extends PolymerElement {
     PaperDropdownMenu dd = $['dropdown-menu'];
     dd.on['core-select'].listen(
         (var e) {
-          if (e.detail['isSelected']) {
-            String typename = e.detail['item'].innerHtml;
-            onTypeChange(typename);
+          if (e.detail != null) {
+            if (e.detail['isSelected']) {
+              String typename = e.detail['item'].innerHtml;
+              onTypeChange(typename);
+            }
           }
         }
     );
