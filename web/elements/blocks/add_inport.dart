@@ -50,11 +50,18 @@ class AddInPort extends PolymerElement {
     ports.addAll(globalController.onActivatedApp.find(program.InPortDataAccess, name: old_name));
     ports.addAll(globalController.onExecuteApp.find(program.InPortDataAccess, name: old_name));
     ports.addAll(globalController.onDeactivatedApp.find(program.InPortDataAccess, name: old_name));
-    ports.forEach(
-        (program.InPortDataAccess port) {
-          port.name = new_name;
-        }
-    );
+    ports.forEach((program.InPortDataAccess port) {
+      port.name = new_name;
+    });
+
+    List<program.ReadInPort> ports2 = [];
+    ports2.addAll(globalController.onActivatedApp.find(program.ReadInPort, name: old_name));
+    ports2.addAll(globalController.onExecuteApp.find(program.ReadInPort, name: old_name));
+    ports2.addAll(globalController.onDeactivatedApp.find(program.ReadInPort, name: old_name));
+    ports2.forEach((program.ReadInPort port) {
+      port.name = new_name;
+    });
+
     _model.name = new_name;
     globalController.refreshAllPanel();
   }
@@ -67,42 +74,43 @@ class AddInPort extends PolymerElement {
     ports.addAll(globalController.onActivatedApp.find(program.InPortDataAccess, name: name_));
     ports.addAll(globalController.onExecuteApp.find(program.InPortDataAccess, name: name_));
     ports.addAll(globalController.onDeactivatedApp.find(program.InPortDataAccess, name: name_));
-    ports.forEach(
-        (program.InPortDataAccess port) {
-         port.dataType = _model.dataType;
-          port.accessSequence = '';
-    }
-    );
+    ports.forEach((program.InPortDataAccess port) {
+      port.dataType = _model.dataType;
+      port.accessSequence = '';
+    });
+
+    List<program.ReadInPort> ports2 = [];
+    ports2.addAll(globalController.onActivatedApp.find(program.ReadInPort, name: name_));
+    ports2.addAll(globalController.onExecuteApp.find(program.ReadInPort, name: name_));
+    ports2.addAll(globalController.onDeactivatedApp.find(program.ReadInPort, name: name_));
+    ports2.forEach((program.ReadInPort port) {
+      port.dataType = _model.dataType;
+      port.accessSequence = '';
+    });
+
     globalController.refreshAllPanel(except: 'onInitialize');
   }
 
   void attached() {
-    $['name-input'].onChange.listen(
-        (var e) {
-          // When name changed.
-          onNameChange(port_name);
-        }
-    );
+    $['name-input'].onChange.listen((var e) {
+      // When name changed.
+      onNameChange(port_name);
+    });
 
     var types = program.DataType.all_types;
-      types.sort();
+    types.sort();
     int counter = 0;
-    types.forEach
-    (
-        (String typename) {
-          $['menu-content'].children.add(
-            new html.Element.tag('paper-item')
-              ..innerHtml = typename
-              ..setAttribute('value', counter.toString())
-          );
-          counter++;
-        }
-    );
+    types.forEach((String typename) {
+      $['menu-content'].children.add(new html.Element.tag('paper-item')
+            ..innerHtml = typename
+            ..setAttribute('value', counter.toString())
+      );
+      counter++;
+    });
 
     selectType(_model.dataType.typename);
     PaperDropdownMenu dd = $['dropdown-menu'];
-    dd.on['core-select'].listen(
-        (var e) {
+    dd.on['core-select'].listen((var e) {
           if (e.detail != null) {
             if (e.detail['isSelected']) {
               String typename = e.detail['item'].innerHtml;
@@ -112,12 +120,9 @@ class AddInPort extends PolymerElement {
         }
     );
 
-    $['title-area'].onClick.listen(
-        (var e) {
-          globalController.setSelectedElem(e, this);
-
-        }
-    );
+    $['title-area'].onClick.listen((var e) {
+      globalController.setSelectedElem(e, this);
+    });
   }
 
   void select() {
