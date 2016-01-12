@@ -517,13 +517,29 @@ if __name__ == "__main__":
         attributes: {
         },
         nest: () {
-          onInitializeApp.buildXML(builder);
-          onActivatedApp.buildXML(builder);
-          onDeactivatedApp.buildXML(builder);
-          onExecuteApp.buildXML(builder);
+          builder.element('onInitializeApp',
+            nest : () {
+              onInitializeApp.buildXML(builder: builder);
+            });
+          builder.element('onActivatedApp',
+              nest : () {
+                onActivatedApp.buildXML(builder: builder);
+              });
+
+          builder.element('onDeactivatedApp',
+              nest : () {
+                onDeactivatedApp.buildXML(builder: builder);
+              });
+
+          builder.element('onExecuteApp',
+              nest : () {
+                onExecuteApp.buildXML(builder: builder);
+              });
         }
 
     );
+
+    return builder.build();
   }
 }
 

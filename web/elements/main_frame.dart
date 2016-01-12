@@ -78,4 +78,9 @@ class MainFrame extends PolymerElement {
 
 
   }
+
+  void onSave(var e) {
+    var xml = globalController.buildXML();
+    print(xml.toXmlString(pretty: true));
+  }
 }
