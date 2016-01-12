@@ -7,6 +7,7 @@ import 'dart:core';
 import 'block.dart';
 import 'condition.dart';
 import 'statement.dart';
+import 'block_loader.dart';
 
 class If extends Block {
   Condition condition;
@@ -63,6 +64,27 @@ class If extends Block {
               });
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'If');
+    }
+    return false;
+  }
+
+  If.XML(xml.XmlElement node) {
+    node.children.forEach((xml.XmlNode childNode) {
+      if (childNode is xml.XmlElement) {
+        if (childNode.name.toString() == 'Condition') {
+          condition = BlockLoader.parseBlock(childNode.children[0]);
+        } else if (childNode.name.toString() == 'Yes') {
+          yes.loadFromXML(childNode.children[0]);
+        } else if (childNode.name.toString() == 'No') {
+          no.loadFromXML(childNode.children[0]);
+        }
+      }
+    });
+  }
 }
 
 class While extends Block {
@@ -106,6 +128,25 @@ class While extends Block {
         });
   }
 
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'While');
+    }
+    return false;
+  }
+
+  While.XML(xml.XmlElement node) {
+    node.children.forEach((xml.XmlNode childNode) {
+      if (childNode is xml.XmlElement) {
+        if (childNode.name.toString() == 'Condition') {
+          condition = BlockLoader.parseBlock(childNode.children[0]);
+        } else if (childNode.name.toString() == 'Loop') {
+          loop.loadFromXML(childNode.children[0]);
+        }
+      }
+    });
+  }
+
 }
 
 class Break extends Block {
@@ -122,5 +163,16 @@ class Break extends Block {
         nest: () {
 
         });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'Break');
+    }
+    return false;
+  }
+
+  Break.XML(xml.XmlElement node) {
+
   }
 }

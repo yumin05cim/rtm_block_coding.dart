@@ -4,6 +4,7 @@ import 'block.dart';
 
 
 import 'package:xml/xml.dart' as xml;
+import 'block_loader.dart';
 
 abstract class Condition extends Block {
 
@@ -45,6 +46,25 @@ class Equals extends Condition {
               });
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'Equals');
+    }
+    return false;
+  }
+
+  Equals.XML(xml.XmlElement node) {
+    node.children.forEach((xml.XmlNode childNode) {
+      if (childNode is xml.XmlElement) {
+        if (childNode.name.toString() == 'a') {
+          _a = BlockLoader.parseBlock(childNode.children[0]);
+        } else if (childNode.name.toString() == 'b') {
+          _b = BlockLoader.parseBlock(childNode.children[0]);
+        }
+      }
+    });
+  }
 }
 
 class TrueLiteral extends Condition {
@@ -63,6 +83,17 @@ class TrueLiteral extends Condition {
 
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'TrueLiteral');
+    }
+    return false;
+  }
+
+  TrueLiteral.XML(xml.XmlElement node) {
+
+  }
 }
 
 class FalseLiteral extends Condition {
@@ -80,5 +111,16 @@ class FalseLiteral extends Condition {
         nest: () {
 
         });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'FalseLiteral');
+    }
+    return false;
+  }
+
+  FalseLiteral.XML(xml.XmlElement node) {
+
   }
 }

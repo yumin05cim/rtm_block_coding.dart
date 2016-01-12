@@ -1,0 +1,42 @@
+library block_loader;
+
+import 'package:xml/xml.dart' as xml;
+import 'dart:core';
+import 'dart:mirrors';
+import 'block.dart';
+import 'literal.dart';
+import 'basic_operator.dart';
+import 'condition.dart';
+import 'datatype.dart';
+import 'flow_control.dart';
+import 'inport.dart';
+import 'io.dart';
+import 'outport.dart';
+
+class BlockLoader {
+
+  static List<Type> blockTypes = [
+    Integer, StringLiteral,
+    SetValue, Variable, Add, Subtract, Multiply,
+    Equals, TrueLiteral, FalseLiteral,
+    DataType,
+    If, While, Break,
+    Print,
+    InPortDataAccess, AddInPort, ReadInPort,
+    OutPortData, AddOutPort, OutPortWrite,
+  ];
+
+  static Block parseBlock(xml.XmlNode node) {
+    var elem = null;
+    blockTypes.forEach((Type T) {
+      ClassMirror tMirror = reflectClass(T);
+      if(tMirror.invoke(new Symbol('isClassXmlNode'), [node]).reflectee) {
+        elem = tMirror.newInstance(new Symbol('XML'), [node]).reflectee;
+      } else {
+      }
+    });
+
+    return elem;
+  }
+
+}

@@ -7,7 +7,7 @@ import 'dart:core';
 import 'block.dart';
 import 'statement.dart';
 import 'datatype.dart';
-
+import 'block_loader.dart';
 
 
 class AddOutPort extends Block {
@@ -47,6 +47,18 @@ class AddOutPort extends Block {
           dataType.buildXML(builder);
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'AddOutPort');
+    }
+    return false;
+  }
+
+  AddOutPort.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    dataType = new DataType.XML(node.children[0]);
+  }
 }
 
 class OutPortData extends Block {
@@ -78,6 +90,25 @@ class OutPortData extends Block {
           );
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'OutPortData');
+    }
+    return false;
+  }
+
+  OutPortData.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    accessSequence = node.getAttribute('accessSequence');
+    node.children.forEach((xml.XmlNode childNode) {
+      if (DataType.isClassXmlNode(childNode)) {
+        dataType = new DataType.XML(childNode);
+      } else if((childNode as xml.XmlElement).name.toString() == 'Right') {
+        right = BlockLoader.parseBlock(childNode.children[0]);
+      }
+    });
+  }
 }
 
 class OutPortWrite extends Block {
@@ -103,4 +134,15 @@ class OutPortWrite extends Block {
         });
   }
 
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'OutPortWrite');
+    }
+    return false;
+  }
+
+  OutPortWrite.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    dataType = new DataType.XML(node.children[0]);
+  }
 }

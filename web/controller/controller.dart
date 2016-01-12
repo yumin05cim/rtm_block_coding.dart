@@ -541,6 +541,37 @@ if __name__ == "__main__":
 
     return builder.build();
   }
+
+  void loadFromXML(xml.XmlDocument doc) {
+    doc.children.forEach((xml.XmlNode node) {
+      if (node is xml.XmlElement) {
+        if (node.name.toString() == 'RTMBlockCoding') {
+          node.children.forEach((xml.XmlNode childNode) {
+            if (childNode is xml.XmlElement) {
+              if (childNode.name.toString() == 'onInitializeApp') {
+                childNode.children.forEach((xml.XmlNode gChildNode) {
+                  if (program.Application.isClassXmlNode(gChildNode)) {
+                    onInitializeApp.loadFromXML(gChildNode);
+                  }
+                });
+              } else if (childNode.name.toString() == 'onActivatedApp') {
+                childNode.children.forEach((xml.XmlNode gChildNode) {
+                  if (program.Application.isClassXmlNode(gChildNode)) {
+                    onActivatedApp.loadFromXML(gChildNode);
+                  }
+                });
+//                  onActivatedApp.loadFromXML(childNode);
+              } else if (childNode.name.toString() == 'onDeactivatedApp') {
+                onDeactivatedApp.loadFromXML(childNode);
+              } else if (childNode.name.toString() == 'onExecuteApp') {
+                onExecuteApp.loadFromXML(childNode);
+              }
+            }
+          });
+        }
+      }
+    });
+  }
 }
 
 Controller globalController = new Controller();

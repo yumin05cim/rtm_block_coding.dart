@@ -6,6 +6,7 @@ import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'dart:collection';
 import 'block.dart';
+import 'block_loader.dart';
 
 class Statement {
 
@@ -21,6 +22,7 @@ class Statement {
   Statement(this._block) {
     this._block.parent = this;
   }
+
 
   String toPython(indentLevel) {
     return _indent * indentLevel + _block.toPython(indentLevel);
@@ -56,6 +58,22 @@ class Statement {
           block.buildXML(builder);
 
         });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if (node is xml.XmlElement) {
+      return (node.name.toString() == 'Statement');
+    }
+    return false;
+  }
+
+  Statement.XML(xml.XmlNode node) {
+    node.children.forEach((xml.XmlNode childNode) {
+      var b = BlockLoader.parseBlock(childNode);
+      if (b is Block) {
+        this._block = b;
+      }
+    });
   }
 }
 
@@ -104,4 +122,22 @@ class StatementList extends ListMixin<Statement> {
           });
         });
   }
+
+  bool isStatementListNode(xml.XmlNode node) {
+    if (node is xml.XmlElement) {
+      return (node.name.toString() == 'Statements');
+    }
+    return false;
+  }
+
+
+  void loadFromXML(xml.XmlNode node) {
+    node.children.forEach((xml.XmlNode childNode) {
+      if (Statement.isClassXmlNode(childNode)) {
+        this.add(new Statement.XML(childNode));
+      }
+    });
+  }
+
+
 }

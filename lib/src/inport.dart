@@ -46,6 +46,18 @@ class AddInPort extends Block {
           dataType.buildXML(builder);
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'AddInPort');
+    }
+    return false;
+  }
+
+  AddInPort.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    dataType = new DataType.XML(node.children[0]);
+  }
 }
 
 
@@ -86,6 +98,18 @@ class ReadInPort extends Block {
           dataType.buildXML(builder);
         });
   }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'ReadInPort');
+    }
+    return false;
+  }
+
+  ReadInPort.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    dataType = new DataType.XML(node.children[0]);
+  }
 }
 
 class InPortDataAccess extends Block {
@@ -112,5 +136,18 @@ class InPortDataAccess extends Block {
         nest: () {
           dataType.buildXML(builder);
         });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'InPortDataAccess');
+    }
+    return false;
+  }
+
+  InPortDataAccess.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    accessSequence = node.getAttribute('accessSequence');
+    dataType = new DataType.XML(node.children[0]);
   }
 }

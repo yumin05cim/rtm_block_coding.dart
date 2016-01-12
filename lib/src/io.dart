@@ -5,7 +5,7 @@ library application.io;
 
 import 'package:xml/xml.dart' as xml;
 import 'block.dart';
-
+import 'block_loader.dart';
 
 class Print extends Block {
 
@@ -23,5 +23,16 @@ class Print extends Block {
         nest: () {
           _block.buildXML(builder);
         });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'Print');
+    }
+    return false;
+  }
+
+  Print.XML(xml.XmlElement node) {
+    _block = BlockLoader.parseBlock(node.children[0]);
   }
 }

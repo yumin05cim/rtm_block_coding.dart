@@ -75,8 +75,6 @@ class MainFrame extends PolymerElement {
       $['calculate_menu'].disableMenu(false);
       $['if_switch_loop_menu'].disableMenu(false);
     }
-
-
   }
 
 
@@ -89,5 +87,7 @@ class MainFrame extends PolymerElement {
     tl..attributes['href'] = 'data:text/plain;charset=utf-8,' + Uri.encodeComponent(text)
       ..attributes['download'] = 'rtm_block.xml'
       ..click();
+
+    globalController.loadFromXML(xml);
   }
 }
