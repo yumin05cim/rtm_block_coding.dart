@@ -79,8 +79,15 @@ class MainFrame extends PolymerElement {
 
   }
 
+
   void onSave(var e) {
     var xml = globalController.buildXML();
-    print(xml.toXmlString(pretty: true));
+    var text = xml.toXmlString(pretty: true);
+    print(text);
+
+    html.AnchorElement tl = new html.Element.tag('a');
+    tl..attributes['href'] = 'data:text/plain;charset=utf-8,' + Uri.encodeComponent(text)
+      ..attributes['download'] = 'rtm_block.xml'
+      ..click();
   }
 }
