@@ -68,9 +68,11 @@ class Statement {
 
   Statement.XML(xml.XmlNode node) {
     node.children.forEach((xml.XmlNode childNode) {
-      var b = BlockLoader.parseBlock(childNode);
-      if (b is Block) {
-        this._block = b;
+      if (childNode is xml.XmlElement) {
+        var b = BlockLoader.parseBlock(childNode);
+        if (b is Block) {
+          this._block = b;
+        }
       }
     });
   }

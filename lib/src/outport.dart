@@ -50,10 +50,8 @@ class AddOutPort extends Block {
 
   AddOutPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
-    node.children.forEach((xml.XmlNode childNode) {
-      if(childNode is xml.XmlElement) {
-        dataType = new DataType.XML(childNode);
-      }
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
     });
   }
 }
@@ -91,16 +89,11 @@ class AccessOutPort extends Block {
   AccessOutPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
     accessSequence = node.getAttribute('accessSequence');
-    node.children.forEach((xml.XmlNode childNode) {
-      if (DataType.isClassXmlNode(childNode)) {
-        dataType = new DataType.XML(childNode);
-      } else if((childNode as xml.XmlElement).name.toString() == 'Right') {
-        childNode.children.forEach((xml.XmlNode gChildNode) {
-          if(gChildNode is xml.XmlElement) {
-            right = BlockLoader.parseBlock(gChildNode);
-          }
-        });
-      }
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
+    });
+    namedChildChildren(node, 'Right', (xml.XmlElement e) {
+      right = BlockLoader.parseBlock(e);
     });
   }
 }
@@ -130,10 +123,8 @@ class WriteOutPort extends Block {
 
   WriteOutPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
-    node.children.forEach((xml.XmlNode childNode) {
-      if(childNode is xml.XmlElement) {
-        dataType = new DataType.XML(childNode);
-      }
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
     });
   }
 }
