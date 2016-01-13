@@ -27,8 +27,12 @@ class BlockLoader {
   ];
 
   static bool isClassXmlNode(xml.XmlNode node, Type type) {
+    print('Check:' + node.toString());
+    print('Type: ' + type.toString());
     if (node is xml.XmlElement) {
-      return (node.name == type.runtimeType.toString());
+      bool flag = (node.name.toString() == type.toString());
+      print(flag);
+      return flag;
     }
     return false;
   }

@@ -44,7 +44,7 @@ class If extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('If',
+    super.element(builder,
         attributes: {
         },
         nest: () {
@@ -65,12 +65,6 @@ class If extends Block {
         });
   }
 
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'If');
-    }
-    return false;
-  }
 
   If.XML(xml.XmlElement node) {
     node.children.forEach((xml.XmlNode childNode) {
@@ -124,7 +118,7 @@ class While extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('While',
+    super.element(builder,
         attributes: {
         },
         nest: () {
@@ -140,12 +134,6 @@ class While extends Block {
         });
   }
 
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'While');
-    }
-    return false;
-  }
 
   While.XML(xml.XmlElement node) {
     node.children.forEach((xml.XmlNode childNode) {
@@ -178,8 +166,9 @@ class Break extends Block {
   String toPython(int indentLevel) {
     return 'break';
   }
+
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Break',
+    super.element(bulder,
         attributes: {
         },
         nest: () {
@@ -187,12 +176,6 @@ class Break extends Block {
         });
   }
 
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Break');
-    }
-    return false;
-  }
 
   Break.XML(xml.XmlElement node) {
 

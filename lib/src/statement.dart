@@ -52,7 +52,6 @@ class Statement {
   void buildXML(xml.XmlBuilder builder) {
     builder.element('Statement',
         attributes: {
-          'version' : '1.0',
         },
         nest : () {
           block.buildXML(builder);
@@ -114,7 +113,6 @@ class StatementList extends ListMixin<Statement> {
   void buildXML(xml.XmlBuilder builder) {
     builder.element('Statements',
         attributes: {
-          'version' : '1.0',
         },
         nest : () {
           list.forEach((Statement s) {

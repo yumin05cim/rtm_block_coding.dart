@@ -39,20 +39,13 @@ class AddOutPort extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('AddOutPort',
+    super.element(builder,
         attributes: {
           'name' : name
         },
         nest: () {
           dataType.buildXML(builder);
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'AddOutPort');
-    }
-    return false;
   }
 
   AddOutPort.XML(xml.XmlElement node) {
@@ -80,7 +73,7 @@ class AccessOutPort extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('AccessOutPort',
+    super.element(builder,
         attributes: {
           'name' : name,
           'accessSequence' :accessSequence,
@@ -93,13 +86,6 @@ class AccessOutPort extends Block {
             }
           );
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'AccessOutPort');
-    }
-    return false;
   }
 
   AccessOutPort.XML(xml.XmlElement node) {
@@ -133,20 +119,13 @@ class WriteOutPort extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('WriteOutPort',
+    super.element(builder,
         attributes: {
           'name' : name
         },
         nest: () {
           dataType.buildXML(builder);
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'WriteOutPort');
-    }
-    return false;
   }
 
   WriteOutPort.XML(xml.XmlElement node) {

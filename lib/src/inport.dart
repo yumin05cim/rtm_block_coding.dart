@@ -38,7 +38,7 @@ class AddInPort extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('AddInPort',
+    super.element(builder,
         attributes: {
           'name' : name
         },
@@ -47,12 +47,6 @@ class AddInPort extends Block {
         });
   }
 
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'AddInPort');
-    }
-    return false;
-  }
 
   AddInPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
@@ -94,20 +88,13 @@ class ReadInPort extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('ReadInPort',
+    super.element(builder,
         attributes: {
           'name' : name
         },
         nest: () {
           dataType.buildXML(builder);
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'ReadInPort');
-    }
-    return false;
   }
 
   ReadInPort.XML(xml.XmlElement node) {
@@ -136,7 +123,7 @@ class AccessInPort extends Block {
 
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('AccessInPort',
+    super.element(builder,
         attributes: {
           'name' : name,
           'accessSequence' : accessSequence,
@@ -144,13 +131,6 @@ class AccessInPort extends Block {
         nest: () {
           dataType.buildXML(builder);
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'AccessInPort');
-    }
-    return false;
   }
 
   AccessInPort.XML(xml.XmlElement node) {

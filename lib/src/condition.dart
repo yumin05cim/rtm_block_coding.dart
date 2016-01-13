@@ -32,7 +32,7 @@ class Equals extends Condition {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Equals',
+    super.element(builder,
         attributes: {
         },
         nest : () {
@@ -45,13 +45,6 @@ class Equals extends Condition {
                 b.buildXML(builder);
               });
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Equals');
-    }
-    return false;
   }
 
   Equals.XML(xml.XmlElement node) {
@@ -91,7 +84,7 @@ class NotEquals extends Condition {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('NotEquals',
+    super.element(builder,
         attributes: {
         },
         nest : () {
@@ -104,13 +97,6 @@ class NotEquals extends Condition {
                 b.buildXML(builder);
               });
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'NotEquals');
-    }
-    return false;
   }
 
   NotEquals.XML(xml.XmlElement node) {
@@ -150,27 +136,21 @@ class SmallerThan extends Condition {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('SmallerThan',
+    super.element(builder,
         attributes: {
         },
         nest : () {
           builder.element('Left',
               nest : () {
-                a.buildXML(builder);
+                _left.buildXML(builder);
               });
           builder.element('Right',
               nest : () {
-                b.buildXML(builder);
+                _right.buildXML(builder);
               });
         });
   }
 
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'SmallerThan');
-    }
-    return false;
-  }
 
   SmallerThan.XML(xml.XmlElement node) {
     node.children.forEach((xml.XmlNode childNode) {
@@ -209,26 +189,19 @@ class SmallerThanOrEquals extends Condition {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('SmallerThanOrEquals',
+    super.element(builder,
         attributes: {
         },
         nest : () {
           builder.element('Left',
               nest : () {
-                a.buildXML(builder);
+                _left.buildXML(builder);
               });
           builder.element('Right',
               nest : () {
-                b.buildXML(builder);
+                _right.buildXML(builder);
               });
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'SmallerThanOrEquals');
-    }
-    return false;
   }
 
   SmallerThanOrEquals.XML(xml.XmlElement node) {
@@ -267,26 +240,19 @@ class LargerThan extends Condition {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('LargerThan',
+    super.element(builder,
         attributes: {
         },
         nest : () {
           builder.element('Left',
               nest : () {
-                a.buildXML(builder);
+                _left.buildXML(builder);
               });
           builder.element('Right',
               nest : () {
-                b.buildXML(builder);
+                _right.buildXML(builder);
               });
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'LargerThan');
-    }
-    return false;
   }
 
   LargerThan.XML(xml.XmlElement node) {
@@ -326,27 +292,21 @@ class LargerThanOrEquals extends Condition {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('LargerThanOrEquals',
+    super.element(builder,
         attributes: {
         },
         nest : () {
           builder.element('Left',
               nest : () {
-                a.buildXML(builder);
+                _left.buildXML(builder);
               });
           builder.element('Right',
               nest : () {
-                b.buildXML(builder);
+                _right.buildXML(builder);
               });
         });
   }
 
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'LargerThanOrEquals');
-    }
-    return false;
-  }
 
   LargerThanOrEquals.XML(xml.XmlElement node) {
     node.children.forEach((xml.XmlNode childNode) {
@@ -378,19 +338,12 @@ class TrueLiteral extends Condition {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('TrueLiteral',
+    super.element(builder,
         attributes: {
         },
         nest: () {
 
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'TrueLiteral');
-    }
-    return false;
   }
 
   TrueLiteral.XML(xml.XmlElement node) {
@@ -407,19 +360,12 @@ class FalseLiteral extends Condition {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('FalseLiteral',
+    super.element(builder,
         attributes: {
         },
         nest: () {
 
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'FalseLiteral');
-    }
-    return false;
   }
 
   FalseLiteral.XML(xml.XmlElement node) {
@@ -438,19 +384,12 @@ class Not extends Condition {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Not',
+    super.element(builder,
         attributes: {
         },
         nest: () {
           condition.buildXML(builder);
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Not');
-    }
-    return false;
   }
 
   Not.XML(xml.XmlElement node) {

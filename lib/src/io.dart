@@ -17,19 +17,12 @@ class Print extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Print',
+    super.element(builder,
         attributes: {
         },
         nest: () {
           _block.buildXML(builder);
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Print');
-    }
-    return false;
   }
 
   Print.XML(xml.XmlElement node) {

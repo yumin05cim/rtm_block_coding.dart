@@ -21,19 +21,12 @@ class IntegerLiteral extends Block {
 
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Integer',
+    super.element(builder,
         attributes: {
           'value' : value
         },
         nest: () {
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Integer');
-    }
-    return false;
   }
 
   IntegerLiteral.XML(xml.XmlElement node) {
@@ -58,19 +51,12 @@ class RealLiteral extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Real',
+    super.element(builder,
         attributes: {
           'value' : value
         },
         nest: () {
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'RealLiteral');
-    }
-    return false;
   }
 
   RealLiteral.XML(xml.XmlElement node) {
@@ -96,19 +82,12 @@ class StringLiteral extends Block {
 
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('StringLiteral',
+    super.element(builder,
         attributes: {
           'value' : value
         },
         nest: () {
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'StringLiteral');
-    }
-    return false;
   }
 
   StringLiteral.XML(xml.XmlElement node) {

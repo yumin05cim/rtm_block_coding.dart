@@ -217,20 +217,13 @@ class DataType {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('DataType',
+    super.element(builder,
         attributes: {
           'typename':  typename,
         },
         nest: () {
 
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'DataType');
-    }
-    return false;
   }
 
   DataType.XML(xml.XmlElement node) {
