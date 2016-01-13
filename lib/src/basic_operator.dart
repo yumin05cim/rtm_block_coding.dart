@@ -78,17 +78,20 @@ class SetVariable extends Block {
   }
 }
 
-class Add extends Block {
+class BasicOperator extends Block {
+  Block _a;
+  Block _b;
 
-  Block a;
-  Block b;
+  get a => _a;
+  get b => _b;
 
-  Add(this.a, this.b) : super() {}
+  String _operatorString = 'foo';
+
+  BasicOperator(this._a, this._b, this._operatorString) {}
 
   String toPython(int indentLevel) {
-    return "${a.toPython(0)} + ${b.toPython(0)}";
+    return "${a.toPython(0)} ${_operatorString} ${b.toPython(0)}";
   }
-
 
   void buildXML(xml.XmlBuilder builder) {
     super.element(builder,
@@ -107,123 +110,48 @@ class Add extends Block {
   }
 
 
-  Add.XML(xml.XmlElement node) {
+  void loadXML(xml.XmlElement node) {
     namedChildChildren(node, 'a', (xml.XmlElement e) {
-      a = BlockLoader.parseBlock(e);
+      _a = BlockLoader.parseBlock(e);
     });
     namedChildChildren(node, 'b', (xml.XmlElement e) {
-      b = BlockLoader.parseBlock(e);
+      _b = BlockLoader.parseBlock(e);
     });
   }
 }
 
-class Subtract extends Block {
-  Block a;
-  Block b;
+class Add extends BasicOperator {
 
-  Subtract(this.a, this.b) : super() {}
+  Add(Block a_, Block b_) : super(a_, b_, '+') {}
 
-  String toPython(int indentLevel) {
-    return "${a.toPython(0)} - ${b.toPython(0)}";
+  Add.XML(xml.XmlElement node) : super(null, null, '+') {
+    loadXML(node);
   }
+}
 
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest : () {
-          builder.element('a',
-              nest : () {
-                a.buildXML(builder);
-              });
-          builder.element('b',
-              nest : () {
-                b.buildXML(builder);
-              });
-        });
-  }
+class Subtract extends BasicOperator {
 
-  Subtract.XML(xml.XmlElement node) {
-    namedChildChildren(node, 'a', (xml.XmlElement e) {
-      a = BlockLoader.parseBlock(e);
-    });
-    namedChildChildren(node, 'b', (xml.XmlElement e) {
-      b = BlockLoader.parseBlock(e);
-    });
+  Subtract(Block a_, Block b_) : super(a_, b_, '-') {}
 
+  Subtract.XML(xml.XmlElement node) : super(null, null, '-') {
+    loadXML(node);
   }
 
 }
 
-class Multiply extends Block {
-  Block a;
-  Block b;
+class Multiply extends BasicOperator {
+  Subtract(Block a_, Block b_) : super(a_, b_, '*') {}
 
-  Multiply(this.a, this.b) : super() {}
-
-  String toPython(int indentLevel) {
-    return "${a.toPython(0)} * ${b.toPython(0)}";
-  }
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest : () {
-          builder.element('a',
-              nest : () {
-                a.buildXML(builder);
-              });
-          builder.element('b',
-              nest : () {
-                b.buildXML(builder);
-              });
-        });
-  }
-
-  Multiply.XML(xml.XmlElement node) {
-    namedChildChildren(node, 'a', (xml.XmlElement e) {
-      a = BlockLoader.parseBlock(e);
-    });
-    namedChildChildren(node, 'b', (xml.XmlElement e) {
-      b = BlockLoader.parseBlock(e);
-    });
+  Subtract.XML(xml.XmlElement node) : super(null, null, '*') {
+    loadXML(node);
   }
 }
 
 
-class Div extends Block {
-  Block a;
-  Block b;
+class Div extends BasicOperator {
+  Div(Block a_, Block b_) : super(a_, b_, '/') {}
 
-  Div(this.a, this.b) : super() {}
-
-  String toPython(int indentLevel) {
-    return "${a.toPython(0)} / ${b.toPython(0)}";
-  }
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest : () {
-          builder.element('Left',
-              nest : () {
-                a.buildXML(builder);
-              });
-          builder.element('Right',
-              nest : () {
-                b.buildXML(builder);
-              });
-        });
-  }
-
-  Div.XML(xml.XmlElement node) {
-    namedChildChildren(node, 'Leftt', (xml.XmlElement e) {
-      a = BlockLoader.parseBlock(e);
-    });
-    namedChildChildren(node, 'Right', (xml.XmlElement e) {
-      b = BlockLoader.parseBlock(e);
-    });
+  Div.XML(xml.XmlElement node) : super(null, null, '/') {
+    loadXML(node);
   }
 }

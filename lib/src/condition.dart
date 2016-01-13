@@ -17,35 +17,35 @@ abstract class Condition extends Block {
   */
 }
 
-class Comparison extends Condition {
-  String operatorString = 'foo';
+class BasicComparison extends Condition {
+  String _operatorString = 'foo';
   Block _right;
   Block _left;
 
 
   get right => _right;
+
   get left => _left;
 
-  Comparison(this._left, this._right, this.operatorString) {}
+  BasicComparison(this._left, this._right, this._operatorString) {}
 
   String toPython(int indentLevel) {
-    return "${_left.toPython(0)} ${operatorString} ${_right.toPython(0)}";
+    return "${_left.toPython(0)} ${_operatorString} ${_right.toPython(0)}";
   }
 
   void buildXML(xml.XmlBuilder builder) {
     super.element(builder,
         attributes: {
         },
-        nest : () {
+        nest: () {
           builder.element('Left',
-              nest : () {
+              nest: () {
                 _left.buildXML(builder);
               });
           builder.element('Right',
-              nest : () {
+              nest: () {
                 _right.buildXML(builder);
               });
-
         });
   }
 
@@ -56,65 +56,63 @@ class Comparison extends Condition {
     namedChildChildren(node, 'Left', (xml.XmlElement e) {
       _left = BlockLoader.parseBlock(e);
     });
-
   }
-
 }
 
-class Equals extends Comparison {
+class Equals extends BasicComparison {
 
-  Equals(Block left, Block right) : super(left, right, '=='){
+  Equals(Block left, Block right) : super(left, right, '==') {
   }
 
-  Equals.XML(xml.XmlElement node) {
+  Equals.XML(xml.XmlElement node) : super(null, null, '==') {
     super.loadXML(node);
   }
 }
 
 
-class NotEquals extends Comparison {
+class NotEquals extends BasicComparison {
 
   NotEquals(Block left, Block right) : super(left, right, '!='){
   }
 
-  NotEquals.XML(xml.XmlElement node) {
+  NotEquals.XML(xml.XmlElement node) : super(null, null, '!=') {
     super.loadXML(node);
   }
 }
 
 
-class SmallerThan extends Comparison {
+class SmallerThan extends BasicComparison {
   SmallerThan(Block left, Block right) : super(left, right, '<'){
   }
 
-  SmallerThan.XML(xml.XmlElement node) {
+  SmallerThan.XML(xml.XmlElement node) : super(null, null, '<') {
     super.loadXML(node);
   }
 }
 
 
-class SmallerThanOrEquals extends Comparison {
+class SmallerThanOrEquals extends BasicComparison {
   SmallerThanOrEquals(Block left, Block right) : super(left, right, '<='){
   }
 
-  SmallerThanOrEquals.XML(xml.XmlElement node) {
+  SmallerThanOrEquals.XML(xml.XmlElement node) : super(null, null, '<=') {
     super.loadXML(node);
   }
 }
 
-class LargerThan extends Comparison {
+class LargerThan extends BasicComparison {
   LargerThan(Block left, Block right) : super(left, right, '>'){
   }
-  LargerThan.XML(xml.XmlElement node) {
+  LargerThan.XML(xml.XmlElement node) : super(null, null, '>')  {
     super.loadXML(node);
   }
 }
 
 
-class LargerThanOrEquals extends Comparison {
-  LargerThanOrEquals(Block left, Block right) : super(left, right, '>'){
+class LargerThanOrEquals extends BasicComparison {
+  LargerThanOrEquals(Block left, Block right) : super(left, right, '>='){
   }
-  LargerThanOrEquals.XML(xml.XmlElement node) {
+  LargerThanOrEquals.XML(xml.XmlElement node) : super(null, null, '>=') {
     super.loadXML(node);
   }
 }

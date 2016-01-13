@@ -27,8 +27,6 @@ class BlockLoader {
   ];
 
   static bool isClassXmlNode(xml.XmlNode node, Type type) {
-    print('Check:' + node.toString());
-    print('Type: ' + type.toString());
     if (node is xml.XmlElement) {
       bool flag = (node.name.toString() == type.toString());
       print(flag);
