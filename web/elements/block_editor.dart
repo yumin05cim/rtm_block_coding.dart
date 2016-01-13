@@ -137,6 +137,7 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('if-statement')
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
+<<<<<<< HEAD
 /*
       for (program.Statement s in block.yes) {
         v.attachTrue(parseStatement(v, s));
@@ -145,6 +146,16 @@ class BlockEditor extends PolymerElement {
         v.attachFalse(parseStatement(v, s));
       }
 */
+=======
+      for (program.Statement s_ in block.yes) {
+        parseStatement(v.yes.children, s_)
+            .parentElement = v;
+      }
+      for (program.Statement s_ in block.no) {
+        parseStatement(v.no.children, s_)
+            .parentElement = v;
+      }
+>>>>>>> b8b51d57f855ac1b9c8f9216e4cd09fefde5d5b0
       return v;
     }
     else if (block is program.While) {
@@ -292,7 +303,7 @@ class BlockEditor extends PolymerElement {
   }
 
 
-  void parseStatement(var children, program.Statement s) {
+  parseStatement(var children, program.Statement s) {
     var elem = parseBlock(s.block);
     if (globalController.selectedElement != null) {
       if (globalController.selectedElement.model == s.block) {
@@ -301,6 +312,7 @@ class BlockEditor extends PolymerElement {
       }
     }
     children.add(elem);
+    return elem;
   }
 
 }

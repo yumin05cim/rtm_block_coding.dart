@@ -12,36 +12,50 @@ class If extends PolymerElement {
 
   set model(program.If m) {
     _model = m;
-    condition = m.condition;
-    yes = m.yes;
-    no = m.no;
+    ///condition = m.condition;
+    //yes = m.yes;
+    //no = m.no;
   }
 
   get model => _model;
 
+  get yes => $['yes-content'];
+  get no => $['no-content'];
+
+
+  /*
   @published program.Condition condition = null;
   @published program.StatementList yes;
   @published program.StatementList no;
+  */
 
   If.created() : super.created();
 
   void attached() {
 
+<<<<<<< HEAD
 /*
+=======
+    /*
+>>>>>>> b8b51d57f855ac1b9c8f9216e4cd09fefde5d5b0
     $['true-input'].onChange.listen(
         (var e) {
-          _model.yes = yes;
+          //_model.yes = yes;
           globalController.refreshPanel();
     }
     );
 
     $['false-input'].onChange.listen(
         (var e) {
-          _model.no = no;
+          //_model.no = no;
           globalController.refreshPanel();
       }
     );
+<<<<<<< HEAD
 */
+=======
+    */
+>>>>>>> b8b51d57f855ac1b9c8f9216e4cd09fefde5d5b0
 
     this.onClick.listen(
       (var e) {
@@ -58,6 +72,7 @@ class If extends PolymerElement {
     e.parentElement = this;
   }
 
+<<<<<<< HEAD
   void attachTrue(var e) {
     $['true-content'].children.clear();
     $['true-content'].children.add(e);
@@ -69,6 +84,15 @@ class If extends PolymerElement {
     $['false-content'].children.add(e);
     e.parentElement = this;
   }
+=======
+  /*
+  void attachCondition(var e) {
+    $['condition-content'].children.clear();
+    $['condition-content'].children.add(e);
+    e.parentElement = this;
+  }
+  */
+>>>>>>> b8b51d57f855ac1b9c8f9216e4cd09fefde5d5b0
 
   void select() {
     $['target'].style.border = 'ridge';

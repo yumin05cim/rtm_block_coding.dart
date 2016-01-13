@@ -129,8 +129,31 @@ class Controller {
       if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
-      if (selectedStatement() is ReadInPort) {
+      else if (selectedStatement() is ReadInPort) {
         selectedStatement().model.statements.add(new_s);
+      } else {
+        if (selectedElement.parentElement is If) {
+          bool found = false;
+          for(program.Statement s in selectedElement.parentElement.model.yes) {
+            if ( s.block == selectedElement.model) {
+              found = true;
+            }
+          }
+          if (found) {
+            selectedElement.parentElement.model.yes.add(new_s);
+          }
+
+          found = false;
+          for(program.Statement s in selectedElement.parentElement.model.no) {
+            if ( s.block == selectedElement.model) {
+              found = true;
+            }
+          }
+          if (found) {
+            selectedElement.parentElement.model.no.add(new_s);
+          }
+
+        }
       }
     }
 
@@ -341,12 +364,21 @@ class Controller {
 
     if(command =='if') {
       program.If v = new program.If(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)),
+<<<<<<< HEAD
           new program.StatementList([new program.Statement(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)))]),
           no:new program.StatementList([new program.Statement(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)))]));
+=======
+          new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable0'), new program.IntegerLiteral(1)))]),
+          no:new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable1'), new program.IntegerLiteral(1)))]));
+>>>>>>> b8b51d57f855ac1b9c8f9216e4cd09fefde5d5b0
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
         app.statements.add(new_s);
+      } else if (selectedStatement() is ReadInPort) {
+        selectedStatement().model.statements.add(new_s);
+      } else {
+
       }
     }
 
@@ -362,7 +394,6 @@ class Controller {
 
     if(command == 'equals') {
       program.Equals v = new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
-      program.Statement new_s = new program.Statement(v);
 
       if(selectedStatement() == null) {
 
