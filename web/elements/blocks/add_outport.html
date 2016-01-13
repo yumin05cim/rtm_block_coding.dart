@@ -27,7 +27,6 @@
                 border-radius: 0.3em;
             }
 
-
             :host > div > paper-input#name-input {
                 width: 50px;
                 min-width: 50px;
@@ -38,6 +37,22 @@
             }
 
         </style>
+
+        <!--Japanese ver.-->
+        <div id="title-area" horizontal layout center>
+            <div end>出力ポート (名称: </div>
+            <paper-input id="name-input" one value="{{port_name}}"></paper-input>
+            <div end>, データタイプ: </div>
+            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
+                <paper-dropdown id="dropdown" class="dropdown">
+                    <core-menu class="menu" id="menu-content"></core-menu>
+                </paper-dropdown>
+            </paper-dropdown-menu>
+            <div end>)</div>
+        </div>
+
+        <!--English ver.-->
+<!--
         <div id="title-area" horizontal layout center>
             <div end>Add OutPort (name=</div>
             <paper-input id="name-input" one value="{{port_name}}"></paper-input>
@@ -50,6 +65,8 @@
             </paper-dropdown-menu>
             <div end>)</div>
         </div>
+-->
+
     </template>
     <script type="application/dart" src="add_outport.dart"></script>
 </polymer-element>

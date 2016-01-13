@@ -34,17 +34,33 @@
             }
 
         </style>
+
+        <!--Japanese ver.-->
         <div id="target" horizontal layout center>
-            <div end>Write Data to Port (name = </div>
+            <div end>アウトポート (</div>
             <!-- <paper-input id="name-input" flex one value="{{port_name}}"></paper-input> -->
             <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
                 <paper-dropdown id="dropdown" class="dropdown">
-                    <core-menu class="menu" id="menu-content">
-                    </core-menu>
+                    <core-menu class="menu" id="menu-content"></core-menu>
+                </paper-dropdown>
+            </paper-dropdown-menu>
+            <div end>) にデータを書き込む</div>
+        </div>
+
+        <!--English ver.-->
+<!--
+        <div id="target" horizontal layout center>
+            <div end>Write Data to Port (name = </div>
+            &lt;!&ndash; <paper-input id="name-input" flex one value="{{port_name}}"></paper-input> &ndash;&gt;
+            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
+                <paper-dropdown id="dropdown" class="dropdown">
+                    <core-menu class="menu" id="menu-content"></core-menu>
                 </paper-dropdown>
             </paper-dropdown-menu>
             <div end>)</div>
         </div>
+-->
+
     </template>
     <script type="application/dart" src="write_outport.dart"></script>
 </polymer-element>

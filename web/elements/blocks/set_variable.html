@@ -41,6 +41,24 @@
             }
 
         </style>
+
+        <!--Japanese ver.-->
+        <div id="container">
+            <div id="title-area" horizontal layout center wrap>
+                <div end>代入 (変数:</div>
+                <paper-input id="variable-name-input" value="{{name}}"></paper-input>
+                <div end>)</div>
+            </div>
+            <div id="body-area">
+                <div end>(値:</div>
+                <div id="target">
+                </div>
+                <div end>)</div>
+            </div>
+        </div>
+
+        <!--English ver.-->
+<!--
         <div id="container">
             <div id="title-area" horizontal layout center wrap>
                 <div end>Set Variable (name=</div>
@@ -52,6 +70,7 @@
                 </div>
             </div>
         </div>
+-->
     </template>
     <script type="application/dart" src="set_variable.dart"></script>
 </polymer-element>

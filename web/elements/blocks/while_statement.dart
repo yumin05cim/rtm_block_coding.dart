@@ -24,6 +24,7 @@ class While extends PolymerElement {
   While.created() : super.created();
 
   void attached() {
+
     $['condition-input'].onChange.listen(
         (var e) {
       _model.condition = condition;
@@ -38,12 +39,29 @@ class While extends PolymerElement {
     }
     );
 
+
     this.onClick.listen(
         (var e) {
       globalController.setSelectedElem(e, this);
-    }
+
+      e.stopPropagation();
+
+        }
     );
   }
+/*
+  void attachRight(var e) {
+    $['statement-input'].children.clear();
+    $['statement-input'].children.add(e);
+    e.parentElement = this;
+  }
+
+  void attachLeft(var e) {
+    $['condition-input'].children.clear();
+    $['condition-input'].children.add(e);
+    e.parentElement = this;
+  }
+*/
 
   void select() {
     $['target'].style.border = 'ridge';
