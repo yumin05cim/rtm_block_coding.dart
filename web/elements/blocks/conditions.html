@@ -56,3 +56,57 @@
     </template>
     <script type="application/dart" src="conditions.dart"></script>
 </polymer-element>
+
+
+<polymer-element name="notequals-element" attributes="value">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style type='text/css'>
+            :host {
+            }
+            #target {
+                margin-top: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #BDE1F0;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="target" horizontal layout center>
+            <div id="left-content"></div>
+            <div self-center layout end>と</div>
+            <div id="right-content"></div>
+            <div self-center layout end>は等しくない</div>
+        </div>
+
+        <!--English ver.-->
+        <!--
+                <div id="target" horizontal layout center>
+                    <div end>Calc: </div>
+                      <div id="add-value-a-content"></div>
+                    &lt;!&ndash; <paper-input id="value1-input" flex value="{{value_a}}"></paper-input> &ndash;&gt;
+                    <div end> + </div>
+                      <div id="add-value-b-content"></div>
+                    &lt;!&ndash; <paper-input id="value2-input" flex value="{{value_b}}"></paper-input> &ndash;&gt;
+                    <div end> </div>
+                </div>
+        -->
+
+    </template>
+    <script type="application/dart" src="conditions.dart"></script>
+</polymer-element>

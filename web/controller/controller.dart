@@ -368,6 +368,8 @@ class Controller {
 
       } else if(selectedElement is If) {
         selectedStatement().model.condition = v;
+      } else if(selectedElement.parentElement is If) {
+        selectedStatement().parentElement.model.condition = v;
       }
     }
 
@@ -379,6 +381,8 @@ class Controller {
 
       } else if(selectedElement is If) {
         selectedStatement().model.condition = v;
+      } else if(selectedElement.parentElement is If) {
+        selectedStatement().parentElement.model.condition = v;
       }
     }
 

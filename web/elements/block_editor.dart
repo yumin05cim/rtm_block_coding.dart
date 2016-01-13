@@ -150,6 +150,13 @@ class BlockEditor extends PolymerElement {
       v.attachRight(parseBlock(block.right));
       return v;
     }
+    else if (block is program.NotEquals) {
+      var v = new html.Element.tag('notequals-element')
+        ..model = block;
+      v.attachLeft(parseBlock(block.left));
+      v.attachRight(parseBlock(block.right));
+      return v;
+    }
 /*    else if (block is program.While) {
       var v = new html.Element.tag('while-statement')
         ..model = block;
