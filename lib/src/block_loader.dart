@@ -26,14 +26,18 @@ class BlockLoader {
     AccessOutPort, AddOutPort, WriteOutPort,
   ];
 
+  static bool isClassXmlNode(xml.XmlNode node, Type type) {
+    if (node is xml.XmlElement) {
+      return (node.name == type.runtimeType.toString());
+    }
+    return false;
+  }
+
   static Block parseBlock(xml.XmlNode node) {
-    print('parseBlock:'+node.toString());
     var elem = null;
     blockTypes.forEach((Type T) {
-      ClassMirror tMirror = reflectClass(T);
-      if(tMirror.invoke(new Symbol('isClassXmlNode'), [node]).reflectee) {
-        elem = tMirror.newInstance(new Symbol('XML'), [node]).reflectee;
-      } else {
+      if(isClassXmlNode(node, T)) {
+        elem = reflectClass(T).newInstance(new Symbol('XML'), [node]).reflectee;
       }
     });
 
