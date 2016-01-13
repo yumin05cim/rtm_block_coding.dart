@@ -77,7 +77,6 @@ class SetVariable extends Block {
   }
 
   static bool isClassXmlNode(xml.XmlNode node) {
-    print('SetValue isClassXmlNode?:' + node.toString());
     if(node is xml.XmlElement) {
       return (node.name.toString() == 'SetVariable');
     }
@@ -85,7 +84,6 @@ class SetVariable extends Block {
   }
 
   SetVariable.XML(xml.XmlElement node) {
-    print('SetVariable.XML:' + node.toString());
     node.children.forEach((xml.XmlNode childNode) {
       if (childNode is xml.XmlElement) {
         if (childNode.name.toString() == 'Left') {
