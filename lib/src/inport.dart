@@ -50,10 +50,8 @@ class AddInPort extends Block {
 
   AddInPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
-    node.children.forEach((xml.XmlNode childNode) {
-      if(childNode is xml.XmlElement) {
-        dataType = new DataType.XML(childNode);
-      }
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
     });
   }
 }
@@ -99,10 +97,8 @@ class ReadInPort extends Block {
 
   ReadInPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
-    node.children.forEach((xml.XmlNode childNode) {
-      if(childNode is xml.XmlElement) {
-        dataType = new DataType.XML(childNode);
-      }
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
     });
   }
 }
@@ -136,10 +132,8 @@ class AccessInPort extends Block {
   AccessInPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
     accessSequence = node.getAttribute('accessSequence');
-    node.children.forEach((xml.XmlNode childNode) {
-      if(childNode is xml.XmlElement) {
-        dataType = new DataType.XML(childNode);
-      }
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
     });
   }
 }
