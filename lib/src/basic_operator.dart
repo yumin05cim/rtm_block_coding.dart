@@ -21,7 +21,7 @@ class Variable extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Variable',
+    element(builder,
         attributes: {
           'name' : _name,
         },
@@ -31,7 +31,6 @@ class Variable extends Block {
   }
 
   static bool isClassXmlNode(xml.XmlNode node) {
-    print('Variable isClassXmlNode?:' + node.toString());
     if(node is xml.XmlElement) {
       return (node.name.toString() == 'Variable');
     }
@@ -39,7 +38,6 @@ class Variable extends Block {
   }
 
   Variable.XML(xml.XmlElement node) {
-    print('Variable::' + node.toString());
     _name = (node.getAttribute('name'));
   }
 }
@@ -62,7 +60,7 @@ class SetVariable extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('SetVariable',
+    super.element(builder,
         attributes: {},
         nest : () {
           builder.element('Left',
@@ -119,7 +117,7 @@ class Add extends Block {
 
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Add',
+    super.element(builder,
         attributes: {
         },
         nest : () {
@@ -175,7 +173,7 @@ class Subtract extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Subtract',
+    super.element(builder,
         attributes: {
         },
         nest : () {
@@ -230,7 +228,7 @@ class Multiply extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Multiply',
+    super.element(builder,
         attributes: {
         },
         nest : () {
@@ -285,7 +283,7 @@ class Div extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('Div',
+    super.element(builder,
         attributes: {
         },
         nest : () {

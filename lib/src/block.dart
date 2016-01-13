@@ -28,6 +28,16 @@ abstract class Block {
 
 
   void buildXML(xml.XmlBuilder builder) {}
+
+  void element(xml.XmlBuilder builder, {attributes : null, nest : null}) {
+    if (attributes == null) attributes = {};
+    if (nest == null) nest = () {};
+
+    builder.element(this.runtimeType.toString(),
+      attributes: attributes,
+      nest : nest
+    );
+  }
 }
 
 
