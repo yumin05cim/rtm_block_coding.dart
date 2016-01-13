@@ -38,6 +38,26 @@ abstract class Block {
       nest : nest
     );
   }
+
+  void child(xml.XmlNode node, Function func, {String name : null}) {
+    node.children.forEach((xml.XmlNode childNode) {
+      if(childNode is xml.XmlElement) {
+        if (name == null || childNode.name.toString() == name) {
+          func(childNode);
+        }
+      }
+    });
+  }
+
+  void namedChild(xml.XmlNode node, String name, Function func) {
+    child(node, func, name: name);
+  }
+
+  void namedChildChildren(xml.XmlNode node, String name, Function func) {
+    child(node, (xml.XmlElement e) {
+      child(e, func);
+    }, name: name);
+  }
 }
 
 

@@ -68,25 +68,13 @@ class SetVariable extends Block {
   }
 
   SetVariable.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'Left') {
-          print('Left:' + childNode.toString());
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _left = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-
-        } else if (childNode.name.toString() == 'Right') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _right = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
+    namedChildChildren(node, 'Left', (xml.XmlElement e) {
+      _left = BlockLoader.parseBlock(e);
     });
+    namedChildChildren(node, 'Right', (xml.XmlElement e) {
+      _right = BlockLoader.parseBlock(e);
+    });
+
   }
 }
 
@@ -120,22 +108,11 @@ class Add extends Block {
 
 
   Add.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'a') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              a = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'b') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              b = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
+    namedChildChildren(node, 'a', (xml.XmlElement e) {
+      a = BlockLoader.parseBlock(e);
+    });
+    namedChildChildren(node, 'b', (xml.XmlElement e) {
+      b = BlockLoader.parseBlock(e);
     });
   }
 }
@@ -167,23 +144,13 @@ class Subtract extends Block {
   }
 
   Subtract.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'a') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              a = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'b') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              b = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
+    namedChildChildren(node, 'a', (xml.XmlElement e) {
+      a = BlockLoader.parseBlock(e);
     });
+    namedChildChildren(node, 'b', (xml.XmlElement e) {
+      b = BlockLoader.parseBlock(e);
+    });
+
   }
 
 }
@@ -215,22 +182,11 @@ class Multiply extends Block {
   }
 
   Multiply.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'a') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              a = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'b') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              b = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
+    namedChildChildren(node, 'a', (xml.XmlElement e) {
+      a = BlockLoader.parseBlock(e);
+    });
+    namedChildChildren(node, 'b', (xml.XmlElement e) {
+      b = BlockLoader.parseBlock(e);
     });
   }
 }
@@ -263,22 +219,11 @@ class Div extends Block {
   }
 
   Div.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'Left') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              a = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'Right') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              b = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
+    namedChildChildren(node, 'Leftt', (xml.XmlElement e) {
+      a = BlockLoader.parseBlock(e);
+    });
+    namedChildChildren(node, 'Right', (xml.XmlElement e) {
+      b = BlockLoader.parseBlock(e);
     });
   }
 }

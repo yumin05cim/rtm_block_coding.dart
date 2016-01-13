@@ -17,18 +17,19 @@ abstract class Condition extends Block {
   */
 }
 
-class Equals extends Condition {
-  Block _a;
-  Block _b;
+class Comparison extends Condition {
+  String operatorString = 'foo';
+  Block _right;
+  Block _left;
 
-  get a => _a;
-  get b => _b;
 
-  Equals(this._a, this._b) {
-  }
+  get right => _right;
+  get left => _left;
+
+  Comparison(this._left, this._right, this.operatorString) {}
 
   String toPython(int indentLevel) {
-    return "${_a.toPython(0)} == ${_b.toPython(0)}";
+    return "${_left.toPython(0)} ${operatorString} ${_right.toPython(0)}";
   }
 
   void buildXML(xml.XmlBuilder builder) {
@@ -36,296 +37,85 @@ class Equals extends Condition {
         attributes: {
         },
         nest : () {
-          builder.element('a',
+          builder.element('Left',
               nest : () {
-                a.buildXML(builder);
+                _left.buildXML(builder);
               });
-          builder.element('b',
+          builder.element('Right',
               nest : () {
-                b.buildXML(builder);
+                _right.buildXML(builder);
               });
+
         });
+  }
+
+  void loadXML(xml.XmlElement node) {
+    namedChildChildren(node, 'Right', (xml.XmlElement e) {
+      _right = BlockLoader.parseBlock(e);
+    });
+    namedChildChildren(node, 'Left', (xml.XmlElement e) {
+      _left = BlockLoader.parseBlock(e);
+    });
+
+  }
+
+}
+
+class Equals extends Comparison {
+
+  Equals(Block left, Block right) : super(left, right, '=='){
   }
 
   Equals.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'a') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _a = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'b') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _b = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
-    });
+    super.loadXML(node);
   }
 }
 
 
-class NotEquals extends Condition {
-  Block _a;
-  Block _b;
+class NotEquals extends Comparison {
 
-  get a => _a;
-  get b => _b;
-
-  NotEquals(this._a, this._b) {
-  }
-
-  String toPython(int indentLevel) {
-    return "${_a.toPython(0)} != ${_b.toPython(0)}";
-  }
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest : () {
-          builder.element('a',
-              nest : () {
-                a.buildXML(builder);
-              });
-          builder.element('b',
-              nest : () {
-                b.buildXML(builder);
-              });
-        });
+  NotEquals(Block left, Block right) : super(left, right, '!='){
   }
 
   NotEquals.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'a') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _a = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'b') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _b = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
-    });
+    super.loadXML(node);
   }
 }
 
 
-class SmallerThan extends Condition {
-  Block _left;
-  Block _right;
-
-  get left => _left;
-  get right => _right;
-
-  SmallerThan(this._left, this._right) {
+class SmallerThan extends Comparison {
+  SmallerThan(Block left, Block right) : super(left, right, '<'){
   }
-
-  String toPython(int indentLevel) {
-    return "${_left.toPython(0)} <  ${_right.toPython(0)}";
-  }
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest : () {
-          builder.element('Left',
-              nest : () {
-                _left.buildXML(builder);
-              });
-          builder.element('Right',
-              nest : () {
-                _right.buildXML(builder);
-              });
-        });
-  }
-
 
   SmallerThan.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'Left') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _left = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'Right') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _right = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
-    });
+    super.loadXML(node);
   }
 }
 
 
-class SmallerThanOrEquals extends Condition {
-  Block _left;
-  Block _right;
-
-  get left => _left;
-  get right => _right;
-
-  SmallerThanOrEquals(this._left, this._right) {
-  }
-
-  String toPython(int indentLevel) {
-    return "${_left.toPython(0)} <=  ${_right.toPython(0)}";
-  }
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest : () {
-          builder.element('Left',
-              nest : () {
-                _left.buildXML(builder);
-              });
-          builder.element('Right',
-              nest : () {
-                _right.buildXML(builder);
-              });
-        });
+class SmallerThanOrEquals extends Comparison {
+  SmallerThanOrEquals(Block left, Block right) : super(left, right, '<='){
   }
 
   SmallerThanOrEquals.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'Left') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _left = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'Right') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _right = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
-    });
+    super.loadXML(node);
   }
 }
 
-class LargerThan extends Condition {
-  Block _left;
-  Block _right;
-
-  get left => _left;
-  get right => _right;
-
-  LargerThan(this._left, this._right) {
+class LargerThan extends Comparison {
+  LargerThan(Block left, Block right) : super(left, right, '>'){
   }
-
-  String toPython(int indentLevel) {
-    return "${_left.toPython(0)} >  ${_right.toPython(0)}";
-  }
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest : () {
-          builder.element('Left',
-              nest : () {
-                _left.buildXML(builder);
-              });
-          builder.element('Right',
-              nest : () {
-                _right.buildXML(builder);
-              });
-        });
-  }
-
   LargerThan.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'Left') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _left = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'Right') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _right = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
-    });
+    super.loadXML(node);
   }
 }
 
 
-class LargerThanOrEquals extends Condition {
-  Block _left;
-  Block _right;
-
-  get left => _left;
-  get right => _right;
-
-  LargerThanOrEquals(this._left, this._right) {
+class LargerThanOrEquals extends Comparison {
+  LargerThanOrEquals(Block left, Block right) : super(left, right, '>'){
   }
-
-  String toPython(int indentLevel) {
-    return "${_left.toPython(0)} >=  ${_right.toPython(0)}";
-  }
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest : () {
-          builder.element('Left',
-              nest : () {
-                _left.buildXML(builder);
-              });
-          builder.element('Right',
-              nest : () {
-                _right.buildXML(builder);
-              });
-        });
-  }
-
-
   LargerThanOrEquals.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'Left') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _left = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'Right') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              _right = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        }
-      }
-    });
+    super.loadXML(node);
   }
 }
 
@@ -347,7 +137,6 @@ class TrueLiteral extends Condition {
   }
 
   TrueLiteral.XML(xml.XmlElement node) {
-
   }
 }
 
@@ -369,7 +158,6 @@ class FalseLiteral extends Condition {
   }
 
   FalseLiteral.XML(xml.XmlElement node) {
-
   }
 }
 
@@ -393,10 +181,8 @@ class Not extends Condition {
   }
 
   Not.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        condition = BlockLoader.parseBlock(childNode);
-      }
+    child(node, (xml.XmlElement e) {
+      condition = BlockLoader.parseBlock(e);
     });
   }
 }
