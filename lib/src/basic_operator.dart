@@ -30,13 +30,6 @@ class Variable extends Block {
         });
   }
 
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Variable');
-    }
-    return false;
-  }
-
   Variable.XML(xml.XmlElement node) {
     _name = (node.getAttribute('name'));
   }
@@ -72,13 +65,6 @@ class SetVariable extends Block {
                 _right.buildXML(builder);
               });
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'SetVariable');
-    }
-    return false;
   }
 
   SetVariable.XML(xml.XmlElement node) {
@@ -133,14 +119,6 @@ class Add extends Block {
   }
 
 
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Add');
-    }
-    return false;
-  }
-
   Add.XML(xml.XmlElement node) {
     node.children.forEach((xml.XmlNode childNode) {
       if (childNode is xml.XmlElement) {
@@ -186,13 +164,6 @@ class Subtract extends Block {
                 b.buildXML(builder);
               });
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Subtract');
-    }
-    return false;
   }
 
   Subtract.XML(xml.XmlElement node) {
@@ -243,13 +214,6 @@ class Multiply extends Block {
         });
   }
 
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Mulatiply');
-    }
-    return false;
-  }
-
   Multiply.XML(xml.XmlElement node) {
     node.children.forEach((xml.XmlNode childNode) {
       if (childNode is xml.XmlElement) {
@@ -296,13 +260,6 @@ class Div extends Block {
                 b.buildXML(builder);
               });
         });
-  }
-
-  static bool isClassXmlNode(xml.XmlNode node) {
-    if(node is xml.XmlElement) {
-      return (node.name.toString() == 'Div');
-    }
-    return false;
   }
 
   Div.XML(xml.XmlElement node) {
