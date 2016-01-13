@@ -41,6 +41,45 @@ class Integer extends Block {
   }
 }
 
+
+
+class RealLiteral extends Block {
+
+  double _a;
+
+  get value => _a;
+
+  set value(double i) => _a = i;
+
+  RealLiteral(this._a) {}
+
+  String toPython(int indentLevel) {
+    return _a.toString();
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('Real',
+        attributes: {
+          'value' : value
+        },
+        nest: () {
+        });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'RealLiteral');
+    }
+    return false;
+  }
+
+  RealLiteral.XML(xml.XmlElement node) {
+    value = double.parse(node.getAttribute('value'));
+  }
+}
+
+
+
 class StringLiteral extends Block {
 
   String _a;
