@@ -6,6 +6,9 @@ import 'dart:core';
 import 'block.dart';
 import 'block_loader.dart';
 
+/// 変数を定義するブロック
+/// 変数名のみを格納する
+/// もしC++にまで拡張するなら変数のタイプも持っておくべきだ
 class Variable extends Block {
 
   String _name;
@@ -35,6 +38,10 @@ class Variable extends Block {
   }
 }
 
+/// 変数にデータを代入する処理
+/// ＝演算子
+/// 代入先は基本的に変数だからleftはVariable型
+/// 右辺はブロックが入る．Addなどの演算結果も受けることができる
 class SetVariable extends Block {
   Variable _left;
   Block _right;
@@ -78,6 +85,9 @@ class SetVariable extends Block {
   }
 }
 
+/// 中置型の二項演算子の親クラス
+/// operatorStringに*や+, /, %などの演算子の文字が入る
+/// このクラスを継承してAddなどを作ること
 class BasicOperator extends Block {
   Block _a;
   Block _b;
@@ -120,6 +130,7 @@ class BasicOperator extends Block {
   }
 }
 
+/// 加算
 class Add extends BasicOperator {
 
   Add(Block a_, Block b_) : super(a_, b_, '+') {}
@@ -129,6 +140,8 @@ class Add extends BasicOperator {
   }
 }
 
+
+/// 減産
 class Subtract extends BasicOperator {
 
   Subtract(Block a_, Block b_) : super(a_, b_, '-') {}
@@ -139,6 +152,7 @@ class Subtract extends BasicOperator {
 
 }
 
+/// 乗算
 class Multiply extends BasicOperator {
   Subtract(Block a_, Block b_) : super(a_, b_, '*') {}
 
@@ -147,7 +161,7 @@ class Multiply extends BasicOperator {
   }
 }
 
-
+/// 除算
 class Div extends BasicOperator {
   Div(Block a_, Block b_) : super(a_, b_, '/') {}
 

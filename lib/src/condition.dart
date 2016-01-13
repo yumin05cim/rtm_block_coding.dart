@@ -6,22 +6,24 @@ import 'block.dart';
 import 'package:xml/xml.dart' as xml;
 import 'block_loader.dart';
 
+
+/// 条件部のためのクラス
+/// 条件部はbool型になるため，
+/// 単なるBlockを受けるようにしていると
+/// 構文チェックが難しい
+/// そこでBool型はConditionクラスを継承することにする．
 abstract class Condition extends Block {
 
   Condition() {}
 
-  /*
-  String toPython(int indentLevel) {
-    return _block.toPython(0);
-  }
-  */
 }
 
+
+/// 中置型の比較演算子の抽象クラス
 class BasicComparison extends Condition {
   String _operatorString = 'foo';
   Block _right;
   Block _left;
-
 
   get right => _right;
 
