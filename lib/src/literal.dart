@@ -4,50 +4,23 @@ library application.literal;
 import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
+import 'condition.dart';
 
-class IntegerLiteral extends Block {
 
-  int _a;
+abstract class BasicLiteral<T> extends Block {
+  T _value;
 
-  get value => _a;
+  get value => _value;
 
-  set value(int i) => _a = i;
+  set value(T v) {
+    _value = v;
+  }
 
-  IntegerLiteral(this._a) {}
+
+  BasicLiteral(this._value) {}
 
   String toPython(int indentLevel) {
-    return _a.toString();
-  }
-
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-          'value' : value
-        },
-        nest: () {
-        });
-  }
-
-  IntegerLiteral.XML(xml.XmlElement node) {
-    value = int.parse(node.getAttribute('value'));
-  }
-}
-
-
-
-class RealLiteral extends Block {
-
-  double _a;
-
-  get value => _a;
-
-  set value(double i) => _a = i;
-
-  RealLiteral(this._a) {}
-
-  String toPython(int indentLevel) {
-    return _a.toString();
+    return _value.toString();
   }
 
   void buildXML(xml.XmlBuilder builder) {
@@ -55,42 +28,96 @@ class RealLiteral extends Block {
         attributes: {
           'value' : value
         },
-        nest: () {
-        });
+        nest: () {});
   }
 
-  RealLiteral.XML(xml.XmlElement node) {
-    value = double.parse(node.getAttribute('value'));
+  void loadXML(xml.XmlElement node) {
+    value = parse(node.getAttribute('value'));
+  }
+
+  T parse(String valueString);
+}
+
+
+class IntegerLiteral extends BasicLiteral<int> {
+
+  IntegerLiteral(int a) : super(a) {}
+
+  int parse(String valueString) => int.parse(valueString);
+
+  IntegerLiteral.XML(xml.XmlElement node) : super(0) {
+    loadXML(node);
   }
 }
 
 
 
-class StringLiteral extends Block {
+class RealLiteral extends BasicLiteral<double> {
 
-  String _a;
+  RealLiteral(double a) : super(a) {}
 
-  get value => _a;
+  double parse(String valueString) => double.parse(valueString);
 
-  set value(String s) => _a = s;
+  RealLiteral.XML(xml.XmlElement node) : super(0) {
+    loadXML(node);
+  }
+}
 
-  StringLiteral(this._a) {}
+
+
+class StringLiteral extends BasicLiteral<String> {
+  StringLiteral(String a) : super(a) {}
+
+  String parse(String valueString) => (valueString);
+
+  StringLiteral.XML(xml.XmlElement node) : super("") {
+    loadXML(node);
+  }
 
   String toPython(int indentLevel) {
     return "'${_a.toString()}'";
   }
+}
 
+
+class TrueLiteral extends Condition {
+
+  TrueLiteral() {}
+
+  String toPython(int indentLevel) {
+    return "True";
+  }
 
   void buildXML(xml.XmlBuilder builder) {
     super.element(builder,
         attributes: {
-          'value' : value
         },
         nest: () {
+
         });
   }
 
-  StringLiteral.XML(xml.XmlElement node) {
-    value = (node.getAttribute('value'));
+  TrueLiteral.XML(xml.XmlElement node) {
+  }
+}
+
+class FalseLiteral extends Condition {
+
+  FalseLiteral() {}
+
+  String toPython(int indentLevel) {
+    return "False";
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    super.element(builder,
+        attributes: {
+        },
+        nest: () {
+
+        });
+  }
+
+  FalseLiteral.XML(xml.XmlElement node) {
   }
 }

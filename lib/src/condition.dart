@@ -117,47 +117,6 @@ class LargerThanOrEquals extends BasicComparison {
   }
 }
 
-class TrueLiteral extends Condition {
-
-  TrueLiteral() {}
-
-  String toPython(int indentLevel) {
-    return "True";
-  }
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest: () {
-
-        });
-  }
-
-  TrueLiteral.XML(xml.XmlElement node) {
-  }
-}
-
-class FalseLiteral extends Condition {
-
-  FalseLiteral() {}
-
-  String toPython(int indentLevel) {
-    return "False";
-  }
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest: () {
-
-        });
-  }
-
-  FalseLiteral.XML(xml.XmlElement node) {
-  }
-}
 
 class Not extends Condition {
 
