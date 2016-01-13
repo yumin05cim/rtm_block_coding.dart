@@ -24,7 +24,6 @@ class DataType {
     return _cs(typename);
   }
 
-
   static var _cs_typedef_map = {
     "RangeList" : "DoubleSeq",
     "ElementGeometryList" : "Geometry3DSeq",
@@ -217,7 +216,7 @@ class DataType {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
+    builder.element(this.runtimeType.toString(),
         attributes: {
           'typename':  typename,
         },

@@ -26,16 +26,11 @@ class BlockLoader {
     AccessOutPort, AddOutPort, WriteOutPort,
   ];
 
-  static bool isClassXmlNode(xml.XmlNode node, Type type) {
-    if (node is xml.XmlElement) {
-      bool flag = (node.name.toString() == type.toString());
-      print(flag);
-      return flag;
-    }
-    return false;
+  static bool isClassXmlNode(xml.XmlElement node, Type type) {
+    return (node.name.toString() == type.toString());
   }
 
-  static Block parseBlock(xml.XmlNode node) {
+  static Block parseBlock(xml.XmlElement node) {
     var elem = null;
     blockTypes.forEach((Type T) {
       if(isClassXmlNode(node, T)) {
