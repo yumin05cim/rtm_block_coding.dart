@@ -5,12 +5,12 @@ import '../../controller/controller.dart';
 
 @CustomTag('outport-data')
 class OutPortData extends PolymerElement {
-  program.OutPortData _model;
+  program.AccessOutPort _model;
 
 
   PolymerElement parentElement;
 
-  set model(program.OutPortData m) {
+  set model(program.AccessOutPort m) {
     _model = m;
     port_name = _model.name;
     port_type = _model.dataType.typename;

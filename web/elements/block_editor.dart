@@ -89,7 +89,7 @@ class BlockEditor extends PolymerElement {
       return new html.Element.tag('set-variable')
         ..model = block
         ..attachTarget(parseBlock(block.right));
-    } else if (block is program.OutPortData) {
+    } else if (block is program.AccessOutPort) {
       return new html.Element.tag('outport-data')
         ..model = block
         ..attachTarget(parseBlock(block.right));
@@ -103,7 +103,7 @@ class BlockEditor extends PolymerElement {
         parseStatement(v, s);
       }
       return v;
-    } else if (block is program.OutPortWrite) {
+    } else if (block is program.WriteOutPort) {
       var v = new html.Element.tag('write-outport')
           ..model = block;
       return v;

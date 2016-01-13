@@ -225,7 +225,7 @@ class Controller {
       List<program.AddOutPort> outPortList = onInitializeApp.find(program.AddOutPort);
       if (outPortList.length == 0) return;
 
-      program.OutPortWrite v = new program.OutPortWrite(outPortList[0].name, outPortList[0].dataType);
+      program.WriteOutPort v = new program.WriteOutPort(outPortList[0].name, outPortList[0].dataType);
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
@@ -242,7 +242,7 @@ class Controller {
       if (outPortList.length == 0) return;
 
       //program.OutPortWrite v = new program.OutPortWrite(outPortList[0].name, outPortList[0].dataType);
-      program.OutPortData v = new program.OutPortData(outPortList[0].name, outPortList[0].dataType, '', new program.IntegerLiteral(1));
+      program.AccessOutPort v = new program.AccessOutPort(outPortList[0].name, outPortList[0].dataType, '', new program.IntegerLiteral(1));
 
 
       //var outPortMap = onInitializeApp.getOutPortMap();

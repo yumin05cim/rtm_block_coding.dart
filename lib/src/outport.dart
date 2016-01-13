@@ -65,13 +65,13 @@ class AddOutPort extends Block {
   }
 }
 
-class OutPortData extends Block {
+class AccessOutPort extends Block {
   String name;
   Block right;
   DataType dataType;
   String accessSequence;
 
-  OutPortData(this.name, this.dataType, this.accessSequence, this.right) {
+  AccessOutPort(this.name, this.dataType, this.accessSequence, this.right) {
 
   }
 
@@ -80,7 +80,7 @@ class OutPortData extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('OutPortData',
+    builder.element('AccessOutPort',
         attributes: {
           'name' : name,
           'accessSequence' :accessSequence,
@@ -97,12 +97,12 @@ class OutPortData extends Block {
 
   static bool isClassXmlNode(xml.XmlNode node) {
     if(node is xml.XmlElement) {
-      return (node.name.toString() == 'OutPortData');
+      return (node.name.toString() == 'AccessOutPort');
     }
     return false;
   }
 
-  OutPortData.XML(xml.XmlElement node) {
+  AccessOutPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
     accessSequence = node.getAttribute('accessSequence');
     node.children.forEach((xml.XmlNode childNode) {
@@ -119,11 +119,11 @@ class OutPortData extends Block {
   }
 }
 
-class OutPortWrite extends Block {
+class WriteOutPort extends Block {
   String name;
   DataType dataType;
 
-  OutPortWrite(this.name, this.dataType) {
+  WriteOutPort(this.name, this.dataType) {
   }
 
   String toPython(int indentLevel) {
@@ -133,7 +133,7 @@ class OutPortWrite extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('OutPortWrite',
+    builder.element('WriteOutPort',
         attributes: {
           'name' : name
         },
@@ -144,12 +144,12 @@ class OutPortWrite extends Block {
 
   static bool isClassXmlNode(xml.XmlNode node) {
     if(node is xml.XmlElement) {
-      return (node.name.toString() == 'OutPortWrite');
+      return (node.name.toString() == 'WriteOutPort');
     }
     return false;
   }
 
-  OutPortWrite.XML(xml.XmlElement node) {
+  WriteOutPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
     node.children.forEach((xml.XmlNode childNode) {
       if(childNode is xml.XmlElement) {

@@ -23,7 +23,7 @@ class BlockLoader {
     If, While, Break,
     Print,
     AccessInPort, AddInPort, ReadInPort,
-    OutPortData, AddOutPort, OutPortWrite,
+    AccessOutPort, AddOutPort, WriteOutPort,
   ];
 
   static Block parseBlock(xml.XmlNode node) {

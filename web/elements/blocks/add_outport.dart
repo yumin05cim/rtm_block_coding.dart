@@ -46,20 +46,20 @@ class AddOutPort extends PolymerElement {
 
   void onNameChange(String new_name) {
     String old_name = _model.name;
-    List<program.OutPortData> ports = [];
-    ports.addAll(globalController.onActivatedApp.find(program.OutPortData, name: old_name));
-    ports.addAll(globalController.onExecuteApp.find(program.OutPortData, name: old_name));
-    ports.addAll(globalController.onDeactivatedApp.find(program.OutPortData, name: old_name));
-    ports.forEach((program.OutPortData port) {
+    List<program.AccessOutPort> ports = [];
+    ports.addAll(globalController.onActivatedApp.find(program.AccessOutPort, name: old_name));
+    ports.addAll(globalController.onExecuteApp.find(program.AccessOutPort, name: old_name));
+    ports.addAll(globalController.onDeactivatedApp.find(program.AccessOutPort, name: old_name));
+    ports.forEach((program.AccessOutPort port) {
       port.name = new_name;
     });
 
 
-    List<program.OutPortWrite> ports2 = [];
-    ports2.addAll(globalController.onActivatedApp.find(program.OutPortWrite, name: old_name));
-    ports2.addAll(globalController.onExecuteApp.find(program.OutPortWrite, name: old_name));
-    ports2.addAll(globalController.onDeactivatedApp.find(program.OutPortWrite, name: old_name));
-    ports2.forEach((program.OutPortWrite port) {
+    List<program.WriteOutPort> ports2 = [];
+    ports2.addAll(globalController.onActivatedApp.find(program.WriteOutPort, name: old_name));
+    ports2.addAll(globalController.onExecuteApp.find(program.WriteOutPort, name: old_name));
+    ports2.addAll(globalController.onDeactivatedApp.find(program.WriteOutPort, name: old_name));
+    ports2.forEach((program.WriteOutPort port) {
       port.name = new_name;
     });
 
@@ -73,20 +73,20 @@ class AddOutPort extends PolymerElement {
     _model.dataType = new program.DataType.fromTypeName(typename);
 
     String name_ = _model.name;
-    List<program.OutPortData> ports = [];
-    ports.addAll(globalController.onActivatedApp.find(program.OutPortData, name: name_));
-    ports.addAll(globalController.onExecuteApp.find(program.OutPortData, name: name_));
-    ports.addAll(globalController.onDeactivatedApp.find(program.OutPortData, name: name_));
-    ports.forEach((program.OutPortData port) {
+    List<program.AccessOutPort> ports = [];
+    ports.addAll(globalController.onActivatedApp.find(program.AccessOutPort, name: name_));
+    ports.addAll(globalController.onExecuteApp.find(program.AccessOutPort, name: name_));
+    ports.addAll(globalController.onDeactivatedApp.find(program.AccessOutPort, name: name_));
+    ports.forEach((program.AccessOutPort port) {
       port.dataType = _model.dataType;
       port.accessSequence = '';
     });
 
-    List<program.OutPortWrite> ports2 = [];
-    ports2.addAll(globalController.onActivatedApp.find(program.OutPortWrite, name: name_));
-    ports2.addAll(globalController.onExecuteApp.find(program.OutPortWrite, name: name_));
-    ports2.addAll(globalController.onDeactivatedApp.find(program.OutPortWrite, name: name_));
-    ports2.forEach((program.OutPortWrite port) {
+    List<program.WriteOutPort> ports2 = [];
+    ports2.addAll(globalController.onActivatedApp.find(program.WriteOutPort, name: name_));
+    ports2.addAll(globalController.onExecuteApp.find(program.WriteOutPort, name: name_));
+    ports2.addAll(globalController.onDeactivatedApp.find(program.WriteOutPort, name: name_));
+    ports2.forEach((program.WriteOutPort port) {
       port.dataType = _model.dataType;
       port.accessSequence = '';
     });
