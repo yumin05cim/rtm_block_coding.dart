@@ -12,6 +12,7 @@ import 'package:polymer/polymer.dart';
 import '../elements/blocks/addition.dart';
 import '../elements/blocks/subtraction.dart';
 import '../elements/blocks/multiplication.dart';
+import '../elements/blocks/if_statement.dart';
 
 class Controller {
 
@@ -351,7 +352,7 @@ class Controller {
 
     if(command =='while') {
       program.While v = new program.While(new program.Equals(new program.Variable('a'), new program.IntegerLiteral(1)),
-          new program.StatementList([new program.Statement(new program.TrueLiteral())]));
+      new program.StatementList([new program.Statement(new program.TrueLiteral())]));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
@@ -359,6 +360,27 @@ class Controller {
       }
     }
 
+    if(command == 'equals') {
+      program.Equals v = new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
+      program.Statement new_s = new program.Statement(v);
+
+      if(selectedStatement() == null) {
+
+      } else if(selectedElement is If) {
+        selectedStatement().model.condition = v;
+      }
+    }
+
+    if(command == 'not_equals') {
+      program.NotEquals v = new program.NotEquals(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
+      program.Statement new_s = new program.Statement(v);
+
+      if(selectedStatement() == null) {
+
+      } else if(selectedElement is If) {
+        selectedStatement().model.condition = v;
+      }
+    }
 
     refreshPanel();
   }
