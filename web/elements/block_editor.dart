@@ -85,7 +85,7 @@ class BlockEditor extends PolymerElement {
     } else if (block is program.AddOutPort) {
       return new html.Element.tag('add-outport')
         ..model = block;
-    } else if (block is program.SetValue) {
+    } else if (block is program.SetVariable) {
       return new html.Element.tag('set-variable')
         ..model = block
         ..attachTarget(parseBlock(block.right));

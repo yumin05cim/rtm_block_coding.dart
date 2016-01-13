@@ -17,7 +17,7 @@ class BlockLoader {
 
   static List<Type> blockTypes = [
     IntegerLiteral, StringLiteral, RealLiteral,
-    SetValue, Variable, Add, Subtract, Multiply,
+    SetVariable, Variable, Add, Subtract, Multiply,
     Equals, SmallerThan, SmallerThanOrEquals, LargerThan, LargerThanOrEquals, Not, TrueLiteral, FalseLiteral,
     DataType,
     If, While, Break,

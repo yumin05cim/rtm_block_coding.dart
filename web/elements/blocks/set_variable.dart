@@ -5,11 +5,11 @@ import '../../controller/controller.dart';
 
 @CustomTag('set-variable')
 class SetVariable extends PolymerElement {
-  program.SetValue _model;
+  program.SetVariable _model;
 
   PolymerElement parentElement;
 
-  set model(program.SetValue m) {
+  set model(program.SetVariable m) {
     _model = m;
     name = _model.left.name;
   }

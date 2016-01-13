@@ -122,7 +122,7 @@ class Controller {
     }
 
     if (command == 'set_variable') {
-      program.SetValue v = new program.SetValue(new program.Variable('name'), new program.IntegerLiteral(1));
+      program.SetVariable v = new program.SetVariable(new program.Variable('name'), new program.IntegerLiteral(1));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {

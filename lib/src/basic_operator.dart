@@ -44,7 +44,7 @@ class Variable extends Block {
   }
 }
 
-class SetValue extends Block {
+class SetVariable extends Block {
   Variable _left;
   Block _right;
 
@@ -53,7 +53,7 @@ class SetValue extends Block {
 
   set right(var r) => _right = r;
 
-  SetValue(this._left, this._right) {
+  SetVariable(this._left, this._right) {
 
   }
 
@@ -62,7 +62,7 @@ class SetValue extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('SetValue',
+    builder.element('SetVariable',
         attributes: {},
         nest : () {
           builder.element('Left',
@@ -79,13 +79,13 @@ class SetValue extends Block {
   static bool isClassXmlNode(xml.XmlNode node) {
     print('SetValue isClassXmlNode?:' + node.toString());
     if(node is xml.XmlElement) {
-      return (node.name.toString() == 'SetValue');
+      return (node.name.toString() == 'SetVariable');
     }
     return false;
   }
 
-  SetValue.XML(xml.XmlElement node) {
-    print('SetValue.XML:' + node.toString());
+  SetVariable.XML(xml.XmlElement node) {
+    print('SetVariable.XML:' + node.toString());
     node.children.forEach((xml.XmlNode childNode) {
       if (childNode is xml.XmlElement) {
         if (childNode.name.toString() == 'Left') {
