@@ -46,11 +46,11 @@ class AddInPort extends PolymerElement {
 
   void onNameChange(String new_name) {
     String old_name = _model.name;
-    List<program.InPortDataAccess> ports = [];
-    ports.addAll(globalController.onActivatedApp.find(program.InPortDataAccess, name: old_name));
-    ports.addAll(globalController.onExecuteApp.find(program.InPortDataAccess, name: old_name));
-    ports.addAll(globalController.onDeactivatedApp.find(program.InPortDataAccess, name: old_name));
-    ports.forEach((program.InPortDataAccess port) {
+    List<program.AccessInPort> ports = [];
+    ports.addAll(globalController.onActivatedApp.find(program.AccessInPort, name: old_name));
+    ports.addAll(globalController.onExecuteApp.find(program.AccessInPort, name: old_name));
+    ports.addAll(globalController.onDeactivatedApp.find(program.AccessInPort, name: old_name));
+    ports.forEach((program.AccessInPort port) {
       port.name = new_name;
     });
 
@@ -70,11 +70,11 @@ class AddInPort extends PolymerElement {
     _model.dataType = new program.DataType.fromTypeName(typename);
 
     String name_ = _model.name;
-    List<program.InPortDataAccess> ports = [];
-    ports.addAll(globalController.onActivatedApp.find(program.InPortDataAccess, name: name_));
-    ports.addAll(globalController.onExecuteApp.find(program.InPortDataAccess, name: name_));
-    ports.addAll(globalController.onDeactivatedApp.find(program.InPortDataAccess, name: name_));
-    ports.forEach((program.InPortDataAccess port) {
+    List<program.AccessInPort> ports = [];
+    ports.addAll(globalController.onActivatedApp.find(program.AccessInPort, name: name_));
+    ports.addAll(globalController.onExecuteApp.find(program.AccessInPort, name: name_));
+    ports.addAll(globalController.onDeactivatedApp.find(program.AccessInPort, name: name_));
+    ports.forEach((program.AccessInPort port) {
       port.dataType = _model.dataType;
       port.accessSequence = '';
     });

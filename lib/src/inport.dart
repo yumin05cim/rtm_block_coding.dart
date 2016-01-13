@@ -120,12 +120,12 @@ class ReadInPort extends Block {
   }
 }
 
-class InPortDataAccess extends Block {
+class AccessInPort extends Block {
   String name;
   DataType dataType;
   String accessSequence;
 
-  InPortDataAccess(this.name, this.dataType, this.accessSequence) {
+  AccessInPort(this.name, this.dataType, this.accessSequence) {
   }
 
   String toPython(int indentLevel) {
@@ -153,7 +153,7 @@ class InPortDataAccess extends Block {
     return false;
   }
 
-  InPortDataAccess.XML(xml.XmlElement node) {
+  AccessInPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
     accessSequence = node.getAttribute('accessSequence');
     node.children.forEach((xml.XmlNode childNode) {

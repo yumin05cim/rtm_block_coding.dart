@@ -10,11 +10,11 @@ import 'package:paper_elements/paper_dropdown_menu.dart';
 @CustomTag('inport-data')
 class InPortData extends PolymerElement {
 
-  program.InPortDataAccess _model;
+  program.AccessInPort _model;
 
   PolymerElement parentElement;
 
-  set model(program.InPortDataAccess m) {
+  set model(program.AccessInPort m) {
     _model = m;
     name = m.name;
     access = m.accessSequence;

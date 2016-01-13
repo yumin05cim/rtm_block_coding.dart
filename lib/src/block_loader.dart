@@ -22,7 +22,7 @@ class BlockLoader {
     DataType,
     If, While, Break,
     Print,
-    InPortDataAccess, AddInPort, ReadInPort,
+    AccessInPort, AddInPort, ReadInPort,
     OutPortData, AddOutPort, OutPortWrite,
   ];
 
