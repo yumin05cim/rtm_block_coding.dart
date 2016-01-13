@@ -85,7 +85,7 @@ class AddInPort extends PolymerElement {
     ports2.addAll(globalController.onDeactivatedApp.find(program.ReadInPort, name: name_));
     ports2.forEach((program.ReadInPort port) {
       port.dataType = _model.dataType;
-      port.accessSequence = '';
+      //port.accessSequence = '';
     });
 
     globalController.refreshAllPanel(except: 'onInitialize');

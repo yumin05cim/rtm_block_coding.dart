@@ -117,7 +117,7 @@ class AddOutPort extends PolymerElement {
         if (e.detail['isSelected']) {
           _model.dataType =
           new program.DataType.fromTypeName(e.detail['item'].innerHtml);
-          onTypeChange(typename);
+          onTypeChange(_model.dataType.typename);
         }
       }
     });

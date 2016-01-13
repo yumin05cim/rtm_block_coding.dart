@@ -134,12 +134,13 @@ class Controller {
     }
 
     if(command == 'read_inport') {
-      var inPortMap = onInitializeApp.getInPortMap();
-      if (inPortMap.keys.length == 0) return;
+      //var inPortMap = onInitializeApp.getInPortMap();
+      var inPortList = onInitializeApp.find(program.AddInPort);
+      if (inPortList.length == 0) return;
 
 
       if (selectedStatement() == null) {
-          program.ReadInPort v = new program.ReadInPort(inPortMap.keys.first, inPortMap[inPortMap.keys.first]);
+          program.ReadInPort v = new program.ReadInPort(inPortList[0].name, inPortList[0].dataType);
           program.Statement new_s = new program.Statement(v);
           app.statements.add(new_s);
       }

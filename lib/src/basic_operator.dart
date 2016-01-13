@@ -1,6 +1,5 @@
 library application.basic_operator;
 
-
 import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
@@ -10,7 +9,6 @@ import 'block_loader.dart';
 /// 変数名のみを格納する
 /// もしC++にまで拡張するなら変数のタイプも持っておくべきだ
 class Variable extends Block {
-
   String _name;
 
   get name => _name;
@@ -24,13 +22,7 @@ class Variable extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    element(builder,
-        attributes: {
-          'name' : _name,
-        },
-        nest : () {
-
-        });
+    element(builder, attributes: {'name': _name,}, nest: () {});
   }
 
   Variable.XML(xml.XmlElement node) {
@@ -51,27 +43,21 @@ class SetVariable extends Block {
 
   set right(var r) => _right = r;
 
-  SetVariable(this._left, this._right) {
-
-  }
+  SetVariable(this._left, this._right) {}
 
   String toPython(int indentLevel) {
     return "${_left.toPython(0)} = ${_right.toPython(0)}";
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {},
-        nest : () {
-          builder.element('Left',
-              nest: () {
-                _left.buildXML(builder);
-              });
-          builder.element('Right',
-              nest: () {
-                _right.buildXML(builder);
-              });
-        });
+    super.element(builder, attributes: {}, nest: () {
+      builder.element('Left', nest: () {
+        _left.buildXML(builder);
+      });
+      builder.element('Right', nest: () {
+        _right.buildXML(builder);
+      });
+    });
   }
 
   SetVariable.XML(xml.XmlElement node) {
@@ -81,7 +67,6 @@ class SetVariable extends Block {
     namedChildChildren(node, 'Right', (xml.XmlElement e) {
       _right = BlockLoader.parseBlock(e);
     });
-
   }
 }
 
@@ -104,21 +89,15 @@ class BasicOperator extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-        },
-        nest : () {
-          builder.element('a',
-              nest : () {
-                a.buildXML(builder);
-              });
-          builder.element('b',
-              nest : () {
-                b.buildXML(builder);
-              });
-        });
+    super.element(builder, attributes: {}, nest: () {
+      builder.element('a', nest: () {
+        a.buildXML(builder);
+      });
+      builder.element('b', nest: () {
+        b.buildXML(builder);
+      });
+    });
   }
-
 
   void loadXML(xml.XmlElement node) {
     namedChildChildren(node, 'a', (xml.XmlElement e) {
@@ -132,7 +111,6 @@ class BasicOperator extends Block {
 
 /// 加算
 class Add extends BasicOperator {
-
   Add(Block a_, Block b_) : super(a_, b_, '+') {}
 
   Add.XML(xml.XmlElement node) : super(null, null, '+') {
@@ -140,23 +118,20 @@ class Add extends BasicOperator {
   }
 }
 
-
-/// 減産
+/// 減算
 class Subtract extends BasicOperator {
-
   Subtract(Block a_, Block b_) : super(a_, b_, '-') {}
 
   Subtract.XML(xml.XmlElement node) : super(null, null, '-') {
     loadXML(node);
   }
-
 }
 
 /// 乗算
 class Multiply extends BasicOperator {
-  Subtract(Block a_, Block b_) : super(a_, b_, '*') {}
+  Multiply(Block a_, Block b_) : super(a_, b_, '*') {}
 
-  Subtract.XML(xml.XmlElement node) : super(null, null, '*') {
+  Multiply.XML(xml.XmlElement node) : super(null, null, '*') {
     loadXML(node);
   }
 }
