@@ -26,10 +26,8 @@ class Print extends Block {
   }
 
   Print.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if(childNode is xml.XmlElement) {
-        _block = BlockLoader.parseBlock(childNode);
-      }
+    child(node, (xml.XmlElement e) {
+      _block = BlockLoader.parseBlock(childNode);
     });
   }
 }

@@ -67,28 +67,14 @@ class If extends Block {
 
 
   If.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'Condition') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              condition = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'Yes') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              yes.loadFromXML(gChildNode);
-            }
-          });
-        } else if (childNode.name.toString() == 'No') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              no.loadFromXML(gChildNode);
-            }
-          });
-        }
-      }
+    namedChildChildren(node, 'Condition', (xml.XmlElement e) {
+      condition = BlockLoader.parseBlock(e);
+    });
+    namedChildChildren(node, 'Yes', (xml.XmlElement e) {
+      yes.loadFromXML(e);
+    });
+    namedChildChildren(node, 'No', (xml.XmlElement e) {
+      no.loadFromXML(e);
     });
   }
 }
@@ -136,24 +122,11 @@ class While extends Block {
 
 
   While.XML(xml.XmlElement node) {
-    node.children.forEach((xml.XmlNode childNode) {
-      if (childNode is xml.XmlElement) {
-        if (childNode.name.toString() == 'Condition') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              condition = BlockLoader.parseBlock(gChildNode);
-            }
-          });
-
-          //condition = BlockLoader.parseBlock(childNode.children[0]);
-        } else if (childNode.name.toString() == 'Loop') {
-          childNode.children.forEach((xml.XmlNode gChildNode) {
-            if(gChildNode is xml.XmlElement) {
-              loop.loadFromXML(gChildNode);
-            }
-          });
-        }
-      }
+    namedChildChildren(node, 'Condition', (xml.XmlElement e) {
+      condition = BlockLoader.parseBlock(e);
+    });
+    namedChildChildren(node, 'Loop', (xml.XmlElement e) {
+      loop.loadFromXML(e);
     });
   }
 
