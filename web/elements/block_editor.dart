@@ -137,6 +137,12 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('if-statement')
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
+      for (program.Statement s_ in block.yes) {
+        parseStatement(v.yes.children, s_);
+      }
+      for (program.Statement s_ in block.no) {
+        parseStatement(v.no.children, s_);
+      }
       return v;
     }
     else if (block is program.While) {
