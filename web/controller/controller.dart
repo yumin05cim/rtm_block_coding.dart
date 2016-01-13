@@ -129,8 +129,31 @@ class Controller {
       if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
-      if (selectedStatement() is ReadInPort) {
+      else if (selectedStatement() is ReadInPort) {
         selectedStatement().model.statements.add(new_s);
+      } else {
+        if (selectedElement.parentElement is If) {
+          bool found = false;
+          for(program.Statement s in selectedElement.parentElement.model.yes) {
+            if ( s.block == selectedElement.model) {
+              found = true;
+            }
+          }
+          if (found) {
+            selectedElement.parentElement.model.yes.add(new_s);
+          }
+
+          found = false;
+          for(program.Statement s in selectedElement.parentElement.model.no) {
+            if ( s.block == selectedElement.model) {
+              found = true;
+            }
+          }
+          if (found) {
+            selectedElement.parentElement.model.no.add(new_s);
+          }
+
+        }
       }
     }
 
@@ -347,6 +370,10 @@ class Controller {
 
       if (selectedStatement() == null) {
         app.statements.add(new_s);
+      } else if (selectedStatement() is ReadInPort) {
+        selectedStatement().model.statements.add(new_s);
+      } else {
+
       }
     }
 
@@ -362,7 +389,6 @@ class Controller {
 
     if(command == 'equals') {
       program.Equals v = new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
-      program.Statement new_s = new program.Statement(v);
 
       if(selectedStatement() == null) {
 

@@ -138,10 +138,12 @@ class BlockEditor extends PolymerElement {
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
       for (program.Statement s_ in block.yes) {
-        parseStatement(v.yes.children, s_);
+        parseStatement(v.yes.children, s_)
+            .parentElement = v;
       }
       for (program.Statement s_ in block.no) {
-        parseStatement(v.no.children, s_);
+        parseStatement(v.no.children, s_)
+            .parentElement = v;
       }
       return v;
     }
@@ -256,7 +258,7 @@ class BlockEditor extends PolymerElement {
   }
 
 
-  void parseStatement(var children, program.Statement s) {
+  parseStatement(var children, program.Statement s) {
     var elem = parseBlock(s.block);
     if (globalController.selectedElement != null) {
       if (globalController.selectedElement.model == s.block) {
@@ -265,6 +267,7 @@ class BlockEditor extends PolymerElement {
       }
     }
     children.add(elem);
+    return elem;
   }
 
 }
