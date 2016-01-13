@@ -27,6 +27,7 @@ class If extends PolymerElement {
 
   void attached() {
 
+/*
     $['true-input'].onChange.listen(
         (var e) {
           _model.yes = yes;
@@ -40,6 +41,7 @@ class If extends PolymerElement {
           globalController.refreshPanel();
       }
     );
+*/
 
     this.onClick.listen(
       (var e) {
@@ -53,6 +55,18 @@ class If extends PolymerElement {
   void attachCondition(var e) {
     $['condition-content'].children.clear();
     $['condition-content'].children.add(e);
+    e.parentElement = this;
+  }
+
+  void attachTrue(var e) {
+    $['true-content'].children.clear();
+    $['true-content'].children.add(e);
+    e.parentElement = this;
+  }
+
+  void attachFalse(var e) {
+    $['false-content'].children.clear();
+    $['false-content'].children.add(e);
     e.parentElement = this;
   }
 

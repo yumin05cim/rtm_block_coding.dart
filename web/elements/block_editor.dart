@@ -137,6 +137,14 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('if-statement')
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
+/*
+      for (program.Statement s in block.yes) {
+        v.attachTrue(parseStatement(v, s));
+      }
+      for (program.Statement s in block.no) {
+        v.attachFalse(parseStatement(v, s));
+      }
+*/
       return v;
     }
     else if (block is program.While) {
@@ -155,6 +163,40 @@ class BlockEditor extends PolymerElement {
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
+      return v;
+    }
+    else if (block is program.LargerThan) {
+      var v = new html.Element.tag('larger-than-element')
+        ..model = block;
+      v.attachLeft(parseBlock(block.left));
+      v.attachRight(parseBlock(block.right));
+      return v;
+    }
+    else if (block is program.LargerThanOrEquals) {
+      var v = new html.Element.tag('larger-than-or-equals-element')
+        ..model = block;
+      v.attachLeft(parseBlock(block.left));
+      v.attachRight(parseBlock(block.right));
+      return v;
+    }
+    else if (block is program.SmallerThan) {
+      var v = new html.Element.tag('smaller-than-element')
+        ..model = block;
+      v.attachLeft(parseBlock(block.left));
+      v.attachRight(parseBlock(block.right));
+      return v;
+    }
+    else if (block is program.SmallerThanOrEquals) {
+      var v = new html.Element.tag('smaller-than-or-equals-element')
+        ..model = block;
+      v.attachLeft(parseBlock(block.left));
+      v.attachRight(parseBlock(block.right));
+      return v;
+    }
+    else if (block is program.Not) {
+      var v = new html.Element.tag('logical-not-element')
+        ..model = block;
+      v.attachCondition(parseBlock(block.condition));
       return v;
     }
 /*    else if (block is program.While) {

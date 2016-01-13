@@ -341,8 +341,8 @@ class Controller {
 
     if(command =='if') {
       program.If v = new program.If(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)),
-          new program.StatementList([new program.Statement(new program.TrueLiteral())]),
-          no:new program.StatementList([new program.Statement(new program.FalseLiteral())]));
+          new program.StatementList([new program.Statement(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)))]),
+          no:new program.StatementList([new program.Statement(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)))]));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
@@ -375,6 +375,71 @@ class Controller {
 
     if(command == 'not_equals') {
       program.NotEquals v = new program.NotEquals(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
+      program.Statement new_s = new program.Statement(v);
+
+      if(selectedStatement() == null) {
+
+      } else if(selectedElement is If) {
+        selectedStatement().model.condition = v;
+      } else if(selectedElement.parentElement is If) {
+        selectedStatement().parentElement.model.condition = v;
+      }
+    }
+
+    if(command == 'larger') {
+      program.LargerThan v = new program.LargerThan(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
+      program.Statement new_s = new program.Statement(v);
+
+      if(selectedStatement() == null) {
+
+      } else if(selectedElement is If) {
+        selectedStatement().model.condition = v;
+      } else if(selectedElement.parentElement is If) {
+        selectedStatement().parentElement.model.condition = v;
+      }
+    }
+
+    if(command == 'larger_equals') {
+      program.LargerThanOrEquals v = new program.LargerThanOrEquals(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
+      program.Statement new_s = new program.Statement(v);
+
+      if(selectedStatement() == null) {
+
+      } else if(selectedElement is If) {
+        selectedStatement().model.condition = v;
+      } else if(selectedElement.parentElement is If) {
+        selectedStatement().parentElement.model.condition = v;
+      }
+    }
+
+    if(command == 'smaller') {
+      program.SmallerThan v = new program.SmallerThan(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
+      program.Statement new_s = new program.Statement(v);
+
+      if(selectedStatement() == null) {
+
+      } else if(selectedElement is If) {
+        selectedStatement().model.condition = v;
+      } else if(selectedElement.parentElement is If) {
+        selectedStatement().parentElement.model.condition = v;
+      }
+    }
+
+    if(command == 'smaller_equals') {
+      program.SmallerThanOrEquals v = new program.SmallerThanOrEquals(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
+      program.Statement new_s = new program.Statement(v);
+
+      if(selectedStatement() == null) {
+
+      } else if(selectedElement is If) {
+        selectedStatement().model.condition = v;
+      } else if(selectedElement.parentElement is If) {
+        selectedStatement().parentElement.model.condition = v;
+      }
+    }
+
+    if(command == 'logical_not') {
+      program.Not v = new program.Not(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)));
       program.Statement new_s = new program.Statement(v);
 
       if(selectedStatement() == null) {
