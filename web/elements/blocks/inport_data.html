@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="../element_styles.css" />
         <style type='text/css'>
             :host {
+
             }
             #target {
                 margin-top: 2px;
@@ -36,31 +37,38 @@
             }
 
 
-            :host > div > paper-dropdown-menu#name-dropdown-menu {
-                min-width: 50px;
+            :host paper-dropdown-menu#name-dropdown-menu {
+                margin: 0px;
+                padding: 0px;
             }
 
-            :host > div > paper-dropdown-menu#dropdown-menu{
-                min-width: 250px;
+            :host paper-dropdown-menu#dropdown-menu{
+                margin: 0px;
+                padding: 0px;
+            }
+
+            :host #inport-decorator {
+                font-size: 12px;
             }
 
         </style>
 
         <!--Japanese ver.-->
-        <div id="target" horizontal layout center>
-            <div end>入力ポート (</div>
-            <paper-dropdown-menu id="name-dropdown-menu" label="Your favorite pastry">
-                <paper-dropdown id="name-dropdown" class="dropdown">
-                    <core-menu class="menu" id="name-menu-content"></core-menu>
-                </paper-dropdown>
-            </paper-dropdown-menu>
-            <div end></div>
-            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
-                <paper-dropdown id="dropdown" class="dropdown">
-                    <core-menu class="menu" id="menu-content"></core-menu>
-                </paper-dropdown>
-            </paper-dropdown-menu>
-            <div end>) のデータ</div>
+        <div id="target" vertical layout center>
+            <div self-start layout id="inport-decorator">入力ポート</div>
+            <div horizontal layout center>
+                <paper-dropdown-menu id="name-dropdown-menu" label="Your favorite pastry">
+                    <paper-dropdown id="name-dropdown" class="dropdown">
+                        <core-menu class="menu" id="name-menu-content"></core-menu>
+                    </paper-dropdown>
+                </paper-dropdown-menu>
+                <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
+                    <paper-dropdown id="dropdown" class="dropdown">
+                        <core-menu class="menu" id="menu-content"></core-menu>
+                    </paper-dropdown>
+                </paper-dropdown-menu>
+                <div end>のデータ</div>
+            </div>
         </div>
 
         <!--English ver.-->
