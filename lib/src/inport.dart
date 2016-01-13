@@ -136,7 +136,7 @@ class AccessInPort extends Block {
 
 
   void buildXML(xml.XmlBuilder builder) {
-    builder.element('InPortDataAccess',
+    builder.element('AccessInPort',
         attributes: {
           'name' : name,
           'accessSequence' : accessSequence,
@@ -148,7 +148,7 @@ class AccessInPort extends Block {
 
   static bool isClassXmlNode(xml.XmlNode node) {
     if(node is xml.XmlElement) {
-      return (node.name.toString() == 'InPortDataAccess');
+      return (node.name.toString() == 'AccessInPort');
     }
     return false;
   }
