@@ -26,12 +26,6 @@ class If extends PolymerElement {
   If.created() : super.created();
 
   void attached() {
-    $['condition-input'].onChange.listen(
-        (var e) {
-          _model.condition = condition;
-          globalController.refreshPanel();
-        }
-    );
 
     $['true-input'].onChange.listen(
         (var e) {
@@ -54,6 +48,12 @@ class If extends PolymerElement {
         e.stopPropagation();
       }
     );
+  }
+
+  void attachCondition(var e) {
+    $['condition-content'].children.clear();
+    $['condition-content'].children.add(e);
+    e.parentElement = this;
   }
 
   void select() {
