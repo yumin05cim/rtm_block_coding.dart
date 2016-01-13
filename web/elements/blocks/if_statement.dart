@@ -33,11 +33,7 @@ class If extends PolymerElement {
 
   void attached() {
 
-<<<<<<< HEAD
 /*
-=======
-    /*
->>>>>>> b8b51d57f855ac1b9c8f9216e4cd09fefde5d5b0
     $['true-input'].onChange.listen(
         (var e) {
           //_model.yes = yes;
@@ -51,11 +47,7 @@ class If extends PolymerElement {
           globalController.refreshPanel();
       }
     );
-<<<<<<< HEAD
 */
-=======
-    */
->>>>>>> b8b51d57f855ac1b9c8f9216e4cd09fefde5d5b0
 
     this.onClick.listen(
       (var e) {
@@ -72,27 +64,17 @@ class If extends PolymerElement {
     e.parentElement = this;
   }
 
-<<<<<<< HEAD
   void attachTrue(var e) {
-    $['true-content'].children.clear();
-    $['true-content'].children.add(e);
+    $['yes-content'].children.clear();
+    $['yes-content'].children.add(e);
     e.parentElement = this;
   }
 
   void attachFalse(var e) {
-    $['false-content'].children.clear();
-    $['false-content'].children.add(e);
+    $['no-content'].children.clear();
+    $['no-content'].children.add(e);
     e.parentElement = this;
   }
-=======
-  /*
-  void attachCondition(var e) {
-    $['condition-content'].children.clear();
-    $['condition-content'].children.add(e);
-    e.parentElement = this;
-  }
-  */
->>>>>>> b8b51d57f855ac1b9c8f9216e4cd09fefde5d5b0
 
   void select() {
     $['target'].style.border = 'ridge';

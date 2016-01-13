@@ -364,13 +364,8 @@ class Controller {
 
     if(command =='if') {
       program.If v = new program.If(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)),
-<<<<<<< HEAD
-          new program.StatementList([new program.Statement(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)))]),
-          no:new program.StatementList([new program.Statement(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)))]));
-=======
           new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable0'), new program.IntegerLiteral(1)))]),
           no:new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable1'), new program.IntegerLiteral(1)))]));
->>>>>>> b8b51d57f855ac1b9c8f9216e4cd09fefde5d5b0
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
