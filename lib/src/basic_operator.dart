@@ -274,3 +274,58 @@ class Multiply extends Block {
     });
   }
 }
+
+
+class Div extends Block {
+  Block a;
+  Block b;
+
+  Div(this.a, this.b) : super() {}
+
+  String toPython(int indentLevel) {
+    return "${a.toPython(0)} / ${b.toPython(0)}";
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    builder.element('Div',
+        attributes: {
+        },
+        nest : () {
+          builder.element('Left',
+              nest : () {
+                a.buildXML(builder);
+              });
+          builder.element('Right',
+              nest : () {
+                b.buildXML(builder);
+              });
+        });
+  }
+
+  static bool isClassXmlNode(xml.XmlNode node) {
+    if(node is xml.XmlElement) {
+      return (node.name.toString() == 'Div');
+    }
+    return false;
+  }
+
+  Div.XML(xml.XmlElement node) {
+    node.children.forEach((xml.XmlNode childNode) {
+      if (childNode is xml.XmlElement) {
+        if (childNode.name.toString() == 'Left') {
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              a = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+        } else if (childNode.name.toString() == 'Right') {
+          childNode.children.forEach((xml.XmlNode gChildNode) {
+            if(gChildNode is xml.XmlElement) {
+              b = BlockLoader.parseBlock(gChildNode);
+            }
+          });
+        }
+      }
+    });
+  }
+}
