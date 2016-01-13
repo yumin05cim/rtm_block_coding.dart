@@ -122,7 +122,7 @@ class Controller {
     }
 
     if (command == 'set_variable') {
-      program.SetValue v = new program.SetValue(new program.Variable('name'), new program.Integer(1));
+      program.SetValue v = new program.SetValue(new program.Variable('name'), new program.IntegerLiteral(1));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
@@ -242,7 +242,7 @@ class Controller {
       if (outPortList.length == 0) return;
 
       //program.OutPortWrite v = new program.OutPortWrite(outPortList[0].name, outPortList[0].dataType);
-      program.OutPortData v = new program.OutPortData(outPortList[0].name, outPortList[0].dataType, '', new program.Integer(1));
+      program.OutPortData v = new program.OutPortData(outPortList[0].name, outPortList[0].dataType, '', new program.IntegerLiteral(1));
 
 
       //var outPortMap = onInitializeApp.getOutPortMap();
@@ -260,7 +260,7 @@ class Controller {
     }
 
     if (command == 'int_input') {
-      program.Integer v = new program.Integer(1);
+      program.IntegerLiteral v = new program.IntegerLiteral(1);
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() is SetVariable) {
@@ -293,7 +293,7 @@ class Controller {
     }
 
     if (command == 'addition') {
-      program.Add v = new program.Add(new program.Integer(3), new program.Integer(2));
+      program.Add v = new program.Add(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() is SetVariable) {
@@ -308,7 +308,7 @@ class Controller {
     }
 
     if (command == 'subtraction') {
-      program.Subtract v = new program.Subtract(new program.Integer(3), new program.Integer(2));
+      program.Subtract v = new program.Subtract(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() is SetVariable) {
@@ -323,7 +323,7 @@ class Controller {
     }
 
     if (command == 'multiplication') {
-      program.Multiply v = new program.Multiply(new program.Integer(3), new program.Integer(2));
+      program.Multiply v = new program.Multiply(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() is SetVariable) {
@@ -338,7 +338,7 @@ class Controller {
     }
 
     if(command =='if') {
-      program.If v = new program.If(new program.Equals(new program.Variable('a'), new program.Integer(1)),
+      program.If v = new program.If(new program.Equals(new program.Variable('a'), new program.IntegerLiteral(1)),
           new program.StatementList([new program.Statement(new program.TrueLiteral())]),
           no:new program.StatementList([new program.Statement(new program.FalseLiteral())]));
       program.Statement new_s = new program.Statement(v);
@@ -349,7 +349,7 @@ class Controller {
     }
 
     if(command =='while') {
-      program.While v = new program.While(new program.Equals(new program.Variable('a'), new program.Integer(1)),
+      program.While v = new program.While(new program.Equals(new program.Variable('a'), new program.IntegerLiteral(1)),
           new program.StatementList([new program.Statement(new program.TrueLiteral())]));
       program.Statement new_s = new program.Statement(v);
 

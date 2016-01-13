@@ -16,7 +16,7 @@ import 'outport.dart';
 class BlockLoader {
 
   static List<Type> blockTypes = [
-    Integer, StringLiteral, RealLiteral,
+    IntegerLiteral, StringLiteral, RealLiteral,
     SetValue, Variable, Add, Subtract, Multiply,
     Equals, SmallerThan, SmallerThanOrEquals, LargerThan, LargerThanOrEquals, Not, TrueLiteral, FalseLiteral,
     DataType,

@@ -5,7 +5,7 @@ import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
 
-class Integer extends Block {
+class IntegerLiteral extends Block {
 
   int _a;
 
@@ -13,7 +13,7 @@ class Integer extends Block {
 
   set value(int i) => _a = i;
 
-  Integer(this._a) {}
+  IntegerLiteral(this._a) {}
 
   String toPython(int indentLevel) {
     return _a.toString();
@@ -36,7 +36,7 @@ class Integer extends Block {
     return false;
   }
 
-  Integer.XML(xml.XmlElement node) {
+  IntegerLiteral.XML(xml.XmlElement node) {
     value = int.parse(node.getAttribute('value'));
   }
 }

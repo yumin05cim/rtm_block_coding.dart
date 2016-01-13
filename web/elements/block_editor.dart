@@ -76,7 +76,7 @@ class BlockEditor extends PolymerElement {
   }
 
   parseBlock(program.Block block) {
-    if (block is program.Integer) {
+    if (block is program.IntegerLiteral) {
       return new html.Element.tag('integer-literal')
         ..model = block;
     } else if (block is program.AddInPort) {
@@ -107,7 +107,7 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('write-outport')
           ..model = block;
       return v;
-    } else if (block is program.Integer) {
+    } else if (block is program.IntegerLiteral) {
       var v = new html.Element.tag('integer-input')
         ..model = block;
       return v;

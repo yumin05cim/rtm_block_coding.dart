@@ -5,11 +5,11 @@ import '../../controller/controller.dart';
 
 @CustomTag('integer-literal')
 class IntegerLiteral extends PolymerElement {
-  program.Integer _model;
+  program.IntegerLiteral _model;
 
   PolymerElement parentElement;
 
-  set model(program.Integer m) {
+  set model(program.IntegerLiteral m) {
     _model = m;
     value = m.value;
   }

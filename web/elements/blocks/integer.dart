@@ -6,18 +6,18 @@ import '../../controller/controller.dart';
 @CustomTag('integer-input')
 class IntegerInput extends PolymerElement {
 
-  program.Integer _model;
+  program.IntegerLiteral _model;
 
   PolymerElement parentElement;
 
-  set model(program.Integer m) {
+  set model(program.IntegerLiteral m) {
     _model = m;
     int_value = m.value;
   }
 
   get model => _model;
 
-  @published program.Integer int_value;
+  @published program.IntegerLiteral int_value;
 
   IntegerInput.created() : super.created();
 
