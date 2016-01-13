@@ -1,6 +1,6 @@
 library application;
 
-// TODO: Export any libraries intended for clients of this package.
+// ブロックコーディング用のライブラリ定義
 
 export 'src/statement.dart';
 export 'src/block.dart';
