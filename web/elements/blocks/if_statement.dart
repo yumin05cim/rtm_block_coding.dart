@@ -12,7 +12,7 @@ class If extends PolymerElement {
 
   set model(program.If m) {
     _model = m;
-    ///condition = m.condition;
+    //condition = m.condition;
     //yes = m.yes;
     //no = m.no;
   }
@@ -21,7 +21,6 @@ class If extends PolymerElement {
 
   get yes => $['yes-content'];
   /// get no => $['no-content'];
-
 
   /*
   @published program.Condition condition = null;
@@ -64,19 +63,21 @@ class If extends PolymerElement {
     e.parentElement = this;
   }
 
+/*
   void attachTrue(var e) {
     $['yes-content'].children.clear();
     $['yes-content'].children.add(e);
     e.parentElement = this;
   }
-
-  /*
+*/
+/*
   void attachFalse(var e) {
     $['no-content'].children.clear();
     $['no-content'].children.add(e);
     e.parentElement = this;
   }
-  */
+*/
+
   void select() {
     $['target'].style.border = 'ridge';
     ($['target'] as html.HtmlElement).style.borderColor = '#FF9F1C';
@@ -111,7 +112,6 @@ class Else extends PolymerElement {
   get contents => $['content-content'];
   /// get no => $['no-content'];
 
-
   /*
   @published program.Condition condition = null;
   @published program.StatementList yes;
@@ -121,23 +121,6 @@ class Else extends PolymerElement {
   Else.created() : super.created();
 
   void attached() {
-
-/*
-    $['true-input'].onChange.listen(
-        (var e) {
-          //_model.yes = yes;
-          globalController.refreshPanel();
-    }
-    );
-
-    $['false-input'].onChange.listen(
-        (var e) {
-          //_model.no = no;
-          globalController.refreshPanel();
-      }
-    );
-*/
-
     this.onClick.listen(
         (var e) {
       globalController.setSelectedElem(e, this);
@@ -146,7 +129,6 @@ class Else extends PolymerElement {
     }
     );
   }
-
 
   void attachTrue(var e) {
     $['content-content'].children.clear();

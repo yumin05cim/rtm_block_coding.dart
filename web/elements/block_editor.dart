@@ -141,6 +141,7 @@ class BlockEditor extends PolymerElement {
       v.attachRight(parseBlock(block.b));
       return v;
     }
+
     else if (block is program.If) {
       var v = new html.Element.tag('if-statement')
         ..model = block;
@@ -155,14 +156,6 @@ class BlockEditor extends PolymerElement {
             .parentElement = v;
       }
       */
-      /*
-      for (program.Statement s in block.yes) {
-        v.attachTrue(parseStatement(v, s));
-      }
-      for (program.Statement s in block.no) {
-        v.attachFalse(parseStatement(v, s));
-      }
-*/
       return v;
     }
     else if (block is program.Else) {
@@ -178,21 +171,19 @@ class BlockEditor extends PolymerElement {
             .parentElement = v;
       }
       */
-      /*
-      for (program.Statement s in block.yes) {
-        v.attachTrue(parseStatement(v, s));
+      return v;
+    }
+    else if (block is program.While) {
+      var v = new html.Element.tag('while-statement')
+        ..model = block;
+      v.attachCondition(parseBlock(block.condition));
+      for (program.Statement s_ in block.loop) {
+        parseStatement(v.loop.children, s_)
+            .parentElement = v;
       }
-      for (program.Statement s in block.no) {
-        v.attachFalse(parseStatement(v, s));
-      }
-*/
       return v;
     }
 
-    else if (block is program.While) {
-      return new html.Element.tag('while-statement')
-        ..model = block;
-    }
     else if (block is program.Equals) {
       var v = new html.Element.tag('equals-element')
           ..model = block;
@@ -241,19 +232,6 @@ class BlockEditor extends PolymerElement {
       v.attachCondition(parseBlock(block.condition));
       return v;
     }
-/*    else if (block is program.While) {
-      var v = new html.Element.tag('while-statement')
-        ..model = block;
-
-      v.attachLeft(parseBlock(block.condition));
-      for (program.Statement s in block.loop) {
-        v.attachRight(parseStatement(v, s));
-      }
-//      v.attachRight(parseBlock(block.loop));
-      return v;
-    }
-*/
-
 
   }
 

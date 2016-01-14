@@ -12,19 +12,23 @@ class While extends PolymerElement {
 
   set model(program.While m) {
     _model = m;
-    condition = m.condition;
-    loop = m.loop;
+//    condition = m.condition;
+//    loop = m.loop;
   }
 
   get model => _model;
 
+  get loop => $['loop-content'];
+
+/*
   @published program.Condition condition = null;
   @published program.StatementList loop;
+*/
 
   While.created() : super.created();
 
   void attached() {
-
+/*
     $['condition-input'].onChange.listen(
         (var e) {
       _model.condition = condition;
@@ -32,33 +36,31 @@ class While extends PolymerElement {
     }
     );
 
-    $['statement-input'].onChange.listen(
+    $['loop-input'].onChange.listen(
         (var e) {
       _model.loop = loop;
       globalController.refreshPanel();
     }
     );
-
-
+*/
     this.onClick.listen(
         (var e) {
-      globalController.setSelectedElem(e, this);
+          globalController.setSelectedElem(e, this);
 
-      e.stopPropagation();
-
+          e.stopPropagation();
         }
     );
   }
-/*
-  void attachRight(var e) {
-    $['statement-input'].children.clear();
-    $['statement-input'].children.add(e);
+
+  void attachCondition(var e) {
+    $['condition-content'].children.clear();
+    $['condition-content'].children.add(e);
     e.parentElement = this;
   }
 
-  void attachLeft(var e) {
-    $['condition-input'].children.clear();
-    $['condition-input'].children.add(e);
+/*  void attachLoop(var e) {
+    $['loop-content'].children.clear();
+    $['loop-content'].children.add(e);
     e.parentElement = this;
   }
 */

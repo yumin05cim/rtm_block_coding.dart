@@ -32,15 +32,21 @@
         </style>
 
         <!--Japanese ver.-->
-        <div id="target" horizontal layout center>
-            <div end>以下が成り立つ時(条件:</div>
-            <paper-input id="condition-input" flex value="{{condition}}"></paper-input>
-            <div end>)，ずっと{</div>
-            <paper-input id="statement-input" flex value="{{statement}}"></paper-input>
-            <div end>}</div>
+        <div id="target" vertical layout>
+            <div id="condition-block" horizontal layout center>
+                <div end>「</div>
+                <div id="condition-content"></div>
+                <!--<paper-input id="condition-input" flex value="{{condition}}"></paper-input>-->
+                <div end>」が成り立つ時</div>
+            </div>
+            <div id="loop-block" horizontal layout center>
+                <div end>ずっと</div>
+                <div id="loop-content"></div>
+                <!--<paper-input id="statement-input" flex value="{{statement}}"></paper-input>-->
+            </div>
         </div>
 
-        <!--Japanese ver.-->
+        <!--English ver.-->
 <!--
         <div id="target" horizontal layout center>
             <div end>While (condition= </div>
