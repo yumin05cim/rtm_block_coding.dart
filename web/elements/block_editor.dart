@@ -76,10 +76,10 @@ class BlockEditor extends PolymerElement {
   }
 
   parseBlock(program.Block block) {
-    if (block is program.IntegerLiteral) {
+/*    if (block is program.IntegerLiteral) {
       return new html.Element.tag('integer-literal')
         ..model = block;
-    } else if (block is program.AddInPort) {
+    } else */if (block is program.AddInPort) {
       return new html.Element.tag('add-inport')
         ..model = block;
     } else if (block is program.AddOutPort) {
