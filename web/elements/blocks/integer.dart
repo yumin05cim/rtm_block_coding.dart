@@ -17,7 +17,7 @@ class IntegerInput extends PolymerElement {
 
   get model => _model;
 
-  @published program.IntegerLiteral int_value;
+  @published int int_value;
 
   IntegerInput.created() : super.created();
 

@@ -110,3 +110,213 @@
     </template>
     <script type="application/dart" src="conditions.dart"></script>
 </polymer-element>
+
+
+<polymer-element name="larger-than-element" attributes="value">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style type='text/css'>
+            :host {
+            }
+            #target {
+                margin-top: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #BDE1F0;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="target" horizontal layout center>
+            <div id="left-content"></div>
+            <div self-center layout end>が</div>
+            <div id="right-content"></div>
+            <div self-center layout end>より大きい</div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="conditions.dart"></script>
+</polymer-element>
+
+
+
+
+<polymer-element name="larger-than-or-equals-element" attributes="value">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style type='text/css'>
+            :host {
+            }
+            #target {
+                margin-top: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #BDE1F0;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="target" horizontal layout center>
+            <div id="left-content"></div>
+            <div self-center layout end>が</div>
+            <div id="right-content"></div>
+            <div self-center layout end>以上</div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="conditions.dart"></script>
+</polymer-element>
+
+
+
+<polymer-element name="smaller-than-element" attributes="value">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style type='text/css'>
+            :host {
+            }
+            #target {
+                margin-top: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #BDE1F0;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="target" horizontal layout center>
+            <div id="left-content"></div>
+            <div self-center layout end>が</div>
+            <div id="right-content"></div>
+            <div self-center layout end>より小さい</div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="conditions.dart"></script>
+</polymer-element>
+
+
+
+<polymer-element name="smaller-than-or-equals-element" attributes="value">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style type='text/css'>
+            :host {
+            }
+            #target {
+                margin-top: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #BDE1F0;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="target" horizontal layout center>
+            <div id="left-content"></div>
+            <div self-center layout end>が</div>
+            <div id="right-content"></div>
+            <div self-center layout end>以下</div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="conditions.dart"></script>
+</polymer-element>
+
+
+
+
+<polymer-element name="logical-not-element" attributes="value">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style type='text/css'>
+            :host {
+            }
+            #target {
+                margin-top: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #BDE1F0;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="target" horizontal layout center>
+            <div self-center layout end>「</div>
+            <div id="condition-content"></div>
+            <div self-center layout end>」が正しくない</div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="conditions.dart"></script>
+</polymer-element>

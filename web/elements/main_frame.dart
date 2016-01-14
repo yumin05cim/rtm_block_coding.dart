@@ -66,6 +66,7 @@ class MainFrame extends PolymerElement {
     $['port_data_menu'].closeCollapse(null);
     $['calculate_menu'].closeCollapse(null);
     $['if_switch_loop_menu'].closeCollapse(null);
+    $['condition_menu'].closeCollapse(null);
   }
 
   void setMode(String mode) {
@@ -75,12 +76,14 @@ class MainFrame extends PolymerElement {
       $['port_data_menu'].disableMenu(true);
       $['calculate_menu'].disableMenu(true);
       $['if_switch_loop_menu'].disableMenu(true);
+      $['condition_menu'].disableMenu(true);
     } else {
       $['rtm_menu'].disableMenu(true);
       $['variables_menu'].disableMenu(false);
       $['port_data_menu'].disableMenu(false);
       $['calculate_menu'].disableMenu(false);
       $['if_switch_loop_menu'].disableMenu(false);
+      $['condition_menu'].disableMenu(false);
     }
   }
 
