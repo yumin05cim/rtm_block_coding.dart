@@ -85,7 +85,7 @@ class InPortData extends PolymerElement {
     int selected = -1;
     int counter  = 0;
     $['menu-content'].children.forEach((PaperItem p) {
-          print (p.innerHtml + '/' + name);
+          // print (p.innerHtml + '/' + name);
           var target_name = p.innerHtml;
           if (p.innerHtml.startsWith('.')) {
             target_name = p.innerHtml.substring(1);
@@ -130,11 +130,7 @@ class InPortData extends PolymerElement {
           }
         }
       }
-    }
-
-    );
-
-
+    });
 
     PaperDropdownMenu dd = $['dropdown-menu'];
     dd.on['core-select'].listen((var e) {

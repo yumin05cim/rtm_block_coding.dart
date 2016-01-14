@@ -29,7 +29,7 @@ class BlockLoader {
     SetVariable, Variable, Add, Subtract, Multiply, Div,
     Equals, SmallerThan, SmallerThanOrEquals, LargerThan, LargerThanOrEquals, Not, TrueLiteral, FalseLiteral,
     DataType,
-    If, While, Break,
+    If, While, Break, Pass, Continue, 
     Print,
     AccessInPort, AddInPort, ReadInPort,
     AccessOutPort, AddOutPort, WriteOutPort,

@@ -141,7 +141,7 @@ class Break extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    super.element(bulder,
+    super.element(builder,
         attributes: {
         },
         nest: () {
@@ -153,4 +153,52 @@ class Break extends Block {
   Break.XML(xml.XmlElement node) {
 
   }
+}
+
+class Continue extends Block {
+
+  Continue() {}
+
+  String toPython(int indentLevel) {
+    return 'continue';
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    super.element(builder,
+        attributes: {
+        },
+        nest: () {
+
+        });
+  }
+
+
+  Pass.XML(xml.XmlElement node) {
+
+  }
+
+}
+
+class Pass extends Block {
+
+  Pass() {}
+
+  String toPython(int indentLevel) {
+    return 'pass';
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    super.element(builder,
+        attributes: {
+        },
+        nest: () {
+
+        });
+  }
+
+
+  Pass.XML(xml.XmlElement node) {
+
+  }
+
 }
