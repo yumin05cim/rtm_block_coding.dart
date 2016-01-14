@@ -7,6 +7,7 @@ import 'dart:core';
 import 'block.dart';
 import 'condition.dart';
 import 'statement.dart';
+import 'block_loader.dart';
 
 import 'datatype.dart';
 
@@ -92,13 +93,18 @@ class ReadInPort extends Block {
         },
         nest: () {
           dataType.buildXML(builder);
+          statements.buildXML(builder);
         });
   }
 
   ReadInPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
-    child(node, (xml.XmlElement e) {
-      dataType = new DataType.XML(e);
+    typedChild(node, DataType, (xml.XmlElement e) {
+        dataType = new DataType.XML(e);
+    });
+
+    typedChild(node, StatementList, (xml.XmlElement e) {
+      statements.loadFromXML(e);
     });
   }
 }

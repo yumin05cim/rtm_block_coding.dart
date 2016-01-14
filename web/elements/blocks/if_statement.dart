@@ -20,7 +20,7 @@ class If extends PolymerElement {
   get model => _model;
 
   get yes => $['yes-content'];
-  get no => $['no-content'];
+  /// get no => $['no-content'];
 
 
   /*
@@ -70,12 +70,13 @@ class If extends PolymerElement {
     e.parentElement = this;
   }
 
+  /*
   void attachFalse(var e) {
     $['no-content'].children.clear();
     $['no-content'].children.add(e);
     e.parentElement = this;
   }
-
+  */
   void select() {
     $['target'].style.border = 'ridge';
     ($['target'] as html.HtmlElement).style.borderColor = '#FF9F1C';

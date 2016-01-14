@@ -11,34 +11,23 @@ import 'block_loader.dart';
 
 class If extends Block {
   Condition condition;
-  StatementList yes = new StatementList([]);
-  StatementList no = new StatementList([]);
+  StatementList statements = new StatementList([]);
 
-  If(this.condition, this.yes, {StatementList no: null}) {
-    this.no = no;
+  If(this.condition, this.statements) {
   }
 
   String toPython(int indentLevel) {
     String sb = "";
     sb = "if ${condition.toPython(0)}:\n";
-    for (Statement s in yes) {
+    for (Statement s in statements) {
       sb += s.toPython(indentLevel + 1) + '\n';
-    }
-    if (no != null) {
-      sb += Statement.indent * indentLevel + "else : \n";
-      for (Statement s in no) {
-        sb += s.toPython(indentLevel + 1) + '\n';
-      }
     }
     return sb;
   }
 
   @override
   void iterateBlock(var func) {
-    for (var s in yes) {
-      s.iterateBlock(func);
-    }
-    for (var s in no) {
+    for (var s in statements) {
       s.iterateBlock(func);
     }
   }
@@ -52,16 +41,7 @@ class If extends Block {
             nest : () {
               condition.buildXML(builder);
             });
-
-          builder.element('Yes',
-              nest : () {
-              yes.buildXML(builder);
-              });
-
-          builder.element('No',
-              nest : () {
-              no.buildXML(builder);
-              });
+          statements.buildXML(builder);
         });
   }
 
@@ -70,13 +50,48 @@ class If extends Block {
     namedChildChildren(node, 'Condition', (xml.XmlElement e) {
       condition = BlockLoader.parseBlock(e);
     });
-    namedChildChildren(node, 'Yes', (xml.XmlElement e) {
-      yes.loadFromXML(e);
-    });
-    namedChildChildren(node, 'No', (xml.XmlElement e) {
-      no.loadFromXML(e);
+    typedChild(node, StatementList, (xml.XmlElement e) {
+      statements.loadFromXML(e);
     });
   }
+}
+
+class Else extends Block {
+  StatementList statements = new StatementList([]);
+
+  @override
+  void iterateBlock(var func) {
+    for (var s in statements) {
+      s.iterateBlock(func);
+    }
+  }
+
+  String toPython(int indentLevel) {
+    String sb = "";
+    if (statements != null) {
+      sb += Statement.indent * indentLevel + "else : \n";
+      for (Statement s in statements) {
+        sb += s.toPython(indentLevel + 1) + '\n';
+      }
+    }
+    return sb;
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    super.element(builder,
+        attributes: {
+        },
+        nest: () {
+          statements.buildXML(builder);
+        });
+  }
+
+  Else.XML(xml.XmlElement node) {
+    typedChild(node, StatementList, (xml.XmlElement e) {
+      statements.loadFromXML(e);
+    });
+  }
+
 }
 
 class While extends Block {
@@ -173,7 +188,7 @@ class Continue extends Block {
   }
 
 
-  Pass.XML(xml.XmlElement node) {
+  Continue.XML(xml.XmlElement node) {
 
   }
 
@@ -192,10 +207,8 @@ class Pass extends Block {
         attributes: {
         },
         nest: () {
-
         });
   }
-
 
   Pass.XML(xml.XmlElement node) {
 

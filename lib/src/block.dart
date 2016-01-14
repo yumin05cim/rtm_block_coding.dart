@@ -6,6 +6,7 @@ import 'dart:core';
 import 'package:xml/xml.dart' as xml;
 import 'dart:collection';
 import 'statement.dart';
+import 'block_loader.dart';
 
 /// ブロックコーディングの基礎クラス．
 /// ブロックに共通のコードをここで定義
@@ -54,11 +55,13 @@ abstract class Block {
 
   /// node要素の子要素に対してfuncを適用するイテレータ．
   /// 引数nameで子要素の名前タグを振り分けることができる
-  void child(xml.XmlNode node, Function func, {String name : null}) {
+  void child(xml.XmlNode node, Function func, {String name : null, Type type : null}) {
     node.children.forEach((xml.XmlNode childNode) {
       if(childNode is xml.XmlElement) {
         if (name == null || childNode.name.toString() == name) {
-          func(childNode);
+          if (type == null || BlockLoader.isClassXmlNode(childNode, type)) {
+            func(childNode);
+          }
         }
       }
     });
@@ -75,6 +78,12 @@ abstract class Block {
     child(node, (xml.XmlElement e) {
       child(e, func);
     }, name: name);
+  }
+
+  /// タイプで子要素を振り分ける場合のユーティリティ．
+  /// child関数を読んでいるだけだが，引数の順序が変わるので便利
+  void typedChild(xml.XmlNode node, Type type, Function func) {
+    child(node, func, type: type);
   }
 }
 
