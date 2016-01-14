@@ -137,10 +137,10 @@ class Multiply extends BasicOperator {
 }
 
 /// 除算
-class Div extends BasicOperator {
-  Div(Block a_, Block b_) : super(a_, b_, '/') {}
+class Divide extends BasicOperator {
+  Divide(Block a_, Block b_) : super(a_, b_, '/') {}
 
-  Div.XML(xml.XmlElement node) : super(null, null, '/') {
+  Divide.XML(xml.XmlElement node) : super(null, null, '/') {
     loadXML(node);
   }
 }

@@ -133,6 +133,14 @@ class BlockEditor extends PolymerElement {
       v.attachRight(parseBlock(block.b));
       return v;
     }
+    else if (block is program.Divide) {
+      var v = new html.Element.tag('calc-division')
+        ..model = block;
+
+      v.attachLeft(parseBlock(block.a));
+      v.attachRight(parseBlock(block.b));
+      return v;
+    }
     else if (block is program.If) {
       var v = new html.Element.tag('if-statement')
         ..model = block;

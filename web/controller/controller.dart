@@ -12,6 +12,7 @@ import 'package:polymer/polymer.dart';
 import '../elements/blocks/addition.dart';
 import '../elements/blocks/subtraction.dart';
 import '../elements/blocks/multiplication.dart';
+import '../elements/blocks/division.dart';
 import '../elements/blocks/if_statement.dart';
 
 class Controller {
@@ -122,6 +123,29 @@ class Controller {
         break;
     }
 
+//  rtm_menu
+    if(command == 'add_inport') {
+      var n = getInPortName();
+      program.AddInPort v = new program.AddInPort(n, new program.DataType.TimedLong());
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+    }
+
+    if(command == 'add_outport') {
+      var n = getOutPortName();
+      program.AddOutPort v = new program.AddOutPort(n, new program.DataType.TimedLong());
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+    }
+
+
+//  variables_menu
     if (command == 'set_variable') {
       program.SetVariable v = new program.SetVariable(new program.Variable('name'), new program.IntegerLiteral(1));
       program.Statement new_s = new program.Statement(v);
@@ -157,6 +181,8 @@ class Controller {
       }
     }
 
+
+//  port_data_menu
     if(command == 'read_inport') {
       //var inPortMap = onInitializeApp.getInPortMap();
       var inPortList = onInitializeApp.find(program.AddInPort);
@@ -176,7 +202,6 @@ class Controller {
       if (inPortList.length == 0) return;
 
       ///program.OutPortWrite v = new program.OutPortWrite(outPortList[0].name, outPortList[0].dataType);
-
 
       //var inPortMap = onInitializeApp.getInPortMap();
       //if (inPortMap.keys.length == 0) return;
@@ -221,44 +246,13 @@ class Controller {
           } else {
             elem.parentElement.model.b = v;
           }
+        } else if (elem.parentElement is Division) {
+          if (elem.parentElement.model.a == elem.model) {
+            elem.parentElement.model.a = v;
+          } else {
+            elem.parentElement.model.b = v;
+          }
         }
-      }
-    }
-
-    if(command == 'add_inport') {
-      var n = getInPortName();
-      program.AddInPort v = new program.AddInPort(n, new program.DataType.TimedLong());
-      program.Statement new_s = new program.Statement(v);
-
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
-      }
-    }
-
-    if(command == 'add_outport') {
-      var n = getOutPortName();
-      program.AddOutPort v = new program.AddOutPort(n, new program.DataType.TimedLong());
-      program.Statement new_s = new program.Statement(v);
-
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
-      }
-    }
-
-
-    if(command == 'write_outport') {
-      List<program.AddOutPort> outPortList = onInitializeApp.find(program.AddOutPort);
-      if (outPortList.length == 0) return;
-
-      program.WriteOutPort v = new program.WriteOutPort(outPortList[0].name, outPortList[0].dataType);
-      program.Statement new_s = new program.Statement(v);
-
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
-      }
-      else if (selectedStatement() is ReadInPort) {
-
-        selectedStatement().model.statements.add(new_s);
       }
     }
 
@@ -284,6 +278,23 @@ class Controller {
       }
     }
 
+    if(command == 'write_outport') {
+      List<program.AddOutPort> outPortList = onInitializeApp.find(program.AddOutPort);
+      if (outPortList.length == 0) return;
+
+      program.WriteOutPort v = new program.WriteOutPort(outPortList[0].name, outPortList[0].dataType);
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+      else if (selectedStatement() is ReadInPort) {
+
+        selectedStatement().model.statements.add(new_s);
+      }
+    }
+
+//  calculate_menu
     if (command == 'int_input') {
       program.IntegerLiteral v = new program.IntegerLiteral(1);
       program.Statement new_s = new program.Statement(v);
@@ -308,6 +319,12 @@ class Controller {
             elem.parentElement.model.b = v;
           }
         } else if (elem.parentElement is Multiplication) {
+          if (elem.parentElement.model.a == elem.model) {
+            elem.parentElement.model.a = v;
+          } else {
+            elem.parentElement.model.b = v;
+          }
+        } else if (elem.parentElement is Division) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
@@ -362,6 +379,23 @@ class Controller {
       }
     }
 
+    if (command == 'division') {
+      program.Divide v = new program.Divide(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() is SetVariable) {
+        selectedStatement().model.right = v;
+      }
+      else {
+        PolymerElement elem = globalController.selectedElement;
+        if (elem.parentElement is SetVariable) {
+          elem.parentElement.model.right = v;
+        }
+      }
+    }
+
+
+//  if_switch_loop_menu
     if(command =='if') {
       program.If v = new program.If(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)),
           new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable0'), new program.IntegerLiteral(1)))]));
@@ -399,8 +433,6 @@ class Controller {
       }
     }
 
-
-
     if(command =='while') {
       program.While v = new program.While(new program.Equals(new program.Variable('a'), new program.IntegerLiteral(1)),
       new program.StatementList([new program.Statement(new program.TrueLiteral())]));
@@ -411,6 +443,7 @@ class Controller {
       }
     }
 
+//  condition_menu
     if(command == 'equals') {
       program.Equals v = new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1));
 

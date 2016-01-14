@@ -119,7 +119,7 @@
                 background-color: #EDC08F;
             }
 
-            #integer_input {
+            #calc1 {
                 margin: 2px;
                 color: #212121;
                 font-size: 12px;
@@ -128,7 +128,7 @@
 
                 background-color: #BDE1F0;
             }
-            #addition {
+            #calc2 {
                 margin: 2px;
                 color: #212121;
                 font-size: 12px;
@@ -137,7 +137,7 @@
 
                 background-color: #BDE1F0;
             }
-            #subtraction {
+            #calc3 {
                 margin: 2px;
                 color: #212121;
                 font-size: 12px;
@@ -146,7 +146,16 @@
 
                 background-color: #BDE1F0;
             }
-            #multiplication {
+            #calc4 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #BDE1F0;
+            }
+            #calc5 {
                 margin: 2px;
                 color: #212121;
                 font-size: 12px;
@@ -166,6 +175,15 @@
                 background-color: #EDDE8F;
             }
             #loop2 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #EDDE8F;
+            }
+            #loop3 {
                 margin: 2px;
                 color: #212121;
                 font-size: 12px;
@@ -202,10 +220,11 @@
                 </collapse-menu>
 
                 <collapse-menu id="calculate_menu" label="計算" state="closed">
-                    <add-element-button id="integer_input" label="整数の追加" command="int_input"></add-element-button>
-                    <add-element-button id="addition" label="足し算" command="addition"></add-element-button>
-                    <add-element-button id="subtraction" label="引き算" command="subtraction"></add-element-button>
-                    <add-element-button id="multiplication" label="掛け算" command="multiplication"></add-element-button>
+                    <add-element-button id="calc1" label="整数の追加" command="int_input"></add-element-button>
+                    <add-element-button id="calc2" label="足し算" command="addition"></add-element-button>
+                    <add-element-button id="calc3" label="引き算" command="subtraction"></add-element-button>
+                    <add-element-button id="calc4" label="掛け算" command="multiplication"></add-element-button>
+                    <add-element-button id="calc5" label="割り算" command="division"></add-element-button>
                 </collapse-menu>
 
                 <collapse-menu id="if_switch_loop_menu" label="くりかえし処理" state="closed">
