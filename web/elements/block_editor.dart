@@ -157,6 +157,30 @@ class BlockEditor extends PolymerElement {
 */
       return v;
     }
+    else if (block is program.Else) {
+      var v = new html.Element.tag('else-statement')
+        ..model = block;
+      for (program.Statement s_ in block.statements) {
+        parseStatement(v.contents.children, s_)
+            .parentElement = v;
+      }
+      /*
+      for (program.Statement s_ in block.no) {
+        parseStatement(v.no.children, s_)
+            .parentElement = v;
+      }
+      */
+      /*
+      for (program.Statement s in block.yes) {
+        v.attachTrue(parseStatement(v, s));
+      }
+      for (program.Statement s in block.no) {
+        v.attachFalse(parseStatement(v, s));
+      }
+*/
+      return v;
+    }
+
     else if (block is program.While) {
       return new html.Element.tag('while-statement')
         ..model = block;

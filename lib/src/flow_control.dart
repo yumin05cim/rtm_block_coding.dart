@@ -59,6 +59,9 @@ class If extends Block {
 class Else extends Block {
   StatementList statements = new StatementList([]);
 
+  Else(this.statements) {
+  }
+
   @override
   void iterateBlock(var func) {
     for (var s in statements) {

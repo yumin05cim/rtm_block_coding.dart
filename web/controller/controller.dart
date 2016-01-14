@@ -3,7 +3,7 @@ import 'package:rtm_block_coding/application.dart' as program;
 
 import 'package:xml/xml.dart' as xml;
 
-
+import 'dart:html' as html;
 import '../elements/blocks/read_inport.dart';
 import '../elements/blocks/outport_data.dart';
 
@@ -376,6 +376,30 @@ class Controller {
 
       }
     }
+
+    if(command =='else') {
+      program.Else v = new program.Else(new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable0'), new program.IntegerLiteral(1)))]));
+      //no:new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable1'), new program.IntegerLiteral(1)))]));
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() == null) {
+        if (app.statements.length > 0) {
+          if (app.statements.last.block is program.If) {
+            app.statements.add(new_s);
+          }
+        }
+      } else if (selectedElement is If) {
+        var index = (selectedStatement().parent as html.DivElement).children.indexOf(selectedElement);
+
+        if (index >= 0) {
+          (selectedElement.model as program.If).parent.parent.insert(index+1, new_s);
+        }
+      } else {
+
+      }
+    }
+
+
 
     if(command =='while') {
       program.While v = new program.While(new program.Equals(new program.Variable('a'), new program.IntegerLiteral(1)),
