@@ -285,7 +285,10 @@ class Controller {
 /*      if (selectedStatement() == null) {
         app.statements.add(new_s);
       }*/
-      if (selectedStatement() is ReadInPort) {
+      if (selectedStatement() is SetVariable) {
+        selectedStatement().model.right = v;
+      }
+      else if (selectedStatement() is ReadInPort) {
         selectedStatement().model.statements.add(new_s);
       }
     }
