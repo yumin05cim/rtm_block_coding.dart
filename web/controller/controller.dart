@@ -225,12 +225,12 @@ class Controller {
       // }
 
       program.AccessInPort v = new program.AccessInPort(inPortList[0].name, inPortList[0].dataType, "");
+      program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() == null) {
-        program.Statement new_s = new program.Statement(v);
+/*      if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
-      else if (selectedStatement() is SetVariable) {
+      else */if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
       }
       else if (selectedStatement() is OutPortData) {
@@ -282,9 +282,9 @@ class Controller {
       //program.OutPortData v = new program.OutPortData(outPortMap.keys.first, outPortMap[outPortMap.keys.first], '', new program.Integer(1));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() == null) {
+/*      if (selectedStatement() == null) {
         app.statements.add(new_s);
-      }
+      }*/
       if (selectedStatement() is ReadInPort) {
         selectedStatement().model.statements.add(new_s);
       }
