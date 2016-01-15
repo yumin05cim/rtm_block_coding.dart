@@ -24,10 +24,32 @@ class DataType {
     return _cs(typename);
   }
 
+  static bool isPrimitiveType(DataType dt) {
+    if (PrimitiveTypes.contains(dt.typename)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   static var _cs_typedef_map = {
     "RangeList" : "DoubleSeq",
     "ElementGeometryList" : "Geometry3DSeq",
   };
+
+  static List<String> PrimitiveIntegerTypes = [
+    "short", "long", "ushort", "ulong"
+  ];
+
+  static List<String> PrimitiveRealTypes = [
+    "double", "float"
+  ];
+
+  static List<String> PrimitiveStringTypes = [
+    "String",
+  ];
+
+  static List<String> PrimitiveTypes = PrimitiveIntegerTypes + PrimitiveRealTypes + PrimitiveStringTypes;
 
   static Map<List<String>, String> _cs_map = {
     ["0"] : "0",
