@@ -1,7 +1,5 @@
 library application.flow_control;
 
-
-
 import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
@@ -94,7 +92,6 @@ class Else extends Block {
       statements.loadFromXML(e);
     });
   }
-
 }
 
 class While extends Block {
@@ -103,7 +100,6 @@ class While extends Block {
   StatementList loop = new StatementList([]);
 
   While(this.condition, this.loop) {}
-
 
   String toPython(int indentLevel) {
     String sb = "";
@@ -138,7 +134,6 @@ class While extends Block {
         });
   }
 
-
   While.XML(xml.XmlElement node) {
     namedChildChildren(node, 'Condition', (xml.XmlElement e) {
       condition = BlockLoader.parseBlock(e);
@@ -147,7 +142,6 @@ class While extends Block {
       loop.loadFromXML(e);
     });
   }
-
 }
 
 class Break extends Block {
@@ -166,7 +160,6 @@ class Break extends Block {
 
         });
   }
-
 
   Break.XML(xml.XmlElement node) {
 
@@ -190,11 +183,9 @@ class Continue extends Block {
         });
   }
 
-
   Continue.XML(xml.XmlElement node) {
 
   }
-
 }
 
 class Pass extends Block {
@@ -216,5 +207,4 @@ class Pass extends Block {
   Pass.XML(xml.XmlElement node) {
 
   }
-
 }

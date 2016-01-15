@@ -29,14 +29,18 @@
                 margin-left : 10px;
                 margin-right: 10px;
             }
+            paper-input#int-value-input {
+                width: 30px;
+            }
 
         </style>
 
         <!--Japanese ver.-->
-        <div id="target" horizontal layout center>
-            <div end>(整数: </div>
-            <paper-input id="int-value-input" flex value="{{int_value}}"></paper-input>
-            <div end>)</div>
+        <div id="body">
+            <div id="target" horizontal layout center>
+                <div end>整数: </div>
+                <paper-input id="int-value-input" flex value="{{int_value}}"></paper-input>
+            </div>
         </div>
 
         <!--English ver.-->
