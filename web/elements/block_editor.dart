@@ -79,7 +79,13 @@ class BlockEditor extends PolymerElement {
 /*    if (block is program.IntegerLiteral) {
       return new html.Element.tag('integer-literal')
         ..model = block;
-    } else */if (block is program.AddInPort) {
+
+    } else */
+
+    if (block is program.DeclareVariable) {
+      return new html.Element.tag('add-variable')
+        ..model = block;
+    } else if (block is program.AddInPort) {
       return new html.Element.tag('add-inport')
         ..model = block;
     } else if (block is program.AddOutPort) {

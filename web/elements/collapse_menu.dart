@@ -1,7 +1,7 @@
 import 'package:polymer/polymer.dart';
 import 'dart:html' as html;
 import 'package:core_elements/core_collapse.dart';
-
+import 'add_element_button.dart';
 
 @CustomTag('collapse-menu')
 class CollapseMenu extends PolymerElement {
@@ -40,6 +40,16 @@ class CollapseMenu extends PolymerElement {
       $['coreToolbar'].style.border = "1px groove #B6B6B6";
     }
     disabled = flag;
+  }
+
+  void disableMenuItem(String id, bool flag) {
+    AddElementButton btn = null;
+    this.children.forEach((var e) {
+      if ((e as html.HtmlElement).id == (id)) {
+        btn = e;
+      }
+    });
+    btn.setEnabled(flag);
   }
 
   @override

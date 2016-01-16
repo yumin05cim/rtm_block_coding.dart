@@ -72,7 +72,10 @@ class MainFrame extends PolymerElement {
   void setMode(String mode) {
     if (mode == 'initialize') {
       $['rtm_menu'].disableMenu(false);
-      $['variables_menu'].disableMenu(true);
+      $['variables_menu'].disableMenu(false);
+      ($['variables_menu'] as CollapseMenu).disableMenuItem('var0', false);
+      ($['variables_menu'] as CollapseMenu).disableMenuItem('var1', true);
+      ($['variables_menu'] as CollapseMenu).disableMenuItem('var2', true);
       $['port_data_menu'].disableMenu(true);
       $['calculate_menu'].disableMenu(true);
       $['if_switch_loop_menu'].disableMenu(true);
@@ -80,6 +83,9 @@ class MainFrame extends PolymerElement {
     } else {
       $['rtm_menu'].disableMenu(true);
       $['variables_menu'].disableMenu(false);
+      ($['variables_menu'] as CollapseMenu).disableMenuItem('var0', true);
+      ($['variables_menu'] as CollapseMenu).disableMenuItem('var1', false);
+      ($['variables_menu'] as CollapseMenu).disableMenuItem('var2', false);
       $['port_data_menu'].disableMenu(false);
       $['calculate_menu'].disableMenu(false);
       $['if_switch_loop_menu'].disableMenu(false);

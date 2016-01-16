@@ -49,7 +49,14 @@ class DataType {
     "String",
   ];
 
-  static List<String> PrimitiveTypes = PrimitiveIntegerTypes + PrimitiveRealTypes + PrimitiveStringTypes;
+  static get PrimitiveTypes {
+    var lst = [];
+    lst.addAll(PrimitiveIntegerTypes);
+    lst.addAll(PrimitiveRealTypes);
+    lst.addAll(PrimitiveStringTypes);
+    return lst;
+  }
+
 
   static Map<List<String>, String> _cs_map = {
     ["0"] : "0",
