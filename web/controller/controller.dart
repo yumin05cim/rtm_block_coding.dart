@@ -145,6 +145,16 @@ class Controller {
 
 
 //  variables_menu
+
+    if (command == 'add_variable') {
+      program.DeclareVariable v = new program.DeclareVariable('name', new program.DataType.fromTypeName("long"));
+      program.Statement new_s = new program.Statement(v);
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+    }
+
+
     if (command == 'set_variable') {
       program.SetVariable v = new program.SetVariable(new program.Variable('name'), new program.IntegerLiteral(1));
       program.Statement new_s = new program.Statement(v);
