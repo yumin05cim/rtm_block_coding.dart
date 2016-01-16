@@ -49,11 +49,17 @@ class DataType {
     "String",
   ];
 
+  static List<String> PrimitiveBooleanTypes = [
+    "bool",
+  ];
+
+
   static get PrimitiveTypes {
     var lst = [];
     lst.addAll(PrimitiveIntegerTypes);
     lst.addAll(PrimitiveRealTypes);
     lst.addAll(PrimitiveStringTypes);
+    lst.addAll(PrimitiveBooleanTypes);
     return lst;
   }
 
@@ -65,7 +71,9 @@ class DataType {
     ["double", "float"] : "0.0",
     ["Long", "ULong", "Short", "UShort", "Char", "UChar"] : "0",
     ["Double", "Float"] : "0.0",
-    ["String"] : '""'
+    ["String"] : '""',
+    ["bool"] : 'False',
+    ["Boolean"] : 'False',
   };
 
   static Map<String, List<List<String>>> _cs_name_and_zero = {
@@ -97,11 +105,11 @@ class DataType {
 
   static var _all_types = [
     "Time",
-    "Long", "ULong", "Short", "UShort", "Char", "UChar", "Double", "Float", "String",
+    "Long", "ULong", "Short", "UShort", "Char", "UChar", "Double", "Float", "String", "Boolean",
     "Point2D", "Vector2D", "Velocity2D", "Acceleration2D", "Size2D", "Point3D", "Vector3D", "Velocity3D", "Orientation3D", "Size3D",
     "Pose2D", "Geometry2D", "Pose3D", "Geometry3D",
-    "TimedLong", "TimedULong", "TimedShort", "TimedUShort", "TimedChar", "TimedUChar", "TimedDouble", "TimedFloat", "TimedString",
-    "TimedLongSeq", "TimedULongSeq", "TimedShortSeq", "TimedUShortSeq", "TimedCharSeq", "TimedUCharSeq", "TimedDoubleSeq", "TimedFloatSeq", "TimedStringSeq",
+    "TimedLong", "TimedULong", "TimedShort", "TimedUShort", "TimedChar", "TimedUChar", "TimedDouble", "TimedFloat", "TimedString", "TimedBoolean",
+    "TimedLongSeq", "TimedULongSeq", "TimedShortSeq", "TimedUShortSeq", "TimedCharSeq", "TimedUCharSeq", "TimedDoubleSeq", "TimedFloatSeq", "TimedStringSeq", "TimedBooleanSeq",
     "TimedPoint2D", "TimedVector2D", "TimedVelocity2D", "TimedAcceleration2D", "TimedSize2D", "TimedPoint3D", "TimedVector3D", "TimedVelocity3D", "TimedOrientation3D", "TimedSize3D",
     "RangeConfig", "TimedPose2D", "TimedGeometry2D", "TimedPose3D", "TimedGeometry3D", "RangerGeometry", "RangeData"
   ];
