@@ -91,6 +91,10 @@ class MainFrame extends PolymerElement {
       $['if_switch_loop_menu'].disableMenu(false);
       $['condition_menu'].disableMenu(false);
     }
+
+    globalController.setMode(mode);
+
+
   }
 
   void onSave(var e) {
