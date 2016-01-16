@@ -49,7 +49,7 @@ class CollapseMenu extends PolymerElement {
         btn = e;
       }
     });
-    btn.setEnabled(flag);
+    btn.setEnabled(!flag);
   }
 
   @override
