@@ -1,5 +1,6 @@
 import 'package:polymer/polymer.dart';
 import '../controller/controller.dart';
+import 'package:paper_elements/paper_button.dart';
 
 @CustomTag('add-element-button')
 class AddElementButton extends PolymerElement {
@@ -14,6 +15,11 @@ class AddElementButton extends PolymerElement {
 
   void onTap(var e) {
     globalController.addElement(this.command);
+  }
+
+  void setEnabled(bool flag) {
+    PaperButton btn = $['main-button'];
+    btn.disabled = !flag;
   }
 
 }

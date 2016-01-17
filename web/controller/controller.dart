@@ -22,13 +22,20 @@ class Controller {
   program.Application onDeactivatedApp = new program.Application();
   EditorPanel _editorPanel;
   PythonPanel _pythonPanel;
+  String _mode = "on_initialize";
 
   set editorPanel(EditorPanel p) => _editorPanel = p;
 
   set pythonPanel(PythonPanel p) => _pythonPanel = p;
 
   Controller() {
+
   }
+
+  void setMode(String mode) {
+    _pythonPanel.setMode(mode);
+  }
+
 
   String getSelectedEditorPanelName() {
     switch(_editorPanel.selected) {
@@ -145,6 +152,16 @@ class Controller {
 
 
 //  variables_menu
+
+    if (command == 'add_variable') {
+      program.DeclareVariable v = new program.DeclareVariable('name', new program.DataType.fromTypeName("long"));
+      program.Statement new_s = new program.Statement(v);
+      if (selectedStatement() == null) {
+        app.statements.add(new_s);
+      }
+    }
+
+
     if (command == 'set_variable') {
       program.SetVariable v = new program.SetVariable(new program.Variable('name'), new program.IntegerLiteral(1));
       program.Statement new_s = new program.Statement(v);
@@ -615,6 +632,7 @@ class Controller {
         break;
     }
     _editorPanel.refresh(app);
+    _pythonPanel.onUpdateSelection();
   }
 
   String pythonCode() {
@@ -665,27 +683,37 @@ block_rtc_spec = ["implementation_id", "BlockRTC",
 
 class BlockRTC(OpenRTM_aist.DataFlowComponentBase):
 
+<div id="constructor" class="">
   def __init__(self, manager):
     OpenRTM_aist.DataFlowComponentBase.__init__(self, manager)
 ${dec}
     self._debug = [1]
+</div>
 
+<div id="on-initialize-block">
   def onInitialize(self):
     self.bindParameter("debug", self._debug, "1")
 ${bin}
     return RTC.RTC_OK
+</div>
 
+<div id="on-activated-block">
   def onActivated(self, ec_id):
 ${a}
     return RTC.RTC_OK
+</div>
 
+<div id="on-deactivated-block">
   def onDeactivated(self, ec_id):
 ${d}
     return RTC.RTC_OK
+</div>
 
+<div id="on-execute-block">
   def onExecute(self, ec_id):
 ${e}
     return RTC.RTC_OK
+</div>
 
 def BlockRTCInit(manager):
   profile = OpenRTM_aist.Properties(defaults_str=block_rtc_spec)

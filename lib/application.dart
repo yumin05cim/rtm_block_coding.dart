@@ -13,3 +13,4 @@ export 'src/io.dart';
 export 'src/inport.dart';
 export 'src/outport.dart';
 export 'src/datatype.dart';
+export 'src/variable.dart';

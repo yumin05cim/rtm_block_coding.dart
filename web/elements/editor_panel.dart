@@ -72,11 +72,11 @@ class EditorPanel extends PolymerElement {
   }
 
   void onSelectActivated(var e) {
-    parent.setMode('activate');
+    parent.setMode('activated');
   }
 
   void onSelectDeactivated(var e) {
-    parent.setMode('deactivate');
+    parent.setMode('deactivated');
   }
 
   void onSelectExecute(var e) {
