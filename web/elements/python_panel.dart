@@ -18,6 +18,7 @@ class PythonPanel extends PolymerElement {
   void attached() {
     globalController.pythonPanel = this;
   }
+
   void onUpdateSelection() {
     String innerHtml = "";
 
