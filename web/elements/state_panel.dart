@@ -22,7 +22,7 @@ class StatePanel extends PolymerElement {
 
   void showRTCImage(RTCProfile rtcProfile) {
     var margin = 40;
-    rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 300, offset_y : margin);
+    rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 250, offset_y : margin);
     var canvas = $['interface-canvas'] as html.CanvasElement;
     canvas.height = rtcShape.height + margin*2;
     canvas.width = 800;

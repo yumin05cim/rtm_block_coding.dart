@@ -10,9 +10,11 @@ class RTCProfileShape extends shape.Shape2D {
   List<shape.Polygon> dataInPortShapes;
   List<shape.Polygon> dataOutPortShapes;
   List<shape.Rectangle> servicePortShapes;
-  
-  shape.Color bodyFillColor = new shape.Color(0x21, 0x96, 0xf3);
-  shape.Color portFillColor = new shape.Color(0xbb, 0xde, 0xfb);
+
+  shape.Color bodyFillColor = new shape.Color(0xf3, 0x9c, 0x12);
+  shape.Color portFillColor = new shape.Color(0xf1, 0xc4, 0x0f);
+//  shape.Color bodyFillColor = new shape.Color(0x21, 0x96, 0xf3);
+//  shape.Color portFillColor = new shape.Color(0xbb, 0xde, 0xfb);
 
   int portHeight = 20;
   int textHeight = 18;
