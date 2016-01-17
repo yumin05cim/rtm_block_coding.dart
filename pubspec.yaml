@@ -11,6 +11,12 @@ dependencies:
   http: any
   xml_rpc: any
   xml : any
+  wasanbon_xmlrpc:
+    git : https://github.com/sugarsweetrobotics/wasanbon_xmlrpc.dart
+  rtcprofile:
+    git : https://github.com/sugarsweetrobotics/rtcprofile.dart
+  shape:
+    git : https://github.com/sugarsweetrobotics/shape.dart
 dev_dependencies:
   unittest: any
 transformers:

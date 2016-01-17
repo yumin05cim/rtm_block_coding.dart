@@ -13,6 +13,8 @@ import '../elements/blocks/multiplication.dart';
 import '../elements/blocks/division.dart';
 import '../elements/blocks/if_statement.dart';
 import '../elements/blocks/while_statement.dart';
+import '../elements/state_panel.dart';
+import 'package:rtcprofile/rtcprofile.dart';
 
 class Controller {
 
@@ -22,11 +24,15 @@ class Controller {
   program.Application onDeactivatedApp = new program.Application();
   EditorPanel _editorPanel;
   PythonPanel _pythonPanel;
+  StatePanel _statePanel;
+
   String _mode = "on_initialize";
 
   set editorPanel(EditorPanel p) => _editorPanel = p;
 
   set pythonPanel(PythonPanel p) => _pythonPanel = p;
+
+  set statePanel(StatePanel p) => _statePanel = p;
 
   Controller() {
 
@@ -609,6 +615,9 @@ class Controller {
     if (except != 'onExecute') {
         _editorPanel.onExecuteEditor.refresh(onExecuteApp);
     }
+
+    _pythonPanel.onUpdateSelection();
+    _statePanel.showRTCImage(getRTCProfile());
   }
 
 
@@ -630,6 +639,7 @@ class Controller {
     }
     _editorPanel.refresh(app);
     _pythonPanel.onUpdateSelection();
+    _statePanel.showRTCImage(getRTCProfile());
   }
 
   String pythonCode() {
@@ -814,6 +824,30 @@ if __name__ == "__main__":
         }
       }
     });
+  }
+
+
+
+  RTCProfile getRTCProfile() {
+    var rtcp = new RTCProfile();
+    List<program.AddInPort> inPortList = onInitializeApp.find(program.AddInPort);
+    if (inPortList != null) {
+      inPortList.forEach((program.AddInPort ip) {
+        rtcp.addDataPorts(
+            new DataPorts.InPort(name: ip.name, type: ip.dataType.typename));
+      });
+    }
+
+
+    List<program.AddOutPort> outPortList = onInitializeApp.find(program.AddOutPort);
+    if (outPortList != null) {
+      outPortList.forEach((program.AddOutPort ip) {
+        rtcp.addDataPorts(
+            new DataPorts.OutPort(name: ip.name, type: ip.dataType.typename));
+      });
+    }
+    return rtcp;
+
   }
 }
 
