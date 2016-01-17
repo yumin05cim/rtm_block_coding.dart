@@ -49,18 +49,27 @@ class StatePanel extends PolymerElement {
 
   void showStateMachineImage(RTCProfile rtcProfile) {
     var margin = 40;
-    rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 100, offset_y : margin);
-    rtcShape.portHeight = 15;
-    rtcShape.bodyFillColor = new shape.Color(0x12, 0x12, 0xFF);
     _stateMachineCanvas = $['state-machine-canvas'];
-    _stateMachineCanvas.height = rtcShape.height + margin*2;
+    _stateMachineCanvas.height = 400 + margin*2;
     _stateMachineCanvas.width = 800;
     shape.CanvasDrawContext context = new shape.CanvasDrawContext(_stateMachineCanvas);
+
+
+    rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 100, offset_y : margin);
+    rtcShape.portHeight = 15; // Change size of RTC Image.
+    rtcShape.bodyFillColor = new shape.Color(0x12, 0x12, 0xFF);
     rtcShape.draw(context, fill: true, notitle : true);
 
-    rtcShape.bodyFillColor = new shape.Color(0x12, 0x12, 0xFF);
-    shape.CanvasDrawContext context = new shape.CanvasDrawContext(_stateMachineCanvas);
-    rtcShape.draw(context, fill: true, notitle : true);
+    rtmtools.RTCProfileShape rtcShape2 = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 300, offset_y : margin);
+    rtcShape2.portHeight = 15; // Change size of RTC Image.
+    rtcShape2.bodyFillColor = new shape.Color(0x12, 0xFF, 0x12);
+    rtcShape2.draw(context, fill: true, notitle : true);
+
+    rtmtools.RTCProfileShape rtcShape3 = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 500, offset_y : margin);
+    rtcShape3.portHeight = 15; // Change size of RTC Image.
+    rtcShape3.bodyFillColor = new shape.Color(0x12, 0x12, 0xFF);
+    rtcShape3.draw(context, fill: true, notitle : true);
+
   }
 
 
