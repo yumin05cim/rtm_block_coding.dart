@@ -16,6 +16,8 @@ dependencies:
   rtcprofile:
     git : https://github.com/sugarsweetrobotics/rtcprofile.dart
   shape:
+    #path: '/Users/ysuga/Development/rtm/wasanbon/dart/shape.dart'
+
     git : https://github.com/sugarsweetrobotics/shape.dart
 dev_dependencies:
   unittest: any
