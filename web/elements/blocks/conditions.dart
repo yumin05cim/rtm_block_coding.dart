@@ -24,11 +24,12 @@ class EqualsElement extends PolymerElement {
   EqualsElement.created() : super.created();
 
   void attached() {
-    this.onClick.listen((var e) {
-      globalController.setSelectedElem(e, this);
+  }
 
-      e.stopPropagation();
-    });
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
   }
 
   void attachRight(var e) {
@@ -137,11 +138,12 @@ class LargerThanElement extends PolymerElement {
   LargerThanElement.created() : super.created();
 
   void attached() {
-    this.onClick.listen((var e) {
-      globalController.setSelectedElem(e, this);
+  }
 
-      e.stopPropagation();
-    });
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
   }
 
   void attachRight(var e) {
@@ -193,11 +195,12 @@ class LargerThanOrEqualsElement extends PolymerElement {
   LargerThanOrEqualsElement.created() : super.created();
 
   void attached() {
-    this.onClick.listen((var e) {
-      globalController.setSelectedElem(e, this);
+  }
 
-      e.stopPropagation();
-    });
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
   }
 
   void attachRight(var e) {
@@ -249,11 +252,12 @@ class SmallerThanElement extends PolymerElement {
   SmallerThanElement.created() : super.created();
 
   void attached() {
-    this.onClick.listen((var e) {
-      globalController.setSelectedElem(e, this);
+  }
 
-      e.stopPropagation();
-    });
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
   }
 
   void attachRight(var e) {
@@ -305,11 +309,12 @@ class SmallerThanOrEqualsElement extends PolymerElement {
   SmallerThanOrEqualsElement.created() : super.created();
 
   void attached() {
-    this.onClick.listen((var e) {
-      globalController.setSelectedElem(e, this);
+  }
 
-      e.stopPropagation();
-    });
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
   }
 
   void attachRight(var e) {
@@ -363,11 +368,12 @@ class NotElement extends PolymerElement {
   NotElement.created() : super.created();
 
   void attached() {
-    this.onClick.listen((var e) {
-      globalController.setSelectedElem(e, this);
+  }
 
-      e.stopPropagation();
-    });
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
   }
 
   void attachCondition(var e) {

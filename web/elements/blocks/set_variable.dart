@@ -26,13 +26,12 @@ class SetVariable extends PolymerElement {
           _model.left.name = name;
         }
     );
+  }
 
-    $['title-area'].onClick.listen(
-        (var e) {
-          globalController.setSelectedElem(e, this);
-          e.stopPropagation();
-        }
-    );
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
   }
 
   void attachTarget(var element) {

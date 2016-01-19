@@ -131,6 +131,12 @@ class OutPortData extends PolymerElement {
     });
   }
 
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
+  }
+
   void attachTarget(var element) {
     $['target'].children.clear();
     $['target'].children.add(element);

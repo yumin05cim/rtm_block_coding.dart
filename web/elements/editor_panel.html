@@ -9,11 +9,25 @@
         <link rel="stylesheet" href="element_styles.css" />
         <style type='text/css'>
 
-            :host {}
+            :host {
+                background-color: #868686;
+            }
 
             paper-tabs.tabs::shadow #selectionBar {
 /*              background: #FF5722; */
                 background: #b42d50;
+            }
+
+
+            :host > #editor-toolbar {
+                background-color: #E6E6E6;
+                height: 30px;
+            }
+
+            :host > #editor-toolbar > .editor-toolbar-button {
+                height: 25px;
+                width: 25px;
+                padding: 0px;
             }
 
         </style>
@@ -24,6 +38,11 @@
             <paper-tab on-tap="{{onSelectExecute}}">onExecute</paper-tab>
             <paper-tab on-tap="{{onSelectDeactivated}}">onDeactivated</paper-tab>
         </paper-tabs>
+        <div id="editor-toolbar">
+            <paper-icon-button id="up-button" class="editor-toolbar-button" icon="arrow-drop-up" on-tap="{{onUp}}"></paper-icon-button>
+            <paper-icon-button class="editor-toolbar-button" icon="arrow-drop-down" on-tap="{{onDown}}"></paper-icon-button>
+            <paper-icon-button class="editor-toolbar-button" icon="remove" on-tap="{{onRemove}}"></paper-icon-button>
+        </div>
 
         <core-pages selected="{{selected}}">
             <block-editor command="onInitialize"   id="on_initialize_editor"></block-editor>

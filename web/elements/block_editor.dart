@@ -21,12 +21,11 @@ class BlockEditor extends PolymerElement {
 
   @override
   void attached() {
-    this.onClick.listen(
-        (var e) {
-          // To avoid the buggy behavior where the up-down buttons are vanished when clicked.
-          globalController.setSelectedElem(e, globalController.selectedElement);
-        }
-    );
+  }
+
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, globalController.selectedElement);
+    e.stopPropagation();
   }
 
   void updateClick() {

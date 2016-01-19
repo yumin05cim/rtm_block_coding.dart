@@ -1,6 +1,7 @@
 import 'package:polymer/polymer.dart';
 import '../controller/controller.dart';
 import 'block_editor.dart';
+import 'dart:html' as html;
 
 @CustomTag('editor-panel')
 class EditorPanel extends PolymerElement {
@@ -26,29 +27,17 @@ class EditorPanel extends PolymerElement {
     onActivatedEditor = $['on_activated_editor'];
     onDeactivatedEditor = $['on_deactivated_editor'];
     onExecuteEditor = $['on_execute_editor'];
-
   }
 
   void refresh(var app) {
-    BlockEditor editor;
-    switch(selected) {
-      case 0:
-        editor = $['on_initialize_editor'];
-        break;
-      case 1:
-        editor = $['on_activated_editor'];
-        break;
-      case 2:
-        editor = $['on_execute_editor'];
-        break;
-      case 3:
-        editor = $['on_deactivated_editor'];
-        break;
-    }
-    editor.refresh(app);
+    selectedEditor.refresh(app);
   }
 
   void updateClick() {
+    selectedEditor.updateClick();
+  }
+
+  get selectedEditor {
     BlockEditor editor;
     switch(selected) {
       case 0:
@@ -64,7 +53,7 @@ class EditorPanel extends PolymerElement {
         editor = $['on_deactivated_editor'];
         break;
     }
-    editor.updateClick();
+    return editor;
   }
 
   void onSelectInitialize(var e) {
@@ -83,4 +72,18 @@ class EditorPanel extends PolymerElement {
     parent.setMode('execute');
   }
 
+  void onUp(var e) {
+    selectedEditor.onUp(e);
+    e.stopPropagation();
+  }
+
+  void onDown(var e) {
+    selectedEditor.onDown(e);
+    e.stopPropagation();
+  }
+
+  void onRemove(var e) {
+    selectedEditor.onDelete(e);
+    e.stopPropagation();
+  }
 }

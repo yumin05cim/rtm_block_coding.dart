@@ -60,15 +60,41 @@ class StatePanel extends PolymerElement {
     rtcShape.bodyFillColor = new shape.Color(0x12, 0x12, 0xFF);
     rtcShape.draw(context, fill: true, notitle : true);
 
+    var text = new shape.Text("すごい",
+        x: 100 + 15 * 4 / 2,
+        y: margin-10,
+        color: new shape.Color.black(),
+        textAlign: 'center',
+        font: '22px Arial');
+    text.draw(context);
+
+
     rtmtools.RTCProfileShape rtcShape2 = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 300, offset_y : margin);
     rtcShape2.portHeight = 15; // Change size of RTC Image.
     rtcShape2.bodyFillColor = new shape.Color(0x12, 0xFF, 0x12);
     rtcShape2.draw(context, fill: true, notitle : true);
 
+    text = new shape.Text("にらが",
+        x: 300 + 15 * 4 / 2,
+        y: margin-10,
+        color: new shape.Color.black(),
+        textAlign: 'center',
+        font: '22px Arial');
+    text.draw(context);
+
+
     rtmtools.RTCProfileShape rtcShape3 = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 500, offset_y : margin);
     rtcShape3.portHeight = 15; // Change size of RTC Image.
     rtcShape3.bodyFillColor = new shape.Color(0x12, 0x12, 0xFF);
     rtcShape3.draw(context, fill: true, notitle : true);
+
+    text = new shape.Text("食べたい",
+        x: 500 + 15 * 4 / 2,
+        y: margin-10,
+        color: new shape.Color.black(),
+        textAlign: 'center',
+        font: '22px Arial');
+    text.draw(context);
 
   }
 
