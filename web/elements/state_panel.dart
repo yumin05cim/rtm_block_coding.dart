@@ -120,7 +120,7 @@ class StatePanel extends PolymerElement {
   ..fillColor = new shape.Color.fromString('#FF00FF');
     sa.draw(context, fill:true);
 
-    shape.StraightArrow sd = new shape.StraightArrow(new shape.Point2D(370, 120), new shape.Point2D(200, 120))
+    shape.StraightArrow sd = new shape.StraightArrow(new shape.Point2D(370, 100), new shape.Point2D(200, 100))
     ..straightWidth = 20
     ..arrowWidth = 30
     ..text = new shape.Text('onDectivated', color: new shape.Color.black())
