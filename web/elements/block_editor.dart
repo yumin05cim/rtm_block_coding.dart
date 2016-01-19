@@ -15,9 +15,11 @@ class BlockEditor extends PolymerElement {
 
   BlockEditor.created() : super.created();
 
+  /*
   var up_offset = [-20, 100];
   var down_offset = [-20, 180];
   var delete_offset = [-20, 260];
+  */
 
   @override
   void attached() {
@@ -28,6 +30,7 @@ class BlockEditor extends PolymerElement {
     e.stopPropagation();
   }
 
+  /*
   void updateClick() {
     if (globalController.selectedElement == null) {
       $['up'].style.display = 'none';
@@ -63,6 +66,7 @@ class BlockEditor extends PolymerElement {
       $['delete'].style.left = '${left + delete_offset[1]}px';
     }
   }
+  */
 
   get container => $['container'];
 
@@ -272,7 +276,7 @@ class BlockEditor extends PolymerElement {
 
           globalController.setSelectedElem(globalController.previousMouseEvent, selected);
           globalController.refreshPanel();
-          updateClick();
+          //updateClick();
         }
 
       }
@@ -296,13 +300,13 @@ class BlockEditor extends PolymerElement {
 
           globalController.setSelectedElem(globalController.previousMouseEvent, selected);
           globalController.refreshPanel();
-          updateClick();
+          //updateClick();
         }
       }
     }
   }
 
-  void onDelete(var e) {
+  void onRemove(var e) {
     var selected = globalController.selectedElement;
     if (selected == null) return;
 
@@ -312,7 +316,7 @@ class BlockEditor extends PolymerElement {
     }
     globalController.setSelectedElem(globalController.previousMouseEvent, null);
     globalController.refreshPanel();
-    updateClick();
+    //updateClick();
 
   }
 

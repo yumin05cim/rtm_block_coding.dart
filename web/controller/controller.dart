@@ -623,6 +623,7 @@ class Controller {
 
 
   void refreshPanel() {
+    /*
     program.Application app;
     switch (_editorPanel.selected) {
       case 0:
@@ -638,7 +639,8 @@ class Controller {
         app = onDeactivatedApp;
         break;
     }
-    _editorPanel.refresh(app);
+    */
+    _editorPanel.refresh();
     _pythonPanel.onUpdateSelection();
     _statePanel.showRTCImage(getRTCProfile());
   }

@@ -41,11 +41,11 @@ class MainFrame extends PolymerElement {
   }
 
   void onMainPanelTap(var e) {
-    if (globalController.previousMouseEvent != e) {
+    //if (globalController.previousMouseEvent != e) {
       globalController.setSelectedElem(e, null);
-    }
+    //}
 
-    $['main-panel'].querySelector('editor-panel').updateClick();
+    //$['main-panel'].querySelector('editor-panel').updateClick();
   }
 
   void closeCollapse(var elem) {

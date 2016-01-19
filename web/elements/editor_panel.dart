@@ -29,6 +29,27 @@ class EditorPanel extends PolymerElement {
     onExecuteEditor = $['on_execute_editor'];
   }
 
+  get selectedApplication {
+    switch(selected) {
+      case 0:
+        return globalController.onInitializeApp;
+      case 1:
+        return globalController.onActivatedApp;
+      case 2:
+        return globalController.onExecuteApp;
+        break;
+      case 3:
+        return globalController.onDeactivatedApp;
+    }
+    return null;
+  }
+
+
+  void refresh() {
+    selectedEditor.refresh(selectedApplication);
+  }
+
+    /*
   void refresh(var app) {
     selectedEditor.refresh(app);
   }
@@ -36,24 +57,20 @@ class EditorPanel extends PolymerElement {
   void updateClick() {
     selectedEditor.updateClick();
   }
+  */
 
   get selectedEditor {
-    BlockEditor editor;
     switch(selected) {
       case 0:
-        editor = $['on_initialize_editor'];
-        break;
+        return $['on_initialize_editor'];
       case 1:
-        editor = $['on_activated_editor'];
-        break;
+        return $['on_activated_editor'];
       case 2:
-        editor = $['on_execute_editor'];
-        break;
+        return $['on_execute_editor'];
       case 3:
-        editor = $['on_deactivated_editor'];
-        break;
+        return $['on_deactivated_editor'];
     }
-    return editor;
+    return null;
   }
 
   void onSelectInitialize(var e) {
