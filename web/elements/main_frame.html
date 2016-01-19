@@ -369,7 +369,7 @@
             <core-header-panel main >
                 <core-drawer-panel rightDrawer drawerWidth="500px" responsiveWidth="1200px">
 
-                    <core-header-panel id="main-panel" main layout vertical>
+                    <core-header-panel id="main-panel" main layout vertical on-tap="{{onMainPanelTap}}">
                         <core-toolbar class="text-primary-color dark-primary-color">
                             <div flex>RTM Block Coding</div>
                         </core-toolbar>
@@ -381,7 +381,11 @@
                         <core-toolbar  class="text-primary-color dark-primary-color" >
                             <core-icon-button icon="send"> Launch</core-icon-button>
                             <core-icon-button icon="save" on-tap="{{onSave}}"> Save</core-icon-button>
+<<<<<<< HEAD
                             <core-icon-button icon="folder-open" id="load_button"> Load</core-icon-button>
+=======
+                            <core-icon-button icon="load" id="load_button" on-tap="{{onImport}}">Import</core-icon-button>
+>>>>>>> 046b59ff8488b87f313bfbe6d8d9a01ef997813d
                             <input type="file" accept="*.xml" id="file_input" style="display:none;" on-change="{{onFileInput}}" />
                             <core-icon-button icon="help"> Help</core-icon-button>
                         </core-toolbar>

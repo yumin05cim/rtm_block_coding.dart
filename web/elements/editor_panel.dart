@@ -1,6 +1,7 @@
 import 'package:polymer/polymer.dart';
 import '../controller/controller.dart';
 import 'block_editor.dart';
+import 'dart:html' as html;
 
 @CustomTag('editor-panel')
 class EditorPanel extends PolymerElement {
@@ -26,45 +27,50 @@ class EditorPanel extends PolymerElement {
     onActivatedEditor = $['on_activated_editor'];
     onDeactivatedEditor = $['on_deactivated_editor'];
     onExecuteEditor = $['on_execute_editor'];
-
   }
 
-  void refresh(var app) {
-    BlockEditor editor;
+  get selectedApplication {
     switch(selected) {
       case 0:
-        editor = $['on_initialize_editor'];
-        break;
+        return globalController.onInitializeApp;
       case 1:
-        editor = $['on_activated_editor'];
-        break;
+        return globalController.onActivatedApp;
       case 2:
-        editor = $['on_execute_editor'];
+        return globalController.onExecuteApp;
         break;
       case 3:
-        editor = $['on_deactivated_editor'];
-        break;
+        return globalController.onDeactivatedApp;
     }
-    editor.refresh(app);
+    return null;
+  }
+
+
+  void refresh() {
+    selectedEditor.refresh(selectedApplication);
+  }
+
+    /*
+  void refresh(var app) {
+    selectedEditor.refresh(app);
   }
 
   void updateClick() {
-    BlockEditor editor;
+    selectedEditor.updateClick();
+  }
+  */
+
+  get selectedEditor {
     switch(selected) {
       case 0:
-        editor = $['on_initialize_editor'];
-        break;
+        return $['on_initialize_editor'];
       case 1:
-        editor = $['on_activated_editor'];
-        break;
+        return $['on_activated_editor'];
       case 2:
-        editor = $['on_execute_editor'];
-        break;
+        return $['on_execute_editor'];
       case 3:
-        editor = $['on_deactivated_editor'];
-        break;
+        return $['on_deactivated_editor'];
     }
-    editor.updateClick();
+    return null;
   }
 
   void onSelectInitialize(var e) {
@@ -83,4 +89,18 @@ class EditorPanel extends PolymerElement {
     parent.setMode('execute');
   }
 
+  void onUp(var e) {
+    selectedEditor.onUp(e);
+    e.stopPropagation();
+  }
+
+  void onDown(var e) {
+    selectedEditor.onDown(e);
+    e.stopPropagation();
+  }
+
+  void onRemove(var e) {
+    selectedEditor.onRemove(e);
+    e.stopPropagation();
+  }
 }

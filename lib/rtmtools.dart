@@ -58,10 +58,13 @@ class RTCProfileShape extends shape.Shape2D {
       .._offset_x = x
       .._offset_y = y;
   }
-  
+
+  int numRightPort;
+  int numLeftPort;
+
   num get height {
-    int numLeftPort = 0;
-    int numRightPort = 0;
+    numLeftPort = 0;
+    numRightPort = 0;
     rtcProfile.dataPorts.forEach((p) {
       if (p.portType == 'DataInPort') {
         numLeftPort++;
@@ -78,8 +81,8 @@ class RTCProfileShape extends shape.Shape2D {
   }
   
   void updateShape() {
-    int numLeftPort = 0;
-    int numRightPort = 0;
+    numLeftPort = 0;
+    numRightPort = 0;
     rtcProfile.dataPorts.forEach((p) {
       if (p.portType == 'DataInPort') {
         numLeftPort++;
@@ -97,6 +100,8 @@ class RTCProfileShape extends shape.Shape2D {
     numRightPort = 0;
     
     body = new shape.Rectangle(0+_offset_x, _offset_y, rtcWidth, numPort * (portMargin+portHeight) - portMargin + padding*2);
+    body.fillColor = bodyFillColor;
+    body.strokeWidth = 1;
  /*   
     var canvas = $['rtcp_canvas'] as html.CanvasElement;
     canvas.height = numPort * (portHeight+portMargin) + padding*2 + margin*2;
@@ -122,8 +127,11 @@ class RTCProfileShape extends shape.Shape2D {
         points.add(new shape.Point2D(x0.x + portWidth, x0.y + portHeight));
         points.add(new shape.Point2D(x0.x, x0.y + portHeight));
         points.add(new shape.Point2D(x0.x + portWidth/3, x0.y + portHeight/2));
-        
-        dataInPortShapes.add(new shape.Polygon(points));
+
+
+        dataInPortShapes.add(new shape.Polygon(points)
+        ..fillColor = portFillColor
+        ..strokeWidth = 1);
         numLeftPort ++;
       } else {
         List<shape.Point2D> points = new List<shape.Point2D>();
@@ -135,7 +143,9 @@ class RTCProfileShape extends shape.Shape2D {
         points.add(new shape.Point2D(x0.x + portWidth*2/3, x0.y + portHeight));
         points.add(new shape.Point2D(x0.x, x0.y + portHeight));
         
-        dataOutPortShapes.add(new shape.Polygon(points));        
+        dataOutPortShapes.add(new shape.Polygon(points)
+          ..fillColor = portFillColor
+          ..strokeWidth = 1);
         numRightPort++;
       }
     });
@@ -143,7 +153,9 @@ class RTCProfileShape extends shape.Shape2D {
     rtcProfile.servicePorts.forEach((p) {
       servicePortShapes.add(new shape.Rectangle(_offset_x + rtcWidth - portWidth/2,
           padding + numRightPort*(portMargin+portHeight) + _offset_y,
-          portWidth, portHeight));
+          portWidth, portHeight)
+        ..fillColor = portFillColor
+        ..strokeWidth = 1);
       numRightPort++;
     });
   }
@@ -154,19 +166,13 @@ class RTCProfileShape extends shape.Shape2D {
       updateShape();
     }
     
-    context.fillColor = bodyFillColor;
-    context.lineWidth = 1;
     body.draw(context, fill: fill);
     
-    context.fillColor = portFillColor;
-    context.lineWidth = 1;
     for(int i = 0;i < dataInPortShapes.length;i++) {
       var p = dataInPortShapes[i];
       var port = rtcProfile.dataInPorts[i];
-      
-      context.fillColor = portFillColor;
-      p.draw(context, fill: fill);
 
+      p.draw(context, fill: fill);
 
       if(!notitle) {
         var text = new shape.Text("${port.name} : ${port.type}",
@@ -178,11 +184,20 @@ class RTCProfileShape extends shape.Shape2D {
         text.draw(context);
       }
     }
-    
+
+    List<shape.Point2D> points = new List<shape.Point2D>();
+    shape.Point2D x0 = new shape.Point2D(_offset_x + rtcWidth - portWidth/2,
+        padding + numRightPort*(portMargin+portHeight) + _offset_y);
+    points.add(x0);
+    points.add(new shape.Point2D(x0.x + portWidth*2/3, x0.y));
+    points.add(new shape.Point2D(x0.x + portWidth, x0.y + portHeight/2));
+    points.add(new shape.Point2D(x0.x + portWidth*2/3, x0.y + portHeight));
+    points.add(new shape.Point2D(x0.x, x0.y + portHeight));
+
+
     for(int i = 0;i < dataOutPortShapes.length;i++) {
       var p = dataOutPortShapes[i];
       var port = rtcProfile.dataOutPorts[i];
-      context.fillColor = portFillColor;
       p.draw(context, fill: fill);
 
       if (!notitle) {
@@ -200,7 +215,6 @@ class RTCProfileShape extends shape.Shape2D {
       var p = servicePortShapes[i];
       var port = rtcProfile.servicePorts[i];
 
-      context.fillColor = portFillColor;
       p.draw(context, fill: fill);
 
       if (!notitle) {

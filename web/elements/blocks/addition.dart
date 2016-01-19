@@ -38,11 +38,6 @@ class Addition extends PolymerElement {
     );
     */
 
-    this.onClick.listen((var e) {
-      globalController.setSelectedElem(e, this);
-
-      e.stopPropagation();
-    });
   }
 
   void attachRight(var e) {
@@ -55,6 +50,11 @@ class Addition extends PolymerElement {
     $['add-value-a-content'].children.clear();
     $['add-value-a-content'].children.add(e);
     e.parentElement = this;
+  }
+
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
   }
 
 

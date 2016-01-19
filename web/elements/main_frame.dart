@@ -33,25 +33,19 @@ class MainFrame extends PolymerElement {
 
     $['code-editor-panel'].setParent(this);
 
-    $['main-panel'].onClick.listen(
-        (var e) {
-          if (globalController.previousMouseEvent != e) {
-            globalController.setSelectedElem(e, null);
-          }
-
-          $['main-panel'].querySelector('editor-panel').updateClick();
-        }
-    );
-
-    $['load_button'].onClick.listen((var e) {
-      onImport(e);
-    });
-
     $['file_input'].onChange.listen((var e) {
       onFileInput(e);
     });
 
     setMode('initialize');
+  }
+
+  void onMainPanelTap(var e) {
+    //if (globalController.previousMouseEvent != e) {
+      globalController.setSelectedElem(e, null);
+    //}
+
+    //$['main-panel'].querySelector('editor-panel').updateClick();
   }
 
   void closeCollapse(var elem) {
@@ -93,8 +87,6 @@ class MainFrame extends PolymerElement {
     }
 
     globalController.setMode(mode);
-
-
   }
 
   void onSave(var e) {

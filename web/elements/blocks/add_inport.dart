@@ -119,10 +119,12 @@ class AddInPort extends PolymerElement {
           }
         }
     );
+  }
 
-    $['title-area'].onClick.listen((var e) {
-      globalController.setSelectedElem(e, this);
-    });
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
   }
 
   void select() {
