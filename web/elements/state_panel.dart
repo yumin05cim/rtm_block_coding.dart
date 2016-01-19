@@ -36,20 +36,20 @@ class StatePanel extends PolymerElement {
 
   void showRTCImage(RTCProfile rtcProfile) {
     var margin = 40;
-<<<<<<< HEAD
-    rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 250, offset_y : margin);
+
+/*    rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 250, offset_y : margin);
     var canvas = $['interface-canvas'] as html.CanvasElement;
     canvas.height = rtcShape.height + margin*2;
     canvas.width = 800;
-    shape.CanvasDrawContext context = new shape.CanvasDrawContext(canvas);
-=======
+    shape.CanvasDrawContext context = new shape.CanvasDrawContext(canvas);*/
+
     rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 300, offset_y : margin);
 
     _interfaceCanvas = $['interface-canvas'];
     _interfaceCanvas.height = rtcShape.height + margin*2;
     _interfaceCanvas.width = 800;
     shape.CanvasDrawContext context = new shape.CanvasDrawContext(_interfaceCanvas);
->>>>>>> 983a72aa20511a6b9a30cb494d68ecb1228856f6
+
     rtcShape.draw(context, fill: true);
 
     showStateMachineImage(rtcProfile);
