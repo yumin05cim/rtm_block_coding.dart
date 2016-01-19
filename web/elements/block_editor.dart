@@ -303,12 +303,9 @@ class BlockEditor extends PolymerElement {
     }
     globalController.setSelectedElem(globalController.previousMouseEvent, null);
     globalController.refreshPanel();
-<<<<<<< HEAD
-    updateClick();
-=======
+
     //updateClick();
 
->>>>>>> 046b59ff8488b87f313bfbe6d8d9a01ef997813d
   }
 
 
