@@ -16,7 +16,7 @@ class RTCProfileShape extends shape.Shape2D {
 //  shape.Color bodyFillColor = new shape.Color(0x21, 0x96, 0xf3);
 //  shape.Color portFillColor = new shape.Color(0xbb, 0xde, 0xfb);
 
-  int portHeight = 20;
+  int _portHeight = 20;
   int textHeight = 18;
   int portWidth  = 30;
   int portMargin = 15;
@@ -25,6 +25,19 @@ class RTCProfileShape extends shape.Shape2D {
   int rtcWidth = 100;
   int textMargin = 10;
   
+
+  get portHeight => _portHeight;
+
+  set portHeight(int v) {
+    _portHeight = v;
+    textHeight = v * 0.9;
+    portWidth  = v * 1.5;
+    portMargin = portWidth / 2;
+    padding = portHeight;
+    margin = portHeight;
+    rtcWidth = portHeight * 5;
+    textMargin = margin /2;
+  }
 
   num _offset_x = 0;
   num _offset_y = 0;
@@ -136,7 +149,7 @@ class RTCProfileShape extends shape.Shape2D {
   }
   
   @override
-  void draw(shape.DrawContext context, {fill: false}) {
+  void draw(shape.DrawContext context, {fill: false, notitle: false}) {
     if(body == null) {
       updateShape();
     }
@@ -153,14 +166,17 @@ class RTCProfileShape extends shape.Shape2D {
       
       context.fillColor = portFillColor;
       p.draw(context, fill: fill);
-      
-      var text = new shape.Text("${port.name} : ${port.type}",
-          x : p.points[0].x - textMargin,
-          y : p.points[0].y,
-          color : new shape.Color.black(), 
-          textAlign : 'right',
-          font : '${textHeight}px Arial');
-      text.draw(context);
+
+
+      if(!notitle) {
+        var text = new shape.Text("${port.name} : ${port.type}",
+            x: p.points[0].x - textMargin,
+            y: p.points[0].y,
+            color: new shape.Color.black(),
+            textAlign: 'right',
+            font: '${textHeight}px Arial');
+        text.draw(context);
+      }
     }
     
     for(int i = 0;i < dataOutPortShapes.length;i++) {
@@ -168,14 +184,16 @@ class RTCProfileShape extends shape.Shape2D {
       var port = rtcProfile.dataOutPorts[i];
       context.fillColor = portFillColor;
       p.draw(context, fill: fill);
-      
-      var text = new shape.Text("${port.name} : ${port.type}",
-          x : p.points[0].x + textMargin + portWidth,
-          y : p.points[0].y,
-          color : new shape.Color.black(), 
-          textAlign : 'left',
-          font : '${textHeight}px Arial');
-      text.draw(context);
+
+      if (!notitle) {
+        var text = new shape.Text("${port.name} : ${port.type}",
+            x: p.points[0].x + textMargin + portWidth,
+            y: p.points[0].y,
+            color: new shape.Color.black(),
+            textAlign: 'left',
+            font: '${textHeight}px Arial');
+        text.draw(context);
+      }
     }
     
     for(int i = 0;i < servicePortShapes.length;i++) {
@@ -184,13 +202,16 @@ class RTCProfileShape extends shape.Shape2D {
 
       context.fillColor = portFillColor;
       p.draw(context, fill: fill);
-      var text = new shape.Text("${port.name}",
-          x : p.x + textMargin + portWidth,
-          y : p.y,
-          color : new shape.Color.black(), 
-          textAlign : 'left',
-          font : '${textHeight}px Arial');
-      text.draw(context);
+
+      if (!notitle) {
+        var text = new shape.Text("${port.name}",
+            x: p.x + textMargin + portWidth,
+            y: p.y,
+            color: new shape.Color.black(),
+            textAlign: 'left',
+            font: '${textHeight}px Arial');
+        text.draw(context);
+      }
     }
   }
 }

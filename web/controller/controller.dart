@@ -40,6 +40,7 @@ class Controller {
 
   void setMode(String mode) {
     _pythonPanel.setMode(mode);
+    _statePanel.setMode(mode);
   }
 
 
