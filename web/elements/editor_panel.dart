@@ -100,7 +100,7 @@ class EditorPanel extends PolymerElement {
   }
 
   void onRemove(var e) {
-    selectedEditor.onDelete(e);
+    selectedEditor.onRemove(e);
     e.stopPropagation();
   }
 }
