@@ -46,7 +46,7 @@ class StatePanel extends PolymerElement {
     shape.CanvasDrawContext context = new shape.CanvasDrawContext(_interfaceCanvas);
 
     rtcShape.strokeWidth = 0.5;
-    rtcShape.strokeColor = new shape.Color(0xb6, 0xb6, 0xb6);
+    rtcShape.strokeColor = new shape.Color(0x32, 0x32, 0x32);
     rtcShape.bodyFillColor = new shape.Color(0xe8, 0x74, 0x61);
     rtcShape.draw(context, fill: true);
 
@@ -76,14 +76,14 @@ class StatePanel extends PolymerElement {
     rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 100, offset_y : margin);
     rtcShape.portHeight = 15; // Change size of RTC Image.
     rtcShape.strokeWidth = 1;
-    rtcShape.strokeColor = new shape.Color(0xb6, 0xb6, 0xb6);
+    rtcShape.strokeColor = new shape.Color(0x32, 0x32, 0x32);
     rtcShape.bodyFillColor = new shape.Color(0x12, 0x12, 0xFF);
     rtcShape.draw(context, fill: true, notitle : true);
 
     rtmtools.RTCProfileShape rtcShape2 = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 400, offset_y : margin);
     rtcShape2.portHeight = 15; // Change size of RTC Image.
     rtcShape2.strokeWidth = 1;
-    rtcShape2.strokeColor = new shape.Color(0xb6, 0xb6, 0xb6);
+    rtcShape2.strokeColor = new shape.Color(0x32, 0x32, 0x32);
     rtcShape2.bodyFillColor = new shape.Color(0x12, 0xFF, 0x12);
     rtcShape2.draw(context, fill: true, notitle : true);
 
