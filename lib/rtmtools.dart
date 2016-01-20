@@ -101,7 +101,8 @@ class RTCProfileShape extends shape.Shape2D {
     
     body = new shape.Rectangle(0+_offset_x, _offset_y, rtcWidth, numPort * (portMargin+portHeight) - portMargin + padding*2);
     body.fillColor = bodyFillColor;
-    body.strokeWidth = 1;
+    body.strokeColor = this.strokeColor;
+    body.strokeWidth = this.strokeWidth;
  /*   
     var canvas = $['rtcp_canvas'] as html.CanvasElement;
     canvas.height = numPort * (portHeight+portMargin) + padding*2 + margin*2;
@@ -131,7 +132,8 @@ class RTCProfileShape extends shape.Shape2D {
 
         dataInPortShapes.add(new shape.Polygon(points)
         ..fillColor = portFillColor
-        ..strokeWidth = 1);
+        ..strokeColor = this.strokeColor
+        ..strokeWidth = this.strokeWidth);
         numLeftPort ++;
       } else {
         List<shape.Point2D> points = new List<shape.Point2D>();
@@ -145,7 +147,8 @@ class RTCProfileShape extends shape.Shape2D {
         
         dataOutPortShapes.add(new shape.Polygon(points)
           ..fillColor = portFillColor
-          ..strokeWidth = 1);
+          ..strokeColor = this.strokeColor
+          ..strokeWidth = this.strokeWidth);
         numRightPort++;
       }
     });
@@ -155,7 +158,8 @@ class RTCProfileShape extends shape.Shape2D {
           padding + numRightPort*(portMargin+portHeight) + _offset_y,
           portWidth, portHeight)
         ..fillColor = portFillColor
-        ..strokeWidth = 1);
+        ..strokeColor = this.strokeColor
+        ..strokeWidth = this.strokeWidth);
       numRightPort++;
     });
   }
@@ -165,13 +169,15 @@ class RTCProfileShape extends shape.Shape2D {
     if(body == null) {
       updateShape();
     }
-    
+
+//    body.strokeColor = this.strokeColor; //added
     body.draw(context, fill: fill);
     
     for(int i = 0;i < dataInPortShapes.length;i++) {
       var p = dataInPortShapes[i];
       var port = rtcProfile.dataInPorts[i];
 
+//      p.strokeColor = this.strokeColor;  //added
       p.draw(context, fill: fill);
 
       if(!notitle) {

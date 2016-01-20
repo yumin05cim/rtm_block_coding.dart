@@ -10,12 +10,14 @@
         <style type='text/css'>
 
             :host {
-                background-color: #868686;
+                /*background-color: #868686;*/
             }
 
             paper-tabs.tabs::shadow #selectionBar {
 /*              background: #FF5722; */
                 background: #b42d50;
+/*                background: #A1CF6B; */
+                height: 2px;
             }
 
 
@@ -32,7 +34,9 @@
 
         </style>
 
+        <!--<paper-tabs class="tabs dark-primary-color text-primary-color" selected="{{selected}}">-->
         <paper-tabs class="tabs editor-panel-color" selected="{{selected}}">
+
             <paper-tab on-tap="{{onSelectInitialize}}">onInitialize</paper-tab>
             <paper-tab on-tap="{{onSelectActivated}}">onActivated</paper-tab>
             <paper-tab on-tap="{{onSelectExecute}}">onExecute</paper-tab>
