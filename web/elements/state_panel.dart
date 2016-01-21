@@ -14,6 +14,7 @@ class StatePanel extends PolymerElement {
   html.CanvasElement _interfaceCanvas;
   html.CanvasElement _stateMachineCanvas;
 
+  RTCProfile _rtcProfile;
   @override
   void attached() {
 
@@ -33,9 +34,19 @@ class StatePanel extends PolymerElement {
       _interfaceCanvas.style.display = 'none';
       _stateMachineCanvas.style.display = 'inline';
     }
+
+    if (mode == 'initialize') {
+    } else if(mode == 'activated') {
+      showStateMachineImage(_rtcProfile, activatedFillColor: new shape.Color.fromString('#FF0000'));
+    } else if(mode == 'deactivated') {
+      showStateMachineImage(_rtcProfile, deactivatedFillColor: new shape.Color.fromString('#FF0000'));
+    } else if (mode == 'execute') {
+      showStateMachineImage(_rtcProfile, executeFillColor: new shape.Color.fromString('#FF0000'));
+    }
   }
 
   void showRTCImage(RTCProfile rtcProfile) {
+    _rtcProfile = rtcProfile;
     var margin = 40;
 
     rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 300, offset_y : margin);
@@ -53,7 +64,18 @@ class StatePanel extends PolymerElement {
     showStateMachineImage(rtcProfile);
   }
 
-  void showStateMachineImage(RTCProfile rtcProfile) {
+
+  static shape.Color defaultArrowColor = new shape.Color.fromString('#89C344');
+
+  /// onActivated, onDeactivated, onExecuteタブが表示された場合の状態マシンの図を更新する
+  /// @param rtcProfile RTCプロファイル
+  /// @param activatedFillColor onAcitvatedの矢印のfillColorプロパティ．shape.Colorクラスのオブジェクト．nullを指定するとdefaultArrowColorメンバの値を参照する．
+  /// @param deactivatedFillColor onDeacitvatedの矢印のfillColorプロパティ．shape.Colorクラスのオブジェクト．nullを指定するとdefaultArrowColorメンバの値を参照する．
+  /// @param executeFillColor onExecuteの矢印のfillColorプロパティ．shape.Colorクラスのオブジェクト．nullを指定するとdefaultArrowColorメンバの値を参照する．
+  void showStateMachineImage(RTCProfile rtcProfile, {
+    shape.Color activatedFillColor : null,
+    shape.Color deactivatedFillColor : null,
+    shape.Color executeFillColor : null}) {
     var margin = 40;
     _stateMachineCanvas = $['state-machine-canvas'];
     _stateMachineCanvas.height = 400 + margin*2;
@@ -64,6 +86,18 @@ class StatePanel extends PolymerElement {
     int a_offset_y = 40;
     int a_arc_radius = 40;
     int a_arc_width = 20;
+
+    if (activatedFillColor == null) {
+      activatedFillColor = defaultArrowColor;
+    }
+
+    if (deactivatedFillColor == null) {
+      deactivatedFillColor = defaultArrowColor;
+    }
+
+    if (executeFillColor == null) {
+      executeFillColor = defaultArrowColor;
+    }
         /*
     shape.Arc arc = new shape.Arc(new shape.Point2D(a_offset_x, a_offset_y + a_arc_radius), a_arc_radius,-math.PI/2, math.PI/2)
     ..strokeColor = new shape.Color.black();
@@ -108,7 +142,7 @@ class StatePanel extends PolymerElement {
       ..text = new shape.Text('onExecute', color: new shape.Color.black())
 //      ..strokeColor = new shape.Color(0xb6, 0xb6, 0xb6)
       ..strokeWidth = 0.5
-      ..fillColor = new shape.Color.fromString('#cacaca');
+      ..fillColor = executeFillColor;
     aa.draw(context, fill:true);
 
     shape.StraightArrow sa = new shape.StraightArrow(new shape.Point2D(200, 60), new shape.Point2D(370, 60))
@@ -117,7 +151,7 @@ class StatePanel extends PolymerElement {
       ..text = new shape.Text('onActivated', color: new shape.Color.black())
 //      ..strokeColor = new shape.Color(0xb6, 0xb6, 0x)
       ..strokeWidth = 0.5
-      ..fillColor = new shape.Color.fromString('#89c344');
+      ..fillColor = activatedFillColor;
     sa.draw(context, fill:true);
 
     shape.StraightArrow sd = new shape.StraightArrow(new shape.Point2D(370, 100), new shape.Point2D(200, 100))
@@ -126,7 +160,7 @@ class StatePanel extends PolymerElement {
       ..text = new shape.Text('onDectivated', color: new shape.Color.black())
 //      ..strokeColor = new shape.Color(0xb6, 0xb6, 0xb6)
       ..strokeWidth = 0.5
-      ..fillColor = new shape.Color.fromString('#cacaca');
+      ..fillColor = deactivatedFillColor;
     sd.draw(context, fill:true);
   }
 
