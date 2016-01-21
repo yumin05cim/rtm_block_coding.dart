@@ -74,7 +74,10 @@ class EditorPanel extends PolymerElement {
   }
 
   void onSelectInitialize(var e) {
+    ($['onInitializeTab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+
     parent.setMode('initialize');
+//    ($['onInitializeTab'] as html.HtmlElement).style.backgroundColor = '#89c344';
   }
 
   void onSelectActivated(var e) {
