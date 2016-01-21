@@ -10,9 +10,11 @@ class RTCProfileShape extends shape.Shape2D {
   List<shape.Polygon> dataInPortShapes;
   List<shape.Polygon> dataOutPortShapes;
   List<shape.Rectangle> servicePortShapes;
-  
-  shape.Color bodyFillColor = new shape.Color(0x21, 0x96, 0xf3);
-  shape.Color portFillColor = new shape.Color(0xbb, 0xde, 0xfb);
+
+  shape.Color bodyFillColor = new shape.Color(0xf3, 0x9c, 0x12);
+  shape.Color portFillColor = new shape.Color(0xf1, 0xc4, 0x0f);
+//  shape.Color bodyFillColor = new shape.Color(0x21, 0x96, 0xf3);
+//  shape.Color portFillColor = new shape.Color(0xbb, 0xde, 0xfb);
 
   int _portHeight = 20;
   int textHeight = 18;
@@ -99,7 +101,8 @@ class RTCProfileShape extends shape.Shape2D {
     
     body = new shape.Rectangle(0+_offset_x, _offset_y, rtcWidth, numPort * (portMargin+portHeight) - portMargin + padding*2);
     body.fillColor = bodyFillColor;
-    body.strokeWidth = 1;
+    body.strokeColor = this.strokeColor;
+    body.strokeWidth = this.strokeWidth;
  /*   
     var canvas = $['rtcp_canvas'] as html.CanvasElement;
     canvas.height = numPort * (portHeight+portMargin) + padding*2 + margin*2;
@@ -129,7 +132,8 @@ class RTCProfileShape extends shape.Shape2D {
 
         dataInPortShapes.add(new shape.Polygon(points)
         ..fillColor = portFillColor
-        ..strokeWidth = 1);
+        ..strokeColor = this.strokeColor
+        ..strokeWidth = this.strokeWidth);
         numLeftPort ++;
       } else {
         List<shape.Point2D> points = new List<shape.Point2D>();
@@ -143,7 +147,8 @@ class RTCProfileShape extends shape.Shape2D {
         
         dataOutPortShapes.add(new shape.Polygon(points)
           ..fillColor = portFillColor
-          ..strokeWidth = 1);
+          ..strokeColor = this.strokeColor
+          ..strokeWidth = this.strokeWidth);
         numRightPort++;
       }
     });
@@ -153,7 +158,8 @@ class RTCProfileShape extends shape.Shape2D {
           padding + numRightPort*(portMargin+portHeight) + _offset_y,
           portWidth, portHeight)
         ..fillColor = portFillColor
-        ..strokeWidth = 1);
+        ..strokeColor = this.strokeColor
+        ..strokeWidth = this.strokeWidth);
       numRightPort++;
     });
   }
@@ -163,13 +169,15 @@ class RTCProfileShape extends shape.Shape2D {
     if(body == null) {
       updateShape();
     }
-    
+
+//    body.strokeColor = this.strokeColor; //added
     body.draw(context, fill: fill);
     
     for(int i = 0;i < dataInPortShapes.length;i++) {
       var p = dataInPortShapes[i];
       var port = rtcProfile.dataInPorts[i];
 
+//      p.strokeColor = this.strokeColor;  //added
       p.draw(context, fill: fill);
 
       if(!notitle) {

@@ -64,7 +64,7 @@
                 background-color: #F8BBD0;
             }
 
-            #var1 {
+            #var0 {
                 margin: 2px;
                 color: #212121;
                 font-size: 12px;
@@ -73,6 +73,15 @@
 
                 background-color: #DCEDC8;
                 /*background-color: #ABD299;*/
+            }
+            #var1 {
+                margin: 2px;
+                color: #212121;
+                font-size: 12px;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                background-color: #DCEDC8;
             }
             #var2 {
                 margin: 2px;
@@ -262,6 +271,91 @@
                 background-color: #B2DFDB;
             }
 
+/*            core-icon-button::shadow core-icon {
+                background: #A1CF6B;
+            }*/
+
+            /*
+            #send_button {
+                width: 110px;
+                background-color: rgba(255, 255, 255, .2);
+                border-radius: 2px;
+                color: #fff;
+                box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px rgba(255, 255, 255, .7);
+                text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+            }
+            #send_button:hover {
+                background-color: rgba(255, 255, 255, .3);
+            }
+*/
+
+            #send_button {
+                position: relative;
+/*                background-color: #c43157;
+                border-color: #a42949;*/
+                border-radius: 2px;
+                /*line-height: 24px;*/
+                width: 110px;
+                -webkit-transition: none;
+                transition: none;
+/*                box-shadow: 0 3px 0 #a42949;
+                text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
+            }
+            #send_button:hover {
+                background-color: #d04468;
+                box-shadow: 0 3px 0 #a42949;
+            }
+
+            #save_button {
+                position: relative;
+/*                background-color: #c43157;
+                border-color: #a42949;*/
+                border-radius: 2px;
+                width: 90px;
+                -webkit-transition: none;
+                transition: none;
+/*                box-shadow: 0 3px 0 #a42949;
+                text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
+            }
+            #save_button:hover {
+                background-color: #d04468;
+                box-shadow: 0 3px 0 #a42949;
+            }
+
+            #load_button {
+                position: relative;
+/*                background-color: #c43157;
+                border-color: #a42949;*/
+                border-radius: 2px;
+                width: 110px;
+                -webkit-transition: none;
+                transition: none;
+/*                box-shadow: 0 3px 0 #a42949;
+                text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
+            }
+            #load_button:hover {
+                background-color: #d04468;
+                box-shadow: 0 3px 0 #a42949;
+            }
+
+            #help_button {
+                position: relative;
+/*                background-color: #c43157;
+                border-color: #a42949;*/
+                border-radius: 2px;
+                width: 90px;
+                -webkit-transition: none;
+                transition: none;
+/*                box-shadow: 0 3px 0 #a42949;
+                text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
+            }
+            #help_button:hover {
+                background-color: #d04468;
+                box-shadow: 0 3px 0 #a42949;
+            }
+
+
+
 
         </style>
 
@@ -370,11 +464,14 @@
 
                     <core-header-panel id="right-collapse-menu" drawer layout vertical relative>
                         <core-toolbar  class="text-primary-color dark-primary-color" >
-                            <core-icon-button icon="send"> Launch</core-icon-button>
-                            <core-icon-button icon="save" on-tap="{{onSave}}"> Save</core-icon-button>
-                            <core-icon-button icon="load" id="load_button" on-tap="{{onImport}}">Import</core-icon-button>
+                            <core-icon-button icon="send" id="send_button"> Launch</core-icon-button>
+                            <core-icon-button icon="save" id="save_button" on-tap="{{onSave}}"> Save</core-icon-button>
+
+                            <!--<core-icon-button icon="folder-open" id="load_button"> Load</core-icon-button>-->
+                            <core-icon-button icon="folder-open" id="load_button" on-tap="{{onImport}}"> Import</core-icon-button>
+
                             <input type="file" accept="*.xml" id="file_input" style="display:none;" on-change="{{onFileInput}}" />
-                            <core-icon-button icon="help"> Help</core-icon-button>
+                            <core-icon-button icon="help" id="help_button"> Help</core-icon-button>
                         </core-toolbar>
                         <result-panel></result-panel>
                         <python-panel flex></python-panel>

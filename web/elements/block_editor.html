@@ -3,6 +3,7 @@
 
 <link rel="import" href="blocks/add_inport.html" />
 <link rel="import" href="blocks/add_outport.html" />
+<link rel="import" href="blocks/add_variable.html" />
 <link rel="import" href="blocks/set_variable.html" />
 <link rel="import" href="blocks/read_inport.html" />
 <link rel="import" href="blocks/write_outport.html" />
@@ -16,19 +17,17 @@
 <link rel="import" href="blocks/if_statement.html" />
 <link rel="import" href="blocks/while_statement.html" />
 <link rel="import" href="blocks/conditions.html" />
-<link rel="import" href="blocks/add_variable.html" />
 
 <polymer-element name="block-editor" attributes="command">
     <template >
         <link rel="stylesheet" href="element_styles.css" />
-
 
         <!-- Offset Positions of buttons are defined in block_editor.dart -->
         <style type='text/css'>
 
             #up {
                 position: absolute;
-                display:none;
+                display: none;
                 color: #727272;
                 background-color: #A1CF6B;
                 /*background-color: #FFFF00;*/

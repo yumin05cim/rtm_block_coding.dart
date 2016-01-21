@@ -47,6 +47,7 @@ class EditorPanel extends PolymerElement {
 
   void refresh() {
     selectedEditor.refresh(selectedApplication);
+    selectedTab.refresh(selectedApplication);
   }
 
     /*
@@ -73,21 +74,73 @@ class EditorPanel extends PolymerElement {
     return null;
   }
 
+  get selectedTab {
+    switch(selected) {
+      case 0:
+        return $['on_initialize_tab'];
+      case 1:
+        return $['on_activated_tab'];
+      case 2:
+        return $['on_execute_tab'];
+      case 3:
+        return $['on_deactivated_tab'];
+    }
+    return null;
+  }
+
+
   void onSelectInitialize(var e) {
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+
     parent.setMode('initialize');
   }
 
   void onSelectActivated(var e) {
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+
+//    select(selectedTab);
     parent.setMode('activated');
   }
 
+  void onSelectExecute(var e) {
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+
+    parent.setMode('execute');
+  }
+
   void onSelectDeactivated(var e) {
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+
     parent.setMode('deactivated');
   }
 
-  void onSelectExecute(var e) {
-    parent.setMode('execute');
+/*  void select(var s){
+    (s as html.HtmlElement).style.backgroundColor = '#89c344';
+//    (selectedTab as html.HtmlElement).style.backgroundColor = '#89c344';
+//    selectedTab.select();
   }
+
+  void deselect(var s){
+    (s as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+//    (selectedTab as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+//    selectedTab.deselect();
+  }*/
 
   void onUp(var e) {
     selectedEditor.onUp(e);

@@ -1,5 +1,4 @@
 
-
 import 'package:polymer/polymer.dart';
 import 'dart:html' as html;
 import 'package:rtm_block_coding/rtmtools.dart' as rtmtools;
@@ -14,6 +13,7 @@ class StatePanel extends PolymerElement {
 
   html.CanvasElement _interfaceCanvas;
   html.CanvasElement _stateMachineCanvas;
+
   @override
   void attached() {
 
@@ -37,12 +37,17 @@ class StatePanel extends PolymerElement {
 
   void showRTCImage(RTCProfile rtcProfile) {
     var margin = 40;
+
     rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 300, offset_y : margin);
 
     _interfaceCanvas = $['interface-canvas'];
     _interfaceCanvas.height = rtcShape.height + margin*2;
     _interfaceCanvas.width = 800;
     shape.CanvasDrawContext context = new shape.CanvasDrawContext(_interfaceCanvas);
+
+    rtcShape.strokeWidth = 0.5;
+    rtcShape.strokeColor = new shape.Color(0x32, 0x32, 0x32);
+    rtcShape.bodyFillColor = new shape.Color(0xe8, 0x74, 0x61);
     rtcShape.draw(context, fill: true);
 
     showStateMachineImage(rtcProfile);
@@ -54,8 +59,6 @@ class StatePanel extends PolymerElement {
     _stateMachineCanvas.height = 400 + margin*2;
     _stateMachineCanvas.width = 800;
     shape.CanvasDrawContext context = new shape.CanvasDrawContext(_stateMachineCanvas);
-
-
 
     int a_offset_x = 570;
     int a_offset_y = 40;
@@ -70,18 +73,19 @@ class StatePanel extends PolymerElement {
     arc2.draw(context, fill:false);
     */
 
-
-
     rtmtools.RTCProfileShape rtcShape = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 100, offset_y : margin);
     rtcShape.portHeight = 15; // Change size of RTC Image.
+    rtcShape.strokeWidth = 1;
+    rtcShape.strokeColor = new shape.Color(0x32, 0x32, 0x32);
     rtcShape.bodyFillColor = new shape.Color(0x12, 0x12, 0xFF);
     rtcShape.draw(context, fill: true, notitle : true);
 
     rtmtools.RTCProfileShape rtcShape2 = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 400, offset_y : margin);
     rtcShape2.portHeight = 15; // Change size of RTC Image.
+    rtcShape2.strokeWidth = 1;
+    rtcShape2.strokeColor = new shape.Color(0x32, 0x32, 0x32);
     rtcShape2.bodyFillColor = new shape.Color(0x12, 0xFF, 0x12);
     rtcShape2.draw(context, fill: true, notitle : true);
-
 
 
     var text = new shape.Text("停止中 (INACTIVE)",
@@ -102,21 +106,27 @@ class StatePanel extends PolymerElement {
 
     shape.ArcArrow aa = new shape.ArcArrow(new shape.Point2D(a_offset_x, a_offset_y + a_arc_radius), a_arc_radius, -math.PI/2, math.PI*3/4, 20, 40)
       ..text = new shape.Text('onExecute', color: new shape.Color.black())
+//      ..strokeColor = new shape.Color(0xb6, 0xb6, 0xb6)
+      ..strokeWidth = 0.5
       ..fillColor = new shape.Color.fromString('#FFFF00');
     aa.draw(context, fill:true);
 
     shape.StraightArrow sa = new shape.StraightArrow(new shape.Point2D(200, 60), new shape.Point2D(370, 60))
-    ..straightWidth = 20
-    ..arrowWidth = 30
-    ..text = new shape.Text('onActivated', color: new shape.Color.black())
-  ..fillColor = new shape.Color.fromString('#FF00FF');
+      ..straightWidth = 20
+      ..arrowWidth = 30
+      ..text = new shape.Text('onActivated', color: new shape.Color.black())
+//      ..strokeColor = new shape.Color(0xb6, 0xb6, 0x)
+      ..strokeWidth = 0.5
+      ..fillColor = new shape.Color.fromString('#FF00FF');
     sa.draw(context, fill:true);
 
-    shape.StraightArrow sd = new shape.StraightArrow(new shape.Point2D(370, 120), new shape.Point2D(200, 120))
-    ..straightWidth = 20
-    ..arrowWidth = 30
-    ..text = new shape.Text('onDectivated', color: new shape.Color.black())
-    ..fillColor = new shape.Color.fromString('#00FFFF');
+    shape.StraightArrow sd = new shape.StraightArrow(new shape.Point2D(370, 100), new shape.Point2D(200, 100))
+      ..straightWidth = 20
+      ..arrowWidth = 30
+      ..text = new shape.Text('onDectivated', color: new shape.Color.black())
+//      ..strokeColor = new shape.Color(0xb6, 0xb6, 0xb6)
+      ..strokeWidth = 0.5
+      ..fillColor = new shape.Color.fromString('#00FFFF');
     sd.draw(context, fill:true);
   }
 

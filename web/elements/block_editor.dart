@@ -82,9 +82,9 @@ class BlockEditor extends PolymerElement {
 /*    if (block is program.IntegerLiteral) {
       return new html.Element.tag('integer-literal')
         ..model = block;
+      } else */
 
-    } else */
-
+    //  rtm_menu
     if (block is program.DeclareVariable) {
       return new html.Element.tag('add-variable')
         ..model = block;
@@ -94,11 +94,15 @@ class BlockEditor extends PolymerElement {
     } else if (block is program.AddOutPort) {
       return new html.Element.tag('add-outport')
         ..model = block;
-    } else if (block is program.SetVariable) {
+    }
+    //  variables_menu
+      else if (block is program.SetVariable) {
       return new html.Element.tag('set-variable')
         ..model = block
         ..attachTarget(parseBlock(block.right));
-    } else if (block is program.AccessOutPort) {
+    }
+    //  port_data_menu
+      else if (block is program.AccessOutPort) {
       return new html.Element.tag('outport-data')
         ..model = block
         ..attachTarget(parseBlock(block.right));
@@ -116,7 +120,9 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('write-outport')
           ..model = block;
       return v;
-    } else if (block is program.IntegerLiteral) {
+    }
+    //  calculate_menu
+      else if (block is program.IntegerLiteral) {
       var v = new html.Element.tag('integer-input')
         ..model = block;
       return v;
@@ -141,8 +147,7 @@ class BlockEditor extends PolymerElement {
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
       return v;
-    }
-    else if (block is program.Divide) {
+    } else if (block is program.Divide) {
       var v = new html.Element.tag('calc-division')
         ..model = block;
 
@@ -150,8 +155,8 @@ class BlockEditor extends PolymerElement {
       v.attachRight(parseBlock(block.b));
       return v;
     }
-
-    else if (block is program.If) {
+    //  if_switch_loop_menu
+      else if (block is program.If) {
       var v = new html.Element.tag('if-statement')
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
@@ -166,23 +171,15 @@ class BlockEditor extends PolymerElement {
       }
       */
       return v;
-    }
-    else if (block is program.Else) {
+    } else if (block is program.Else) {
       var v = new html.Element.tag('else-statement')
         ..model = block;
       for (program.Statement s_ in block.statements) {
         parseStatement(v.contents.children, s_)
             .parentElement = v;
       }
-      /*
-      for (program.Statement s_ in block.no) {
-        parseStatement(v.no.children, s_)
-            .parentElement = v;
-      }
-      */
       return v;
-    }
-    else if (block is program.While) {
+    } else if (block is program.While) {
       var v = new html.Element.tag('while-statement')
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
@@ -192,56 +189,49 @@ class BlockEditor extends PolymerElement {
       }
       return v;
     }
-
-    else if (block is program.Equals) {
+    //  condition_menu
+      else if (block is program.Equals) {
       var v = new html.Element.tag('equals-element')
           ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
-    }
-    else if (block is program.NotEquals) {
+    } else if (block is program.NotEquals) {
       var v = new html.Element.tag('notequals-element')
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
-    }
-    else if (block is program.LargerThan) {
+    } else if (block is program.LargerThan) {
       var v = new html.Element.tag('larger-than-element')
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
-    }
-    else if (block is program.LargerThanOrEquals) {
+    } else if (block is program.LargerThanOrEquals) {
       var v = new html.Element.tag('larger-than-or-equals-element')
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
-    }
-    else if (block is program.SmallerThan) {
+    } else if (block is program.SmallerThan) {
       var v = new html.Element.tag('smaller-than-element')
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
-    }
-    else if (block is program.SmallerThanOrEquals) {
+    } else if (block is program.SmallerThanOrEquals) {
       var v = new html.Element.tag('smaller-than-or-equals-element')
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
-    }
-    else if (block is program.Not) {
+    } else if (block is program.Not) {
       var v = new html.Element.tag('logical-not-element')
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
       return v;
     }
-
   }
 
 
@@ -258,7 +248,6 @@ class BlockEditor extends PolymerElement {
       slist.remove(stat);
     }
   }
-
 
   void onUp(var e) {
     var selected = globalController.selectedElement;
@@ -278,7 +267,6 @@ class BlockEditor extends PolymerElement {
           globalController.refreshPanel();
           //updateClick();
         }
-
       }
     }
   }
@@ -286,7 +274,6 @@ class BlockEditor extends PolymerElement {
   void onDown(var e) {
     var selected = globalController.selectedElement;
     if (selected == null) return;
-
 
     program.Statement s = selected.model.parent;
     if (s != null) {
@@ -316,6 +303,7 @@ class BlockEditor extends PolymerElement {
     }
     globalController.setSelectedElem(globalController.previousMouseEvent, null);
     globalController.refreshPanel();
+
     //updateClick();
 
   }

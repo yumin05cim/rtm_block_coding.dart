@@ -26,7 +26,7 @@ class BlockLoader {
   /// ブロックの子クラスのリスト
   static List<Type> blockTypes = [
     IntegerLiteral, StringLiteral, RealLiteral,
-    SetVariable, Variable, Add, Subtract, Multiply, Div,
+    SetVariable, Variable, Add, Subtract, Multiply, Divide,
     Equals, SmallerThan, SmallerThanOrEquals, LargerThan, LargerThanOrEquals, Not, TrueLiteral, FalseLiteral,
     DataType,
     If, While, Break, Pass, Continue, 
