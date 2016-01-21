@@ -93,7 +93,7 @@ class StatePanel extends PolymerElement {
         y: margin-10,
         color: new shape.Color.black(),
         textAlign: 'center',
-        font: '22px Arial');
+        font: '18px Arial');
     text.draw(context);
 
     text = new shape.Text("起動中 (ACTIVE)",
@@ -101,14 +101,14 @@ class StatePanel extends PolymerElement {
         y: margin-10,
         color: new shape.Color.black(),
         textAlign: 'center',
-        font: '22px Arial');
+        font: '18px Arial');
     text.draw(context, fill :false);
 
     shape.ArcArrow aa = new shape.ArcArrow(new shape.Point2D(a_offset_x, a_offset_y + a_arc_radius), a_arc_radius, -math.PI/2, math.PI*3/4, 20, 40)
       ..text = new shape.Text('onExecute', color: new shape.Color.black())
 //      ..strokeColor = new shape.Color(0xb6, 0xb6, 0xb6)
       ..strokeWidth = 0.5
-      ..fillColor = new shape.Color.fromString('#FFFF00');
+      ..fillColor = new shape.Color.fromString('#cacaca');
     aa.draw(context, fill:true);
 
     shape.StraightArrow sa = new shape.StraightArrow(new shape.Point2D(200, 60), new shape.Point2D(370, 60))
@@ -117,7 +117,7 @@ class StatePanel extends PolymerElement {
       ..text = new shape.Text('onActivated', color: new shape.Color.black())
 //      ..strokeColor = new shape.Color(0xb6, 0xb6, 0x)
       ..strokeWidth = 0.5
-      ..fillColor = new shape.Color.fromString('#FF00FF');
+      ..fillColor = new shape.Color.fromString('#89c344');
     sa.draw(context, fill:true);
 
     shape.StraightArrow sd = new shape.StraightArrow(new shape.Point2D(370, 100), new shape.Point2D(200, 100))
@@ -126,7 +126,7 @@ class StatePanel extends PolymerElement {
       ..text = new shape.Text('onDectivated', color: new shape.Color.black())
 //      ..strokeColor = new shape.Color(0xb6, 0xb6, 0xb6)
       ..strokeWidth = 0.5
-      ..fillColor = new shape.Color.fromString('#00FFFF');
+      ..fillColor = new shape.Color.fromString('#cacaca');
     sd.draw(context, fill:true);
   }
 
