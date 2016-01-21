@@ -106,7 +106,7 @@ class StatePanel extends PolymerElement {
     rtmtools.RTCProfileShape rtcShape2 = new rtmtools.RTCProfileShape(rtcProfile, offset_x : 400, offset_y : margin);
 
     _stateMachineCanvas = $['state-machine-canvas'];
-    _stateMachineCanvas.height = rtcShape.height + margin*2;
+    _stateMachineCanvas.height = rtcShape.height + 30 + margin*2;
     _stateMachineCanvas.width = 800;
     shape.CanvasDrawContext context = new shape.CanvasDrawContext(_stateMachineCanvas);
 
