@@ -96,6 +96,31 @@ class EditorPanel extends PolymerElement {
     ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
 
+    ($['on_initialize_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    });
+    ($['on_activated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    });
+    ($['on_deactivated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+    ($['on_execute_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    });
+
     parent.setMode('initialize');
   }
 
@@ -105,6 +130,32 @@ class EditorPanel extends PolymerElement {
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+
+    ($['on_activated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    });
+    ($['on_initialize_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    });
+    ($['on_deactivated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+    ($['on_execute_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    });
+
 
 //    select(selectedTab);
     parent.setMode('activated');
@@ -117,6 +168,32 @@ class EditorPanel extends PolymerElement {
     ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
 
+    ($['on_execute_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    });
+    ($['on_initialize_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    });
+    ($['on_activated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    });
+    ($['on_deactivated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+
+
     parent.setMode('execute');
   }
 
@@ -126,6 +203,31 @@ class EditorPanel extends PolymerElement {
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+
+    ($['on_initialize_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+    ($['on_activated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+    ($['on_execute_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+    ($['on_deactivated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
 
     parent.setMode('deactivated');
   }
