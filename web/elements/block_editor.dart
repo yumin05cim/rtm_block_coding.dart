@@ -61,7 +61,6 @@ class BlockEditor extends PolymerElement {
       $['down'].style.top = '${top + down_offset[0]}px';
       $['down'].style.left = '${left + down_offset[1]}px';
 
-
       $['delete'].style.top = '${top + delete_offset[0]}px';
       $['delete'].style.left = '${left + delete_offset[1]}px';
     }

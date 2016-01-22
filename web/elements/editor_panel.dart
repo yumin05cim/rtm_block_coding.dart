@@ -47,7 +47,7 @@ class EditorPanel extends PolymerElement {
 
   void refresh() {
     selectedEditor.refresh(selectedApplication);
-    selectedTab.refresh(selectedApplication);
+//    selectedTab.refresh(selectedApplication);
   }
 
     /*
@@ -74,22 +74,32 @@ class EditorPanel extends PolymerElement {
     return null;
   }
 
-  get selectedTab {
-    switch(selected) {
-      case 0:
-        return $['on_initialize_tab'];
-      case 1:
-        return $['on_activated_tab'];
-      case 2:
-        return $['on_execute_tab'];
-      case 3:
-        return $['on_deactivated_tab'];
+  void onUpdateSelection() {
+    if (globalController.selectedElement == null) {
+      ($['up-button'] as html.HtmlElement).style.backgroundColor = '#CACACA';
+      ($['down-button'] as html.HtmlElement).style.backgroundColor = '#CACACA';
+      ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#CACACA';
+    } else {
+      ($['up-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['down-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     }
-    return null;
   }
 
+  void onSelectTab() {
+    if(selected == 0) {
+
+    } else if (selected == 1) {
+
+    } else if (selected == 2) {
+
+    } else if (selected == 3) {
+
+    }
+  }
 
   void onSelectInitialize(var e) {
+/*
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
 
     ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
@@ -120,11 +130,16 @@ class EditorPanel extends PolymerElement {
       ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
       ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     });
-
+*/
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     parent.setMode('initialize');
   }
 
   void onSelectActivated(var e) {
+/*
     ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
 
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
@@ -155,13 +170,18 @@ class EditorPanel extends PolymerElement {
       ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
       ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     });
-
-
+*/
 //    select(selectedTab);
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     parent.setMode('activated');
+
   }
 
   void onSelectExecute(var e) {
+/*
     ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
 
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
@@ -192,12 +212,16 @@ class EditorPanel extends PolymerElement {
       ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
       ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
     });
-
-
+*/
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     parent.setMode('execute');
   }
 
   void onSelectDeactivated(var e) {
+/*
     ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
 
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
@@ -228,8 +252,38 @@ class EditorPanel extends PolymerElement {
       ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
       ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
     });
-
+*/
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     parent.setMode('deactivated');
+  }
+
+  void onInitializeMouseOver(var e) {
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+  void onActivatedMouseOver(var e) {
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+  void onExecuteMouseOver(var e) {
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+  void onDeactivatedMouseOver(var e) {
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+
+  void onInitializeMouseOut(var e) {
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+  }
+  void onActivatedMouseOut(var e) {
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+  }
+  void onExecuteMouseOut(var e) {
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+  }
+  void onDeactivatedMouseOut(var e) {
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
   }
 
 /*  void select(var s){

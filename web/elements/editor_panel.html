@@ -50,7 +50,7 @@
             }
 
             :host > #editor-toolbar > .editor-toolbar-button:hover {
-                background-color: #A1CF6B;
+                background-color: #89c344;
             }
 
 
@@ -59,15 +59,15 @@
         <!--<paper-tabs class="tabs dark-primary-color text-primary-color" selected="{{selected}}">-->
         <paper-tabs class="tabs editor-panel-color" selected="{{selected}}">
 
-            <paper-tab id="on_initialize_tab" class="state-tab" on-tap="{{onSelectInitialize}}">onInitialize</paper-tab>
-            <paper-tab id="on_activated_tab" class="state-tab" on-tap="{{onSelectActivated}}">onActivated</paper-tab>
-            <paper-tab id="on_execute_tab" class="state-tab" on-tap="{{onSelectExecute}}">onExecute</paper-tab>
-            <paper-tab id="on_deactivated_tab" class="state-tab" on-tap="{{onSelectDeactivated}}">onDeactivated</paper-tab>
+            <paper-tab id="on_initialize_tab" class="state-tab" on-tap="{{onSelectInitialize}}" onmouseover="{{onInitializeMouseOver}}" onmouseout="onInitializeMouseOut" >onInitialize</paper-tab>
+            <paper-tab id="on_activated_tab" class="state-tab" on-tap="{{onSelectActivated}}" onmouseover="{{onActivatedMouseOver}}" onmouseout="onActivatedMouseOut" >onActivated</paper-tab>
+            <paper-tab id="on_execute_tab" class="state-tab" on-tap="{{onSelectExecute}}" onmouseover="{{onExecuteMouseOver}}" onmouseout="onExecuteMouseOut" >onExecute</paper-tab>
+            <paper-tab id="on_deactivated_tab" class="state-tab" on-tap="{{onSelectDeactivated}}" onmouseover="{{onDeactivatedMouseOver}}" onmouseout="onDeactivatedMouseOut" >onDeactivated</paper-tab>
         </paper-tabs>
         <div id="editor-toolbar">
             <paper-icon-button id="up-button" class="editor-toolbar-button" icon="arrow-drop-up" on-tap="{{onUp}}"></paper-icon-button>
-            <paper-icon-button class="editor-toolbar-button" icon="arrow-drop-down" on-tap="{{onDown}}"></paper-icon-button>
-            <paper-icon-button class="editor-toolbar-button" icon="remove" on-tap="{{onRemove}}"></paper-icon-button>
+            <paper-icon-button id="down-button" class="editor-toolbar-button" icon="arrow-drop-down" on-tap="{{onDown}}"></paper-icon-button>
+            <paper-icon-button id="remove-button" class="editor-toolbar-button" icon="remove" on-tap="{{onRemove}}"></paper-icon-button>
         </div>
 
         <core-pages selected="{{selected}}">

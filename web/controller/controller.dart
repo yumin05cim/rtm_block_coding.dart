@@ -87,6 +87,7 @@ class Controller {
       selectedElement.select();
     }
 
+    _editorPanel.onUpdateSelection();
     _pythonPanel.onUpdateSelection();
   }
 
