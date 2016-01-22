@@ -131,7 +131,10 @@ class EditorPanel extends PolymerElement {
       ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     });
 */
-    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+
+//    if(selected == 0) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+//    }
     ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
@@ -172,7 +175,9 @@ class EditorPanel extends PolymerElement {
     });
 */
 //    select(selectedTab);
-    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+//    if(selected == 1) {
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+//    }
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
@@ -213,7 +218,9 @@ class EditorPanel extends PolymerElement {
       ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
     });
 */
-    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+//    if(selected == 2) {
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+//    }
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
@@ -253,7 +260,9 @@ class EditorPanel extends PolymerElement {
       ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
     });
 */
-    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+//    if(selected == 3) {
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+//    }
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
@@ -261,16 +270,28 @@ class EditorPanel extends PolymerElement {
   }
 
   void onInitializeMouseOver(var e) {
-    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    if(selected == 0) {
+    } else {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    }
   }
   void onActivatedMouseOver(var e) {
-    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    if(selected == 1) {
+    } else {
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    }
   }
   void onExecuteMouseOver(var e) {
-    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    if(selected == 2) {
+    } else {
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    }
   }
   void onDeactivatedMouseOver(var e) {
-    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    if(selected == 3) {
+    } else {
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    }
   }
 
   void onInitializeMouseOut(var e) {
