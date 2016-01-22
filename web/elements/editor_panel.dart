@@ -261,10 +261,13 @@ class EditorPanel extends PolymerElement {
     });
 */
 //    if(selected == 3) {
-      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor =
+    '#89c344';
 //    }
-    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
-    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor =
+    '#A1CF6B';
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor =
+    '#A1CF6B';
     ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     parent.setMode('deactivated');
   }
