@@ -261,8 +261,7 @@ class EditorPanel extends PolymerElement {
     });
 */
 //    if(selected == 3) {
-    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor =
-    '#89c344';
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
 //    }
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor =
     '#A1CF6B';
@@ -336,4 +335,25 @@ class EditorPanel extends PolymerElement {
     selectedEditor.onRemove(e);
     e.stopPropagation();
   }
+
+  void onUpMouseOver(){
+//    ($['up-button'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+  void onDownMouseOver(){
+//    ($['down-button'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+  void onRemoveMouseOver(){
+//    ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+
+  void onUpMouseOut(){
+//    ($['up-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+  }
+  void onDownMouseOut(){
+//    ($['down-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+  }
+  void onRemoveMouseOut(){
+//    ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+  }
+
 }

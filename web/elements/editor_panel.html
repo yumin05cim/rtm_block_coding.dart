@@ -65,9 +65,9 @@
             <paper-tab id="on_deactivated_tab" class="state-tab" on-tap="{{onSelectDeactivated}}" on-mouseover="{{onDeactivatedMouseOver}}" on-mouseout="{{onDeactivatedMouseOut}}" >onDeactivated</paper-tab>
         </paper-tabs>
         <div id="editor-toolbar">
-            <paper-icon-button id="up-button" class="editor-toolbar-button" icon="arrow-drop-up" on-tap="{{onUp}}"></paper-icon-button>
-            <paper-icon-button id="down-button" class="editor-toolbar-button" icon="arrow-drop-down" on-tap="{{onDown}}"></paper-icon-button>
-            <paper-icon-button id="remove-button" class="editor-toolbar-button" icon="remove" on-tap="{{onRemove}}"></paper-icon-button>
+            <paper-icon-button id="up-button" class="editor-toolbar-button" icon="arrow-drop-up" on-tap="{{onUp}}" on-mouseover="onUpMouseOver" on-mouseout="onUpMouseOut" ></paper-icon-button>
+            <paper-icon-button id="down-button" class="editor-toolbar-button" icon="arrow-drop-down" on-tap="{{onDown}}" on-mouseover="onDownMouseOver" on-mouseout="onDownMouseOut" ></paper-icon-button>
+            <paper-icon-button id="remove-button" class="editor-toolbar-button" icon="remove" on-tap="{{onRemove}}" on-mouseover="onRemoveMouseOver" on-mouseout="onRemoveMouseOut" ></paper-icon-button>
         </div>
 
         <core-pages selected="{{selected}}">
