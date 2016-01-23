@@ -307,10 +307,10 @@ class Controller {
       //program.OutPortData v = new program.OutPortData(outPortMap.keys.first, outPortMap[outPortMap.keys.first], '', new program.Integer(1));
       program.Statement new_s = new program.Statement(v);
 
-/*      if (selectedStatement() == null) {
+      if (selectedStatement() == null) {
         app.statements.add(new_s);
-      }*/
-      if (selectedStatement() is SetVariable) {
+      }
+      else if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
       }
       else if (selectedStatement() is ReadInPort) {

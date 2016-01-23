@@ -83,31 +83,28 @@ class EditorPanel extends PolymerElement {
     if (globalController.selectedElement == null) {
       ($['up-button'] as html.HtmlElement).style.backgroundColor = '#CACACA';
       ($['down-button'] as html.HtmlElement).style.backgroundColor = '#CACACA';
-      ($['remove-button'] as html.HtmlElement).style.backgroundColor =
-      '#CACACA';
+      ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#CACACA';
     } else {
       ($['up-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
       ($['down-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
-      ($['remove-button'] as html.HtmlElement).style.backgroundColor =
-      '#A1CF6B';
+      ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     }
   }
 
   void onSelectTab() {
     if (selected == 0) {
-
     } else if (selected == 1) {
-
     } else if (selected == 2) {
-
     } else if (selected == 3) {
-
     }
   }
 
+  void onTabMouseOver(){}
+
+  void onTabMouseOut(){}
+
   void onSelectionUpdated(var e) {
   }
-
 
   void onSelectInitialize(var e) {
     parent.setMode('initialize');
@@ -122,6 +119,47 @@ class EditorPanel extends PolymerElement {
   }
 
   void onSelectDeactivated(var e) {
+/*
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+
+    ($['on_initialize_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+    ($['on_activated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+    ($['on_execute_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+    ($['on_deactivated_tab'] as html.HtmlElement).onMouseOver.listen( (event) {
+      ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+      ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+    });
+*/
+/*//    if(selected == 3) {
+    ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
+//    }
+    ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor =
+    '#A1CF6B';
+    ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor =
+    '#A1CF6B';
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';*/
+
     parent.setMode('deactivated');
   }
 
@@ -139,4 +177,25 @@ class EditorPanel extends PolymerElement {
     selectedEditor.onRemove(e);
     e.stopPropagation();
   }
+
+  void onUpMouseOver(){
+//    ($['up-button'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+  void onDownMouseOver(){
+//    ($['down-button'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+  void onRemoveMouseOver(){
+//    ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#89c344';
+  }
+
+  void onUpMouseOut(){
+//    ($['up-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+  }
+  void onDownMouseOut(){
+//    ($['down-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+  }
+  void onRemoveMouseOut(){
+//    ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
+  }
+
 }
