@@ -17,12 +17,23 @@ import 'block_loader.dart';
 /// もしC++にまで拡張するなら変数のタイプも持っておくべきだ
 class Variable extends Block {
   String _name;
+  DataType _dataType;
 
   get name => _name;
-
   set name(String n) => _name = n;
 
-  Variable(this._name) {}
+  get dataType => _dataType;
+  set dataType(DataType dt) {
+    if (DataType.isPrimitiveType(dt)) {
+      _dataType = dt;
+    } else {
+      print('Error. DeclareValue can not set not-primitive data type: ' +
+          dt.typename);
+    }
+  }
+
+
+  Variable(this._name, this._dataType) {}
 
   toPython(int indentLevel) {
     return _name;
@@ -30,10 +41,12 @@ class Variable extends Block {
 
   void buildXML(xml.XmlBuilder builder) {
     element(builder, attributes: {'name': _name,}, nest: () {});
+    element(builder, attributes: {'dataType': _dataType.typename,}, nest: () {});
   }
 
   Variable.XML(xml.XmlElement node) {
     _name = (node.getAttribute('name'));
+    _dataType = new DataType.fromTypeName(node.getAttribute('dataType'));
   }
 }
 
@@ -48,6 +61,7 @@ class  DeclareVariable extends Block {
   set name(String n) => _name = n;
 
   get dataType => _dataType;
+
   set dataType(DataType dt) {
     if (DataType.isPrimitiveType(dt)) {
       _dataType = dt;
@@ -78,20 +92,13 @@ class  DeclareVariable extends Block {
   }
 
   void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-          'name' : name
-        },
-        nest: () {
-          dataType.buildXML(builder);
-        });
+    element(builder, attributes: {'name' : name}, nest: () {});
+    element(builder, attributes: {'dataType': dataType.typename,}, nest: () {});
   }
 
 
   DeclareVariable.XML(xml.XmlElement node) {
-    name = node.getAttribute('name');
-    child(node, (xml.XmlElement e) {
-      dataType = new DataType.XML(e);
-    });
+    _name = node.getAttribute('name');
+    _dataType = new DataType.fromTypeName(node.getAttribute('dataType'));
   }
 }

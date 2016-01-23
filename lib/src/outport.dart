@@ -98,6 +98,39 @@ class AccessOutPort extends Block {
   }
 }
 
+class OutPortBuffer extends Block {
+  String name;
+  DataType dataType;
+  String accessSequence;
+
+  OutPortBuffer(this.name, this.dataType, this.accessSequence) {
+
+  }
+
+  String toPython(int indentLevel) {
+    return "self._d_${name}.${accessSequence}";
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    super.element(builder,
+        attributes: {
+          'name' : name,
+          'accessSequence' :accessSequence,
+        },
+        nest: () {
+          dataType.buildXML(builder);
+        });
+  }
+
+  OutPortBuffer.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    accessSequence = node.getAttribute('accessSequence');
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
+    });
+  }
+}
+
 class WriteOutPort extends Block {
   String name;
   DataType dataType;

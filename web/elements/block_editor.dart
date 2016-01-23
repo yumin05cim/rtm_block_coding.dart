@@ -95,10 +95,16 @@ class BlockEditor extends PolymerElement {
         ..model = block;
     }
     //  variables_menu
-      else if (block is program.SetVariable) {
+    else if (block is program.SetVariable) {
       return new html.Element.tag('set-variable')
         ..model = block
         ..attachTarget(parseBlock(block.right));
+    }
+    else if (block is program.Assign) {
+      return new html.Element.tag('assign-block')
+        ..model = block
+        ..attachRightTarget(parseBlock(block.right));
+        ///..attachTarget(parseBlock(block.right));
     }
     //  port_data_menu
       else if (block is program.AccessOutPort) {
@@ -182,7 +188,7 @@ class BlockEditor extends PolymerElement {
       var v = new html.Element.tag('while-statement')
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
-      for (program.Statement s_ in block.loop) {
+      for (program.Statement s_ in block.statements) {
         parseStatement(v.loop.children, s_)
             .parentElement = v;
       }

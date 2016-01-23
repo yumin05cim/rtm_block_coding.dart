@@ -169,7 +169,7 @@ class Controller {
       }
     }
 
-
+    /*
     if (command == 'set_variable') {
       program.SetVariable v = new program.SetVariable(new program.Variable('name'), new program.IntegerLiteral(1));
       program.Statement new_s = new program.Statement(v);
@@ -215,6 +215,37 @@ class Controller {
           }
         }
 
+      }
+    }
+    */
+
+    if (command == 'assign_variable') {
+      var outPortList = onInitializeApp.find(program.AddOutPort);
+      if (outPortList == null) {outPortList = [];}
+      var variableList = onInitializeApp.find(program.DeclareVariable);
+      if (variableList == null) {variableList = [];}
+      if (outPortList.length + variableList.length > 0) {
+        var firstAlternative = null;
+        if (variableList.length > 0) {
+          firstAlternative = new program.Variable(variableList[0].name, variableList[0].dataType);
+        } else {
+          firstAlternative = new program.OutPortBuffer(outPortList[0].name, outPortList[0].dataType, '');
+        }
+
+        program.Assign v = new program.Assign(
+            firstAlternative, new program.IntegerLiteral(1));
+        program.Statement new_s = new program.Statement(v);
+
+        if (selectedStatement() == null) {
+          app.statements.add(new_s);
+        }
+        else if (selectedStatement() is ReadInPort) {
+          selectedStatement().model.statements.add(new_s);
+        } else if (selectedElement.parentElement is If) {
+          selectedElement.parentElement.model.statements.add(new_s);
+        } else if (selectedElement.parentElement is While) {
+          selectedElement.parentElement.model.yes.add(new_s);
+        }
       }
     }
 

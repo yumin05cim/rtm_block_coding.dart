@@ -97,14 +97,14 @@ class Else extends Block {
 class While extends Block {
   Condition condition;
 
-  StatementList loop = new StatementList([]);
+  StatementList statements = new StatementList([]);
 
-  While(this.condition, this.loop) {}
+  While(this.condition, this.statements) {}
 
   String toPython(int indentLevel) {
     String sb = "";
     sb = "while ${condition.toPython(0)}:\n";
-    for (Statement s in loop) {
+    for (Statement s in statements) {
       sb += s.toPython(indentLevel + 1) + '\n';
     }
     return sb;
@@ -112,7 +112,7 @@ class While extends Block {
 
   @override
   void iterateBlock(var func) {
-    for (var s in loop) {
+    for (var s in statements) {
       s.iterateBlock(func);
     }
   }
@@ -129,7 +129,7 @@ class While extends Block {
 
           builder.element('Loop',
               nest : () {
-                loop.buildXML(builder);
+                statements.buildXML(builder);
               });
         });
   }
@@ -139,7 +139,7 @@ class While extends Block {
       condition = BlockLoader.parseBlock(e);
     });
     namedChildChildren(node, 'Loop', (xml.XmlElement e) {
-      loop.loadFromXML(e);
+      statements.loadFromXML(e);
     });
   }
 }

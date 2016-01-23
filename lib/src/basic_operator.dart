@@ -56,6 +56,9 @@ class BasicOperator extends Block {
   get a => _a;
   get b => _b;
 
+  get left => _a;
+  get right => _b;
+
   String _operatorString = 'foo';
 
   BasicOperator(this._a, this._b, this._operatorString) {}
@@ -84,6 +87,16 @@ class BasicOperator extends Block {
     });
   }
 }
+
+/// 代入
+class Assign extends BasicOperator {
+  Assign(Block a_, Block b_) : super(a_, b_, '=') {}
+
+  Assign.XML(xml.XmlElement node) : super(null, null, '=') {
+    loadXML(node);
+  }
+}
+
 
 /// 加算
 class Add extends BasicOperator {
