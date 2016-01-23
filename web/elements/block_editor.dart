@@ -100,9 +100,15 @@ class BlockEditor extends PolymerElement {
         ..model = block
         ..attachTarget(parseBlock(block.right));
     }
+    else if (block is program.Variable) {
+      return new html.Element.tag('variable-block')
+        ..model = block;
+    }
+
     else if (block is program.Assign) {
       return new html.Element.tag('assign-block')
         ..model = block
+        ..attachLeftTarget(parseBlock(block.left))
         ..attachRightTarget(parseBlock(block.right));
         ///..attachTarget(parseBlock(block.right));
     }
@@ -134,7 +140,6 @@ class BlockEditor extends PolymerElement {
     } else if (block is program.Add) {
       var v = new html.Element.tag('calc-addition')
         ..model = block;
-
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
       return v;

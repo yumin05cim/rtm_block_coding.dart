@@ -24,6 +24,7 @@ class AssignBlock extends PolymerElement {
     $['name-menu-content'].children.clear();
     int counter = 0;
     var ports = globalController.onInitializeApp.find(program.AddOutPort);
+    if(ports == null) ports = [];
     ports.forEach((program.AddOutPort p) {
       $['name-menu-content'].children.add(new html.Element.tag('paper-item')
         ..innerHtml = p.name
@@ -32,6 +33,7 @@ class AssignBlock extends PolymerElement {
       counter++;
     });
     var variables = globalController.onInitializeApp.find(program.DeclareVariable);
+    if(variables == null)variables = [];
     variables.forEach((program.DeclareVariable p) {
       $['name-menu-content'].children.add(new html.Element.tag('paper-item')
         ..innerHtml = p.name
@@ -64,6 +66,7 @@ class AssignBlock extends PolymerElement {
 
 
   void attached() {
+    /*
     updateNameList();
     selectName(_model.left.name);
 
@@ -109,6 +112,7 @@ class AssignBlock extends PolymerElement {
     });
 
     $['menu-content'].setAttribute('selected', selected.toString());
+    */
 
   }
 
@@ -117,7 +121,8 @@ class AssignBlock extends PolymerElement {
     print('updateAccessAlternatives called (_model:$model)');
     $['menu-content'].children.clear();
     int counter = 0;
-    var types = program.DataType.access_alternatives(_model.dataType.typename);
+
+    var types = program.DataType.access_alternatives(_model.left.dataType.typename);
     types.forEach((List<String> alternative_pair) {
       $['menu-content'].children.add(new html.Element.tag('paper-item')
         ..innerHtml = alternative_pair[0] + ';'
@@ -126,7 +131,9 @@ class AssignBlock extends PolymerElement {
       counter++;
     });
 
-    selectAccess(_model.accessSequence + ';');
+    if(_model.left is program.OutPortBuffer) {
+      selectAccess(_model.left.accessSequence + ';');
+    }
   }
 
   void selectAccess(String name) {

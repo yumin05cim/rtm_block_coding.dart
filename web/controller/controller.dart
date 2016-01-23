@@ -13,6 +13,7 @@ import '../elements/blocks/multiplication.dart';
 import '../elements/blocks/division.dart';
 import '../elements/blocks/if_statement.dart';
 import '../elements/blocks/while_statement.dart';
+import '../elements/blocks/assign_block.dart';
 import '../elements/state_panel.dart';
 import 'package:rtcprofile/rtcprofile.dart';
 
@@ -324,7 +325,7 @@ class Controller {
       }
     }
 
-    if (command == 'set_outport_data') {
+    if (command == 'outport_data') {
       List<program.AddOutPort> outPortList = onInitializeApp.find(program.AddOutPort);
       if (outPortList.length == 0) return;
 
@@ -341,11 +342,26 @@ class Controller {
       if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
+      /*
       else if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
       }
+      */
+      else if (selectedStatement() is AssignBlock) {
+        selectedStatement().model.left = v;
+      }
       else if (selectedStatement() is ReadInPort) {
         selectedStatement().model.statements.add(new_s);
+      }
+      else {
+        if (selectedElement.parentElement is AssignBlock) {
+          program.Assign a = selectedElement.parentElement.model;
+          if (a.left == selectedElement.model) {
+            a.left = v;
+          } else {
+            a.right = v;
+          }
+        }
       }
     }
 

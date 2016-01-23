@@ -59,6 +59,9 @@ class BasicOperator extends Block {
   get left => _a;
   get right => _b;
 
+  set left(Block l) => _a = l;
+  set right(Block r) => _b = r;
+
   String _operatorString = 'foo';
 
   BasicOperator(this._a, this._b, this._operatorString) {}
