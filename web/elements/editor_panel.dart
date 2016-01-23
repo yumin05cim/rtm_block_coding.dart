@@ -83,31 +83,28 @@ class EditorPanel extends PolymerElement {
     if (globalController.selectedElement == null) {
       ($['up-button'] as html.HtmlElement).style.backgroundColor = '#CACACA';
       ($['down-button'] as html.HtmlElement).style.backgroundColor = '#CACACA';
-      ($['remove-button'] as html.HtmlElement).style.backgroundColor =
-      '#CACACA';
+      ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#CACACA';
     } else {
       ($['up-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
       ($['down-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
-      ($['remove-button'] as html.HtmlElement).style.backgroundColor =
-      '#A1CF6B';
+      ($['remove-button'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
     }
   }
 
   void onSelectTab() {
     if (selected == 0) {
-
     } else if (selected == 1) {
-
     } else if (selected == 2) {
-
     } else if (selected == 3) {
-
     }
   }
 
+  void onTabMouseOver(){}
+
+  void onTabMouseOut(){}
+
   void onSelectionUpdated(var e) {
   }
-
 
   void onSelectInitialize(var e) {
     parent.setMode('initialize');
@@ -122,7 +119,6 @@ class EditorPanel extends PolymerElement {
   }
 
   void onSelectDeactivated(var e) {
-<<<<<<< HEAD
 /*
     ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
 
@@ -155,16 +151,15 @@ class EditorPanel extends PolymerElement {
       ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
     });
 */
-//    if(selected == 3) {
+/*//    if(selected == 3) {
     ($['on_deactivated_tab'] as html.HtmlElement).style.backgroundColor = '#89c344';
 //    }
     ($['on_initialize_tab'] as html.HtmlElement).style.backgroundColor =
     '#A1CF6B';
     ($['on_activated_tab'] as html.HtmlElement).style.backgroundColor =
     '#A1CF6B';
-    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';
-=======
->>>>>>> f9a8fe866bf475ef031fd3e147d0094574c58d29
+    ($['on_execute_tab'] as html.HtmlElement).style.backgroundColor = '#A1CF6B';*/
+
     parent.setMode('deactivated');
   }
 
