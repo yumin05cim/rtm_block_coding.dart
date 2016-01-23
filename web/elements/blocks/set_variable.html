@@ -15,10 +15,13 @@
                 margin-top: 2px;
                 margin-left: 7px;
                 margin-right: 7px;
-                margin-bottom: 1px;
+                margin-bottom: 2px;
 
                 padding-left: 4px;
                 padding-right: 3px;
+                padding-bottom: 5px;
+
+                position: relative;
 
                 background-color: #DCEDC8;
                 border: 1px solid #B6B6B6;
@@ -28,6 +31,7 @@
                 border-color: #ffbd1c;
                 border-style: solid;*/
 
+                height: 50px;
             }
             #body-area {
                 padding-left: 15px;
@@ -37,14 +41,17 @@
             }
 
             :host > div > paper-input#variable-name-input {
-                width: 50px;
+                width: 40px;
+            }
+
+            #target {
             }
 
         </style>
 
         <!--Japanese ver.-->
         <div id="container">
-            <div id="title-area" horizontal layout center wrap on-tap="{{onClicked}}">
+            <div id="title-area" horizontal layout center  on-tap="{{onClicked}}">
                 <paper-input id="variable-name-input" value="{{name}}"></paper-input>
                 <div self-center layout end>に</div>
                 <div id="target" horizontal layout center></div>
