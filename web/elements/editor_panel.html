@@ -24,6 +24,24 @@
                 height: 2px;
             }
 
+            :host paper-tab {
+                background-color: #FFFFFF;
+            }
+
+
+            :host paper-tab:hover{
+                background-color: #272727;
+            }
+
+            :host paper-tab.core-selected {
+                background-color: #FF8888;
+            }
+
+
+            :host paper-tab.core-selected:hover {
+                background-color: #FF0000;
+            }
+
             :host > #editor-toolbar {
                 background-color: #E6E6E6;
                 height: 30px;
@@ -59,10 +77,10 @@
         <!--<paper-tabs class="tabs dark-primary-color text-primary-color" selected="{{selected}}">-->
         <paper-tabs class="tabs editor-panel-color" selected="{{selected}}">
 
-            <paper-tab id="on_initialize_tab" class="state-tab" on-tap="{{onSelectInitialize}}" on-mouseover="{{onInitializeMouseOver}}" on-mouseout="{{onInitializeMouseOut}}" >onInitialize</paper-tab>
-            <paper-tab id="on_activated_tab" class="state-tab" on-tap="{{onSelectActivated}}" on-mouseover="{{onActivatedMouseOver}}" on-mouseout="{{onActivatedMouseOut}}" >onActivated</paper-tab>
-            <paper-tab id="on_execute_tab" class="state-tab" on-tap="{{onSelectExecute}}" on-mouseover="{{onExecuteMouseOver}}" on-mouseout="{{onExecuteMouseOut}}" >onExecute</paper-tab>
-            <paper-tab id="on_deactivated_tab" class="state-tab" on-tap="{{onSelectDeactivated}}" on-mouseover="{{onDeactivatedMouseOver}}" on-mouseout="{{onDeactivatedMouseOut}}" >onDeactivated</paper-tab>
+            <paper-tab id="on_initialize_tab" class="state-tab" on-tap="{{onSelectInitialize}}" on-mouseover="{{onTabMouseOver}}" on-mouseout="{{onTabMouseOut}}" >onInitialize</paper-tab>
+            <paper-tab id="on_activated_tab" class="state-tab" on-tap="{{onSelectActivated}}" on-mouseover="{{onTabMouseOver}}" on-mouseout="{{onTabMouseOut}}" >onActivated</paper-tab>
+            <paper-tab id="on_execute_tab" class="state-tab" on-tap="{{onSelectExecute}}" on-mouseover="{{onTabMouseOver}}" on-mouseout="{{onTabMouseOut}}" >onExecute</paper-tab>
+            <paper-tab id="on_deactivated_tab" class="state-tab" on-tap="{{onSelectDeactivated}}" on-mouseover="{{onTabMouseOver}}" on-mouseout="{{onTabMouseOut}}" >onDeactivated</paper-tab>
         </paper-tabs>
         <div id="editor-toolbar">
             <paper-icon-button id="up-button" class="editor-toolbar-button" icon="arrow-drop-up" on-tap="{{onUp}}" on-mouseover="onUpMouseOver" on-mouseout="onUpMouseOut" ></paper-icon-button>
