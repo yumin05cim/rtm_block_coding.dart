@@ -13,7 +13,7 @@
                 border-color: #FFFFFF;
                 border-style: none;
             }
-            #target {
+            :host #target {
                 margin-top: 2px;
                 margin-left: 7px;
                 margin-right: 7px;
@@ -27,6 +27,8 @@
                 background-color: #FFE0B2;
                 border: 1px solid #B6B6B6;
                 border-radius: 0.3em;
+
+                height: 50px;
             }
             paper-input {
                 margin-left : 10px;
@@ -37,7 +39,7 @@
 
         <!--Japanese ver.-->
         <div id="target" horizontal layout center on-tap="{{onClicked}}">
-            <div end>アウトポート (</div>
+            <div end>出力ポート (</div>
             <!-- <paper-input id="name-input" flex one value="{{port_name}}"></paper-input> -->
             <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
                 <paper-dropdown id="dropdown" class="dropdown">
