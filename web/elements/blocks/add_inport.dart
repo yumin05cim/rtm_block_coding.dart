@@ -63,7 +63,7 @@ class AddInPort extends PolymerElement {
     });
 
     _model.name = new_name;
-    globalController.refreshAllPanel();
+    globalController.refreshAllPanel(except: 'onInitialize');
   }
 
   void onTypeChange(String typename) {

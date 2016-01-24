@@ -28,6 +28,8 @@ class InPortData extends PolymerElement {
   @published String access = "";
   InPortData.created() : super.created();
 
+  @observable String indexInputValue = '0';
+
 
   void updateInPortList() {
     $['name-menu-content'].children.clear();
@@ -80,18 +82,45 @@ class InPortData extends PolymerElement {
     selectAccess(_model.accessSequence + ' ');
   }
 
-  void selectAccess(String name) {
-    print('selectAccess($name) called (_model:$model)');
+  void selectAccess(String accessName) {
+    accessName = accessName.trim();
+    name = accessName.trim();
+    if (accessName.endsWith(']')) {
+      name =
+          name.substring(
+              0, name.indexOf('['));
+    }
+    print('selectAccess($name) called (_model:${model.name})');
+    print('accessSeq:' + model.accessSequence);
+    var types = program.DataType.access_alternatives(_model.dataType.typename);
     int selected = -1;
     int counter  = 0;
     $['menu-content'].children.forEach((PaperItem p) {
           // print (p.innerHtml + '/' + name);
           var target_name = p.innerHtml;
           if (p.innerHtml.startsWith('.')) {
-            target_name = p.innerHtml.substring(1);
+            target_name = p.innerHtml.substring(1).trim();
           }
-      if(name == target_name) {
+      if(name.trim() == target_name) {
         selected = counter;
+        int index = -1;
+        String accessTypeName = program.DataType.access_alternative_type(_model.dataType.typename, name);
+        if (program.DataType.isSeqType(accessTypeName)) {
+          $['index-left'].style.display = 'block';
+          $['index-input'].style.display = 'block';
+          $['index-right'].style.display = 'block';
+        } else {
+          $['index-left'].style.display = 'none';
+          $['index-input'].style.display = 'none';
+          $['index-right'].style.display = 'none';
+        }
+
+        if (accessName.endsWith(']')) {
+          indexInputValue = accessName.substring(accessName.indexOf('[')+1, accessName.indexOf(']'));
+        } else {
+          indexInputValue = ' ';
+        }
+        onInputIndex(null);
       }
       counter++;
     });
@@ -121,7 +150,7 @@ class InPortData extends PolymerElement {
           if (pl.length > 0) {
             program.AddInPort inport = pl[0];
             _model.name = name_;
-            if (_model.dataType != inport.dataType) {
+            if (_model.dataType.typename != inport.dataType.typename) {
               _model.dataType = inport.dataType;
               _model.accessSequence = '';
 
@@ -134,6 +163,7 @@ class InPortData extends PolymerElement {
 
     PaperDropdownMenu dd = $['dropdown-menu'];
     dd.on['core-select'].listen((var e) {
+      print('input_data: on-core-select:${model.name}');
       if(e.detail != null) {
         if (e.detail['isSelected']) {
           String accessName = e.detail['item'].innerHtml;
@@ -143,10 +173,42 @@ class InPortData extends PolymerElement {
           }
           _model.accessSequence =
               accessName.substring(0, accessName.length - 1);
+
+          int index = -1;
+          String accessTypeName = program.DataType.access_alternative_type(_model.dataType.typename, accessName);
+          if(program.DataType.isSeqType(accessTypeName)) {
+            $['index-left'].style.display = 'block';
+            $['index-input'].style.display = 'block';
+            $['index-right'].style.display = 'block';
+          } else {
+            $['index-left'].style.display = 'none';
+            $['index-input'].style.display = 'none';
+            $['index-right'].style.display = 'none';
+          }
+          onInputIndex(null);
         }
       }
     });
 
+    $['index-input'].onChange.listen((var e) {
+      onInputIndex(e);
+    });
+
+  }
+
+  void onInputIndex(var e) {
+    print('index:$indexInputValue');
+    if (_model.accessSequence.endsWith(']')) {
+      _model.accessSequence =
+          _model.accessSequence.substring(
+              0, _model.accessSequence.indexOf('['));
+    }
+    if (indexInputValue
+        .trim()
+        .length > 0) {
+      _model.accessSequence =
+          _model.accessSequence + '[' + indexInputValue + ']';
+    }
   }
 
   void onClicked(var e) {

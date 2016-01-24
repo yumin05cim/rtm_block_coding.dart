@@ -50,6 +50,13 @@
                 font-size: 12px;
             }
 
+            :host #array-access-division {
+                display: none;
+            }
+            :host paper-input#index-input {
+                min-width: 10px;
+                width: 10px;
+            }
         </style>
 
         <!--Japanese ver.-->
@@ -66,7 +73,9 @@
                         <core-menu class="menu" id="menu-content"></core-menu>
                     </paper-dropdown>
                 </paper-dropdown-menu>
-                <div end>のデータ</div>
+                <div id="index-left">[</div>
+                <paper-input id="index-input" value="{{indexInputValue}}"></paper-input>
+                <div id="index-right">]</div>
             </div>
         </div>
 

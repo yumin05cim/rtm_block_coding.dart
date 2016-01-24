@@ -119,7 +119,7 @@ class OutPortData extends PolymerElement {
           if (pl.length > 0) {
             program.AddOutPort outport = pl[0];
             _model.name = name_;
-            if (_model.dataType != outport.dataType) {
+            if (_model.dataType.typename != outport.dataType.typename) {
               _model.dataType = outport.dataType;
               _model.accessSequence = '';
 

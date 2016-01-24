@@ -64,7 +64,7 @@ class AddOutPort extends PolymerElement {
     });
 
     _model.name = new_name;
-    globalController.refreshAllPanel();
+    globalController.refreshAllPanel(except: 'onInitialize');
 
   }
 

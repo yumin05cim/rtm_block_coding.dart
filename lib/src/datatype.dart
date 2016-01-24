@@ -32,6 +32,20 @@ class DataType {
     }
   }
 
+  static bool isSeqType(String typename) {
+    if (typename.startsWith('Timed')) {
+      return false;
+    }
+
+    if (_cs_typedef_map.keys.contains(typename)) {
+      return isSeqType(_cs_typedef_map[typename]);
+    }
+    if (typename.endsWith('Seq') || typename == '[]') {
+      return true;
+    }
+    return false;
+  }
+
   static var _cs_typedef_map = {
     "RangeList" : "DoubleSeq",
     "ElementGeometryList" : "Geometry3DSeq",
@@ -154,6 +168,21 @@ class DataType {
       );
     }
 
+  }
+
+  static String access_alternative_type(String typename, String accessName) {
+    var t = null;
+    var types = access_alternatives(typename);
+    types.forEach((List type) {
+      var altName = type[0];
+      if (type[0].startsWith('.')) {
+        altName = altName.substring(1);
+      }
+      if (altName == accessName.trim()) {
+        t = type[1];
+      }
+    });
+    return t;
   }
 
   static List<List<String>> access_alternatives(String typename) {
