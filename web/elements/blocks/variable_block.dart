@@ -50,6 +50,26 @@ class VariableBlock extends PolymerElement {
   void attached() {
     updateNameList();
     selectName(_model.name);
+
+    PaperDropdownMenu ndd = $['name-dropdown-menu'];
+    ndd.on['core-select'].listen((var e) {
+      if (e.detail != null) {
+        if (!e.detail['isSelected']) {
+
+        } else {
+          String name_ = e.detail['item'].innerHtml;
+          var pl = globalController.onInitializeApp.find(
+              program.DeclareVariable, name: name_);
+          if (pl.length > 0) {
+            program.DeclareVariable v = pl[0];
+            _model.name = name_;
+            if (_model.dataType != v.dataType) {
+              _model.dataType = v.dataType;
+            }
+          }
+        }
+      }
+    });
   }
 
   void onClicked(var e) {

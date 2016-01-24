@@ -113,11 +113,17 @@ class BlockEditor extends PolymerElement {
         ///..attachTarget(parseBlock(block.right));
     }
     //  port_data_menu
-      else if (block is program.AccessOutPort) {
+    else if (block is program.AccessOutPort) {
       return new html.Element.tag('outport-data')
         ..model = block
         ..attachTarget(parseBlock(block.right));
-    } else if (block is program.AccessInPort) {
+    }
+    else if (block is program.OutPortBuffer) {
+      return new html.Element.tag('outport-data')
+        ..model = block;
+//        ..attachTarget(parseBlock(block.right));
+    }
+    else if (block is program.AccessInPort) {
       return new html.Element.tag('inport-data')
         ..model = block;
     } else if (block is program.ReadInPort) {

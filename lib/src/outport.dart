@@ -108,6 +108,9 @@ class OutPortBuffer extends Block {
   }
 
   String toPython(int indentLevel) {
+    if (accessSequence.trim().length == 0) {
+      return "self._d_${name}";
+    }
     return "self._d_${name}.${accessSequence}";
   }
 

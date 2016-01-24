@@ -69,13 +69,13 @@ class OutPortData extends PolymerElement {
     var types = program.DataType.access_alternatives(_model.dataType.typename);
     types.forEach((List<String> alternative_pair) {
       $['menu-content'].children.add(new html.Element.tag('paper-item')
-            ..innerHtml = alternative_pair[0] + ';'
+            ..innerHtml = alternative_pair[0] + ' '
             ..setAttribute('value', counter.toString())
       );
       counter++;
     });
 
-    selectAccess(_model.accessSequence + ';');
+    selectAccess(_model.accessSequence + ' ');
   }
 
   void selectAccess(String name) {
@@ -126,6 +126,21 @@ class OutPortData extends PolymerElement {
               updateAccessAlternatives();
             }
           }
+        }
+      }
+    });
+
+    PaperDropdownMenu dd = $['dropdown-menu'];
+    dd.on['core-select'].listen((var e) {
+      if(e.detail != null) {
+        if (e.detail['isSelected']) {
+          String accessName = e.detail['item'].innerHtml;
+
+          if (accessName.startsWith('.')) {
+            accessName = accessName.substring(1);
+          }
+          _model.accessSequence =
+              accessName.substring(0, accessName.length - 1);
         }
       }
     });

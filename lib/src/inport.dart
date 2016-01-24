@@ -118,9 +118,10 @@ class AccessInPort extends Block {
   }
 
   String toPython(int indentLevel) {
-    String sb = "";
-    sb = 'self._d_${name}.${accessSequence}';
-    return sb;
+    if (accessSequence.trim().length == 0) {
+      return 'self._d_${name}';
+    }
+    return 'self._d_${name}.${accessSequence}';
   }
 
 

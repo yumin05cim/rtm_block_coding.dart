@@ -71,13 +71,13 @@ class InPortData extends PolymerElement {
     types.forEach((List<String> alternative_pair) {
       $['menu-content'].children.add(
           new html.Element.tag('paper-item')
-            ..innerHtml = alternative_pair[0] + ';'
+            ..innerHtml = alternative_pair[0] + ' '
             ..setAttribute('value', counter.toString())
       );
       counter++;
     });
 
-    selectAccess(_model.accessSequence + ';');
+    selectAccess(_model.accessSequence + ' ');
   }
 
   void selectAccess(String name) {

@@ -120,6 +120,19 @@ class Controller {
     return n;
   }
 
+
+  String getVariableName() {
+    int counter = 0;
+    String n = 'variable$counter';
+
+    while (onInitializeApp.find(program.DeclareVariable, name: n).length != 0) {
+      counter++;
+      n = 'variable$counter';
+    }
+
+    return n;
+  }
+
   void addElement(String command) {
     print('add ${command}');
     program.Application app;
@@ -163,7 +176,9 @@ class Controller {
 //  variables_menu
 
     if (command == 'add_variable') {
-      program.DeclareVariable v = new program.DeclareVariable('name', new program.DataType.fromTypeName("long"));
+      var n = getVariableName();
+
+      program.DeclareVariable v = new program.DeclareVariable(n, new program.DataType.fromTypeName("long"));
       program.Statement new_s = new program.Statement(v);
       if (selectedStatement() == null) {
         app.statements.add(new_s);
@@ -219,6 +234,27 @@ class Controller {
       }
     }
     */
+
+    if (command == 'get_variable') {
+      var variableList = onInitializeApp.find(program.DeclareVariable);
+      if (variableList == null) {variableList = [];}
+      if (variableList.length > 0) {
+        program.Variable v = new program.Variable(variableList[0].name, variableList[0].dataType);
+        //program.Statement new_s = new program.Statement(v);
+
+        if (selectedStatement() == null) {
+          //app.statements.add(new_s);
+        } else if (selectedElement.parentElement is AssignBlock) {
+          program.Assign a = selectedElement.parentElement.model;
+          if (a.left == selectedElement.model) {
+            a.left = v;
+          } else {
+            a.right = v;
+          }
+        }
+      }
+    }
+
 
     if (command == 'assign_variable') {
       var outPortList = onInitializeApp.find(program.AddOutPort);
@@ -289,14 +325,20 @@ class Controller {
       }
       else */if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
+      } else if(selectedStatement() is AssignBlock) {
+        selectedStatement().model.right = v;
       }
       else if (selectedStatement() is OutPortData) {
         (selectedStatement() as OutPortData).model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is SetVariable) {
-          elem.parentElement.model.right = v;
+        if (elem.parentElement is AssignBlock) {
+          if (selectedElement.model == elem.parentElement.model.right) {
+            elem.parentElement.model.right = v;
+          } else {
+            elem.parentElement.model.left = v;
+          }
         } else if (elem.parentElement is Addition) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
@@ -327,10 +369,12 @@ class Controller {
 
     if (command == 'outport_data') {
       List<program.AddOutPort> outPortList = onInitializeApp.find(program.AddOutPort);
+      if (outPortList == null) outPortList = [];
       if (outPortList.length == 0) return;
 
       //program.OutPortWrite v = new program.OutPortWrite(outPortList[0].name, outPortList[0].dataType);
-      program.AccessOutPort v = new program.AccessOutPort(outPortList[0].name, outPortList[0].dataType, '', new program.IntegerLiteral(1));
+      //program.AccessOutPort v = new program.AccessOutPort(outPortList[0].name, outPortList[0].dataType, '', new program.IntegerLiteral(1));
+      program.OutPortBuffer v = new program.OutPortBuffer(outPortList[0].name, outPortList[0].dataType, '');
 
 
       //var outPortMap = onInitializeApp.getOutPortMap();
@@ -340,7 +384,7 @@ class Controller {
       program.Statement new_s = new program.Statement(v);
 
       if (selectedStatement() == null) {
-        app.statements.add(new_s);
+        //app.statements.add(new_s);
       }
       /*
       else if (selectedStatement() is SetVariable) {
