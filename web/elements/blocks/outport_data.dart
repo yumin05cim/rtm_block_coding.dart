@@ -5,23 +5,23 @@ import '../../controller/controller.dart';
 
 @CustomTag('outport-data')
 class OutPortData extends PolymerElement {
-  program.AccessOutPort _model;
-
+  program.OUtPortBuffer _model;
 
   PolymerElement parentElement;
 
-  set model(program.AccessOutPort m) {
-    _model = m;
-    port_name = _model.name;
-    port_type = _model.dataType.typename;
-    data_member = _model.accessSequence;
-  }
-
   get model => _model;
 
-  @published String port_name = "defaultName";
-  @published String port_type = "defaultType";
-  @published String data_member = "data";
+  //@published String port_name = "defaultName";
+  //@published String port_type = "defaultType";
+  //@published String data_member = "data";
+  @observable String indexInputValue = '0';
+
+  set model(program.OutPortBuffer m) {
+    _model = m;
+    //port_name = _model.name;
+    //port_type = _model.dataType.typename;
+    //data_member = _model.accessSequence;
+  }
 
   OutPortData.created() : super.created();
 
@@ -78,18 +78,46 @@ class OutPortData extends PolymerElement {
     selectAccess(_model.accessSequence + ' ');
   }
 
-  void selectAccess(String name) {
-    print('selectAccess($name) called (_model:$model)');
+  void selectAccess(String accessName) {
+    accessName = accessName.trim();
+    var name = accessName.trim();
+    if (accessName.endsWith(']')) {
+      name =
+          name.substring(
+              0, name.indexOf('['));
+    }
+    print('selectAccess($name) called (_model:${model.name})');
+    print('accessSeq:' + model.accessSequence);
+
     int selected = -1;
     int counter = 0;
     $['menu-content'].children.forEach((PaperItem p) {
-      print(p.innerHtml + '/' + name);
       var target_name = p.innerHtml;
       if (p.innerHtml.startsWith('.')) {
-        target_name = p.innerHtml.substring(1);
+        target_name = p.innerHtml.substring(1).trim();
       }
-      if (name == target_name) {
+      if (name.trim() == target_name) {
         selected = counter;
+
+        String accessTypeName = program.DataType.access_alternative_type(_model.dataType.typename, name);
+        if (program.DataType.isSeqType(accessTypeName)) {
+          $['index-left'].style.display = 'block';
+          $['index-input'].style.display = 'block';
+          $['index-right'].style.display = 'block';
+        } else {
+          $['index-left'].style.display = 'none';
+          $['index-input'].style.display = 'none';
+          $['index-right'].style.display = 'none';
+        }
+
+        if (accessName.endsWith(']')) {
+          indexInputValue = accessName.substring(accessName.indexOf('[')+1, accessName.indexOf(']'));
+        } else {
+          indexInputValue = ' ';
+        }
+
+        print('indexInptValue=${indexInputValue}');
+        onInputIndex(null);
       }
       counter++;
     });
@@ -141,15 +169,46 @@ class OutPortData extends PolymerElement {
           }
           _model.accessSequence =
               accessName.substring(0, accessName.length - 1);
+
+          String accessTypeName = program.DataType.access_alternative_type(_model.dataType.typename, accessName);
+          if(program.DataType.isSeqType(accessTypeName)) {
+            $['index-left'].style.display = 'block';
+            $['index-input'].style.display = 'block';
+            $['index-right'].style.display = 'block';
+          } else {
+            $['index-left'].style.display = 'none';
+            $['index-input'].style.display = 'none';
+            $['index-right'].style.display = 'none';
+          }
+          onInputIndex(null);
         }
       }
+    });
+
+
+    $['index-input'].onChange.listen((var e) {
+      onInputIndex(e);
     });
   }
 
   void onClicked(var e) {
     globalController.setSelectedElem(e, this);
     e.stopPropagation();
+  }
 
+  void onInputIndex(var e) {
+    print('index:$indexInputValue');
+    if (_model.accessSequence.endsWith(']')) {
+      _model.accessSequence =
+          _model.accessSequence.substring(
+              0, _model.accessSequence.indexOf('['));
+    }
+    if (indexInputValue
+        .trim()
+        .length > 0) {
+      _model.accessSequence =
+          _model.accessSequence + '[' + indexInputValue + ']';
+    }
   }
 
   void attachTarget(var element) {

@@ -103,7 +103,7 @@ class InPortData extends PolymerElement {
           }
       if(name.trim() == target_name) {
         selected = counter;
-        int index = -1;
+
         String accessTypeName = program.DataType.access_alternative_type(_model.dataType.typename, name);
         if (program.DataType.isSeqType(accessTypeName)) {
           $['index-left'].style.display = 'block';
@@ -174,7 +174,6 @@ class InPortData extends PolymerElement {
           _model.accessSequence =
               accessName.substring(0, accessName.length - 1);
 
-          int index = -1;
           String accessTypeName = program.DataType.access_alternative_type(_model.dataType.typename, accessName);
           if(program.DataType.isSeqType(accessTypeName)) {
             $['index-left'].style.display = 'block';
