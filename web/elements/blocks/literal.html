@@ -8,13 +8,13 @@
         <link rel="stylesheet" href="../element_styles.css" />
         <style type='text/css'>
             :host {
-                background-color: #B2DFDB;
+/*                background-color: #B2DFDB;
 
                 border-width: 1px;
                 border-color: #FFFFFF;
-                border-style: none;
+                border-style: none;*/
             }
-            #target {
+            :host > #target {
                 margin-top: 2px;
                 margin-left: 7px;
                 margin-right: 7px;
@@ -25,15 +25,19 @@
 
                 position: relative;
 
-                background-color: #B386C8;
+                background-color: #BDE1F0;
                 border: 1px solid #B6B6B6;
                 border-radius: 0.3em;
 
-                height: 50px;
+                height: 40px;
             }
 
             #body {
                 position: relative;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
             }
             paper-input#int-literal-input {
                 width: 30px;
@@ -57,6 +61,69 @@
             </div>
         </div>
 -->
+
+    </template>
+    <script type="application/dart" src="literal.dart"></script>
+</polymer-element>
+
+<polymer-element name="real-literal" attributes="value">
+    <template >
+        <link rel="stylesheet" href="../element_styles.css" />
+        <style type='text/css'>
+            :host {
+/*                background-color: #B2DFDB;
+
+                border-width: 1px;
+                border-color: #FFFFFF;
+                border-style: none;*/
+            }
+            :host > #target {
+                margin-top: 2px;
+                margin-left: 7px;
+                margin-right: 7px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #BDE1F0;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                height: 40px;
+            }
+
+            #body {
+                position: relative;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+            paper-input#real-literal-input {
+                width: 30px;
+            }
+
+
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="target" horizontal layout center on-tap="{{onClicked}}">
+            <div>小数:</div>
+            <paper-input id="real-literal-input" value="{{value}}"></paper-input>
+        </div>
+
+        <!--English ver.-->
+        <!--
+                <div id="body">
+                    <div id="target" horizontal layout center>
+                        <div>Inteter:</div>
+                        <paper-input id="int-literal-input" value="{{value}}"></paper-input>
+                    </div>
+                </div>
+        -->
 
     </template>
     <script type="application/dart" src="literal.dart"></script>

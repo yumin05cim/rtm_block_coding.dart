@@ -140,7 +140,11 @@ class BlockEditor extends PolymerElement {
     }
     //  calculate_menu
       else if (block is program.IntegerLiteral) {
-      var v = new html.Element.tag('integer-input')
+      var v = new html.Element.tag('integer-literal')
+        ..model = block;
+      return v;
+    } else if (block is program.RealLiteral) {
+      var v = new html.Element.tag('real-literal')
         ..model = block;
       return v;
     } else if (block is program.Add) {
