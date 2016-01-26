@@ -251,6 +251,34 @@ class Controller {
           } else {
             a.right = v;
           }
+        } else if (selectedElement.parentElement is Addition) {
+          program.Assign a = selectedElement.parentElement.model;
+          if (a.left == selectedElement.model) {
+            a.left = v;
+          } else {
+            a.right = v;
+          }
+        } else if (selectedElement.parentElement is Subtraction) {
+          program.Assign a = selectedElement.parentElement.model;
+          if (a.left == selectedElement.model) {
+            a.left = v;
+          } else {
+            a.right = v;
+          }
+        } else if (selectedElement.parentElement is Multiplication) {
+          program.Assign a = selectedElement.parentElement.model;
+          if (a.left == selectedElement.model) {
+            a.left = v;
+          } else {
+            a.right = v;
+          }
+        } else if (selectedElement.parentElement is Division) {
+          program.Assign a = selectedElement.parentElement.model;
+          if (a.left == selectedElement.model) {
+            a.left = v;
+          } else {
+            a.right = v;
+          }
         }
       }
     }
@@ -323,9 +351,9 @@ class Controller {
 /*      if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
-      else */if (selectedStatement() is SetVariable) {
+      else *//*if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
-      } else if(selectedStatement() is AssignBlock) {
+      } else */if(selectedStatement() is AssignBlock) {
         selectedStatement().model.right = v;
       }
       else if (selectedStatement() is OutPortData) {
@@ -426,16 +454,57 @@ class Controller {
     }
 
 //  calculate_menu
-    if (command == 'int_input') {
+    if (command == 'int_literal') {
       program.IntegerLiteral v = new program.IntegerLiteral(1);
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is SetVariable) {
+      if (selectedStatement() is AssignBlock) {
+//        if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is SetVariable) {
+        if (elem.parentElement is AssignBlock) {
+//          if (elem.parentElement is SetVariable) {
+           elem.parentElement.model.right = v;
+        } else if (elem.parentElement is Addition) {
+          if (elem.parentElement.model.a == elem.model) {
+            elem.parentElement.model.a = v;
+          } else {
+            elem.parentElement.model.b = v;
+          }
+        } else if (elem.parentElement is Subtraction) {
+          if (elem.parentElement.model.a == elem.model) {
+            elem.parentElement.model.a = v;
+          } else {
+            elem.parentElement.model.b = v;
+          }
+        } else if (elem.parentElement is Multiplication) {
+          if (elem.parentElement.model.a == elem.model) {
+            elem.parentElement.model.a = v;
+          } else {
+            elem.parentElement.model.b = v;
+          }
+        } else if (elem.parentElement is Division) {
+          if (elem.parentElement.model.a == elem.model) {
+            elem.parentElement.model.a = v;
+          } else {
+            elem.parentElement.model.b = v;
+          }
+        }
+      }
+    }
+
+    if (command == 'real_literal') {
+      program.RealLiteral v = new program.RealLiteral(1.0);
+      program.Statement new_s = new program.Statement(v);
+
+      if (selectedStatement() is AssignBlock) {
+        selectedStatement().model.right = v;
+      }
+      else {
+        PolymerElement elem = globalController.selectedElement;
+        if (elem.parentElement is AssignBlock) {
           elem.parentElement.model.right = v;
         } else if (elem.parentElement is Addition) {
           if (elem.parentElement.model.a == elem.model) {
@@ -469,12 +538,14 @@ class Controller {
       program.Add v = new program.Add(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is SetVariable) {
-        selectedStatement().model.right = v;
+      if (selectedStatement() is AssignBlock) {
+//        if (selectedStatement() is SetVariable) {
+         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is SetVariable) {
+        if (elem.parentElement is AssignBlock) {
+//          if (elem.parentElement is SetVariable) {
           elem.parentElement.model.right = v;
         }
       }
@@ -484,12 +555,12 @@ class Controller {
       program.Subtract v = new program.Subtract(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is SetVariable) {
+      if (selectedStatement() is AssignBlock) {
         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is SetVariable) {
+        if (elem.parentElement is AssignBlock) {
           elem.parentElement.model.right = v;
         }
       }
@@ -499,12 +570,12 @@ class Controller {
       program.Multiply v = new program.Multiply(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is SetVariable) {
+      if (selectedStatement() is AssignBlock) {
         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is SetVariable) {
+        if (elem.parentElement is AssignBlock) {
           elem.parentElement.model.right = v;
         }
       }
@@ -514,12 +585,12 @@ class Controller {
       program.Divide v = new program.Divide(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is SetVariable) {
+      if (selectedStatement() is AssignBlock) {
         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is SetVariable) {
+        if (elem.parentElement is AssignBlock) {
           elem.parentElement.model.right = v;
         }
       }
@@ -528,49 +599,65 @@ class Controller {
 
 //  if_switch_loop_menu
     if(command =='if') {
-      program.If v = new program.If(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)),
-          new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable0'), new program.IntegerLiteral(1)))]));
-          //no:new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable1'), new program.IntegerLiteral(1)))]));
-      program.Statement new_s = new program.Statement(v);
+      var variableList = onInitializeApp.find(program.DeclareVariable);
+      if (variableList == null) {variableList = [];}
+      if (variableList.length > 0) {
+        program.If v = new program.If(new program.Equals(
+            new program.IntegerLiteral(1), new program.IntegerLiteral(1)), new program.StatementList([new program.Statement
+            (new program.Assign(new program.Variable(variableList[0].name, variableList[0].dataType), new program.IntegerLiteral(1)))]));
+        //no:new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable1'), new program.IntegerLiteral(1)))]));
+        program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
-      } else if (selectedStatement() is ReadInPort) {
-        selectedStatement().model.statements.add(new_s);
-      } else {
+        if (selectedStatement() == null) {
+          app.statements.add(new_s);
+        } else if (selectedStatement() is ReadInPort) {
+          selectedStatement().model.statements.add(new_s);
+        } else {
 
+        }
       }
     }
 
     if(command =='else') {
-      program.Else v = new program.Else(new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable0'), new program.IntegerLiteral(1)))]));
-      //no:new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable1'), new program.IntegerLiteral(1)))]));
-      program.Statement new_s = new program.Statement(v);
+      var variableList = onInitializeApp.find(program.DeclareVariable);
+      if (variableList == null) {variableList = [];}
+      if (variableList.length > 0) {
+        program.Else v = new program.Else(new program.StatementList([new program.Statement
+            (new program.Assign(new program.Variable(variableList[0].name, variableList[0].dataType), new program.IntegerLiteral(1)))]));
+        //no:new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable1'), new program.IntegerLiteral(1)))]));
+        program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() == null) {
-        if (app.statements.length > 0) {
-          if (app.statements.last.block is program.If) {
-            app.statements.add(new_s);
+        if (selectedStatement() == null) {
+          if (app.statements.length > 0) {
+            if (app.statements.last.block is program.If) {
+              app.statements.add(new_s);
+            }
           }
-        }
-      } else if (selectedElement is If) {
-        var index = (selectedStatement().parent as html.DivElement).children.indexOf(selectedElement);
+        } else if (selectedElement is If) {
+          var index = (selectedStatement().parent as html.DivElement).children
+              .indexOf(selectedElement);
 
-        if (index >= 0) {
-          (selectedElement.model as program.If).parent.parent.insert(index+1, new_s);
-        }
-      } else {
+          if (index >= 0) {
+            (selectedElement.model as program.If).parent.parent.insert(
+                index + 1, new_s);
+          }
+        } else {
 
+        }
       }
     }
 
     if(command =='while') {
-      program.While v = new program.While(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)),
-          new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable0'), new program.IntegerLiteral(1)))]));
-      program.Statement new_s = new program.Statement(v);
+      var variableList = onInitializeApp.find(program.DeclareVariable);
+      if (variableList == null) {variableList = [];}
+      if (variableList.length > 0) {
+        program.While v = new program.While(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)), new program.StatementList([new program.Statement(
+            new program.Assign(new program.Variable(variableList[0].name, variableList[0].dataType), new program.IntegerLiteral(1)))]));
+        program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() == null) {
-        app.statements.add(new_s);
+        if (selectedStatement() == null) {
+          app.statements.add(new_s);
+        }
       }
     }
 

@@ -45,3 +45,47 @@ class IntegerLiteral extends PolymerElement {
     return false;
   }
 }
+
+
+@CustomTag('real-literal')
+class RealLiteral extends PolymerElement {
+  program.RealLiteral _model;
+
+  PolymerElement parentElement;
+
+  set model(program.RealLiteral m) {
+    _model = m;
+    value = m.value;
+  }
+
+  get model => _model;
+
+  @published double value = 1.0;
+  RealLiteral.created() : super.created();
+
+  void attached() {
+    $['real-literal-input'].onChange.listen((var e) {
+      _model.value = value;
+    });
+
+  }
+
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
+
+  }
+
+  void select() {
+    $['target'].style.border = 'ridge';
+    ($['target'] as html.HtmlElement).style.borderColor = '#FF9F1C';
+  }
+
+  void deselect() {
+    $['target'].style.border = '1px solid #B6B6B6';
+  }
+
+  bool is_container() {
+    return false;
+  }
+}
