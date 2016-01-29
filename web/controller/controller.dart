@@ -827,7 +827,7 @@ class Controller {
     _statePanel.showRTCImage(getRTCProfile());
   }
 
-  String pythonCode() {
+  String pythonCode({bool pure: false}) {
 
     var dec = onInitializeApp.toDeclarePython(2);
     //dec += onActivatedApp.toDeclarePython(2);
@@ -844,6 +844,20 @@ class Controller {
     var e = onExecuteApp.toPython(2);
 
     var d = onDeactivatedApp.toPython(2);
+
+    div(var id) {
+      if (!pure) {
+        return '<div id="$id">';
+      }
+      return '';
+    }
+
+    vid() {
+      if (!pure) {
+        return '</div>';
+      }
+      return '';
+    }
     final string = """
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -875,37 +889,33 @@ block_rtc_spec = ["implementation_id", "BlockRTC",
 
 class BlockRTC(OpenRTM_aist.DataFlowComponentBase):
 
-<div id="constructor" class="">
+  ${div('constructor')}
   def __init__(self, manager):
     OpenRTM_aist.DataFlowComponentBase.__init__(self, manager)
 ${dec}
     self._debug = [1]
-</div>
-
-<div id="on-initialize-block">
+  ${vid()}
+  ${div("on-initialize-block")}
   def onInitialize(self):
     self.bindParameter("debug", self._debug, "1")
 ${bin}
     return RTC.RTC_OK
-</div>
-
-<div id="on-activated-block">
+  ${vid()}
+  ${div("on-activated-block")}
   def onActivated(self, ec_id):
 ${a}
     return RTC.RTC_OK
-</div>
-
-<div id="on-deactivated-block">
+  ${vid()}
+  ${div("on-deactivated-block")}
   def onDeactivated(self, ec_id):
 ${d}
     return RTC.RTC_OK
-</div>
-
-<div id="on-execute-block">
+  ${vid()}
+  ${div("on-execute-block")}
   def onExecute(self, ec_id):
 ${e}
     return RTC.RTC_OK
-</div>
+  ${vid()}
 
 def BlockRTCInit(manager):
   profile = OpenRTM_aist.Properties(defaults_str=block_rtc_spec)

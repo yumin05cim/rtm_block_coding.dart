@@ -1,4 +1,5 @@
 import 'dart:html' as html;
+import 'package:http/browser_client.dart' as browser_client;
 import 'package:core_elements/core_menu.dart';
 import 'package:core_elements/core_drawer_panel.dart';
 import 'package:core_elements/core_collapse.dart';
@@ -9,6 +10,8 @@ import 'add_element_button.dart';
 import 'dart:async';
 import '../controller/controller.dart';
 import 'package:xml/xml.dart' as xml;
+
+import 'package:wasanbon_xmlrpc/wasanbon_xmlrpc.dart' as wasanbon;
 
 @CustomTag('main-frame')
 class MainFrame extends PolymerElement {
@@ -89,7 +92,48 @@ class MainFrame extends PolymerElement {
     globalController.setMode(mode);
   }
 
-  void onSave(var e) {
+
+
+  void onLaunch(var e) {
+    var client = new browser_client.BrowserClient();
+    wasanbon.WasanbonRPC rpc = new wasanbon.WasanbonRPC(url: "http://localhost:8000/RPC", client: client);
+
+    var filename = 'BlockRTC.py';
+    var content = globalController.pythonCode(pure:true);
+//    var content = 'print "Hello World. This is Python script"';
+
+    rpc.files.uploadFile(filename, content).then((var ret) {
+      if (!ret) {
+        print('Failed to send file.');
+        return;
+      }
+
+
+      /// Pythonスクリプトの内容確認
+      rpc.files.downloadFile(filename).then((var ret) {
+        if (ret != content) {
+          print('File content is invalid.');
+          return;
+        }
+
+        /// Pythonスクリプトの実行
+        rpc.processes.run(filename).then((var ret) {
+          print('Process Run is $ret');
+        }).catchError((dat) {
+          test.fail('Exception occured in processes_run ');
+          print(dat);
+        });
+      }).catchError((dat) {
+        test.fail('Exception occured in content verification.');
+        print(dat);
+      });
+    }).catchError((dat) {
+      test.fail('Exception occured in Test');
+      print(dat);
+    });
+  }
+
+  void onExport(var e) {
     var xml = globalController.buildXML();
     var text = xml.toXmlString(pretty: true);
     print(text);
@@ -121,6 +165,8 @@ class MainFrame extends PolymerElement {
      ie.dispatchEvent(evt);
   }
 
+
+  /// ファイルインプットダイアログ変更時のハンドラ
   void onFileInput(var e) {
     html.InputElement ie = $['file_input'];
     print(ie.value);
