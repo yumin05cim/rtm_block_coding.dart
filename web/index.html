@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="import" href="packages/polymer/polymer.html">
     <link rel="import" href="elements/main_frame.html">
+
+    <script src="packages/web_components/webcomponents-lite.min.js"></script>
     <title>RTM Block Coder</title>
 </head>
 
 <body fullbreed>
     <main-frame fit></main-frame>
-    <script type="application/dart">export 'package:polymer/init.dart';</script>
+
+    <script type="application/dart" src="index.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+
+    <!-- <script type="application/dart">export 'package:polymer/init.dart';</script> -->
 </body>
 </html>

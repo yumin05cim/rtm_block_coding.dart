@@ -1,16 +1,18 @@
 import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
+import 'package:paper_elements/paper_item.dart';
+import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
 
 @CustomTag('write-outport')
 class WriteOutPort extends PolymerElement {
 
-  program.OutPortWrite _model;
+  program.WriteOutPort _model;
 
   PolymerElement parentElement;
 
-  set model(program.OutPortWrite m) {
+  set model(program.WriteOutPort m) {
     _model = m;
     port_name = m.name;
     port_type = m.dataType.typename;

@@ -13,6 +13,7 @@ import 'flow_control.dart';
 import 'inport.dart';
 import 'io.dart';
 import 'outport.dart';
+import 'variable.dart';
 
 /// ブロックをXMLから生成するためのクラス
 /// Blockクラスは複数の子クラスを持ち，それぞれが別個にXMLを生成しているため

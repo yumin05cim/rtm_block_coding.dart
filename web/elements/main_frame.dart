@@ -120,15 +120,12 @@ class MainFrame extends PolymerElement {
         rpc.processes.run(filename).then((var ret) {
           print('Process Run is $ret');
         }).catchError((dat) {
-          test.fail('Exception occured in processes_run ');
           print(dat);
         });
       }).catchError((dat) {
-        test.fail('Exception occured in content verification.');
         print(dat);
       });
     }).catchError((dat) {
-      test.fail('Exception occured in Test');
       print(dat);
     });
   }
