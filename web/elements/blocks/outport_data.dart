@@ -197,17 +197,23 @@ class OutPortData extends PolymerElement {
   }
 
   void onInputIndex(var e) {
+
     print('index:$indexInputValue');
     if (_model.accessSequence.endsWith(']')) {
       _model.accessSequence =
           _model.accessSequence.substring(
               0, _model.accessSequence.indexOf('['));
     }
-    if (indexInputValue
-        .trim()
-        .length > 0) {
-      _model.accessSequence =
-          _model.accessSequence + '[' + indexInputValue + ']';
+    String accessTypeName = program.DataType.access_alternative_type(_model.dataType.typename, _model.accessSequence);
+
+    if(program.DataType.isSeqType(accessTypeName)) {
+
+      if (indexInputValue
+          .trim()
+          .length > 0) {
+        _model.accessSequence =
+            _model.accessSequence + '[' + indexInputValue + ']';
+      }
     }
   }
 
