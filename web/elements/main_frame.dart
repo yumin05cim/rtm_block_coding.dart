@@ -96,7 +96,12 @@ class MainFrame extends PolymerElement {
 
   void onLaunch(var e) {
     var client = new browser_client.BrowserClient();
-    wasanbon.WasanbonRPC rpc = new wasanbon.WasanbonRPC(url: "http://localhost:8000/RPC", client: client);
+    wasanbon.WasanbonRPC rpc = new wasanbon.WasanbonRPC(
+        url: Uri.base.queryParameters['wasanbon'] == null ? 'http://${Uri.base.host}:${Uri.base.port}/RPC' : 'http://${Uri.base.queryParameters['wasanbon']}/RPC',
+        client: new browser_client.BrowserClient());
+
+
+    //wasanbon.WasanbonRPC rpc = new wasanbon.WasanbonRPC(url: "http://localhost:8000/RPC", client: client);
 
     var filename = 'BlockRTC.py';
     var content = globalController.pythonCode(pure:true);

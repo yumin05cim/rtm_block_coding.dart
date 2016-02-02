@@ -39,7 +39,6 @@ class EditorPanel extends PolymerElement {
         return globalController.onActivatedApp;
       case 2:
         return globalController.onExecuteApp;
-        break;
       case 3:
         return globalController.onDeactivatedApp;
     }
