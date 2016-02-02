@@ -3,6 +3,12 @@ import 'package:rtcprofile/rtcprofile.dart' as rtcprofile;
 import 'package:shape/shape.dart' as shape;
 
 class RTCProfileShape extends shape.Shape2D {
+
+  void move(num x, num y) {
+  }
+
+  void stretch(num percent) {
+  }
   
   rtcprofile.RTCProfile rtcProfile;
   
@@ -30,13 +36,13 @@ class RTCProfileShape extends shape.Shape2D {
 
   set portHeight(int v) {
     _portHeight = v;
-    textHeight = v * 0.9;
-    portWidth  = v * 1.5;
-    portMargin = portWidth / 2;
+    textHeight = (v * 0.9).round();
+    portWidth  = (v * 1.5).round();
+    portMargin = (portWidth / 2).round();
     padding = portHeight;
     margin = portHeight;
     rtcWidth = portHeight * 5;
-    textMargin = margin /2;
+    textMargin = (margin /2).round();
   }
 
   num _offset_x = 0;
@@ -165,7 +171,7 @@ class RTCProfileShape extends shape.Shape2D {
   }
   
   @override
-  void draw(shape.DrawContext context, {fill: false, notitle: false}) {
+  void draw(shape.DrawContext context, {fill: false, notitle: false, styleHolder: null}) {
     if(body == null) {
       updateShape();
     }

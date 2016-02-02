@@ -15,6 +15,7 @@ import '../elements/blocks/if_statement.dart';
 import '../elements/blocks/while_statement.dart';
 import '../elements/blocks/assign_block.dart';
 import '../elements/state_panel.dart';
+import '../elements/python_panel.dart';
 import 'package:rtcprofile/rtcprofile.dart';
 
 class Controller {

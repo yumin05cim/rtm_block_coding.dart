@@ -58,7 +58,7 @@ class RealLiteral extends BasicLiteral<double> {
 
   double parse(String valueString) => double.parse(valueString);
 
-  RealLiteral.XML(xml.XmlElement node) : super(0) {
+  RealLiteral.XML(xml.XmlElement node) : super(0.0) {
     loadXML(node);
   }
 }
@@ -75,7 +75,7 @@ class StringLiteral extends BasicLiteral<String> {
   }
 
   String toPython(int indentLevel) {
-    return "'${_a.toString()}'";
+    return "'${_value.toString()}'";
   }
 }
 

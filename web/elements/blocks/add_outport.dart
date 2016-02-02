@@ -2,7 +2,7 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-
+import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 
 @CustomTag('add-outport')
@@ -88,7 +88,7 @@ class AddOutPort extends PolymerElement {
     ports2.addAll(globalController.onDeactivatedApp.find(program.WriteOutPort, name: name_));
     ports2.forEach((program.WriteOutPort port) {
       port.dataType = _model.dataType;
-      port.accessSequence = '';
+      //port.accessSequence = '';
     });
 
     globalController.refreshAllPanel(except: 'onInitialize');

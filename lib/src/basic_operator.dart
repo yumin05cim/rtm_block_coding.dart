@@ -4,6 +4,7 @@ import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
 import 'block_loader.dart';
+import 'variable.dart';
 
 
 /// 変数にデータを代入する処理
