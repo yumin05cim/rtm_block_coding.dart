@@ -281,7 +281,7 @@
                 background-color: #B2DFDB;
             }
 
-/*            core-icon-button::shadow core-icon {
+/*           core-icon-button::shadow core-icon {
                 background: #A1CF6B;
             }*/
 
@@ -298,16 +298,29 @@
                 background-color: rgba(255, 255, 255, .3);
             }
 */
+/*            .icon-button {
+                margin-right: 3px;
+                margin-left: 3px;
+            }*/
 
             #launch_button {
+/*                margin-top: 1px;
+                margin-bottom: 4px;*/
+                margin-left: 1px;
+                margin-right: 1px;
+                padding-top: 3%;
+                padding-bottom: 3%;
                 position: relative;
 /*                background-color: #c43157;
                 border-color: #a42949;*/
                 border-radius: 2px;
                 /*line-height: 24px;*/
-                width: 110px;
+                /*height: 90%;*/
+                width: 100px;
                 -webkit-transition: none;
                 transition: none;
+
+                text-align: center;
 /*                box-shadow: 0 3px 0 #a42949;
                 text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
             }
@@ -316,20 +329,20 @@
                 box-shadow: 0 3px 0 #a42949;
             }
 
-            #export_button:hover {
-                background-color: #d04468;
-                box-shadow: 0 3px 0 #a42949;
-            }
-
-
             #save_button {
+                margin-left: 1px;
+                margin-right: 1px;
+                padding-top: 3%;
+                padding-bottom: 3%;
                 position: relative;
 /*                background-color: #c43157;
                 border-color: #a42949;*/
                 border-radius: 2px;
-                width: 90px;
+                width: 100px;
                 -webkit-transition: none;
                 transition: none;
+
+                text-align: center;
 /*                box-shadow: 0 3px 0 #a42949;
                 text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
             }
@@ -339,13 +352,19 @@
             }
 
             #import_button {
+                margin-left: 1px;
+                margin-right: 1px;
+                padding-top: 3%;
+                padding-bottom: 3%;
                 position: relative;
 /*                background-color: #c43157;
                 border-color: #a42949;*/
                 border-radius: 2px;
-                width: 110px;
+                width: 100px;
                 -webkit-transition: none;
                 transition: none;
+
+                text-align: center;
 /*                box-shadow: 0 3px 0 #a42949;
                 text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
             }
@@ -354,14 +373,42 @@
                 box-shadow: 0 3px 0 #a42949;
             }
 
+            #export_button {
+                margin-left: 1px;
+                margin-right: 1px;
+                padding-top: 3%;
+                padding-bottom: 3%;
+                position: relative;
+                /*                background-color: #c43157;
+                                border-color: #a42949;*/
+                border-radius: 2px;
+                width: 100px;
+                -webkit-transition: none;
+                transition: none;
+
+                text-align: center;
+                /*                box-shadow: 0 3px 0 #a42949;
+                                text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
+            }
+            #export_button:hover {
+                background-color: #d04468;
+                box-shadow: 0 3px 0 #a42949;
+            }
+
             #help_button {
+                margin-left: 1px;
+                margin-right: 1px;
+                padding-top: 3%;
+                padding-bottom: 3%;
                 position: relative;
 /*                background-color: #c43157;
                 border-color: #a42949;*/
                 border-radius: 2px;
-                width: 90px;
+                width: 100px;
                 -webkit-transition: none;
                 transition: none;
+
+                text-align: center;
 /*                box-shadow: 0 3px 0 #a42949;
                 text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
             }
@@ -370,12 +417,32 @@
                 box-shadow: 0 3px 0 #a42949;
             }
 
+/*            #rtm_menu{
+                height: 50px;
+            }
+            #variables_menu{
+                height: 50px;
+            }
+            #port_data_menu{
+                height: 50px;
+            }
+            #calculate_menu{
+                height: 50px;
+            }
+            #if_switch_loop_menu{
+                height: 50px;
+            }
+            #condition_menu{
+                height: 50px;
+            }*/
 
-
+/*            core-toolbar#coreToolbar.default-primary-color.toolbar{
+                height: 50px;
+            }*/
 
         </style>
 
-        <core-drawer-panel responsiveWidth="800px">
+        <core-drawer-panel responsiveWidth="700px">
 
             <!--LEFT Japanese ver.-->
             <core-header-panel id="left-collapse-menu" drawer layout vertical>
@@ -473,7 +540,7 @@
 
                     <core-header-panel id="main-panel" main layout vertical on-tap="{{onMainPanelTap}}">
                         <core-toolbar class="text-primary-color dark-primary-color">
-                            <div flex>RTM Block Coding</div>
+                            <div flex>RTM Spring Box</div>
                         </core-toolbar>
                         <state-panel></state-panel>
                         <editor-panel id="code-editor-panel" flex></editor-panel >
@@ -481,14 +548,14 @@
 
                     <core-header-panel id="right-collapse-menu" drawer layout vertical relative>
                         <core-toolbar  class="text-primary-color dark-primary-color" >
-                            <core-icon-button icon="send" id="launch_button" on-tap="{{onLaunch}}">Launch</core-icon-button>
-                            <core-icon-button icon="save" id="save_button" on-tap="{{onSave}}">Save</core-icon-button>
-                            <core-icon-button icon="save" id="export_button" on-tap="{{onExport}}">Export</core-icon-button>
+                            <core-icon-button class="icon-button" icon="send" id="launch_button" on-tap="{{onLaunch}}"> Launch </core-icon-button>
+                            <core-icon-button class="icon-button" icon="save" id="save_button" on-tap="{{onSave}}"> Save </core-icon-button>
+                            <core-icon-button class="icon-button" icon="file-download" id="export_button" on-tap="{{onExport}}"> Export </core-icon-button>
                             <!--<core-icon-button icon="folder-open" id="load_button"> Load</core-icon-button>-->
-                            <core-icon-button icon="folder-open" id="import_button" on-tap="{{onImport}}">Import</core-icon-button>
+                            <core-icon-button class="icon-button" icon="file-upload" id="import_button" on-tap="{{onImport}}"> Import </core-icon-button>
 
                             <input type="file" accept="*.xml" id="file_input" style="display:none;" on-change="{{onFileInput}}" />
-                            <core-icon-button icon="help" id="help_button"> Help</core-icon-button>
+                            <core-icon-button class="icon-button" icon="help" id="help_button"> Help </core-icon-button>
                         </core-toolbar>
                         <result-panel></result-panel>
                         <python-panel flex></python-panel>

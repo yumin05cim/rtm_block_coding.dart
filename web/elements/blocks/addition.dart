@@ -2,9 +2,10 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
+import 'calculation.dart';
 
 @CustomTag('calc-addition')
-class Addition extends PolymerElement {
+class Addition extends Calculation {
 
   program.Add _model;
 
@@ -19,9 +20,8 @@ class Addition extends PolymerElement {
   get model => _model;
 
   Addition.created() : super.created();
-
+/*
   void attached() {
-    /*
     $['value1-input'].onChange.listen(
         (var e) {
       _model.a = value_a;
@@ -36,11 +36,10 @@ class Addition extends PolymerElement {
       globalController.refreshPanel();
     }
     );
-    */
 
-  }
+  }*/
 
-  void attachRight(var e) {
+/*  void attachRight(var e) {
     $['add-value-b-content'].children.clear();
     $['add-value-b-content'].children.add(e);
     e.parentElement = this;
@@ -69,5 +68,6 @@ class Addition extends PolymerElement {
 
   bool is_container() {
     return false;
-  }
+  }*/
+
 }
