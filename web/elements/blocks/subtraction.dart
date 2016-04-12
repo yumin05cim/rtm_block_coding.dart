@@ -2,9 +2,10 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
+import 'calculation.dart';
 
 @CustomTag('calc-subtraction')
-class Subtraction extends PolymerElement {
+class Subtraction extends Calculation {
 
   program.Subtract _model;
 
@@ -22,8 +23,9 @@ class Subtraction extends PolymerElement {
   //@published program.Block value_b;
   Subtraction.created() : super.created();
 
+/*
   void attached() {
-    /*$['value1-input'].onChange.listen(
+    $['value1-input'].onChange.listen(
         (var e) {
       _model.a = value_a;
 
@@ -36,9 +38,9 @@ class Subtraction extends PolymerElement {
 
       globalController.refreshPanel();
     }
-    );*/
-  }
-
+    );
+  }*/
+/*
   void onClicked(var e) {
     globalController.setSelectedElem(e, this);
     e.stopPropagation();
@@ -68,5 +70,5 @@ class Subtraction extends PolymerElement {
 
   bool is_container() {
     return false;
-  }
+  }*/
 }

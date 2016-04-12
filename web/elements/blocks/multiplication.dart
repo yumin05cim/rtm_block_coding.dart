@@ -2,9 +2,10 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
+import 'calculation.dart';
 
 @CustomTag('calc-multiplication')
-class Multiplication extends PolymerElement {
+class Multiplication extends Calculation {
 
   program.Multiply _model;
 
@@ -19,9 +20,8 @@ class Multiplication extends PolymerElement {
   get model => _model;
 
   Multiplication.created() : super.created();
-
+/*
   void attached() {
-    /*
     $['value1-input'].onChange.listen(
         (var e) {
       _model.a = value_a;
@@ -36,9 +36,8 @@ class Multiplication extends PolymerElement {
       globalController.refreshPanel();
     }
     );
-    */
-
-  }
+  }*/
+/*
   void onClicked(var e) {
     globalController.setSelectedElem(e, this);
     e.stopPropagation();
@@ -69,5 +68,5 @@ class Multiplication extends PolymerElement {
 
   bool is_container() {
     return false;
-  }
+  }*/
 }

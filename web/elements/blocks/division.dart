@@ -2,9 +2,10 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
+import 'calculation.dart';
 
 @CustomTag('calc-division')
-class Division extends PolymerElement {
+class Division extends Calculation {
 
   program.Divide _model;
 
@@ -19,9 +20,8 @@ class Division extends PolymerElement {
   get model => _model;
 
   Division.created() : super.created();
-
+/*
   void attached() {
-    /*
     $['value1-input'].onChange.listen(
         (var e) {
       _model.a = value_a;
@@ -36,10 +36,10 @@ class Division extends PolymerElement {
       globalController.refreshPanel();
     }
     );
-    */
 
   }
-
+*/
+/*
   void onClicked(var e) {
     globalController.setSelectedElem(e, this);
     e.stopPropagation();
@@ -70,5 +70,6 @@ class Division extends PolymerElement {
 
   bool is_container() {
     return false;
-  }
+  }*/
+
 }
