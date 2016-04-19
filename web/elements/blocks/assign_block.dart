@@ -169,15 +169,15 @@ class AssignBlock extends PolymerElement {
   }
 
   void attachRightTarget(var element) {
-    $['right-target'].children.clear();
-    $['right-target'].children.add(element);
+    $['right-content'].children.clear();
+    $['right-content'].children.add(element);
     element.parentElement = this;
   }
 
 
   void attachLeftTarget(var element) {
-    $['left-target'].children.clear();
-    $['left-target'].children.add(element);
+    $['left-content'].children.clear();
+    $['left-content'].children.add(element);
     element.parentElement = this;
   }
 
