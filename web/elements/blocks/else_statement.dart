@@ -3,23 +3,26 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('if-statement')
-class If extends PolymerElement {
 
-  program.If _model;
+@CustomTag('else-statement')
+class Else extends PolymerElement {
+
+  program.Else _model;
 
   PolymerElement parentElement;
 
-  set model(program.If m) {
+  set model(program.Else m) {
     _model = m;
-    //condition = m.condition;
+
+    ///condition = m.condition;
     //yes = m.yes;
     //no = m.no;
   }
 
   get model => _model;
 
-  get yes => $['yes-content'];
+  get contents => $['content-content'];
+
   /// get no => $['no-content'];
 
   /*
@@ -28,56 +31,29 @@ class If extends PolymerElement {
   @published program.StatementList no;
   */
 
-  If.created() : super.created();
+  Else.created() : super.created();
 
   void attached() {
-
-/*
-    $['true-input'].onChange.listen(
-        (var e) {
-          //_model.yes = yes;
-          globalController.refreshPanel();
-    }
-    );
-
-    $['false-input'].onChange.listen(
-        (var e) {
-          //_model.no = no;
-          globalController.refreshPanel();
-      }
-    );
-*/
-
-    this.onClick.listen(
-      (var e) {
-        globalController.setSelectedElem(e, this);
-
-        e.stopPropagation();
-      }
-    );
   }
 
-  void attachCondition(var e) {
-    $['condition-content'].children.clear();
-    $['condition-content'].children.add(e);
-    e.parentElement = this;
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
   }
 
-/*
   void attachTrue(var e) {
-    $['yes-content'].children.clear();
-    $['yes-content'].children.add(e);
+    $['no-content'].children.clear();
+    $['no-content'].children.add(e);
     e.parentElement = this;
   }
-*/
-/*
+
+  /*
   void attachFalse(var e) {
     $['no-content'].children.clear();
     $['no-content'].children.add(e);
     e.parentElement = this;
   }
-*/
-
+  */
   void select() {
     $['target'].style.border = 'ridge';
     ($['target'] as html.HtmlElement).style.borderColor = '#FF9F1C';
