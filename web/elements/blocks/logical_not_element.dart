@@ -23,11 +23,5 @@ class NotElement extends ConditionalElement {
 
   NotElement.created() : super.created();
 
-  void attachCondition(var e) {
-    $['condition-content'].children.clear();
-    $['condition-content'].children.add(e);
-    e.parentElement = this;
-  }
-
 }
 

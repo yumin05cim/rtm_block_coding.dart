@@ -11,11 +11,19 @@ class ConditionalElement extends PolymerElement {
   ConditionalElement.created() : super.created();
 
   void attached() {
+    this.onClick.listen(
+        (var e) {
+      globalController.setSelectedElem(e, this);
+
+      e.stopPropagation();
+    }
+    );
   }
 
-  void onClicked(var e) {
-    globalController.setSelectedElem(e, this);
-    e.stopPropagation();
+  void attachLeft(var e) {
+    $['left-content'].children.clear();
+    $['left-content'].children.add(e);
+    e.parentElement = this;
   }
 
   void attachRight(var e) {
@@ -24,10 +32,15 @@ class ConditionalElement extends PolymerElement {
     e.parentElement = this;
   }
 
-  void attachLeft(var e) {
-    $['left-content'].children.clear();
-    $['left-content'].children.add(e);
+  void attachCondition(var e) {
+    $['condition-content'].children.clear();
+    $['condition-content'].children.add(e);
     e.parentElement = this;
+  }
+
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
   }
 
   void select() {
@@ -43,5 +56,4 @@ class ConditionalElement extends PolymerElement {
     return false;
   }
 }
-
 
