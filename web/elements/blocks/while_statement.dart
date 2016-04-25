@@ -7,23 +7,13 @@ import '../../controller/controller.dart';
 class While extends PolymerElement {
 
   program.While _model;
-
   PolymerElement parentElement;
 
   set model(program.While m) {
     _model = m;
-//    condition = m.condition;
-//    loop = m.loop;
   }
-
   get model => _model;
-
   get loop => $['loop-content'];
-
-/*
-  @published program.Condition condition = null;
-  @published program.StatementList loop;
-*/
 
   While.created() : super.created();
 
@@ -48,7 +38,6 @@ class While extends PolymerElement {
   void onClicked(var e) {
     globalController.setSelectedElem(e, this);
     e.stopPropagation();
-
   }
 
   void attachCondition(var e) {
@@ -77,3 +66,4 @@ class While extends PolymerElement {
     return false;
   }
 }
+

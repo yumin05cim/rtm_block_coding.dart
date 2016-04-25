@@ -7,30 +7,24 @@ import '../../controller/controller.dart';
 class If extends PolymerElement {
 
   program.If _model;
-
   PolymerElement parentElement;
 
   set model(program.If m) {
     _model = m;
-    //condition = m.condition;
-    //yes = m.yes;
-    //no = m.no;
   }
-
   get model => _model;
-
-  get yes => $['yes-content'];
-  /// get no => $['no-content'];
-
-  /*
-  @published program.Condition condition = null;
-  @published program.StatementList yes;
-  @published program.StatementList no;
-  */
+  get consequent => $['consequent-content'];
 
   If.created() : super.created();
 
   void attached() {
+    this.onClick.listen(
+      (var e) {
+        globalController.setSelectedElem(e, this);
+
+        e.stopPropagation();
+      }
+    );
 
 /*
     $['true-input'].onChange.listen(
@@ -47,14 +41,11 @@ class If extends PolymerElement {
       }
     );
 */
+  }
 
-    this.onClick.listen(
-      (var e) {
-        globalController.setSelectedElem(e, this);
-
-        e.stopPropagation();
-      }
-    );
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
   }
 
   void attachCondition(var e) {
@@ -65,15 +56,15 @@ class If extends PolymerElement {
 
 /*
   void attachTrue(var e) {
-    $['yes-content'].children.clear();
-    $['yes-content'].children.add(e);
+    $['consequent-content'].children.clear();
+    $['consequent-content'].children.add(e);
     e.parentElement = this;
   }
 */
 /*
   void attachFalse(var e) {
-    $['no-content'].children.clear();
-    $['no-content'].children.add(e);
+    $['alternative-content'].children.clear();
+    $['alternative-content'].children.add(e);
     e.parentElement = this;
   }
 */

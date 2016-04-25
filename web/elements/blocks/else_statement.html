@@ -1,9 +1,8 @@
-
 <link rel="import" href="packages/polymer/polymer.html" />
 <link rel="import" href="packages/core_elements/core_style.html" />
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 
-<polymer-element name="else-statement" attributes="value">
+<polymer-element name="else-statement" attributes="command">
     <template >
         <style type='text/css'>
             :host {
@@ -34,25 +33,15 @@
         </style>
 
         <!--Japanese ver.-->
-        <div id="target" vertical layout>
+        <div id="target" vertical layout on-tap="{{onClicked}}">
             <div id="condition-block" horizontal layout center>
                 <div end>そうでないなら</div>
             </div>
             <div id="content-block">
-                <div id="no-content"></div>
+                <div id="alternative-content"></div>
             </div>
-            <!--
-            <div id="else-block" horizontal layout center>
-                <div self-center layout>そうでないなら</div>
-            </div>
-
-            <div id="no-block">
-                <div id="no-content"></div>
-            </div>
-            --->
         </div>
 
-
     </template>
-    <script type="application/dart" src="if_statement.dart"></script>
+    <script type="application/dart" src="else_statement.dart"></script>
 </polymer-element>

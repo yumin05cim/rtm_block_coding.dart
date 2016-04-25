@@ -12,6 +12,7 @@ import '../elements/blocks/subtraction.dart';
 import '../elements/blocks/multiplication.dart';
 import '../elements/blocks/division.dart';
 import '../elements/blocks/if_statement.dart';
+import '../elements/blocks/else_statement.dart';
 import '../elements/blocks/while_statement.dart';
 import '../elements/blocks/assign_block.dart';
 import '../elements/state_panel.dart';
@@ -635,12 +636,10 @@ class Controller {
             }
           }
         } else if (selectedElement is If) {
-          var index = (selectedStatement().parent as html.DivElement).children
-              .indexOf(selectedElement);
+          var index = (selectedStatement().parent as html.DivElement).children.indexOf(selectedElement);
 
           if (index >= 0) {
-            (selectedElement.model as program.If).parent.parent.insert(
-                index + 1, new_s);
+            (selectedElement.model as program.If).parent.parent.insert(index + 1, new_s);
           }
         } else {
 

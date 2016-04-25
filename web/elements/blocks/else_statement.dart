@@ -3,37 +3,28 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
-
 @CustomTag('else-statement')
 class Else extends PolymerElement {
 
   program.Else _model;
-
   PolymerElement parentElement;
 
   set model(program.Else m) {
     _model = m;
-
-    ///condition = m.condition;
-    //yes = m.yes;
-    //no = m.no;
   }
-
   get model => _model;
-
-  get contents => $['content-content'];
-
-  /// get no => $['no-content'];
-
-  /*
-  @published program.Condition condition = null;
-  @published program.StatementList yes;
-  @published program.StatementList no;
-  */
+  get alternative => $['alternative-content'];
 
   Else.created() : super.created();
 
   void attached() {
+    this.onClick.listen(
+        (var e) {
+      globalController.setSelectedElem(e, this);
+
+      e.stopPropagation();
+    }
+    );
   }
 
   void onClicked(var e) {
@@ -41,19 +32,19 @@ class Else extends PolymerElement {
     e.stopPropagation();
   }
 
-  void attachTrue(var e) {
-    $['no-content'].children.clear();
-    $['no-content'].children.add(e);
+/*  void attachTrue(var e) {
+    $['consequent-content'].children.clear();
+    $['consequent-content'].children.add(e);
     e.parentElement = this;
-  }
-
+  }*/
   /*
   void attachFalse(var e) {
-    $['no-content'].children.clear();
-    $['no-content'].children.add(e);
+    $['alternative-content'].children.clear();
+    $['alternative-content'].children.add(e);
     e.parentElement = this;
   }
   */
+
   void select() {
     $['target'].style.border = 'ridge';
     ($['target'] as html.HtmlElement).style.borderColor = '#FF9F1C';
