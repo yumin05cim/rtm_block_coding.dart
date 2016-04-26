@@ -5,7 +5,6 @@ import '../../controller/controller.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 
-@CustomTag('add-port')
 class BoxBase extends PolymerElement {
   var _model;
 

@@ -33,7 +33,6 @@ class AddOutPort extends AddPortBox {
     $['menu-content'].setAttribute('selected', selected.toString());
   }
 
-
   void onNameChange(String new_name) {
     String old_name = model.name;
     List<program.AccessOutPort> ports = [];
@@ -43,7 +42,6 @@ class AddOutPort extends AddPortBox {
     ports.forEach((program.AccessOutPort port) {
       port.name = new_name;
     });
-
 
     List<program.WriteOutPort> ports2 = [];
     ports2.addAll(globalController.onActivatedApp.find(program.WriteOutPort, name: old_name));
@@ -55,9 +53,7 @@ class AddOutPort extends AddPortBox {
 
     model.name = new_name;
     globalController.refreshAllPanel(except: 'onInitialize');
-
   }
-
 
   void onTypeChange(String typename) {
     model.dataType = new program.DataType.fromTypeName(typename);
@@ -86,6 +82,7 @@ class AddOutPort extends AddPortBox {
 
   void attached() {
     $['name-input'].onChange.listen((var e) {
+      // When name changed.
       onNameChange(port_name);
     });
 
@@ -93,11 +90,11 @@ class AddOutPort extends AddPortBox {
     types.sort();
     int counter = 0;
     types.forEach((String typename) {
-      $['menu-content'].children.add(
-          new html.Element.tag('paper-item')
+      $['menu-content'].children.add(new html.Element.tag('paper-item')
             ..innerHtml = typename
             ..setAttribute('value', counter.toString())
       );
+      counter++;
     });
 
     selectType(model.dataType.typename);
@@ -111,7 +108,6 @@ class AddOutPort extends AddPortBox {
         }
       }
     });
-
   }
 
   void onClicked(var e) {
@@ -119,18 +115,5 @@ class AddOutPort extends AddPortBox {
     e.stopPropagation();
   }
 
-
-  void select() {
-    $['title-area'].style.border = 'ridge';
-    $['title-area'].style.borderColor = '#FF9F1C';
-  }
-
-  void deselect() {
-    $['title-area'].style.border = '1px solid #B6B6B6';
-  }
-
-  bool is_container() {
-    return false;
-  }
-
 }
+

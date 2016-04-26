@@ -7,22 +7,12 @@ import 'package:paper_elements/paper_dropdown_menu.dart';
 import 'add_port.dart';
 
 @CustomTag('add-inport')
-class AddInPort extends PolymerElement {
-  program.AddInPort _model;
+class AddInPort extends AddPortBox {
 
   PolymerElement parentElement;
 
-  set model(program.AddInPort m) {
-    _model = m;
-    port_name = m.name;
-    port_type = m.dataType.typename;
-  }
-
-  get model => _model;
-
-  @published String port_name = "defaultName";
-  @published String port_type = "defaultType";
   AddInPort.created() : super.created();
+
 
   void selectType(String name) {
     int selected = -1;
@@ -40,13 +30,11 @@ class AddInPort extends PolymerElement {
       print('Invalid InPort is selected in inport_data');
       selected = 0;
     }
-
     $['menu-content'].setAttribute('selected', selected.toString());
-
   }
 
   void onNameChange(String new_name) {
-    String old_name = _model.name;
+    String old_name = model.name;
     List<program.AccessInPort> ports = [];
     ports.addAll(globalController.onActivatedApp.find(program.AccessInPort, name: old_name));
     ports.addAll(globalController.onExecuteApp.find(program.AccessInPort, name: old_name));
@@ -63,20 +51,20 @@ class AddInPort extends PolymerElement {
       port.name = new_name;
     });
 
-    _model.name = new_name;
+    model.name = new_name;
     globalController.refreshAllPanel(except: 'onInitialize');
   }
 
   void onTypeChange(String typename) {
-    _model.dataType = new program.DataType.fromTypeName(typename);
+    model.dataType = new program.DataType.fromTypeName(typename);
 
-    String name_ = _model.name;
+    String name_ = model.name;
     List<program.AccessInPort> ports = [];
     ports.addAll(globalController.onActivatedApp.find(program.AccessInPort, name: name_));
     ports.addAll(globalController.onExecuteApp.find(program.AccessInPort, name: name_));
     ports.addAll(globalController.onDeactivatedApp.find(program.AccessInPort, name: name_));
     ports.forEach((program.AccessInPort port) {
-      port.dataType = _model.dataType;
+      port.dataType = model.dataType;
       port.accessSequence = '';
     });
 
@@ -85,7 +73,7 @@ class AddInPort extends PolymerElement {
     ports2.addAll(globalController.onExecuteApp.find(program.ReadInPort, name: name_));
     ports2.addAll(globalController.onDeactivatedApp.find(program.ReadInPort, name: name_));
     ports2.forEach((program.ReadInPort port) {
-      port.dataType = _model.dataType;
+      port.dataType = model.dataType;
       //port.accessSequence = '';
     });
 
@@ -109,36 +97,23 @@ class AddInPort extends PolymerElement {
       counter++;
     });
 
-    selectType(_model.dataType.typename);
+    selectType(model.dataType.typename);
     PaperDropdownMenu dd = $['dropdown-menu'];
     dd.on['core-select'].listen((var e) {
-          if (e.detail != null) {
-            if (e.detail['isSelected']) {
-              String typename = e.detail['item'].innerHtml;
-              onTypeChange(typename);
-            }
-          }
+      if (e.detail != null) {
+        if (e.detail['isSelected']) {
+          model.dataType =
+          new program.DataType.fromTypeName(e.detail['item'].innerHtml);
+          onTypeChange(model.dataType.typename);
         }
-    );
+      }
+    });
   }
 
   void onClicked(var e) {
     globalController.setSelectedElem(e, this);
     e.stopPropagation();
-
-  }
-
-  void select() {
-    $['title-area'].style.border = 'ridge';
-    $['title-area'].style.borderColor = '#FF9F1C';
-  }
-
-  void deselect() {
-    $['title-area'].style.border = '1px solid #B6B6B6';
-  }
-
-  bool is_container() {
-    return false;
   }
 
 }
+

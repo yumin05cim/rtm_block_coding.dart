@@ -36,14 +36,17 @@ class AddOutPort extends AddPort {
   }
 }
 
+
 class AccessOutPort extends Block {
   String name;
   Block right;
   DataType dataType;
   String accessSequence;
 
-  AccessOutPort(this.name, this.dataType, this.accessSequence, this.right) {
+  AccessOutPort(this.name, this.dataType, this.accessSequence) {
   }
+/*  AccessOutPort(String outName_, DataType dataType_, String accessSequence_) : super(outName_, dataType_, accessSequence_) {
+  }*/
 
   String toPython(int indentLevel) {
     return "self._d_${name}.${accessSequence} = ${right.toPython(0)}";

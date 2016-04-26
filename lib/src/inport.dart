@@ -36,7 +36,47 @@ class AddInPort extends AddPort {
   }
 }
 
-class ReadInPort extends Block {
+
+class AccessInPort extends Block {
+  String name;
+  DataType dataType;
+  String accessSequence;
+
+  AccessInPort(this.name, this.dataType, this.accessSequence) {
+  }
+/*  AccessInPort(String inName_, DataType dataType_, String accessSequence_) : super(inName_, dataType_, accessSequence_) {
+  }*/
+
+  String toPython(int indentLevel) {
+    if (accessSequence.trim().length == 0) {
+      return 'self._d_${name}';
+    }
+    return 'self._d_${name}.${accessSequence}';
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    super.element(builder,
+        attributes: {
+          'name' : name,
+          'accessSequence' : accessSequence,
+        },
+        nest: () {
+          dataType.buildXML(builder);
+        });
+  }
+
+  AccessInPort.XML(xml.XmlElement node) {
+
+    name = node.getAttribute('name');
+    accessSequence = node.getAttribute('accessSequence');
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
+    });
+  }
+}
+
+
+  class ReadInPort extends Block {
   String name;
   DataType dataType;
 
@@ -82,42 +122,6 @@ class ReadInPort extends Block {
 
     typedChild(node, StatementList, (xml.XmlElement e) {
       statements.loadFromXML(e);
-    });
-  }
-}
-
-class AccessInPort extends Block {
-  String name;
-  DataType dataType;
-  String accessSequence;
-
-  AccessInPort(this.name, this.dataType, this.accessSequence) {
-  }
-
-  String toPython(int indentLevel) {
-    if (accessSequence.trim().length == 0) {
-      return 'self._d_${name}';
-    }
-    return 'self._d_${name}.${accessSequence}';
-  }
-
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-          'name' : name,
-          'accessSequence' : accessSequence,
-        },
-        nest: () {
-          dataType.buildXML(builder);
-        });
-  }
-
-  AccessInPort.XML(xml.XmlElement node) {
-    name = node.getAttribute('name');
-    accessSequence = node.getAttribute('accessSequence');
-    child(node, (xml.XmlElement e) {
-      dataType = new DataType.XML(e);
     });
   }
 }
