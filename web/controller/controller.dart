@@ -13,7 +13,7 @@ import '../elements/blocks/multiplication.dart';
 import '../elements/blocks/division.dart';
 import '../elements/blocks/integer_literal.dart';
 import '../elements/blocks/real_literal.dart';
-import '../elements/blocks/if_statement.dart';
+import '../elements/blocks/if_box.dart';
 import '../elements/blocks/else_statement.dart';
 import '../elements/blocks/while_statement.dart';
 import '../elements/blocks/assign_block.dart';

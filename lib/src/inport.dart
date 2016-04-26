@@ -1,22 +1,16 @@
 library application.inport;
 
-
-
 import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
-import 'condition.dart';
 import 'statement.dart';
-import 'block_loader.dart';
-
 import 'datatype.dart';
+import 'block_loader.dart';
+import 'port.dart';
 
-class AddInPort extends Block {
-  String name;
-  DataType dataType;
+class AddInPort extends AddPort {
 
-  AddInPort(this.name, this.dataType) {
-
+  AddInPort(String inName_, DataType inDataType_) : super(inName_, inDataType_) {
   }
 
   @override
@@ -38,26 +32,9 @@ class AddInPort extends Block {
     return '';
   }
 
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-          'name' : name
-        },
-        nest: () {
-          dataType.buildXML(builder);
-        });
-  }
-
-
-  AddInPort.XML(xml.XmlElement node) {
-    name = node.getAttribute('name');
-    child(node, (xml.XmlElement e) {
-      dataType = new DataType.XML(e);
-    });
+  AddInPort.XML(xml.XmlElement node) : super.XML(node){
   }
 }
-
-
 
 class ReadInPort extends Block {
   String name;

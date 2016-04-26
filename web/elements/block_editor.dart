@@ -3,8 +3,9 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:paper_elements/paper_fab.dart';
-import 'blocks/set_variable.dart';
+import 'blocks/subtraction.dart';
 import 'blocks/read_inport.dart';
+import 'blocks/if_box.dart';
 
 import '../controller/controller.dart';
 
@@ -77,7 +78,7 @@ class BlockEditor extends PolymerElement {
 
   }
 
-  parseBlock(program.Block block) {
+  static parseBlock(program.Block block) {
 /*    if (block is program.IntegerLiteral) {
       return new html.Element.tag('integer-literal')
         ..model = block;
@@ -154,12 +155,15 @@ class BlockEditor extends PolymerElement {
       v.attachRight(parseBlock(block.b));
       return v;
     } else if (block is program.Subtract) {
+      /*
       var v = new html.Element.tag('calc-subtraction')
         ..model = block;
 
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
       return v;
+      */
+      return Subtraction.createBox(block);
     } else if (block is program.Multiply) {
       var v = new html.Element.tag('calc-multiplication')
         ..model = block;
@@ -177,7 +181,7 @@ class BlockEditor extends PolymerElement {
     }
     //  if_switch_loop_menu
       else if (block is program.If) {
-      var v = new html.Element.tag('if-statement')
+      var v = If.createBox()
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
       for (program.Statement s_ in block.statements) {
@@ -199,12 +203,12 @@ class BlockEditor extends PolymerElement {
             .parentElement = v;
       }
       return v;
-    } else if (block is program.While) {
-      var v = new html.Element.tag('while-statement')
+    } else if (block is program.If) {
+      var v = new html.Element.tag('if-box')
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
       for (program.Statement s_ in block.statements) {
-        parseStatement(v.loop.children, s_)
+        parseStatement(v.consequent.children, s_)
             .parentElement = v;
       }
       return v;
@@ -329,7 +333,7 @@ class BlockEditor extends PolymerElement {
   }
 
 
-  parseStatement(var children, program.Statement s) {
+  static parseStatement(var children, program.Statement s) {
     var elem = parseBlock(s.block);
     if (globalController.selectedElement != null) {
       if (globalController.selectedElement.model == s.block) {

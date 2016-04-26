@@ -4,6 +4,7 @@ import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
+import 'add_port.dart';
 
 @CustomTag('add-inport')
 class AddInPort extends PolymerElement {
