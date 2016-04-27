@@ -6,6 +6,8 @@ import 'package:paper_elements/paper_fab.dart';
 import 'blocks/subtraction.dart';
 import 'blocks/read_inport.dart';
 import 'blocks/if_box.dart';
+import 'blocks/else_box.dart';
+import 'blocks/while_box.dart';
 
 import '../controller/controller.dart';
 
@@ -177,35 +179,26 @@ class BlockEditor extends PolymerElement {
     }
     //  if_switch_loop_menu
       else if (block is program.If) {
-      var v = If.createBox()
+      var v = IfBox.createBox()
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
       for (program.Statement s_ in block.statements) {
-        parseStatement(v.consequent.children, s_)
-            .parentElement = v;
+        parseStatement(v.consequent.children, s_).parentElement = v;
       }
-      /*
-      for (program.Statement s_ in block.no) {
-        parseStatement(v.no.children, s_)
-            .parentElement = v;
-      }
-      */
       return v;
     } else if (block is program.Else) {
-      var v = new html.Element.tag('else-statement')
+      var v = ElseBox.createBox()
         ..model = block;
       for (program.Statement s_ in block.statements) {
-        parseStatement(v.alternative.children, s_)
-            .parentElement = v;
+        parseStatement(v.alternative.children, s_).parentElement = v;
       }
       return v;
-    } else if (block is program.If) {
-      var v = new html.Element.tag('if-box')
+    } else if (block is program.While) {
+      var v = WhileBox.createBox()
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
       for (program.Statement s_ in block.statements) {
-        parseStatement(v.consequent.children, s_)
-            .parentElement = v;
+        parseStatement(v.loop.children, s_).parentElement = v;
       }
       return v;
     }

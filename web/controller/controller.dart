@@ -14,8 +14,8 @@ import '../elements/blocks/division.dart';
 import '../elements/blocks/integer_literal.dart';
 import '../elements/blocks/real_literal.dart';
 import '../elements/blocks/if_box.dart';
-import '../elements/blocks/else_statement.dart';
-import '../elements/blocks/while_statement.dart';
+import '../elements/blocks/else_box.dart';
+import '../elements/blocks/while_box.dart';
 import '../elements/blocks/assign_block.dart';
 import '../elements/state_panel.dart';
 import '../elements/python_panel.dart';
@@ -310,9 +310,9 @@ class Controller {
         }
         else if (selectedStatement() is ReadInPort) {
           selectedStatement().model.statements.add(new_s);
-        } else if (selectedElement.parentElement is If) {
+        } else if (selectedElement.parentElement is IfBox) {
           selectedElement.parentElement.model.statements.add(new_s);
-        } else if (selectedElement.parentElement is While) {
+        } else if (selectedElement.parentElement is WhileBox) {
           selectedElement.parentElement.model.yes.add(new_s);
         }
       }
@@ -637,7 +637,7 @@ class Controller {
               app.statements.add(new_s);
             }
           }
-        } else if (selectedElement is If) {
+        } else if (selectedElement is IfBox) {
           var index = (selectedStatement().parent as html.DivElement).children.indexOf(selectedElement);
 
           if (index >= 0) {
@@ -669,13 +669,13 @@ class Controller {
 
       if(selectedStatement() == null) {
 
-      } else if(selectedElement is If) {
+      } else if(selectedElement is IfBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is If) {
+      } else if(selectedElement.parentElement is IfBox) {
         selectedStatement().parentElement.model.condition = v;
-      } else if(selectedElement is While) {
+      } else if(selectedElement is WhileBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is While) {
+      } else if(selectedElement.parentElement is WhileBox) {
         selectedStatement().parentElement.model.condition = v;
       }
     }
@@ -686,13 +686,13 @@ class Controller {
 
       if(selectedStatement() == null) {
 
-      } else if(selectedElement is If) {
+      } else if(selectedElement is IfBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is If) {
+      } else if(selectedElement.parentElement is IfBox) {
         selectedStatement().parentElement.model.condition = v;
-      } else if(selectedElement is While) {
+      } else if(selectedElement is WhileBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is While) {
+      } else if(selectedElement.parentElement is WhileBox) {
         selectedStatement().parentElement.model.condition = v;
       }
     }
@@ -703,13 +703,13 @@ class Controller {
 
       if(selectedStatement() == null) {
 
-      } else if(selectedElement is If) {
+      } else if(selectedElement is IfBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is If) {
+      } else if(selectedElement.parentElement is IfBox) {
         selectedStatement().parentElement.model.condition = v;
-      } else if(selectedElement is While) {
+      } else if(selectedElement is WhileBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is While) {
+      } else if(selectedElement.parentElement is WhileBox) {
         selectedStatement().parentElement.model.condition = v;
       }
     }
@@ -720,13 +720,13 @@ class Controller {
 
       if(selectedStatement() == null) {
 
-      } else if(selectedElement is If) {
+      } else if(selectedElement is IfBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is If) {
+      } else if(selectedElement.parentElement is IfBox) {
         selectedStatement().parentElement.model.condition = v;
-      } else if(selectedElement is While) {
+      } else if(selectedElement is WhileBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is While) {
+      } else if(selectedElement.parentElement is WhileBox) {
         selectedStatement().parentElement.model.condition = v;
       }
     }
@@ -737,13 +737,13 @@ class Controller {
 
       if(selectedStatement() == null) {
 
-      } else if(selectedElement is If) {
+      } else if(selectedElement is IfBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is If) {
+      } else if(selectedElement.parentElement is IfBox) {
         selectedStatement().parentElement.model.condition = v;
-      } else if(selectedElement is While) {
+      } else if(selectedElement is WhileBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is While) {
+      } else if(selectedElement.parentElement is WhileBox) {
         selectedStatement().parentElement.model.condition = v;
       }
     }
@@ -754,13 +754,13 @@ class Controller {
 
       if(selectedStatement() == null) {
 
-      } else if(selectedElement is If) {
+      } else if(selectedElement is IfBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is If) {
+      } else if(selectedElement.parentElement is IfBox) {
         selectedStatement().parentElement.model.condition = v;
-      } else if(selectedElement is While) {
+      } else if(selectedElement is WhileBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is While) {
+      } else if(selectedElement.parentElement is WhileBox) {
         selectedStatement().parentElement.model.condition = v;
       }
     }
@@ -771,13 +771,13 @@ class Controller {
 
       if(selectedStatement() == null) {
 
-      } else if(selectedElement is If) {
+      } else if(selectedElement is IfBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is If) {
+      } else if(selectedElement.parentElement is IfBox) {
         selectedStatement().parentElement.model.condition = v;
-      } else if(selectedElement is While) {
+      } else if(selectedElement is WhileBox) {
         selectedStatement().model.condition = v;
-      } else if(selectedElement.parentElement is While) {
+      } else if(selectedElement.parentElement is WhileBox) {
         selectedStatement().parentElement.model.condition = v;
       }
     }

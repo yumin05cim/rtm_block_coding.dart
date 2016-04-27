@@ -4,9 +4,9 @@ import 'package:polymer/polymer.dart';
 import 'conditions.dart';
 
 @CustomTag('if-box')
-class If extends ConditionalElement {
+class IfBox extends ConditionalElement {
 
-  static  If createBox() {
+  static  IfBox createBox() {
     return new html.Element.tag('if-box');
   }
 
@@ -20,7 +20,7 @@ class If extends ConditionalElement {
 
   get consequent => $['consequent-content'];
 
-  If.created() : super.created();
+  IfBox.created() : super.created();
 
 }
 

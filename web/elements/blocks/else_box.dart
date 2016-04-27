@@ -3,8 +3,12 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import 'conditions.dart';
 
-@CustomTag('else-statement')
-class Else extends ConditionalElement {
+@CustomTag('else-box')
+class ElseBox extends ConditionalElement {
+
+  static ElseBox createBox() {
+    return new html.Element.tag('else-box');
+  }
 
   program.Else _model;
 
@@ -16,7 +20,7 @@ class Else extends ConditionalElement {
 
   get alternative => $['alternative-content'];
 
-  Else.created() : super.created();
+  ElseBox.created() : super.created();
 
 }
 

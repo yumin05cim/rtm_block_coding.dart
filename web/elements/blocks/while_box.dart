@@ -3,8 +3,12 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import 'conditions.dart';
 
-@CustomTag('while-statement')
-class While extends ConditionalElement {
+@CustomTag('while-box')
+class WhileBox extends ConditionalElement {
+
+  static WhileBox createBox() {
+    return new html.Element.tag('while-box');
+  }
 
   program.While _model;
 
@@ -16,7 +20,7 @@ class While extends ConditionalElement {
 
   get loop => $['loop-content'];
 
-  While.created() : super.created();
+  WhileBox.created() : super.created();
 
 }
 
