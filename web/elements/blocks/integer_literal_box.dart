@@ -2,10 +2,10 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'literal.dart';
+import 'literal_box.dart';
 
 @CustomTag('integer-literal-box')
-class IntegerLiteral extends Literal {
+class IntegerLiteralBox extends LiteralBox {
 
   program.IntegerLiteral _model;
 
@@ -17,7 +17,7 @@ class IntegerLiteral extends Literal {
   get model => _model;
 
   @published int value = 1;
-  IntegerLiteral.created() : super.created();
+  IntegerLiteralBox.created() : super.created();
 
   void attached() {
     $['int-literal-input'].onChange.listen((var e) {

@@ -3,12 +3,12 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('literal')
-class Literal extends PolymerElement {
+@CustomTag('literal-box')
+class LiteralBox extends PolymerElement {
 
   PolymerElement parentElement;
 
-  Literal.created() : super.created();
+  LiteralBox.created() : super.created();
 
   void onClicked(var e) {
     globalController.setSelectedElem(e, this);

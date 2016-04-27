@@ -2,11 +2,11 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'calculation.dart';
+import 'calculation_box.dart';
 import '../block_editor.dart';
 
 @CustomTag('addition-box')
-class Addition extends Calculation {
+class Addition extends CalculationBox {
 
   static Addition createBox(program.Add addBlock) {
     return (new html.Element.tag('addition-box') as Addition)

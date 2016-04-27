@@ -3,22 +3,12 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('calculation')
-class Calculation extends PolymerElement {
-
-//  program.Add _model;
+@CustomTag('calculation-box')
+class CalculationBox extends PolymerElement {
 
   PolymerElement parentElement;
 
-//  set model(program.Add m) {
-//    _model = m;
-//    //value_a = m.a;
-//    //value_b = m.b;
-//  }
-//
-//  get model => _model;
-
-  Calculation.created() : super.created();
+  CalculationBox.created() : super.created();
 
   void attachLeft(var e) {
     $['value-left-content'].children.clear();

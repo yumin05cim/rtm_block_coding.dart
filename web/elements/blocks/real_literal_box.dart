@@ -2,10 +2,10 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'literal.dart';
+import 'literal_box.dart';
 
 @CustomTag('real-literal-box')
-class RealLiteral extends Literal {
+class RealLiteralBox extends LiteralBox {
 
   program.RealLiteral _model;
 
@@ -17,7 +17,7 @@ class RealLiteral extends Literal {
   get model => _model;
 
   @published double value = 1.0;
-  RealLiteral.created() : super.created();
+  RealLiteralBox.created() : super.created();
 
   void attached() {
     $['real-literal-input'].onChange.listen((var e) {
