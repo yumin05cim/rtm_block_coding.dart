@@ -157,37 +157,37 @@ class BlockEditor extends PolymerElement {
         ..model = block;
       return v;
     } else if (block is program.Add) {
-      var v = new html.Element.tag('addition-box')
+/*      var v = new html.Element.tag('addition-box')
         ..model = block;
 
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
-      return v;
-//      return Addition.createBox(block);
+      return v;*/
+      return Addition.createBox(block);
     } else if (block is program.Subtract) {
-      var v = new html.Element.tag('subtraction-box')
+/*      var v = new html.Element.tag('subtraction-box')
         ..model = block;
 
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
-      return v;
-//      return Subtraction.createBox(block);
+      return v;*/
+      return Subtraction.createBox(block);
     } else if (block is program.Multiply) {
-      var v = new html.Element.tag('multiplication-box')
+/*      var v = new html.Element.tag('multiplication-box')
         ..model = block;
 
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
-      return v;
-//      return Multiplication.createBox(block);
+      return v;*/
+      return Multiplication.createBox(block);
     } else if (block is program.Divide) {
-      var v = new html.Element.tag('division-box')
+/*      var v = new html.Element.tag('division-box')
         ..model = block;
 
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
-      return v;
-//      return Division.createBox(block);
+      return v;*/
+      return Division.createBox(block);
     }
     //  if_switch_loop_menu
       else if (block is program.If) {

@@ -8,14 +8,12 @@ import '../block_editor.dart';
 @CustomTag('division-box')
 class Division extends Calculation {
 
-/*
   static Division createBox(program.Divide divideBlock) {
     return (new html.Element.tag('division-box') as Division)
       ..model = divideBlock
       ..attachLeft(BlockEditor.parseBlock(divideBlock.a))
       ..attachRight(BlockEditor.parseBlock(divideBlock.b));
   }
-*/
 
   program.Divide _model;
 

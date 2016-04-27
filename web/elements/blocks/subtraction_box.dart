@@ -8,14 +8,12 @@ import '../block_editor.dart';
 @CustomTag('subtraction-box')
 class Subtraction extends Calculation {
 
-/*
   static Subtraction createBox(program.Subtract subtractBlock) {
     return (new html.Element.tag('subtraction-box') as Subtraction)
         ..model = subtractBlock
         ..attachLeft(BlockEditor.parseBlock(subtractBlock.a))
         ..attachRight(BlockEditor.parseBlock(subtractBlock.b));
   }
-*/
 
   program.Subtract _model;
 
