@@ -1,10 +1,10 @@
 import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
-import 'conditions.dart';
+import 'conditions_box.dart';
 
 @CustomTag('if-box')
-class IfBox extends ConditionalElement {
+class IfBox extends ConditionsBox {
 
   static  IfBox createBox() {
     return new html.Element.tag('if-box');

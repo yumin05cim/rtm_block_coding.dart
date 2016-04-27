@@ -2,17 +2,21 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'conditions.dart';
+import 'conditions_box.dart';
 
-@CustomTag('larger-than-or-equals-element')
-class LargerThanOrEqualsElement extends ConditionalElement {
+@CustomTag('equals-box')
+class EqualsBox extends ConditionsBox {
 
-  program.LargerThanOrEquals _model;
+  static EqualsBox createBox() {
+    return new html.Element.tag('equals-box');
+  }
+
+  program.Equals _model;
 
   String leftLabel;
   String rightLabel;
 
-  set model(program.LargerThanOrEquals m) {
+  set model(program.Equals m) {
     _model = m;
     leftLabel = m.left.toPython(0);
     rightLabel = m.right.toPython(0);
@@ -20,7 +24,7 @@ class LargerThanOrEqualsElement extends ConditionalElement {
 
   get model => _model;
 
-  LargerThanOrEqualsElement.created() : super.created();
+  EqualsBox.created() : super.created();
 
 }
 

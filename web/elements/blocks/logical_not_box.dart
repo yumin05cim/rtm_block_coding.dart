@@ -2,10 +2,14 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'conditions.dart';
+import 'conditions_box.dart';
 
-@CustomTag('logical-not-element')
-class NotElement extends ConditionalElement {
+@CustomTag('logical-not-box')
+class LogicalNotBox extends ConditionsBox {
+
+  static LogicalNotBox createBox() {
+    return new html.Element.tag('logical-not-box');
+  }
 
   program.Not _model;
 
@@ -21,7 +25,7 @@ class NotElement extends ConditionalElement {
 
   @published program.Condition condition = null;
 
-  NotElement.created() : super.created();
+  LogicalNotBox.created() : super.created();
 
 }
 

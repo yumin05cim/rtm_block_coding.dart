@@ -3,18 +3,17 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('conditional-element')
-class ConditionalElement extends PolymerElement {
+@CustomTag('conditions-box')
+class ConditionsBox extends PolymerElement {
 
   PolymerElement parentElement;
 
-  ConditionalElement.created() : super.created();
+  ConditionsBox.created() : super.created();
 
   void attached() {
     this.onClick.listen(
         (var e) {
       globalController.setSelectedElem(e, this);
-
       e.stopPropagation();
     }
     );

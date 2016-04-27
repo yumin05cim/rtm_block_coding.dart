@@ -3,7 +3,7 @@
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 <link rel="import" href="packages/paper_elements/paper_fab.html" />
 
-<polymer-element name="smaller-than-element" attributes="value">
+<polymer-element name="logical-not-box" attributes="value">
     <template>
 
         <style type='text/css'>
@@ -34,12 +34,11 @@
 
         <!--Japanese ver.-->
         <div id="target" horizontal layout center on-tap="{{onClicked}}">
-            <div id="left-content"></div>
-            <div self-center layout end>が</div>
-            <div id="right-content"></div>
-            <div self-center layout end>より小さい</div>
+            <div self-center layout end>「</div>
+            <div id="condition-content"></div>
+            <div self-center layout end>」が正しくない</div>
         </div>
 
     </template>
-    <script type="application/dart" src="smaller_than_element.dart"></script>
+    <script type="application/dart" src="logical_not_box.dart"></script>
 </polymer-element>

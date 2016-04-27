@@ -3,11 +3,21 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:paper_elements/paper_fab.dart';
-import 'blocks/subtraction.dart';
 import 'blocks/read_inport.dart';
+import 'blocks/addition.dart';
+import 'blocks/subtraction.dart';
+import 'blocks/multiplication.dart';
+import 'blocks/division.dart';
 import 'blocks/if_box.dart';
 import 'blocks/else_box.dart';
 import 'blocks/while_box.dart';
+import 'blocks/equals_box.dart';
+import 'blocks/notequals_box.dart';
+import 'blocks/larger_than_box.dart';
+import 'blocks/larger_than_or_equals_box.dart';
+import 'blocks/smaller_than_box.dart';
+import 'blocks/smaller_than_or_equals_box.dart';
+import 'blocks/logical_not_box.dart';
 
 import '../controller/controller.dart';
 
@@ -204,43 +214,43 @@ class BlockEditor extends PolymerElement {
     }
     //  condition_menu
       else if (block is program.Equals) {
-      var v = new html.Element.tag('equals-element')
+      var v = EqualsBox.createBox()
           ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
     } else if (block is program.NotEquals) {
-      var v = new html.Element.tag('notequals-element')
+      var v =NotEqualsBox.createBox()
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
     } else if (block is program.LargerThan) {
-      var v = new html.Element.tag('larger-than-element')
+      var v = LargerThanBox.createBox()
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
     } else if (block is program.LargerThanOrEquals) {
-      var v = new html.Element.tag('larger-than-or-equals-element')
+      var v = LargerThanOrEqualsBox.createBox()
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
     } else if (block is program.SmallerThan) {
-      var v = new html.Element.tag('smaller-than-element')
+      var v = SmallerThanBox.createBox()
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
     } else if (block is program.SmallerThanOrEquals) {
-      var v = new html.Element.tag('smaller-than-or-equals-element')
+      var v = SmallerThanOrEqualsBox.createBox()
         ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;
     } else if (block is program.Not) {
-      var v = new html.Element.tag('logical-not-element')
+      var v = LogicalNotBox.createBox()
         ..model = block;
       v.attachCondition(parseBlock(block.condition));
       return v;

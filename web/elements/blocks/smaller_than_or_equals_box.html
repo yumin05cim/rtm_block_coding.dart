@@ -3,7 +3,7 @@
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 <link rel="import" href="packages/paper_elements/paper_fab.html" />
 
-<polymer-element name="notequals-element" attributes="value">
+<polymer-element name="smaller-than-or-equals-box" attributes="value">
     <template>
 
         <style type='text/css'>
@@ -35,11 +35,11 @@
         <!--Japanese ver.-->
         <div id="target" horizontal layout center on-tap="{{onClicked}}">
             <div id="left-content"></div>
-            <div self-center layout end>と</div>
+            <div self-center layout end>が</div>
             <div id="right-content"></div>
-            <div self-center layout end>は等しくない</div>
+            <div self-center layout end>以下</div>
         </div>
 
     </template>
-    <script type="application/dart" src="notequals_element.dart"></script>
+    <script type="application/dart" src="smaller_than_or_equals_box.dart"></script>
 </polymer-element>

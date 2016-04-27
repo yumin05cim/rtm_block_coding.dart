@@ -2,17 +2,21 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
-import 'conditions.dart';
+import 'conditions_box.dart';
 
-@CustomTag('larger-than-element')
-class LargerThanElement extends ConditionalElement {
+@CustomTag('notequals-box')
+class NotEqualsBox extends ConditionsBox {
 
-  program.LargerThan _model;
+  static NotEqualsBox createBox() {
+    return new html.Element.tag('notequals-box');
+  }
+
+  program.NotEquals _model;
 
   String leftLabel;
   String rightLabel;
 
-  set model(program.LargerThan m) {
+  set model(program.NotEquals m) {
     _model = m;
     leftLabel = m.left.toPython(0);
     rightLabel = m.right.toPython(0);
@@ -20,7 +24,7 @@ class LargerThanElement extends ConditionalElement {
 
   get model => _model;
 
-  LargerThanElement.created() : super.created();
+  NotEqualsBox.created() : super.created();
 
 }
 

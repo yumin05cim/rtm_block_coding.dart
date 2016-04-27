@@ -1,10 +1,10 @@
 import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
-import 'conditions.dart';
+import 'conditions_box.dart';
 
 @CustomTag('while-box')
-class WhileBox extends ConditionalElement {
+class WhileBox extends ConditionsBox {
 
   static WhileBox createBox() {
     return new html.Element.tag('while-box');
