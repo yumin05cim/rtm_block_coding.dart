@@ -3,7 +3,7 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:paper_elements/paper_fab.dart';
-import 'blocks/read_inport.dart';
+import 'blocks/read_inport_box.dart';
 import 'blocks/addition_box.dart';
 import 'blocks/subtraction_box.dart';
 import 'blocks/multiplication_box.dart';
@@ -130,7 +130,7 @@ class BlockEditor extends PolymerElement {
         ..attachTarget(parseBlock(block.right));
     }
     else if (block is program.OutPortBuffer) {
-      return new html.Element.tag('write-outport')
+      return new html.Element.tag('write-outport-box')
         ..model = block;
 //        ..attachTarget(parseBlock(block.right));
     }
@@ -138,7 +138,7 @@ class BlockEditor extends PolymerElement {
       return new html.Element.tag('inport-data-box')
         ..model = block;
     } else if (block is program.ReadInPort) {
-      var v = new html.Element.tag('read-inport')
+      var v = new html.Element.tag('read-inport-box')
         ..model = block;
       for (program.Statement s in block.statements) {
         parseStatement(v, s);

@@ -4,7 +4,7 @@ import 'package:xml/xml.dart' as xml;
 import 'package:polymer/polymer.dart';
 import 'dart:html' as html;
 
-import '../elements/blocks/read_inport.dart';
+import '../elements/blocks/read_inport_box.dart';
 import '../elements/blocks/outport_data_box.dart';
 import '../elements/blocks/set_variable.dart';
 import '../elements/blocks/addition_box.dart';
