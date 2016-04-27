@@ -4,10 +4,10 @@ import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:paper_elements/paper_fab.dart';
 import 'blocks/read_inport.dart';
-import 'blocks/addition.dart';
-import 'blocks/subtraction.dart';
-import 'blocks/multiplication.dart';
-import 'blocks/division.dart';
+import 'blocks/addition_box.dart';
+import 'blocks/subtraction_box.dart';
+import 'blocks/multiplication_box.dart';
+import 'blocks/division_box.dart';
 import 'blocks/if_box.dart';
 import 'blocks/else_box.dart';
 import 'blocks/while_box.dart';
@@ -157,35 +157,37 @@ class BlockEditor extends PolymerElement {
         ..model = block;
       return v;
     } else if (block is program.Add) {
-      var v = new html.Element.tag('calc-addition')
+      var v = new html.Element.tag('addition-box')
         ..model = block;
+
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
       return v;
+//      return Addition.createBox(block);
     } else if (block is program.Subtract) {
-      /*
-      var v = new html.Element.tag('calc-subtraction')
+      var v = new html.Element.tag('subtraction-box')
         ..model = block;
 
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
       return v;
-      */
-      return Subtraction.createBox(block);
+//      return Subtraction.createBox(block);
     } else if (block is program.Multiply) {
-      var v = new html.Element.tag('calc-multiplication')
+      var v = new html.Element.tag('multiplication-box')
         ..model = block;
 
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
       return v;
+//      return Multiplication.createBox(block);
     } else if (block is program.Divide) {
-      var v = new html.Element.tag('calc-division')
+      var v = new html.Element.tag('division-box')
         ..model = block;
 
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
       return v;
+//      return Division.createBox(block);
     }
     //  if_switch_loop_menu
       else if (block is program.If) {
