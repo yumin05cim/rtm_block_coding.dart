@@ -1,17 +1,17 @@
 import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
-import '../../controller/controller.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
-import 'add_port.dart';
+import '../../controller/controller.dart';
+import 'add_port_box.dart';
 
-@CustomTag('add-inport')
-class AddInPort extends AddPortBox {
+@CustomTag('add-inport-box')
+class AddInPortBox extends AddPortBox {
 
   PolymerElement parentElement;
 
-  AddInPort.created() : super.created();
+  AddInPortBox.created() : super.created();
 
 
   void selectType(String name) {
@@ -108,11 +108,6 @@ class AddInPort extends AddPortBox {
         }
       }
     });
-  }
-
-  void onClicked(var e) {
-    globalController.setSelectedElem(e, this);
-    e.stopPropagation();
   }
 
 }

@@ -7,6 +7,7 @@ import 'package:paper_elements/paper_dropdown_menu.dart';
 
 class BoxBase extends PolymerElement {
   var _model;
+//とりあえずvar型にしてあるけどあまりよくない
 
   set model(var m) {
     _model = m;
