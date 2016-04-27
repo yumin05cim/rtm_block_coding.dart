@@ -5,7 +5,7 @@ import 'package:polymer/polymer.dart';
 import 'dart:html' as html;
 
 import '../elements/blocks/read_inport.dart';
-import '../elements/blocks/outport_data.dart';
+import '../elements/blocks/outport_data_box.dart';
 import '../elements/blocks/set_variable.dart';
 import '../elements/blocks/addition_box.dart';
 import '../elements/blocks/subtraction_box.dart';
@@ -360,8 +360,8 @@ class Controller {
       } else */if(selectedStatement() is AssignBlock) {
         selectedStatement().model.right = v;
       }
-      else if (selectedStatement() is OutPortData) {
-        (selectedStatement() as OutPortData).model.right = v;
+      else if (selectedStatement() is OutPortDataBox) {
+        (selectedStatement() as OutPortDataBox).model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;

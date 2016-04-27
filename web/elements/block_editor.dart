@@ -103,7 +103,7 @@ class BlockEditor extends PolymerElement {
 
     //  variables_menu
     else if (block is program.DeclareVariable) {
-      return new html.Element.tag('add-variable')
+      return new html.Element.tag('add-variable-box')
         ..model = block;
     }
     else if (block is program.SetVariable) {
@@ -125,17 +125,17 @@ class BlockEditor extends PolymerElement {
 
     //  port_data_menu
     else if (block is program.AccessOutPort) {
-      return new html.Element.tag('outport-data')
+      return new html.Element.tag('outport-data-box')
         ..model = block
         ..attachTarget(parseBlock(block.right));
     }
     else if (block is program.OutPortBuffer) {
-      return new html.Element.tag('outport-data')
+      return new html.Element.tag('write-outport')
         ..model = block;
 //        ..attachTarget(parseBlock(block.right));
     }
     else if (block is program.AccessInPort) {
-      return new html.Element.tag('inport-data')
+      return new html.Element.tag('inport-data-box')
         ..model = block;
     } else if (block is program.ReadInPort) {
       var v = new html.Element.tag('read-inport')

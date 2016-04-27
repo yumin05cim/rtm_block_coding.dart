@@ -5,8 +5,9 @@ import '../../controller/controller.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 
-@CustomTag('add-variable')
-class AddVariable extends PolymerElement {
+@CustomTag('add-variable-box')
+class AddVariableBox extends PolymerElement {
+
   program.DeclareVariable _model;
 
   PolymerElement parentElement;
@@ -21,7 +22,7 @@ class AddVariable extends PolymerElement {
 
   @published String name = "defaultName";
   @published String type = "defaultType";
-   AddVariable.created() : super.created();
+   AddVariableBox.created() : super.created();
 
   void selectType(String name) {
     int selected = -1;
@@ -126,7 +127,6 @@ class AddVariable extends PolymerElement {
     globalController.setSelectedElem(e, this);
     e.stopPropagation();
   }
-
 
   void select() {
     $['title-area'].style.border = 'ridge';

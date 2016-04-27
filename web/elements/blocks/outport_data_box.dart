@@ -6,18 +6,12 @@ import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
 
 
-@CustomTag('outport-data')
-class OutPortData extends PolymerElement {
+@CustomTag('outport-data-box')
+class OutPortDataBox extends PolymerElement {
+
   program.OutPortBuffer _model;
 
   PolymerElement parentElement;
-
-  get model => _model;
-
-  //@published String port_name = "defaultName";
-  //@published String port_type = "defaultType";
-  //@published String data_member = "data";
-  @observable String indexInputValue = '0';
 
   set model(program.OutPortBuffer m) {
     _model = m;
@@ -26,7 +20,14 @@ class OutPortData extends PolymerElement {
     //data_member = _model.accessSequence;
   }
 
-  OutPortData.created() : super.created();
+  get model => _model;
+
+  //@published String port_name = "defaultName";
+  //@published String port_type = "defaultType";
+  //@published String data_member = "data";
+  @observable String indexInputValue = '0';
+
+  OutPortDataBox.created() : super.created();
 
 
   void updateOutPortList() {
@@ -62,8 +63,6 @@ class OutPortData extends PolymerElement {
 
     updateAccessAlternatives();
   }
-
-
 
   void updateAccessAlternatives() {
     print('updateAccessAlternatives called (_model:$model)');
@@ -194,11 +193,6 @@ class OutPortData extends PolymerElement {
     });
   }
 
-  void onClicked(var e) {
-    globalController.setSelectedElem(e, this);
-    e.stopPropagation();
-  }
-
   void onInputIndex(var e) {
 
     print('index:$indexInputValue');
@@ -210,14 +204,15 @@ class OutPortData extends PolymerElement {
     String accessTypeName = program.DataType.access_alternative_type(_model.dataType.typename, _model.accessSequence);
 
     if(program.DataType.isSeqType(accessTypeName)) {
-
-      if (indexInputValue
-          .trim()
-          .length > 0) {
-        _model.accessSequence =
-            _model.accessSequence + '[' + indexInputValue + ']';
+      if (indexInputValue.trim().length > 0) {
+        _model.accessSequence = _model.accessSequence + '[' + indexInputValue + ']';
       }
     }
+  }
+
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
   }
 
   void attachTarget(var element) {

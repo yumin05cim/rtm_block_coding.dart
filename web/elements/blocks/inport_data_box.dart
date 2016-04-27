@@ -6,8 +6,8 @@ import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
 
 
-@CustomTag('inport-data')
-class InPortData extends PolymerElement {
+@CustomTag('inport-data-box')
+class InPortDataBox extends PolymerElement {
 
   program.AccessInPort _model;
 
@@ -25,9 +25,9 @@ class InPortData extends PolymerElement {
 
   @published String name = "name";
   @published String access = "";
-  InPortData.created() : super.created();
-
   @observable String indexInputValue = '0';
+
+  InPortDataBox.created() : super.created();
 
 
   void updateInPortList() {
@@ -201,11 +201,8 @@ class InPortData extends PolymerElement {
           _model.accessSequence.substring(
               0, _model.accessSequence.indexOf('['));
     }
-    if (indexInputValue
-        .trim()
-        .length > 0) {
-      _model.accessSequence =
-          _model.accessSequence + '[' + indexInputValue + ']';
+    if (indexInputValue.trim().length > 0) {
+      _model.accessSequence = _model.accessSequence + '[' + indexInputValue + ']';
     }
   }
 
