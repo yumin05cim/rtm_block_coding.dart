@@ -93,17 +93,19 @@ class BlockEditor extends PolymerElement {
   static parseBlock(program.Block block) {
 
     //  rtm_menu
-    if (block is program.DeclareVariable) {
-      return new html.Element.tag('add-variable')
-        ..model = block;
-    } else if (block is program.AddInPort) {
+    if (block is program.AddInPort) {
       return new html.Element.tag('add-inport-box')
         ..model = block;
     } else if (block is program.AddOutPort) {
       return new html.Element.tag('add-outport-box')
         ..model = block;
     }
+
     //  variables_menu
+    else if (block is program.DeclareVariable) {
+      return new html.Element.tag('add-variable')
+        ..model = block;
+    }
     else if (block is program.SetVariable) {
       return new html.Element.tag('set-variable')
         ..model = block
@@ -113,7 +115,6 @@ class BlockEditor extends PolymerElement {
       return new html.Element.tag('variable-block')
         ..model = block;
     }
-
     else if (block is program.Assign) {
       return new html.Element.tag('assign-block')
         ..model = block
@@ -121,6 +122,7 @@ class BlockEditor extends PolymerElement {
         ..attachRightTarget(parseBlock(block.right));
         ///..attachTarget(parseBlock(block.right));
     }
+
     //  port_data_menu
     else if (block is program.AccessOutPort) {
       return new html.Element.tag('outport-data')
@@ -147,13 +149,14 @@ class BlockEditor extends PolymerElement {
           ..model = block;
       return v;
     }
+
     //  calculate_menu
       else if (block is program.IntegerLiteral) {
-      var v = new html.Element.tag('integer-literal')
+      var v = new html.Element.tag('integer-literal-box')
         ..model = block;
       return v;
     } else if (block is program.RealLiteral) {
-      var v = new html.Element.tag('real-literal')
+      var v = new html.Element.tag('real-literal-box')
         ..model = block;
       return v;
     } else if (block is program.Add) {
@@ -189,6 +192,7 @@ class BlockEditor extends PolymerElement {
       return v;*/
       return Division.createBox(block);
     }
+
     //  if_switch_loop_menu
       else if (block is program.If) {
       var v = IfBox.createBox()
@@ -214,6 +218,7 @@ class BlockEditor extends PolymerElement {
       }
       return v;
     }
+
     //  condition_menu
       else if (block is program.Equals) {
       var v = EqualsBox.createBox()
@@ -332,7 +337,6 @@ class BlockEditor extends PolymerElement {
     //updateClick();
 
   }
-
 
   static parseStatement(var children, program.Statement s) {
     var elem = parseBlock(s.block);

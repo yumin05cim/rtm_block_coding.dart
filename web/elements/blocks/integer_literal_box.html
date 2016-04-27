@@ -2,7 +2,7 @@
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 <link rel="import" href="packages/paper_elements/paper_fab.html" />
 
-<polymer-element name="real-literal" attributes="value">
+<polymer-element name="integer-literal-box" attributes="value">
     <template>
 
         <style type='text/css'>
@@ -32,17 +32,17 @@
                 margin-left : 10px;
                 margin-right: 10px;
             }
-            paper-input#real-literal-input {
+            paper-input#int-literal-input {
                 width: 30px;
             }
         </style>
 
         <!--Japanese ver.-->
         <div id="target" horizontal layout center on-tap="{{onClicked}}">
-            <div>小数:</div>
-            <paper-input id="real-literal-input" value="{{value}}"></paper-input>
+            <div>整数:</div>
+            <paper-input id="int-literal-input" value="{{value}}"></paper-input>
         </div>
 
     </template>
-    <script type="application/dart" src="real_literal.dart"></script>
+    <script type="application/dart" src="integer_literal_box.dart"></script>
 </polymer-element>

@@ -4,23 +4,23 @@ import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 import 'literal.dart';
 
-@CustomTag('integer-literal')
-class IntegerLiteral extends Literal {
+@CustomTag('real-literal-box')
+class RealLiteral extends Literal {
 
-  program.IntegerLiteral _model;
+  program.RealLiteral _model;
 
-  set model(program.IntegerLiteral m) {
+  set model(program.RealLiteral m) {
     _model = m;
     value = m.value;
   }
 
   get model => _model;
 
-  @published int value = 1;
-  IntegerLiteral.created() : super.created();
+  @published double value = 1.0;
+  RealLiteral.created() : super.created();
 
   void attached() {
-    $['int-literal-input'].onChange.listen((var e) {
+    $['real-literal-input'].onChange.listen((var e) {
       _model.value = value;
     });
   }
