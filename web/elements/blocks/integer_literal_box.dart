@@ -1,11 +1,14 @@
 import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
-import '../../controller/controller.dart';
 import 'literal_box.dart';
 
 @CustomTag('integer-literal-box')
 class IntegerLiteralBox extends LiteralBox {
+
+  static IntegerLiteralBox createBox() {
+    return new html.Element.tag('integer-literal-box');
+  }
 
   program.IntegerLiteral _model;
 

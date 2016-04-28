@@ -4,6 +4,8 @@ import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:paper_elements/paper_fab.dart';
 import 'blocks/read_inport_box.dart';
+import 'blocks/integer_literal_box.dart';
+import 'blocks/real_literal_box.dart';
 import 'blocks/addition_box.dart';
 import 'blocks/subtraction_box.dart';
 import 'blocks/multiplication_box.dart';
@@ -152,11 +154,11 @@ class BlockEditor extends PolymerElement {
 
     //  calculate_menu
       else if (block is program.IntegerLiteral) {
-      var v = new html.Element.tag('integer-literal-box')
+      var v = IntegerLiteralBox.createBox()
         ..model = block;
       return v;
     } else if (block is program.RealLiteral) {
-      var v = new html.Element.tag('real-literal-box')
+      var v = RealLiteralBox.createBox()
         ..model = block;
       return v;
     } else if (block is program.Add) {
