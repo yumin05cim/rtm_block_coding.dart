@@ -3,6 +3,8 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:paper_elements/paper_fab.dart';
+import 'blocks/add_inport_box.dart';
+import 'blocks/add_outport_box.dart';
 import 'blocks/read_inport_box.dart';
 import 'blocks/integer_literal_box.dart';
 import 'blocks/real_literal_box.dart';
@@ -96,10 +98,10 @@ class BlockEditor extends PolymerElement {
 
     //  rtm_menu
     if (block is program.AddInPort) {
-      return new html.Element.tag('add-inport-box')
+      return AddInPortBox.createBox()
         ..model = block;
     } else if (block is program.AddOutPort) {
-      return new html.Element.tag('add-outport-box')
+      return AddOutPortBox.createBox()
         ..model = block;
     }
 
