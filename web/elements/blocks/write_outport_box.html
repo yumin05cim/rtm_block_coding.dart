@@ -1,10 +1,10 @@
-
 <link rel="import" href="packages/polymer/polymer.html" />
 <link rel="import" href="packages/core_elements/core_style.html" />
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 
 <polymer-element name="write-outport-box" attributes="command">
-    <template >
+    <template>
+
         <style>
             :host {
                 border-width: 1px;
@@ -32,7 +32,6 @@
                 margin-left : 10px;
                 margin-right: 10px;
             }
-
         </style>
 
         <!--Japanese ver.-->
@@ -46,20 +45,6 @@
             </paper-dropdown-menu>
             <div end>) にデータを書き込む</div>
         </div>
-
-        <!--English ver.-->
-<!--
-        <div id="target" horizontal layout center>
-            <div end>Write Data to Port (name = </div>
-            &lt;!&ndash; <paper-input id="name-input" flex one value="{{port_name}}"></paper-input> &ndash;&gt;
-            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
-                <paper-dropdown id="dropdown" class="dropdown">
-                    <core-menu class="menu" id="menu-content"></core-menu>
-                </paper-dropdown>
-            </paper-dropdown-menu>
-            <div end>)</div>
-        </div>
--->
 
     </template>
     <script type="application/dart" src="write_outport_box.dart"></script>

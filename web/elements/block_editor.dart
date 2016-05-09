@@ -138,16 +138,13 @@ class BlockEditor extends PolymerElement {
     else if (block is program.AccessInPort) {
       return InPortBufferBox.createBox(block);
     } else if (block is program.ReadInPort) {
-      var v = new html.Element.tag('read-inport-box')
-        ..model = block;
+      var v = ReadInPortBox.createBox(block);
       for (program.Statement s in block.statements) {
         parseStatement(v, s);
       }
       return v;
     } else if (block is program.WriteOutPort) {
-      var v = new html.Element.tag('write-outport')
-          ..model = block;
-      return v;
+      return WriteOutPortBox.createBox(block);
     }
 
     //  calculate_menu

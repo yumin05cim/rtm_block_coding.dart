@@ -1,14 +1,13 @@
-
 <link rel="import" href="packages/polymer/polymer.html" />
 <link rel="import" href="packages/core_elements/core_style.html" />
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 
 <polymer-element name="read-inport-box" attributes="command">
-    <template >
+    <template>
+
         <style>
             :host {
             }
-
             :host #title-area {
                 margin-top: 2px;
                 margin-left: 7px;
@@ -29,12 +28,10 @@
 
                 height: 45px;
             }
-
             paper-input {
                 margin-left : 20px;
                 margin-right: 20px;
             }
-
             :host #body-area {
                 margin-top : -2px;
                 margin-left: 7px;
@@ -50,7 +47,6 @@
 
                 min-height: 5px;
             }
-
         </style>
 
         <!--Japanese ver.-->
@@ -68,24 +64,6 @@
             <div id="target">
             </div>
         </div>
-
-        <!--English ver.-->
-<!--
-        <div id="title-area" horizontal layout center>
-            <div end>When Data is received to InPort (</div>
-            &lt;!&ndash; <paper-input id="name-input" flex one value="{{port_name}}"></paper-input> &ndash;&gt;
-            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
-                <paper-dropdown id="dropdown" class="dropdown">
-                    <core-menu class="menu" id="menu-content"></core-menu>
-                </paper-dropdown>
-            </paper-dropdown-menu>
-            <div end>)</div>
-        </div>
-        <div id="body-area">
-            <div id="target">
-            </div>
-        </div>
--->
 
     </template>
     <script type="application/dart" src="read_inport_box.dart"></script>

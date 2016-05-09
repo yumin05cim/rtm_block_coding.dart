@@ -10,6 +10,11 @@ class ReadInPortBox extends PolymerElement {
 
   program.ReadInPort _model;
 
+  static ReadInPortBox createBox(program.ReadInPort m) {
+    return new html.Element.tag('read-inport-box') as ReadInPortBox
+      ..model = m;
+  }
+
   PolymerElement parentElement;
 
   set model(program.ReadInPort m) {

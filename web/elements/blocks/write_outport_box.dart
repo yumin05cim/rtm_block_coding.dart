@@ -10,6 +10,11 @@ class WriteOutPortBox extends PolymerElement {
 
   program.WriteOutPort _model;
 
+  static WriteOutPortBox createBox(program.WriteOutPort m) {
+    return new html.Element.tag('write-outport-box') as WriteOutPortBox
+      ..model = m;
+  }
+
   PolymerElement parentElement;
 
   set model(program.WriteOutPort m) {
