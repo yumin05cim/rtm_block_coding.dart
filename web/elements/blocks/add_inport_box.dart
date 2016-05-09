@@ -9,8 +9,9 @@ import 'add_port_box.dart';
 @CustomTag('add-inport-box')
 class AddInPortBox extends AddPortBox {
 
-  static  AddInPortBox createBox() {
-    return new html.Element.tag('add-inport-box');
+  static  AddInPortBox createBox(program.AddInPort m) {
+    return new html.Element.tag('add-inport-box') as AddPortBox
+      ..model = m;
   }
 
   PolymerElement parentElement;

@@ -102,11 +102,9 @@ class BlockEditor extends PolymerElement {
   static parseBlock(program.Block block) {
     //  rtm_menu
     if (block is program.AddInPort) {
-      return AddInPortBox.createBox()
-        ..model = block;
+      return AddInPortBox.createBox(block);
     } else if (block is program.AddOutPort) {
-      return AddOutPortBox.createBox()
-        ..model = block;
+      return AddOutPortBox.createBox(block);
     }
 
     //  variables_menu
@@ -129,11 +127,10 @@ class BlockEditor extends PolymerElement {
    //     ..model = block
    //     ..attachTarget(parseBlock(block.right));
    // }
-    else if (block is program.OutPortBuffer) {
+      else if (block is program.OutPortBuffer) {
       return OutPortBufferBox.createBox(block);
 //      ..attachTarget(parseBlock(block.right));
-    }
-    else if (block is program.AccessInPort) {
+    } else if (block is program.AccessInPort) {
       return InPortBufferBox.createBox(block);
     } else if (block is program.ReadInPort) {
       var v = ReadInPortBox.createBox(block);
