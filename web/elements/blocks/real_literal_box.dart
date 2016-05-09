@@ -6,11 +6,12 @@ import 'literal_box.dart';
 @CustomTag('real-literal-box')
 class RealLiteralBox extends LiteralBox {
 
-  static RealLiteralBox createBox() {
-    return new html.Element.tag('integer-literal-box');
-  }
-
   program.RealLiteral _model;
+
+  static RealLiteralBox createBox(program.RealLiteral m) {
+    return new html.Element.tag('real-literal-box') as RealLiteralBox
+      ..model = m;
+  }
 
   set model(program.RealLiteral m) {
     _model = m;

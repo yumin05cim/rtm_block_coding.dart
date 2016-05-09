@@ -110,13 +110,11 @@ class BlockEditor extends PolymerElement {
     }
 
     //  variables_menu
-    else if (block is program.DeclareVariable) {
+      else if (block is program.DeclareVariable) {
       return DeclareVariableBox.createBox(block);
-    }
-    else if (block is program.Assign) {
+    } else if (block is program.Assign) {
       return AssignVariableBox.createBox(block);
-    }
-    else if (block is program.ReferVariable) {
+    } else if (block is program.ReferVariable) {
       return ReferVariableBox.createBox(block);
     }
     /*    else if (block is program.SetVariable) {
@@ -149,13 +147,9 @@ class BlockEditor extends PolymerElement {
 
     //  calculate_menu
       else if (block is program.IntegerLiteral) {
-      var v = IntegerLiteralBox.createBox()
-        ..model = block;
-      return v;
+      return IntegerLiteralBox.createBox(block);
     } else if (block is program.RealLiteral) {
-      var v = RealLiteralBox.createBox()
-        ..model = block;
-      return v;
+      return RealLiteralBox.createBox(block);
     } else if (block is program.Add) {
       return Addition.createBox(block);
     } else if (block is program.Subtract) {
