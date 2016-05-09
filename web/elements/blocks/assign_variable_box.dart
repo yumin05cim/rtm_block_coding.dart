@@ -4,8 +4,9 @@ import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_item.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('assign-block')
-class AssignBlock extends PolymerElement {
+@CustomTag('assign-variable-box')
+class AssignVariableBox extends PolymerElement {
+
   program.Assign _model;
 
   PolymerElement parentElement;
@@ -19,7 +20,7 @@ class AssignBlock extends PolymerElement {
 
   @published String name = "defaultName";
 
-  AssignBlock.created() : super.created();
+  AssignVariableBox.created() : super.created();
 
   void updateNameList() {
     $['name-menu-content'].children.clear();
@@ -107,7 +108,6 @@ class AssignBlock extends PolymerElement {
             return;
           }
 
-
         }
       }
     });
@@ -116,7 +116,6 @@ class AssignBlock extends PolymerElement {
     */
 
   }
-
 
   void updateAccessAlternatives() {
     print('updateAccessAlternatives called (_model:$model)');
@@ -161,24 +160,21 @@ class AssignBlock extends PolymerElement {
     $['menu-content'].setAttribute('selected', selected.toString());
   }
 
-
-  void onClicked(var e) {
-    globalController.setSelectedElem(e, this);
-    e.stopPropagation();
-
-  }
-
   void attachRightTarget(var element) {
     $['right-content'].children.clear();
     $['right-content'].children.add(element);
     element.parentElement = this;
   }
 
-
   void attachLeftTarget(var element) {
     $['left-content'].children.clear();
     $['left-content'].children.add(element);
     element.parentElement = this;
+  }
+
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
   }
 
   void select() {

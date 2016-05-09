@@ -1,9 +1,9 @@
 import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
-import '../../controller/controller.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
+import '../../controller/controller.dart';
 
 @CustomTag('add-variable-box')
 class AddVariableBox extends PolymerElement {
@@ -22,7 +22,8 @@ class AddVariableBox extends PolymerElement {
 
   @published String name = "defaultName";
   @published String type = "defaultType";
-   AddVariableBox.created() : super.created();
+
+  AddVariableBox.created() : super.created();
 
   void selectType(String name) {
     int selected = -1;

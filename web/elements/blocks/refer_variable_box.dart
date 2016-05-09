@@ -5,10 +5,10 @@ import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('variable-block')
-class VariableBlock extends PolymerElement {
+@CustomTag('refer-variable-box')
+class ReferVariableBox extends PolymerElement {
+
   program.Variable _model;
-  get model => _model;
 
   PolymerElement parentElement;
 
@@ -16,7 +16,9 @@ class VariableBlock extends PolymerElement {
     _model = m;
   }
 
-  VariableBlock.created() : super.created();
+  get model => _model;
+
+  ReferVariableBox.created() : super.created();
 
   void updateNameList() {
     $['name-menu-content'].children.clear();

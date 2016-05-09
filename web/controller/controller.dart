@@ -7,6 +7,9 @@ import 'dart:html' as html;
 import '../elements/blocks/read_inport_box.dart';
 import '../elements/blocks/outport_data_box.dart';
 import '../elements/blocks/set_variable.dart';
+import '../elements/blocks/add_variable_box.dart';
+import '../elements/blocks/assign_variable_box.dart';
+import '../elements/blocks/refer_variable_box.dart';
 import '../elements/blocks/addition_box.dart';
 import '../elements/blocks/subtraction_box.dart';
 import '../elements/blocks/multiplication_box.dart';
@@ -16,7 +19,6 @@ import '../elements/blocks/real_literal_box.dart';
 import '../elements/blocks/if_box.dart';
 import '../elements/blocks/else_box.dart';
 import '../elements/blocks/while_box.dart';
-import '../elements/blocks/assign_block.dart';
 import '../elements/state_panel.dart';
 import '../elements/python_panel.dart';
 import 'package:rtcprofile/rtcprofile.dart';
@@ -248,7 +250,7 @@ class Controller {
 
         if (selectedStatement() == null) {
           //app.statements.add(new_s);
-        } else if (selectedElement.parentElement is AssignBlock) {
+        } else if (selectedElement.parentElement is AssignVariableBox) {
           program.Assign a = selectedElement.parentElement.model;
           if (a.left == selectedElement.model) {
             a.left = v;
@@ -357,7 +359,7 @@ class Controller {
       }
       else *//*if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
-      } else */if(selectedStatement() is AssignBlock) {
+      } else */if(selectedStatement() is AssignVariableBox) {
         selectedStatement().model.right = v;
       }
       else if (selectedStatement() is OutPortDataBox) {
@@ -365,7 +367,7 @@ class Controller {
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is AssignBlock) {
+        if (elem.parentElement is AssignVariableBox) {
           if (selectedElement.model == elem.parentElement.model.right) {
             elem.parentElement.model.right = v;
           } else {
@@ -423,14 +425,14 @@ class Controller {
         selectedStatement().model.right = v;
       }
       */
-      else if (selectedStatement() is AssignBlock) {
+      else if (selectedStatement() is AssignVariableBox) {
         selectedStatement().model.left = v;
       }
       else if (selectedStatement() is ReadInPort) {
         selectedStatement().model.statements.add(new_s);
       }
       else {
-        if (selectedElement.parentElement is AssignBlock) {
+        if (selectedElement.parentElement is AssignVariableBox) {
           program.Assign a = selectedElement.parentElement.model;
           if (a.left == selectedElement.model) {
             a.left = v;
@@ -462,13 +464,13 @@ class Controller {
       program.IntegerLiteral v = new program.IntegerLiteral(1);
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is AssignBlock) {
+      if (selectedStatement() is AssignVariableBox) {
 //        if (selectedStatement() is SetVariable) {
         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is AssignBlock) {
+        if (elem.parentElement is AssignVariableBox) {
 //          if (elem.parentElement is SetVariable) {
            elem.parentElement.model.right = v;
         } else if (elem.parentElement is Addition) {
@@ -503,12 +505,12 @@ class Controller {
       program.RealLiteral v = new program.RealLiteral(1.0);
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is AssignBlock) {
+      if (selectedStatement() is AssignVariableBox) {
         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is AssignBlock) {
+        if (elem.parentElement is AssignVariableBox) {
           elem.parentElement.model.right = v;
         } else if (elem.parentElement is Addition) {
           if (elem.parentElement.model.a == elem.model) {
@@ -542,13 +544,13 @@ class Controller {
       program.Add v = new program.Add(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is AssignBlock) {
+      if (selectedStatement() is AssignVariableBox) {
 //        if (selectedStatement() is SetVariable) {
          selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is AssignBlock) {
+        if (elem.parentElement is AssignVariableBox) {
 //          if (elem.parentElement is SetVariable) {
           elem.parentElement.model.right = v;
         }
@@ -559,12 +561,12 @@ class Controller {
       program.Subtract v = new program.Subtract(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is AssignBlock) {
+      if (selectedStatement() is AssignVariableBox) {
         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is AssignBlock) {
+        if (elem.parentElement is AssignVariableBox) {
           elem.parentElement.model.right = v;
         }
       }
@@ -574,12 +576,12 @@ class Controller {
       program.Multiply v = new program.Multiply(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is AssignBlock) {
+      if (selectedStatement() is AssignVariableBox) {
         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is AssignBlock) {
+        if (elem.parentElement is AssignVariableBox) {
           elem.parentElement.model.right = v;
         }
       }
@@ -589,12 +591,12 @@ class Controller {
       program.Divide v = new program.Divide(new program.IntegerLiteral(3), new program.IntegerLiteral(2));
       program.Statement new_s = new program.Statement(v);
 
-      if (selectedStatement() is AssignBlock) {
+      if (selectedStatement() is AssignVariableBox) {
         selectedStatement().model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
-        if (elem.parentElement is AssignBlock) {
+        if (elem.parentElement is AssignVariableBox) {
           elem.parentElement.model.right = v;
         }
       }

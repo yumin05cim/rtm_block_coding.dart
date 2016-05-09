@@ -5,6 +5,9 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:paper_elements/paper_fab.dart';
 import 'blocks/add_inport_box.dart';
 import 'blocks/add_outport_box.dart';
+import 'blocks/add_variable_box.dart';
+import 'blocks/assign_variable_box.dart';
+import 'blocks/refer_variable_box.dart';
 import 'blocks/read_inport_box.dart';
 import 'blocks/integer_literal_box.dart';
 import 'blocks/real_literal_box.dart';
@@ -116,15 +119,14 @@ class BlockEditor extends PolymerElement {
         ..attachTarget(parseBlock(block.right));
     }
     else if (block is program.Variable) {
-      return new html.Element.tag('variable-block')
+      return new html.Element.tag('refer-variable-box')
         ..model = block;
     }
     else if (block is program.Assign) {
-      return new html.Element.tag('assign-block')
+      return new html.Element.tag('assign-variable-box')
         ..model = block
         ..attachLeftTarget(parseBlock(block.left))
         ..attachRightTarget(parseBlock(block.right));
-        ///..attachTarget(parseBlock(block.right));
     }
 
     //  port_data_menu
