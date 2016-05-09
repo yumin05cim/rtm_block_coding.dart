@@ -157,11 +157,6 @@ class BlockEditor extends PolymerElement {
         ..model = block;
       return v;
     } else if (block is program.Add) {
-/*      var v = new html.Element.tag('addition-box')
-        ..model = block;
-      v.attachLeft(parseBlock(block.a));
-      v.attachRight(parseBlock(block.b));
-      return v;*/
       return Addition.createBox(block);
     } else if (block is program.Subtract) {
       return Subtraction.createBox(block);
@@ -199,46 +194,19 @@ class BlockEditor extends PolymerElement {
 
     //  condition_menu
       else if (block is program.Equals) {
-      var v = EqualsBox.createBox()
-        ..model = block;
-      v.attachLeft(parseBlock(block.left));
-      v.attachRight(parseBlock(block.right));
-      return v;
+      return EqualsBox.createBox(block);
     } else if (block is program.NotEquals) {
-      var v =NotEqualsBox.createBox()
-        ..model = block;
-      v.attachLeft(parseBlock(block.left));
-      v.attachRight(parseBlock(block.right));
-      return v;
+      return NotEqualsBox.createBox(block);
     } else if (block is program.LargerThan) {
-      var v = LargerThanBox.createBox()
-        ..model = block;
-      v.attachLeft(parseBlock(block.left));
-      v.attachRight(parseBlock(block.right));
-      return v;
+      return LargerThanBox.createBox(block);
     } else if (block is program.LargerThanOrEquals) {
-      var v = LargerThanOrEqualsBox.createBox()
-        ..model = block;
-      v.attachLeft(parseBlock(block.left));
-      v.attachRight(parseBlock(block.right));
-      return v;
+      return LargerThanOrEqualsBox.createBox(block);
     } else if (block is program.SmallerThan) {
-      var v = SmallerThanBox.createBox()
-        ..model = block;
-      v.attachLeft(parseBlock(block.left));
-      v.attachRight(parseBlock(block.right));
-      return v;
+      return SmallerThanBox.createBox(block);
     } else if (block is program.SmallerThanOrEquals) {
-      var v = SmallerThanOrEqualsBox.createBox()
-        ..model = block;
-      v.attachLeft(parseBlock(block.left));
-      v.attachRight(parseBlock(block.right));
-      return v;
+      return SmallerThanOrEqualsBox.createBox(block);
     } else if (block is program.Not) {
-      var v = LogicalNotBox.createBox()
-        ..model = block;
-      v.attachCondition(parseBlock(block.condition));
-      return v;
+      return LogicalNotBox.createBox(block);
     }
   }
 
