@@ -2,12 +2,20 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_item.dart';
+import '../block_editor.dart';
 import '../../controller/controller.dart';
 
 @CustomTag('assign-variable-box')
 class AssignVariableBox extends PolymerElement {
 
   program.Assign _model;
+
+  static AssignVariableBox createBox(program.Assign m) {
+    return new html.Element.tag('assign-variable-box') as AssignVariableBox
+      ..model = m
+      ..attachLeftTarget(BlockEditor.parseBlock(m.left))
+      ..attachRightTarget(BlockEditor.parseBlock(m.right));
+  }
 
   PolymerElement parentElement;
 

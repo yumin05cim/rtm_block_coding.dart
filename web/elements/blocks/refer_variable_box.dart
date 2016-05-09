@@ -8,11 +8,16 @@ import '../../controller/controller.dart';
 @CustomTag('refer-variable-box')
 class ReferVariableBox extends PolymerElement {
 
-  program.Variable _model;
+  program.ReferVariable _model;
+
+  static ReferVariableBox createBox(program.ReferVariable m) {
+    return new html.Element.tag('assign-variable-box') as ReferVariableBox
+      ..model = m;
+  }
 
   PolymerElement parentElement;
 
-  set model(program.Variable m) {
+  set model(program.ReferVariable m) {
     _model = m;
   }
 

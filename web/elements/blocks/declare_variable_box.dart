@@ -5,14 +5,19 @@ import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
 
-@CustomTag('add-variable-box')
-class AddVariableBox extends PolymerElement {
+@CustomTag('declare-variable-box')
+class DeclareVariableBox extends PolymerElement {
 
   program.DeclareVariable _model;
 
+  static DeclareVariableBox createBox(program.DeclareVariable m) {
+    return new html.Element.tag('assign-variable-box') as DeclareVariableBox
+      ..model = m;
+  }
+
   PolymerElement parentElement;
 
-  set model(program.AddInPort m) {
+  set model(program.DeclareVariable m) {
     _model = m;
     name = m.name;
     type = m.dataType.typename;
@@ -23,7 +28,7 @@ class AddVariableBox extends PolymerElement {
   @published String name = "defaultName";
   @published String type = "defaultType";
 
-  AddVariableBox.created() : super.created();
+  DeclareVariableBox.created() : super.created();
 
   void selectType(String name) {
     int selected = -1;

@@ -1,14 +1,16 @@
 import 'dart:html' as html;
-
 import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:paper_elements/paper_fab.dart';
+import '../controller/controller.dart';
+
 import 'blocks/add_inport_box.dart';
 import 'blocks/add_outport_box.dart';
-import 'blocks/add_variable_box.dart';
+import 'blocks/declare_variable_box.dart';
 import 'blocks/assign_variable_box.dart';
 import 'blocks/refer_variable_box.dart';
 import 'blocks/read_inport_box.dart';
+import 'blocks/outport_data_box.dart';
 import 'blocks/integer_literal_box.dart';
 import 'blocks/real_literal_box.dart';
 import 'blocks/addition_box.dart';
@@ -26,7 +28,6 @@ import 'blocks/smaller_than_box.dart';
 import 'blocks/smaller_than_or_equals_box.dart';
 import 'blocks/logical_not_box.dart';
 
-import '../controller/controller.dart';
 
 @CustomTag('block-editor')
 class BlockEditor extends PolymerElement {
@@ -94,11 +95,9 @@ class BlockEditor extends PolymerElement {
     app.statements.forEach((s) {
       parseStatement(container.children, s);
     });
-
   }
 
   static parseBlock(program.Block block) {
-
     //  rtm_menu
     if (block is program.AddInPort) {
       return AddInPortBox.createBox()
@@ -110,33 +109,28 @@ class BlockEditor extends PolymerElement {
 
     //  variables_menu
     else if (block is program.DeclareVariable) {
-      return new html.Element.tag('add-variable-box')
-        ..model = block;
+      return DeclareVariableBox.createBox(block);
     }
-    else if (block is program.SetVariable) {
+    else if (block is program.Assign) {
+      return AssignVariableBox.createBox(block);
+    }
+    else if (block is program.ReferVariable) {
+      return ReferVariableBox.createBox(block);
+    }
+    /*    else if (block is program.SetVariable) {
       return new html.Element.tag('set-variable')
         ..model = block
         ..attachTarget(parseBlock(block.right));
-    }
-    else if (block is program.Variable) {
-      return new html.Element.tag('refer-variable-box')
-        ..model = block;
-    }
-    else if (block is program.Assign) {
-      return new html.Element.tag('assign-variable-box')
-        ..model = block
-        ..attachLeftTarget(parseBlock(block.left))
-        ..attachRightTarget(parseBlock(block.right));
-    }
+    }*/
 
-    //  port_data_menu
-    else if (block is program.AccessOutPort) {
-      return new html.Element.tag('outport-data-box')
-        ..model = block
-        ..attachTarget(parseBlock(block.right));
-    }
+  //  port_data_menu
+   // else if (block is program.AccessOutPort) {
+   //   return new html.Element.tag('outport-data-box')
+   //     ..model = block
+   //     ..attachTarget(parseBlock(block.right));
+   // }
     else if (block is program.OutPortBuffer) {
-      return new html.Element.tag('write-outport-box')
+      return OutPortBufferBox.createBox()
         ..model = block;
 //        ..attachTarget(parseBlock(block.right));
     }
@@ -168,34 +162,15 @@ class BlockEditor extends PolymerElement {
     } else if (block is program.Add) {
 /*      var v = new html.Element.tag('addition-box')
         ..model = block;
-
       v.attachLeft(parseBlock(block.a));
       v.attachRight(parseBlock(block.b));
       return v;*/
       return Addition.createBox(block);
     } else if (block is program.Subtract) {
-/*      var v = new html.Element.tag('subtraction-box')
-        ..model = block;
-
-      v.attachLeft(parseBlock(block.a));
-      v.attachRight(parseBlock(block.b));
-      return v;*/
       return Subtraction.createBox(block);
     } else if (block is program.Multiply) {
-/*      var v = new html.Element.tag('multiplication-box')
-        ..model = block;
-
-      v.attachLeft(parseBlock(block.a));
-      v.attachRight(parseBlock(block.b));
-      return v;*/
       return Multiplication.createBox(block);
     } else if (block is program.Divide) {
-/*      var v = new html.Element.tag('division-box')
-        ..model = block;
-
-      v.attachLeft(parseBlock(block.a));
-      v.attachRight(parseBlock(block.b));
-      return v;*/
       return Division.createBox(block);
     }
 
@@ -228,7 +203,7 @@ class BlockEditor extends PolymerElement {
     //  condition_menu
       else if (block is program.Equals) {
       var v = EqualsBox.createBox()
-          ..model = block;
+        ..model = block;
       v.attachLeft(parseBlock(block.left));
       v.attachRight(parseBlock(block.right));
       return v;

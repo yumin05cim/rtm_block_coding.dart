@@ -7,7 +7,7 @@ import 'dart:html' as html;
 import '../elements/blocks/read_inport_box.dart';
 import '../elements/blocks/outport_data_box.dart';
 import '../elements/blocks/set_variable.dart';
-import '../elements/blocks/add_variable_box.dart';
+import '../elements/blocks/declare_variable_box.dart';
 import '../elements/blocks/assign_variable_box.dart';
 import '../elements/blocks/refer_variable_box.dart';
 import '../elements/blocks/addition_box.dart';
@@ -245,7 +245,7 @@ class Controller {
       var variableList = onInitializeApp.find(program.DeclareVariable);
       if (variableList == null) {variableList = [];}
       if (variableList.length > 0) {
-        program.Variable v = new program.Variable(variableList[0].name, variableList[0].dataType);
+        program.ReferVariable v = new program.ReferVariable(variableList[0].name, variableList[0].dataType);
         //program.Statement new_s = new program.Statement(v);
 
         if (selectedStatement() == null) {
@@ -298,7 +298,7 @@ class Controller {
       if (outPortList.length + variableList.length > 0) {
         var firstAlternative = null;
         if (variableList.length > 0) {
-          firstAlternative = new program.Variable(variableList[0].name, variableList[0].dataType);
+          firstAlternative = new program.ReferVariable(variableList[0].name, variableList[0].dataType);
         } else {
           firstAlternative = new program.OutPortBuffer(outPortList[0].name, outPortList[0].dataType, '');
         }
@@ -362,8 +362,8 @@ class Controller {
       } else */if(selectedStatement() is AssignVariableBox) {
         selectedStatement().model.right = v;
       }
-      else if (selectedStatement() is OutPortDataBox) {
-        (selectedStatement() as OutPortDataBox).model.right = v;
+      else if (selectedStatement() is OutPortBufferBox) {
+        (selectedStatement() as OutPortBufferBox).model.right = v;
       }
       else {
         PolymerElement elem = globalController.selectedElement;
@@ -610,7 +610,7 @@ class Controller {
       if (variableList.length > 0) {
         program.If v = new program.If(new program.Equals(
             new program.IntegerLiteral(1), new program.IntegerLiteral(1)), new program.StatementList([new program.Statement
-            (new program.Assign(new program.Variable(variableList[0].name, variableList[0].dataType), new program.IntegerLiteral(1)))]));
+            (new program.Assign(new program.ReferVariable(variableList[0].name, variableList[0].dataType), new program.IntegerLiteral(1)))]));
         //no:new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable1'), new program.IntegerLiteral(1)))]));
         program.Statement new_s = new program.Statement(v);
 
@@ -629,7 +629,7 @@ class Controller {
       if (variableList == null) {variableList = [];}
       if (variableList.length > 0) {
         program.Else v = new program.Else(new program.StatementList([new program.Statement
-            (new program.Assign(new program.Variable(variableList[0].name, variableList[0].dataType), new program.IntegerLiteral(1)))]));
+            (new program.Assign(new program.ReferVariable(variableList[0].name, variableList[0].dataType), new program.IntegerLiteral(1)))]));
         //no:new program.StatementList([new program.Statement(new program.SetVariable(new program.Variable('variable1'), new program.IntegerLiteral(1)))]));
         program.Statement new_s = new program.Statement(v);
 
@@ -656,7 +656,7 @@ class Controller {
       if (variableList == null) {variableList = [];}
       if (variableList.length > 0) {
         program.While v = new program.While(new program.Equals(new program.IntegerLiteral(1), new program.IntegerLiteral(1)), new program.StatementList([new program.Statement(
-            new program.Assign(new program.Variable(variableList[0].name, variableList[0].dataType), new program.IntegerLiteral(1)))]));
+            new program.Assign(new program.ReferVariable(variableList[0].name, variableList[0].dataType), new program.IntegerLiteral(1)))]));
         program.Statement new_s = new program.Statement(v);
 
         if (selectedStatement() == null) {
