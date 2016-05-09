@@ -214,7 +214,6 @@ class InPortBufferBox extends PolymerElement {
   void onClicked(var e) {
     globalController.setSelectedElem(e, this);
     e.stopPropagation();
-
   }
 
   void select() {

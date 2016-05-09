@@ -1,7 +1,6 @@
 import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:rtm_block_coding/application.dart' as program;
-import 'package:paper_elements/paper_fab.dart';
 import '../controller/controller.dart';
 
 import 'blocks/add_inport_box.dart';

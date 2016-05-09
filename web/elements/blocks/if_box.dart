@@ -13,6 +13,10 @@ class IfBox extends ConditionsBox {
     return new html.Element.tag('if-box') as IfBox
       ..model = m
       ..attachCondition(BlockEditor.parseBlock(m.condition));
+
+/*    for (program.Statement s in m.statements) {
+      BlockEditor.parseStatement(IfBox, s);
+    }*/
   }
 
   set model(program.If m) {

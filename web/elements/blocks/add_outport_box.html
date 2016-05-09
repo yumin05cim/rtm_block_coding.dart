@@ -1,15 +1,18 @@
-
 <link rel="import" href="packages/polymer/polymer.html" />
 <link rel="import" href="packages/core_elements/core_style.html" />
 <link rel="import" href="packages/paper_elements/paper_input.html" />
+<link rel="import" href="packages/paper_elements/paper_dropdown.html" />
+<link rel="import" href="packages/paper_elements/paper_dropdown_menu.html" />
+<link rel="import" href="packages/paper_elements/paper_item.html" />
+<link rel="import" href="packages/core_elements/core_menu.html" />
 
 <polymer-element name="add-outport-box" attributes="command">
-    <template >
+    <template>
+
         <style>
             :host {
             }
-
-            #title-area {
+            #container {
                 margin-top: 2px;
                 margin-left: 7px;
                 margin-right: 7px;
@@ -26,20 +29,17 @@
 
                 height: 50px;
             }
-
             :host > div > paper-input#name-input {
                 width: 50px;
                 min-width: 50px;
             }
-
             :host > div > paper-dropdown-menu {
                 min-width: 200px;
             }
-
         </style>
 
         <!--Japanese ver.-->
-        <div id="title-area" horizontal layout center  on-tap="{{onClicked}}">
+        <div id="container" horizontal layout center on-tap="{{onClicked}}">
             <div end>出力ポート (名称: </div>
             <paper-input id="name-input" one value="{{port_name}}"></paper-input>
             <div end>, データタイプ: </div>
@@ -50,22 +50,6 @@
             </paper-dropdown-menu>
             <div end>)</div>
         </div>
-
-        <!--English ver.-->
-<!--
-        <div id="title-area" horizontal layout center>
-            <div end>Add OutPort (name=</div>
-            <paper-input id="name-input" one value="{{port_name}}"></paper-input>
-            <div end>, type=</div>
-            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
-                <paper-dropdown id="dropdown" class="dropdown">
-                    <core-menu class="menu" id="menu-content">
-                    </core-menu>
-                </paper-dropdown>
-            </paper-dropdown-menu>
-            <div end>)</div>
-        </div>
--->
 
     </template>
     <script type="application/dart" src="add_outport_box.dart"></script>
