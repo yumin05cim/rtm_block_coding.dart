@@ -6,10 +6,15 @@ import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
 
 
-@CustomTag('outport-data-box')
-class OutPortDataBox extends PolymerElement {
+@CustomTag('outport-buffer-box')
+class OutPortBufferBox extends PolymerElement {
 
   program.OutPortBuffer _model;
+
+  static OutPortBufferBox createBox(program.OutPortBuffer m) {
+    return new html.Element.tag('outport-buffer-box') as OutPortBufferBox
+    ..model = m;
+  }
 
   PolymerElement parentElement;
 
@@ -27,7 +32,7 @@ class OutPortDataBox extends PolymerElement {
   //@published String data_member = "data";
   @observable String indexInputValue = '0';
 
-  OutPortDataBox.created() : super.created();
+  OutPortBufferBox.created() : super.created();
 
 
   void updateOutPortList() {

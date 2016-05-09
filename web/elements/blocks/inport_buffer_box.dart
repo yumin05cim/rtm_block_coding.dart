@@ -6,10 +6,15 @@ import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
 
 
-@CustomTag('inport-data-box')
-class InPortDataBox extends PolymerElement {
+@CustomTag('inport-buffer-box')
+class InPortBufferBox extends PolymerElement {
 
   program.AccessInPort _model;
+
+  static InPortBufferBox createBox(program.AccessInPort m) {
+    return new html.Element.tag('inport-buffer-box') as InPortBufferBox
+      ..model = m;
+  }
 
   PolymerElement parentElement;
 
@@ -27,7 +32,7 @@ class InPortDataBox extends PolymerElement {
   @published String access = "";
   @observable String indexInputValue = '0';
 
-  InPortDataBox.created() : super.created();
+  InPortBufferBox.created() : super.created();
 
 
   void updateInPortList() {

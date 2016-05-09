@@ -1,13 +1,12 @@
 <link rel="import" href="packages/polymer/polymer.html" />
 <link rel="import" href="packages/core_elements/core_style.html" />
 <link rel="import" href="packages/paper_elements/paper_input.html" />
-
 <link rel="import" href="packages/paper_elements/paper_dropdown.html" />
 <link rel="import" href="packages/paper_elements/paper_dropdown_menu.html" />
 <link rel="import" href="packages/paper_elements/paper_item.html" />
 <link rel="import" href="packages/core_elements/core_menu.html" />
 
-<polymer-element name="inport-data-box" attributes="value">
+<polymer-element name="inport-buffer-box" attributes="value">
 
     <template>
         <style type='text/css'>
@@ -43,9 +42,6 @@
             :host #inport-decorator {
                 font-size: 12px;
             }
-            :host #array-access-division {
-                display: none;
-            }
             :host paper-input#index-input {
                 min-width: 10px;
                 width: 10px;
@@ -54,7 +50,7 @@
 
         <!--Japanese ver.-->
         <div id="target" vertical layout center on-tap="{{onClicked}}">
-            <div self-start layout id="inport-decorator">入力ポート</div>
+            <div self-start layout id="inport-decorator">入力ポート </div>
             <div horizontal layout center>
                 <paper-dropdown-menu id="name-dropdown-menu" label="Your favorite pastry">
                     <paper-dropdown id="name-dropdown" class="dropdown">
@@ -72,26 +68,6 @@
             </div>
         </div>
 
-        <!--English ver.-->
-<!--
-
-        <div id="target" horizontal layout center>
-            <div end>InPort (</div>
-            <paper-dropdown-menu id="name-dropdown-menu" label="Your favorite pastry">
-                <paper-dropdown id="name-dropdown" class="dropdown">
-                    <core-menu class="menu" id="name-menu-content"></core-menu>
-                </paper-dropdown>
-            </paper-dropdown-menu>
-            <div end></div>
-            <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
-                <paper-dropdown id="dropdown" class="dropdown">
-                    <core-menu class="menu" id="menu-content"></core-menu>
-                </paper-dropdown>
-            </paper-dropdown-menu>
-            <div end>)</div>
-        </div>
--->
-
     </template>
-    <script type="application/dart" src="inport_data_box.dart"></script>
+    <script type="application/dart" src="inport_buffer_box.dart"></script>
 </polymer-element>

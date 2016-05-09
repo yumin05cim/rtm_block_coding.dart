@@ -10,7 +10,9 @@ import 'blocks/declare_variable_box.dart';
 import 'blocks/assign_variable_box.dart';
 import 'blocks/refer_variable_box.dart';
 import 'blocks/read_inport_box.dart';
-import 'blocks/outport_data_box.dart';
+import 'blocks/inport_buffer_box.dart';
+import 'blocks/outport_buffer_box.dart';
+import 'blocks/write_outport_box.dart';
 import 'blocks/integer_literal_box.dart';
 import 'blocks/real_literal_box.dart';
 import 'blocks/addition_box.dart';
@@ -130,13 +132,11 @@ class BlockEditor extends PolymerElement {
    //     ..attachTarget(parseBlock(block.right));
    // }
     else if (block is program.OutPortBuffer) {
-      return OutPortBufferBox.createBox()
-        ..model = block;
-//        ..attachTarget(parseBlock(block.right));
+      return OutPortBufferBox.createBox(block);
+//      ..attachTarget(parseBlock(block.right));
     }
     else if (block is program.AccessInPort) {
-      return new html.Element.tag('inport-data-box')
-        ..model = block;
+      return InPortBufferBox.createBox(block);
     } else if (block is program.ReadInPort) {
       var v = new html.Element.tag('read-inport-box')
         ..model = block;

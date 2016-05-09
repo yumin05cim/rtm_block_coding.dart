@@ -2,10 +2,10 @@
 <link rel="import" href="packages/core_elements/core_style.html" />
 <link rel="import" href="packages/paper_elements/paper_input.html" />
 
-<polymer-element name="outport-data-box" attributes="command">
+<polymer-element name="outport-buffer-box" attributes="value">
 
     <template>
-        <style>
+        <style type='text/css'>
             :host {
             }
             #container {
@@ -55,11 +55,6 @@
                         <core-menu class="menu" id="menu-content"></core-menu>
                     </paper-dropdown>
                 </paper-dropdown-menu>
-                <!--
-                <paper-input id="name-input" flex value="{{port_name}}"></paper-input>
-                <div end>) Data Variable (member = </div>
-                <paper-input id="member-input" flex value="{{data_member}}"></paper-input> -->
-
                 <div id="index-left">[</div>
                 <paper-input id="index-input" value="{{indexInputValue}}"></paper-input>
                 <div id="index-right">]</div>
@@ -70,37 +65,6 @@
             </div>
         </div>
 
-        <!--Japanese ver.-->
-
-<!--
-        <div id="container">
-            <div id="title-area" horizontal layout center wrap>
-                <div end>Set OutPort (</div>
-
-                <paper-dropdown-menu id="name-dropdown-menu" label="Your favorite pastry">
-                    <paper-dropdown id="name-dropdown" class="dropdown">
-                        <core-menu class="menu" id="name-menu-content"></core-menu>
-                    </paper-dropdown>
-                </paper-dropdown-menu>
-                <div end></div>
-                <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
-                    <paper-dropdown id="dropdown" class="dropdown">
-                        <core-menu class="menu" id="menu-content"></core-menu>
-                    </paper-dropdown>
-                </paper-dropdown-menu>
-                &lt;!&ndash;
-                <paper-input id="name-input" flex value="{{port_name}}"></paper-input>
-                <div end>) Data Variable (member = </div>
-                <paper-input id="member-input" flex value="{{data_member}}"></paper-input> &ndash;&gt;
-                <div end>)</div>
-            </div>
-            <div id="body-area">
-                <div id="target">
-                </div>
-            </div>
-        </div>
--->
-
     </template>
-    <script type="application/dart" src="outport_data_box.dart"></script>
+    <script type="application/dart" src="outport_buffer_box.dart"></script>
 </polymer-element>
