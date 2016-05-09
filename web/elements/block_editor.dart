@@ -108,7 +108,7 @@ class BlockEditor extends PolymerElement {
     }
 
     //  variables_menu
-      else if (block is program.DeclareVariable) {
+    else if (block is program.DeclareVariable) {
       return DeclareVariableBox.createBox(block);
     } else if (block is program.Assign) {
       return AssignVariableBox.createBox(block);
@@ -121,23 +121,18 @@ class BlockEditor extends PolymerElement {
         ..attachTarget(parseBlock(block.right));
     }*/
 
-  //  port_data_menu
-   // else if (block is program.AccessOutPort) {
-   //   return new html.Element.tag('outport-data-box')
-   //     ..model = block
-   //     ..attachTarget(parseBlock(block.right));
-   // }
-      else if (block is program.OutPortBuffer) {
-      return OutPortBufferBox.createBox(block);
-//      ..attachTarget(parseBlock(block.right));
-    } else if (block is program.AccessInPort) {
-      return InPortBufferBox.createBox(block);
-    } else if (block is program.ReadInPort) {
+    //  port_data_menu
+     else if (block is program.ReadInPort) {
       var v = ReadInPortBox.createBox(block);
       for (program.Statement s in block.statements) {
         parseStatement(v, s);
       }
       return v;
+    } else if (block is program.AccessInPort) {
+      return InPortBufferBox.createBox(block);
+    } else if (block is program.OutPortBuffer) {
+      return OutPortBufferBox.createBox(block);
+//      ..attachTarget(parseBlock(block.right));
     } else if (block is program.WriteOutPort) {
       return WriteOutPortBox.createBox(block);
     }
@@ -159,24 +154,19 @@ class BlockEditor extends PolymerElement {
 
     //  if_switch_loop_menu
       else if (block is program.If) {
-      var v = IfBox.createBox()
-        ..model = block;
-      v.attachCondition(parseBlock(block.condition));
+      var v = IfBox.createBox(block);
       for (program.Statement s_ in block.statements) {
         parseStatement(v.consequent.children, s_).parentElement = v;
       }
       return v;
     } else if (block is program.Else) {
-      var v = ElseBox.createBox()
-        ..model = block;
+      var v = ElseBox.createBox(block);
       for (program.Statement s_ in block.statements) {
         parseStatement(v.alternative.children, s_).parentElement = v;
       }
       return v;
     } else if (block is program.While) {
-      var v = WhileBox.createBox()
-        ..model = block;
-      v.attachCondition(parseBlock(block.condition));
+      var v = WhileBox.createBox(block);
       for (program.Statement s_ in block.statements) {
         parseStatement(v.loop.children, s_).parentElement = v;
       }

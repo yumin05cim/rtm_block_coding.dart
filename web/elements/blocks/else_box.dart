@@ -6,11 +6,12 @@ import 'conditions_box.dart';
 @CustomTag('else-box')
 class ElseBox extends ConditionsBox {
 
-  static ElseBox createBox() {
-    return new html.Element.tag('else-box');
-  }
-
   program.Else _model;
+
+  static ElseBox createBox(program.Else m) {
+    return new html.Element.tag('else-box') as ElseBox
+      ..model = m;
+  }
 
   set model(program.Else m) {
     _model = m;

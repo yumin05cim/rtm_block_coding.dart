@@ -1,16 +1,19 @@
 import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
+import '../block_editor.dart';
 import 'conditions_box.dart';
 
 @CustomTag('if-box')
 class IfBox extends ConditionsBox {
 
-  static  IfBox createBox() {
-    return new html.Element.tag('if-box');
-  }
-
   program.If _model;
+
+  static IfBox createBox(program.If m) {
+    return new html.Element.tag('if-box') as IfBox
+      ..model = m
+      ..attachCondition(BlockEditor.parseBlock(m.condition));
+  }
 
   set model(program.If m) {
     _model = m;
