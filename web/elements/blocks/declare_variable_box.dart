@@ -11,7 +11,7 @@ class DeclareVariableBox extends PolymerElement {
   program.DeclareVariable _model;
 
   static DeclareVariableBox createBox(program.DeclareVariable m) {
-    return new html.Element.tag('assign-variable-box') as DeclareVariableBox
+    return new html.Element.tag('declare-variable-box') as DeclareVariableBox
       ..model = m;
   }
 
@@ -135,12 +135,12 @@ class DeclareVariableBox extends PolymerElement {
   }
 
   void select() {
-    $['title-area'].style.border = 'ridge';
-    $['title-area'].style.borderColor = '#FF9F1C';
+    $['container'].style.border = 'ridge';
+    $['container'].style.borderColor = '#FF9F1C';
   }
 
   void deselect() {
-    $['title-area'].style.border = '1px solid #B6B6B6';
+    $['container'].style.border = '1px solid #B6B6B6';
   }
 
   bool is_container() {
