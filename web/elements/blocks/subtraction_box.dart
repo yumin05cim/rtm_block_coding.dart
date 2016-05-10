@@ -6,10 +6,10 @@ import 'calculation_box.dart';
 import '../block_editor.dart';
 
 @CustomTag('subtraction-box')
-class Subtraction extends CalculationBox {
+class SubtractionBox extends CalculationBox {
 
-  static Subtraction createBox(program.Subtract subtractBlock) {
-    return (new html.Element.tag('subtraction-box') as Subtraction)
+  static SubtractionBox createBox(program.Subtract subtractBlock) {
+    return (new html.Element.tag('subtraction-box') as SubtractionBox)
         ..model = subtractBlock
         ..attachLeft(BlockEditor.parseBlock(subtractBlock.a))
         ..attachRight(BlockEditor.parseBlock(subtractBlock.b));
@@ -25,6 +25,6 @@ class Subtraction extends CalculationBox {
 
   get model => _model;
 
-  Subtraction.created() : super.created();
+  SubtractionBox.created() : super.created();
 
 }

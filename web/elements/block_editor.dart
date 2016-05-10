@@ -142,13 +142,13 @@ class BlockEditor extends PolymerElement {
     } else if (block is program.RealLiteral) {
       return RealLiteralBox.createBox(block);
     } else if (block is program.Add) {
-      return Addition.createBox(block);
+      return AdditionBox.createBox(block);
     } else if (block is program.Subtract) {
-      return Subtraction.createBox(block);
+      return SubtractionBox.createBox(block);
     } else if (block is program.Multiply) {
-      return Multiplication.createBox(block);
+      return MultiplicationBox.createBox(block);
     } else if (block is program.Divide) {
-      return Division.createBox(block);
+      return DivisionBox.createBox(block);
     }
 
     //  if_switch_loop_menu

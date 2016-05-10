@@ -250,28 +250,28 @@ class Controller {
           } else {
             a.right = v;
           }
-        } else if (selectedElement.parentElement is Addition) {
+        } else if (selectedElement.parentElement is AdditionBox) {
           program.Assign a = selectedElement.parentElement.model;
           if (a.left == selectedElement.model) {
             a.left = v;
           } else {
             a.right = v;
           }
-        } else if (selectedElement.parentElement is Subtraction) {
+        } else if (selectedElement.parentElement is SubtractionBox) {
           program.Assign a = selectedElement.parentElement.model;
           if (a.left == selectedElement.model) {
             a.left = v;
           } else {
             a.right = v;
           }
-        } else if (selectedElement.parentElement is Multiplication) {
+        } else if (selectedElement.parentElement is MultiplicationBox) {
           program.Assign a = selectedElement.parentElement.model;
           if (a.left == selectedElement.model) {
             a.left = v;
           } else {
             a.right = v;
           }
-        } else if (selectedElement.parentElement is Division) {
+        } else if (selectedElement.parentElement is DivisionBox) {
           program.Assign a = selectedElement.parentElement.model;
           if (a.left == selectedElement.model) {
             a.left = v;
@@ -362,25 +362,25 @@ class Controller {
           } else {
             elem.parentElement.model.left = v;
           }
-        } else if (elem.parentElement is Addition) {
+        } else if (elem.parentElement is AdditionBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
             elem.parentElement.model.b = v;
           }
-        } else if (elem.parentElement is Subtraction) {
+        } else if (elem.parentElement is SubtractionBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
             elem.parentElement.model.b = v;
           }
-        } else if (elem.parentElement is Multiplication) {
+        } else if (elem.parentElement is MultiplicationBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
             elem.parentElement.model.b = v;
           }
-        } else if (elem.parentElement is Division) {
+        } else if (elem.parentElement is DivisionBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
@@ -462,25 +462,25 @@ class Controller {
         if (elem.parentElement is AssignVariableBox) {
 //          if (elem.parentElement is SetVariable) {
            elem.parentElement.model.right = v;
-        } else if (elem.parentElement is Addition) {
+        } else if (elem.parentElement is AdditionBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
             elem.parentElement.model.b = v;
           }
-        } else if (elem.parentElement is Subtraction) {
+        } else if (elem.parentElement is SubtractionBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
             elem.parentElement.model.b = v;
           }
-        } else if (elem.parentElement is Multiplication) {
+        } else if (elem.parentElement is MultiplicationBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
             elem.parentElement.model.b = v;
           }
-        } else if (elem.parentElement is Division) {
+        } else if (elem.parentElement is DivisionBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
@@ -501,25 +501,25 @@ class Controller {
         PolymerElement elem = globalController.selectedElement;
         if (elem.parentElement is AssignVariableBox) {
           elem.parentElement.model.right = v;
-        } else if (elem.parentElement is Addition) {
+        } else if (elem.parentElement is AdditionBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
             elem.parentElement.model.b = v;
           }
-        } else if (elem.parentElement is Subtraction) {
+        } else if (elem.parentElement is SubtractionBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
             elem.parentElement.model.b = v;
           }
-        } else if (elem.parentElement is Multiplication) {
+        } else if (elem.parentElement is MultiplicationBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {
             elem.parentElement.model.b = v;
           }
-        } else if (elem.parentElement is Division) {
+        } else if (elem.parentElement is DivisionBox) {
           if (elem.parentElement.model.a == elem.model) {
             elem.parentElement.model.a = v;
           } else {

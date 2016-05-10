@@ -6,10 +6,10 @@ import 'calculation_box.dart';
 import '../block_editor.dart';
 
 @CustomTag('division-box')
-class Division extends CalculationBox {
+class DivisionBox extends CalculationBox {
 
-  static Division createBox(program.Divide divideBlock) {
-    return (new html.Element.tag('division-box') as Division)
+  static DivisionBox createBox(program.Divide divideBlock) {
+    return (new html.Element.tag('division-box') as DivisionBox)
       ..model = divideBlock
       ..attachLeft(BlockEditor.parseBlock(divideBlock.a))
       ..attachRight(BlockEditor.parseBlock(divideBlock.b));
@@ -25,7 +25,7 @@ class Division extends CalculationBox {
 
   get model => _model;
 
-  Division.created() : super.created();
+  DivisionBox.created() : super.created();
 
 
 }

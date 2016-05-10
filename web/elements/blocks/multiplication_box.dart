@@ -6,10 +6,10 @@ import 'calculation_box.dart';
 import '../block_editor.dart';
 
 @CustomTag('multiplication-box')
-class Multiplication extends CalculationBox {
+class MultiplicationBox extends CalculationBox {
 
-  static Multiplication createBox(program.Multiply multiplyBlock) {
-    return (new html.Element.tag('multiplication-box') as Multiplication)
+  static MultiplicationBox createBox(program.Multiply multiplyBlock) {
+    return (new html.Element.tag('multiplication-box') as MultiplicationBox)
       ..model = multiplyBlock
       ..attachLeft(BlockEditor.parseBlock(multiplyBlock.a))
       ..attachRight(BlockEditor.parseBlock(multiplyBlock.b));
@@ -25,6 +25,6 @@ class Multiplication extends CalculationBox {
 
   get model => _model;
 
-  Multiplication.created() : super.created();
+  MultiplicationBox.created() : super.created();
 
 }
