@@ -4,10 +4,10 @@ import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
-
+import 'port_box.dart';
 
 @CustomTag('outport-buffer-box')
-class OutPortBufferBox extends PolymerElement {
+class OutPortBufferBox extends PortBox {
 
   program.OutPortBuffer _model;
 
@@ -15,8 +15,6 @@ class OutPortBufferBox extends PolymerElement {
     return new html.Element.tag('outport-buffer-box') as OutPortBufferBox
     ..model = m;
   }
-
-  PolymerElement parentElement;
 
   set model(program.OutPortBuffer m) {
     _model = m;
@@ -218,21 +216,4 @@ class OutPortBufferBox extends PolymerElement {
     $['target'].children.add(element);
   }
 
-  void onClicked(var e) {
-    globalController.setSelectedElem(e, this);
-    e.stopPropagation();
-  }
-
-  void select() {
-    $['container'].style.border = 'ridge';
-    ($['container'] as html.HtmlElement).style.borderColor = '#FF9F1C';
-  }
-
-  void deselect() {
-    $['container'].style.border = '1px solid #B6B6B6';
-  }
-
-  bool is_container() {
-    return false;
-  }
 }
