@@ -4,9 +4,10 @@ import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
+import 'variable_box.dart';
 
 @CustomTag('refer-variable-box')
-class ReferVariableBox extends PolymerElement {
+class ReferVariableBox extends VariableBox {
 
   program.ReferVariable _model;
 
@@ -14,8 +15,6 @@ class ReferVariableBox extends PolymerElement {
     return new html.Element.tag('refer-variable-box') as ReferVariableBox
       ..model = m;
   }
-
-  PolymerElement parentElement;
 
   set model(program.ReferVariable m) {
     _model = m;
@@ -81,21 +80,4 @@ class ReferVariableBox extends PolymerElement {
     });
   }
 
-  void onClicked(var e) {
-    globalController.setSelectedElem(e, this);
-    e.stopPropagation();
-  }
-
-  void select() {
-    $['container'].style.border = 'ridge';
-    ($['container'] as html.HtmlElement).style.borderColor = '#FF9F1C';
-  }
-
-  void deselect() {
-    $['container'].style.border = '1px solid #B6B6B6';
-  }
-
-  bool is_container() {
-    return false;
-  }
 }

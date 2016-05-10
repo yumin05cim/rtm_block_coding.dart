@@ -4,9 +4,10 @@ import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_item.dart';
 import '../block_editor.dart';
 import '../../controller/controller.dart';
+import 'variable_box.dart';
 
 @CustomTag('assign-variable-box')
-class AssignVariableBox extends PolymerElement {
+class AssignVariableBox extends VariableBox {
 
   program.Assign _model;
 
@@ -16,8 +17,6 @@ class AssignVariableBox extends PolymerElement {
       ..attachLeftTarget(BlockEditor.parseBlock(m.left))
       ..attachRightTarget(BlockEditor.parseBlock(m.right));
   }
-
-  PolymerElement parentElement;
 
   set model(program.Assign m) {
     _model = m;
@@ -180,21 +179,4 @@ class AssignVariableBox extends PolymerElement {
     element.parentElement = this;
   }
 
-  void onClicked(var e) {
-    globalController.setSelectedElem(e, this);
-    e.stopPropagation();
-  }
-
-  void select() {
-    $['container'].style.border = 'ridge';
-    ($['container'] as html.HtmlElement).style.borderColor = '#FF9F1C';
-  }
-
-  void deselect() {
-    $['container'].style.border = '1px solid #B6B6B6';
-  }
-
-  bool is_container() {
-    return false;
-  }
 }

@@ -4,9 +4,10 @@ import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 import '../../controller/controller.dart';
+import 'variable_box.dart';
 
 @CustomTag('declare-variable-box')
-class DeclareVariableBox extends PolymerElement {
+class DeclareVariableBox extends VariableBox {
 
   program.DeclareVariable _model;
 
@@ -14,8 +15,6 @@ class DeclareVariableBox extends PolymerElement {
     return new html.Element.tag('declare-variable-box') as DeclareVariableBox
       ..model = m;
   }
-
-  PolymerElement parentElement;
 
   set model(program.DeclareVariable m) {
     _model = m;
@@ -127,24 +126,6 @@ class DeclareVariableBox extends PolymerElement {
         }
     );
 
-  }
-
-  void onClicked(var e) {
-    globalController.setSelectedElem(e, this);
-    e.stopPropagation();
-  }
-
-  void select() {
-    $['container'].style.border = 'ridge';
-    $['container'].style.borderColor = '#FF9F1C';
-  }
-
-  void deselect() {
-    $['container'].style.border = '1px solid #B6B6B6';
-  }
-
-  bool is_container() {
-    return false;
   }
 
 }
