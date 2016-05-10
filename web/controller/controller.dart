@@ -128,7 +128,6 @@ class Controller {
     return n;
   }
 
-
   String getVariableName() {
     int counter = 0;
     String n = 'variable$counter';
@@ -164,35 +163,28 @@ class Controller {
       var n = getInPortName();
       program.AddInPort v = new program.AddInPort(n, new program.DataType.TimedLong());
       program.Statement new_s = new program.Statement(v);
-
       if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
     }
-
     if(command == 'add_outport') {
       var n = getOutPortName();
       program.AddOutPort v = new program.AddOutPort(n, new program.DataType.TimedLong());
       program.Statement new_s = new program.Statement(v);
-
       if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
     }
 
-
 //  variables_menu
-
-    if (command == 'add_variable') {
+    if (command == 'declare_variable') {
       var n = getVariableName();
-
       program.DeclareVariable v = new program.DeclareVariable(n, new program.DataType.fromTypeName("long"));
       program.Statement new_s = new program.Statement(v);
       if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
     }
-
     /*
     if (command == 'set_variable') {
       program.SetVariable v = new program.SetVariable(new program.Variable('name'), new program.IntegerLiteral(1));
@@ -238,12 +230,11 @@ class Controller {
             selectedElement.parentElement.model.yes.add(new_s);
           }
         }
-
       }
     }
     */
 
-    if (command == 'get_variable') {
+    if (command == 'refer_variable') {
       var variableList = onInitializeApp.find(program.DeclareVariable);
       if (variableList == null) {variableList = [];}
       if (variableList.length > 0) {
@@ -291,7 +282,6 @@ class Controller {
       }
     }
 
-
     if (command == 'assign_variable') {
       var outPortList = onInitializeApp.find(program.AddOutPort);
       if (outPortList == null) {outPortList = [];}
@@ -312,7 +302,7 @@ class Controller {
         if (selectedStatement() == null) {
           app.statements.add(new_s);
         }
-        else if (selectedStatement() is ReadInPort) {
+        else if (selectedStatement() is ReadInPortBox) {
           selectedStatement().model.statements.add(new_s);
         } else if (selectedElement.parentElement is IfBox) {
           selectedElement.parentElement.model.statements.add(new_s);
@@ -329,7 +319,6 @@ class Controller {
       var inPortList = onInitializeApp.find(program.AddInPort);
       if (inPortList.length == 0) return;
 
-
       if (selectedStatement() == null) {
           program.ReadInPort v = new program.ReadInPort(inPortList[0].name, inPortList[0].dataType);
           program.Statement new_s = new program.Statement(v);
@@ -338,7 +327,6 @@ class Controller {
     }
 
     if(command == 'inport_data') {
-
       List<program.AddInPort> inPortList = onInitializeApp.find(program.AddInPort);
       if (inPortList.length == 0) return;
 
@@ -359,9 +347,8 @@ class Controller {
 /*      if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
-      else *//*if (selectedStatement() is SetVariable) {
-        selectedStatement().model.right = v;
-      } else */if(selectedStatement() is AssignVariableBox) {
+      else */
+      if(selectedStatement() is AssignVariableBox) {
         selectedStatement().model.right = v;
       }
       else if (selectedStatement() is OutPortBufferBox) {
@@ -430,7 +417,7 @@ class Controller {
       else if (selectedStatement() is AssignVariableBox) {
         selectedStatement().model.left = v;
       }
-      else if (selectedStatement() is ReadInPort) {
+      else if (selectedStatement() is ReadInPortBox) {
         selectedStatement().model.statements.add(new_s);
       }
       else {
@@ -455,7 +442,7 @@ class Controller {
       if (selectedStatement() == null) {
         app.statements.add(new_s);
       }
-      else if (selectedStatement() is ReadInPort) {
+      else if (selectedStatement() is ReadInPortBox) {
 
         selectedStatement().model.statements.add(new_s);
       }
@@ -618,7 +605,7 @@ class Controller {
 
         if (selectedStatement() == null) {
           app.statements.add(new_s);
-        } else if (selectedStatement() is ReadInPort) {
+        } else if (selectedStatement() is ReadInPortBox) {
           selectedStatement().model.statements.add(new_s);
         } else {
 

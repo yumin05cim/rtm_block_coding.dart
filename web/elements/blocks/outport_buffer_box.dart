@@ -199,7 +199,6 @@ class OutPortBufferBox extends PolymerElement {
   }
 
   void onInputIndex(var e) {
-
     print('index:$indexInputValue');
     if (_model.accessSequence.endsWith(']')) {
       _model.accessSequence =
@@ -207,7 +206,6 @@ class OutPortBufferBox extends PolymerElement {
               0, _model.accessSequence.indexOf('['));
     }
     String accessTypeName = program.DataType.access_alternative_type(_model.dataType.typename, _model.accessSequence);
-
     if(program.DataType.isSeqType(accessTypeName)) {
       if (indexInputValue.trim().length > 0) {
         _model.accessSequence = _model.accessSequence + '[' + indexInputValue + ']';
@@ -215,14 +213,14 @@ class OutPortBufferBox extends PolymerElement {
     }
   }
 
-  void onClicked(var e) {
-    globalController.setSelectedElem(e, this);
-    e.stopPropagation();
-  }
-
   void attachTarget(var element) {
     $['target'].children.clear();
     $['target'].children.add(element);
+  }
+
+  void onClicked(var e) {
+    globalController.setSelectedElem(e, this);
+    e.stopPropagation();
   }
 
   void select() {

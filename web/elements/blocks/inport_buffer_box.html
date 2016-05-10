@@ -12,7 +12,7 @@
         <style type='text/css'>
             :host {
             }
-            #target {
+            #container {
                 margin-top: 2px;
                 margin-left: 7px;
                 margin-right: 7px;
@@ -26,6 +26,8 @@
                 background-color: #FFE0B2;
                 border: 1px solid #B6B6B6;
                 border-radius: 0.3em;
+
+                height: 45px;
             }
             paper-input {
                 margin-left : 10px;
@@ -49,24 +51,27 @@
         </style>
 
         <!--Japanese ver.-->
-        <div id="target" vertical layout center on-tap="{{onClicked}}">
-            <div self-start layout id="inport-decorator">入力ポート </div>
-            <div horizontal layout center>
-                <paper-dropdown-menu id="name-dropdown-menu" label="Your favorite pastry">
-                    <paper-dropdown id="name-dropdown" class="dropdown">
-                        <core-menu class="menu" id="name-menu-content"></core-menu>
-                    </paper-dropdown>
-                </paper-dropdown-menu>
-                <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
-                    <paper-dropdown id="dropdown" class="dropdown">
-                        <core-menu class="menu" id="menu-content"></core-menu>
-                    </paper-dropdown>
-                </paper-dropdown-menu>
-                <div id="index-left">[</div>
-                <paper-input id="index-input" value="{{indexInputValue}}"></paper-input>
-                <div id="index-right">]</div>
+        <div id="container">
+            <div id="title-area" vertical layout center on-tap="{{onClicked}}">
+                <div self-start layout id="inport-decorator">入力ポート </div>
+                <div horizontal layout center>
+                    <paper-dropdown-menu id="name-dropdown-menu" label="Your favorite pastry">
+                        <paper-dropdown id="name-dropdown" class="dropdown">
+                            <core-menu class="menu" id="name-menu-content"></core-menu>
+                        </paper-dropdown>
+                    </paper-dropdown-menu>
+                    <paper-dropdown-menu id="dropdown-menu" label="Your favorite pastry">
+                        <paper-dropdown id="dropdown" class="dropdown">
+                            <core-menu class="menu" id="menu-content"></core-menu>
+                        </paper-dropdown>
+                    </paper-dropdown-menu>
+                    <div id="index-left">[</div>
+                    <paper-input id="index-input" value="{{indexInputValue}}"></paper-input>
+                    <div id="index-right">]</div>
+                </div>
             </div>
         </div>
+
 
     </template>
     <script type="application/dart" src="inport_buffer_box.dart"></script>

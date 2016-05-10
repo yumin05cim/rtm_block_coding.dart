@@ -66,7 +66,6 @@ class AccessInPort extends Block {
   }
 
   AccessInPort.XML(xml.XmlElement node) {
-
     name = node.getAttribute('name');
     accessSequence = node.getAttribute('accessSequence');
     child(node, (xml.XmlElement e) {
@@ -75,6 +74,40 @@ class AccessInPort extends Block {
   }
 }
 
+class InPortBuffer extends Block {
+  String name;
+  DataType dataType;
+  String accessSequence;
+
+  InPortBuffer(this.name, this.dataType, this.accessSequence) {
+  }
+
+  String toPython(int indentLevel) {
+    if (accessSequence.trim().length == 0) {
+      return 'self._d_${name}';
+    }
+    return 'self._d_${name}.${accessSequence}';
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    super.element(builder,
+        attributes: {
+          'name' : name,
+          'accessSequence' : accessSequence,
+        },
+        nest: () {
+          dataType.buildXML(builder);
+        });
+  }
+
+  InPortBuffer.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    accessSequence = node.getAttribute('accessSequence');
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
+    });
+  }
+}
 
   class ReadInPort extends Block {
   String name;
@@ -93,7 +126,6 @@ class AccessInPort extends Block {
       sb += s.toPython(indentLevel + 1) + '\n';
     }
     return sb;
-
   }
 
   @override
@@ -119,7 +151,6 @@ class AccessInPort extends Block {
     typedChild(node, DataType, (xml.XmlElement e) {
         dataType = new DataType.XML(e);
     });
-
     typedChild(node, StatementList, (xml.XmlElement e) {
       statements.loadFromXML(e);
     });

@@ -9,16 +9,16 @@ import '../../controller/controller.dart';
 @CustomTag('inport-buffer-box')
 class InPortBufferBox extends PolymerElement {
 
-  program.AccessInPort _model;
+  program.InPortBuffer _model;
 
-  static InPortBufferBox createBox(program.AccessInPort m) {
+  static InPortBufferBox createBox(program.InPortBuffer m) {
     return new html.Element.tag('inport-buffer-box') as InPortBufferBox
       ..model = m;
   }
 
   PolymerElement parentElement;
 
-  set model(program.AccessInPort m) {
+  set model(program.InPortBuffer m) {
     _model = m;
     name = m.name;
     access = m.accessSequence;
@@ -217,12 +217,12 @@ class InPortBufferBox extends PolymerElement {
   }
 
   void select() {
-    $['target'].style.border = 'ridge';
-    ($['target'] as html.HtmlElement).style.borderColor = '#FF9F1C';
+    $['container'].style.border = 'ridge';
+    ($['container'] as html.HtmlElement).style.borderColor = '#FF9F1C';
   }
 
   void deselect() {
-    $['target'].style.border = '1px solid #B6B6B6';
+    $['container'].style.border = '1px solid #B6B6B6';
   }
 
   bool is_container() {
