@@ -2,6 +2,7 @@ import 'dart:html' as html;
 import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import '../block_editor.dart';
+import '../block_parser.dart';
 import '../../controller/controller.dart';
 import 'conditions_box.dart';
 
@@ -16,7 +17,7 @@ class LogicalNotBox extends ConditionsBox {
   static LogicalNotBox createBox(program.Not m) {
     return new html.Element.tag('logical-not-box') as LogicalNotBox
       ..model = m
-      ..attachCondition(BlockEditor.parseBlock(m.condition));
+      ..attachCondition(BlockParser.parseBlock(m.condition));
   }
 
   set model(program.Not m) {

@@ -341,7 +341,7 @@ class Controller {
       //  defaultInPort = inports[0];
       // }
 
-      program.AccessInPort v = new program.AccessInPort(inPortList[0].name, inPortList[0].dataType, "");
+      program.InPortBuffer v = new program.InPortBuffer(inPortList[0].name, inPortList[0].dataType, "");
       program.Statement new_s = new program.Statement(v);
 
 /*      if (selectedStatement() == null) {

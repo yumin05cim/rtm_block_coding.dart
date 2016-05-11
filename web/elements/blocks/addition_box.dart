@@ -4,6 +4,7 @@ import 'package:polymer/polymer.dart';
 import '../../controller/controller.dart';
 import 'calculation_box.dart';
 import '../block_editor.dart';
+import '../block_parser.dart';
 
 @CustomTag('addition-box')
 class AdditionBox extends CalculationBox {
@@ -11,13 +12,11 @@ class AdditionBox extends CalculationBox {
   static AdditionBox createBox(program.Add addBlock) {
     return (new html.Element.tag('addition-box') as AdditionBox)
       ..model = addBlock
-      ..attachLeft(BlockEditor.parseBlock(addBlock.a))
-      ..attachRight(BlockEditor.parseBlock(addBlock.b));
+      ..attachLeft(BlockParser.parseBlock(addBlock.a))
+      ..attachRight(BlockParser.parseBlock(addBlock.b));
   }
 
   program.Add _model;
-
-  PolymerElement parentElement;
 
   set model(program.Add m) {
     _model = m;

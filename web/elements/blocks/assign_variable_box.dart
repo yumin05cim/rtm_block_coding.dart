@@ -3,6 +3,7 @@ import 'package:rtm_block_coding/application.dart' as program;
 import 'package:polymer/polymer.dart';
 import 'package:paper_elements/paper_item.dart';
 import '../block_editor.dart';
+import '../block_parser.dart';
 import '../../controller/controller.dart';
 import 'variable_box.dart';
 
@@ -14,8 +15,8 @@ class AssignVariableBox extends VariableBox {
   static AssignVariableBox createBox(program.Assign m) {
     return new html.Element.tag('assign-variable-box') as AssignVariableBox
       ..model = m
-      ..attachLeftTarget(BlockEditor.parseBlock(m.left))
-      ..attachRightTarget(BlockEditor.parseBlock(m.right));
+      ..attachLeftTarget(BlockParser.parseBlock(m.left))
+      ..attachRightTarget(BlockParser.parseBlock(m.right));
   }
 
   set model(program.Assign m) {
