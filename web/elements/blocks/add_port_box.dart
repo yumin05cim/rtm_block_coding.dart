@@ -17,6 +17,7 @@ class AddPortBox extends BoxBase {
 
   @published String port_name = "defaultName";
   @published String port_type = "defaultType";
+
   AddPortBox.created() : super.created();
 
 

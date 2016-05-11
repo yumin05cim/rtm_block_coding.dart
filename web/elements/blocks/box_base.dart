@@ -5,7 +5,11 @@ import '../../controller/controller.dart';
 import 'package:paper_elements/paper_item.dart';
 import 'package:paper_elements/paper_dropdown_menu.dart';
 
+@CustomTag('box-base')
 class BoxBase extends PolymerElement {
+
+  PolymerElement parentElement;
+
   var _model;
 //とりあえずvar型にしてあるけどあまりよくない
 

@@ -14,8 +14,6 @@ class AddInPortBox extends AddPortBox {
       ..model = m;
   }
 
-  PolymerElement parentElement;
-
   AddInPortBox.created() : super.created();
 
 
