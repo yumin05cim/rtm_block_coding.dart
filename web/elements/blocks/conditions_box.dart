@@ -43,12 +43,12 @@ class ConditionsBox extends PolymerElement {
   }
 
   void select() {
-    $['target'].style.border = 'ridge';
-    ($['target'] as html.HtmlElement).style.borderColor = '#FF9F1C';
+    $['container'].style.border = 'ridge';
+    ($['container'] as html.HtmlElement).style.borderColor = '#FF9F1C';
   }
 
   void deselect() {
-    $['target'].style.border = '1px solid #B6B6B6';
+    $['container'].style.border = '1px solid #B6B6B6';
   }
 
   bool is_container() {
