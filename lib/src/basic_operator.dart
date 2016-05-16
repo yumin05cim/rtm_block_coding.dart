@@ -12,7 +12,7 @@ import 'variable.dart';
 /// 代入先は基本的に変数だからleftはVariable型
 /// 右辺はブロックが入る．Addなどの演算結果も受けることができる
 class SetVariable extends Block {
-  Variable _left;
+  ReferVariable _left;
   Block _right;
 
   get left => _left;

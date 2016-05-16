@@ -15,7 +15,7 @@ import 'block_loader.dart';
 /// 変数を定義するブロック
 /// 変数名のみを格納する
 /// もしC++にまで拡張するなら変数のタイプも持っておくべきだ
-class Variable extends Block {
+class ReferVariable extends Block {
   String _name;
   DataType _dataType;
 
@@ -33,7 +33,7 @@ class Variable extends Block {
   }
 
 
-  Variable(this._name, this._dataType) {}
+  ReferVariable(this._name, this._dataType) {}
 
   toPython(int indentLevel) {
     return _name;
@@ -44,7 +44,7 @@ class Variable extends Block {
     element(builder, attributes: {'dataType': _dataType.typename,}, nest: () {});
   }
 
-  Variable.XML(xml.XmlElement node) {
+  ReferVariable.XML(xml.XmlElement node) {
     _name = (node.getAttribute('name'));
     _dataType = new DataType.fromTypeName(node.getAttribute('dataType'));
   }

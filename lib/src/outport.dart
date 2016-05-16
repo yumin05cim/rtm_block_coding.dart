@@ -1,6 +1,4 @@
-
 library application.outport;
-
 
 import 'package:xml/xml.dart' as xml;
 import 'dart:core';
@@ -8,22 +6,18 @@ import 'block.dart';
 import 'statement.dart';
 import 'datatype.dart';
 import 'block_loader.dart';
+import 'port.dart';
 
+class AddOutPort extends AddPort {
 
-class AddOutPort extends Block {
-  String name;
-  DataType dataType;
-
-  AddOutPort(this.name, this.dataType) {
-
+  AddOutPort(String outName_, DataType outDataType_) : super(outName_, outDataType_) {
   }
 
   @override
   String toDeclarePython(int indentLevel) {
     String sb = "";
     sb = "self._d_${name} = " + dataType.constructorString() + '\n';
-    sb += Statement.indent * indentLevel +
-        'self._${name}Out = OpenRTM_aist.OutPort("${name}", self._d_${name})';
+    sb += Statement.indent * indentLevel + 'self._${name}Out = OpenRTM_aist.OutPort("${name}", self._d_${name})';
     return sb;
   }
 
@@ -38,23 +32,10 @@ class AddOutPort extends Block {
     return '';
   }
 
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-          'name' : name
-        },
-        nest: () {
-          dataType.buildXML(builder);
-        });
-  }
-
-  AddOutPort.XML(xml.XmlElement node) {
-    name = node.getAttribute('name');
-    child(node, (xml.XmlElement e) {
-      dataType = new DataType.XML(e);
-    });
+  AddOutPort.XML(xml.XmlElement node) : super.XML(node) {
   }
 }
+
 
 class AccessOutPort extends Block {
   String name;
@@ -62,9 +43,10 @@ class AccessOutPort extends Block {
   DataType dataType;
   String accessSequence;
 
-  AccessOutPort(this.name, this.dataType, this.accessSequence, this.right) {
-
+  AccessOutPort(this.name, this.dataType, this.accessSequence) {
   }
+/*  AccessOutPort(String outName_, DataType dataType_, String accessSequence_) : super(outName_, dataType_, accessSequence_) {
+  }*/
 
   String toPython(int indentLevel) {
     return "self._d_${name}.${accessSequence} = ${right.toPython(0)}";
@@ -104,7 +86,6 @@ class OutPortBuffer extends Block {
   String accessSequence;
 
   OutPortBuffer(this.name, this.dataType, this.accessSequence) {
-
   }
 
   String toPython(int indentLevel) {

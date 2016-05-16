@@ -14,3 +14,4 @@ export 'src/inport.dart';
 export 'src/outport.dart';
 export 'src/datatype.dart';
 export 'src/variable.dart';
+export 'src/port.dart';

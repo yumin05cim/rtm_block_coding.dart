@@ -1,0 +1,49 @@
+<link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/core_elements/core_style.html" />
+<link rel="import" href="packages/paper_elements/paper_input.html" />
+<link rel="import" href="packages/paper_elements/paper_fab.html" />
+
+<polymer-element name="subtraction-box" attributes="value">
+    <template>
+
+        <style type='text/css'>
+            :host {
+            }
+            #target {
+                margin-top: 2px;
+                margin-left: 7px;
+                margin-right: 7px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #B2EBF2;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                height: 50px;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="target" horizontal layout center on-tap="{{onClicked}}">
+            <div end>(</div>
+            <div id="value-left-content"></div>
+            <!-- <paper-input id="value1-input" flex value="{{value_a}}"></paper-input> -->
+            <div end> - </div>
+            <div id="value-right-content"></div>
+            <!-- <paper-input id="value2-input" flex value="{{value_b}}"></paper-input> -->
+            <div end>)</div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="subtraction_box.dart"></script>
+</polymer-element>
+

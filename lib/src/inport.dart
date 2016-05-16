@@ -1,22 +1,16 @@
 library application.inport;
 
-
-
 import 'package:xml/xml.dart' as xml;
 import 'dart:core';
 import 'block.dart';
-import 'condition.dart';
 import 'statement.dart';
-import 'block_loader.dart';
-
 import 'datatype.dart';
+import 'block_loader.dart';
+import 'port.dart';
 
-class AddInPort extends Block {
-  String name;
-  DataType dataType;
+class AddInPort extends AddPort {
 
-  AddInPort(this.name, this.dataType) {
-
+  AddInPort(String inName_, DataType inDataType_) : super(inName_, inDataType_) {
   }
 
   @override
@@ -38,28 +32,84 @@ class AddInPort extends Block {
     return '';
   }
 
+  AddInPort.XML(xml.XmlElement node) : super.XML(node){
+  }
+}
+
+
+class AccessInPort extends Block {
+  String name;
+  DataType dataType;
+  String accessSequence;
+
+  AccessInPort(this.name, this.dataType, this.accessSequence) {
+  }
+/*  AccessInPort(String inName_, DataType dataType_, String accessSequence_) : super(inName_, dataType_, accessSequence_) {
+  }*/
+
+  String toPython(int indentLevel) {
+    if (accessSequence.trim().length == 0) {
+      return 'self._d_${name}';
+    }
+    return 'self._d_${name}.${accessSequence}';
+  }
+
   void buildXML(xml.XmlBuilder builder) {
     super.element(builder,
         attributes: {
-          'name' : name
+          'name' : name,
+          'accessSequence' : accessSequence,
         },
         nest: () {
           dataType.buildXML(builder);
         });
   }
 
-
-  AddInPort.XML(xml.XmlElement node) {
+  AccessInPort.XML(xml.XmlElement node) {
     name = node.getAttribute('name');
+    accessSequence = node.getAttribute('accessSequence');
     child(node, (xml.XmlElement e) {
       dataType = new DataType.XML(e);
     });
   }
 }
 
+class InPortBuffer extends Block {
+  String name;
+  DataType dataType;
+  String accessSequence;
 
+  InPortBuffer(this.name, this.dataType, this.accessSequence) {
+  }
 
-class ReadInPort extends Block {
+  String toPython(int indentLevel) {
+    if (accessSequence.trim().length == 0) {
+      return 'self._d_${name}';
+    }
+    return 'self._d_${name}.${accessSequence}';
+  }
+
+  void buildXML(xml.XmlBuilder builder) {
+    super.element(builder,
+        attributes: {
+          'name' : name,
+          'accessSequence' : accessSequence,
+        },
+        nest: () {
+          dataType.buildXML(builder);
+        });
+  }
+
+  InPortBuffer.XML(xml.XmlElement node) {
+    name = node.getAttribute('name');
+    accessSequence = node.getAttribute('accessSequence');
+    child(node, (xml.XmlElement e) {
+      dataType = new DataType.XML(e);
+    });
+  }
+}
+
+  class ReadInPort extends Block {
   String name;
   DataType dataType;
 
@@ -76,7 +126,6 @@ class ReadInPort extends Block {
       sb += s.toPython(indentLevel + 1) + '\n';
     }
     return sb;
-
   }
 
   @override
@@ -102,45 +151,8 @@ class ReadInPort extends Block {
     typedChild(node, DataType, (xml.XmlElement e) {
         dataType = new DataType.XML(e);
     });
-
     typedChild(node, StatementList, (xml.XmlElement e) {
       statements.loadFromXML(e);
-    });
-  }
-}
-
-class AccessInPort extends Block {
-  String name;
-  DataType dataType;
-  String accessSequence;
-
-  AccessInPort(this.name, this.dataType, this.accessSequence) {
-  }
-
-  String toPython(int indentLevel) {
-    if (accessSequence.trim().length == 0) {
-      return 'self._d_${name}';
-    }
-    return 'self._d_${name}.${accessSequence}';
-  }
-
-
-  void buildXML(xml.XmlBuilder builder) {
-    super.element(builder,
-        attributes: {
-          'name' : name,
-          'accessSequence' : accessSequence,
-        },
-        nest: () {
-          dataType.buildXML(builder);
-        });
-  }
-
-  AccessInPort.XML(xml.XmlElement node) {
-    name = node.getAttribute('name');
-    accessSequence = node.getAttribute('accessSequence');
-    child(node, (xml.XmlElement e) {
-      dataType = new DataType.XML(e);
     });
   }
 }

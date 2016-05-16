@@ -1,0 +1,48 @@
+<link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/paper_elements/paper_input.html" />
+<link rel="import" href="packages/paper_elements/paper_fab.html" />
+
+<polymer-element name="real-literal-box" attributes="value">
+    <template>
+
+        <style type='text/css'>
+            :host {
+            }
+            :host > #target {
+                margin-top: 2px;
+                margin-left: 7px;
+                margin-right: 7px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #BDE1F0;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+
+                height: 40px;
+            }
+            #body {
+                position: relative;
+            }
+            paper-input {
+                margin-left : 10px;
+                margin-right: 10px;
+            }
+            paper-input#real-literal-input {
+                width: 30px;
+            }
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="target" horizontal layout center on-tap="{{onClicked}}">
+            <div>小数:</div>
+            <paper-input id="real-literal-input" value="{{value}}"></paper-input>
+        </div>
+
+    </template>
+    <script type="application/dart" src="real_literal_box.dart"></script>
+</polymer-element>

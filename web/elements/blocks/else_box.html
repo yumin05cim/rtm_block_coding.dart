@@ -1,0 +1,42 @@
+<link rel="import" href="packages/polymer/polymer.html" />
+<link rel="import" href="packages/core_elements/core_style.html" />
+
+<polymer-element name="else-box" attributes="command">
+    <template>
+
+        <style type='text/css'>
+            :host {
+            }
+            #container {
+                margin-top: 2px;
+                margin-left: 7px;
+                margin-right: 7px;
+                margin-bottom: 1px;
+
+                padding-left: 4px;
+                padding-right: 3px;
+
+                position: relative;
+
+                background-color: #D7CCC8;
+                border: 1px solid #B6B6B6;
+                border-radius: 0.3em;
+            }
+            #condition-block {
+                min-height: 30px;
+            }
+        </style>
+
+        <!--Japanese ver.-->
+        <div id="container" vertical layout on-tap="{{onClicked}}">
+            <div id="condition-block" horizontal layout center>
+                <div end>そうでないなら</div>
+            </div>
+            <div id="content-block">
+                <div id="alternative-content"></div>
+            </div>
+        </div>
+
+    </template>
+    <script type="application/dart" src="else_box.dart"></script>
+</polymer-element>
